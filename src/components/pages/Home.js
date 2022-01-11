@@ -21,7 +21,7 @@ const Home = () => {
         <div className='Home'>
             {/* <h1>HOME</h1> */}
             <label htmlFor='quantity'>Number of Items :</label>
-            <input type={Int32Array} id='quantity' name='quantity' min={1} max={10}></input>
+            <input type="number" id='quantity' name='quantity' min={1} max={10}></input>
             <button onClick={() =>handleClick(parseInt(document.getElementById("quantity").value))} className='btn'>Enter</button>
              <label>Results:</label><input type="text" value={ran_numbers}></input>
         </div>
