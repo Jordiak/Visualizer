@@ -1,5 +1,5 @@
 .dropdown-menu {
-  background: red;
+  background: rgba(149, 9, 9, 0.514);
   width: 200px;
   position: absolute;
   top: 80px;
@@ -8,7 +8,7 @@
 }
 
 .dropdown-menu li {
-  background: rgb(149, 9, 9);
+  background: rgba(149, 9, 9);
   cursor: pointer;
 }
 
@@ -27,6 +27,7 @@
   text-decoration: none;
   color: #fff;
   padding: 16px;
+  font-family:'Century Gothic';
 }
 
 @media screen and (max-width: 960px) {
