@@ -3,7 +3,8 @@ import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Dropdown from './Dropdown';
-import logoImage from './images/LOGO.png';
+import logoImage from './images/DSALOGO.png';
+
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -31,7 +32,8 @@ function Navbar() {
   return (
     <>
       <nav className='navbar'>
-      <img src={logoImage} alt='' width={80} height={80}/>
+     
+      <img src={logoImage} alt='' width={100} height={80}/>
         <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
           isualizer
         </Link>
