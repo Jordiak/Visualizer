@@ -14,7 +14,7 @@
 .Searching {
   display: flex;
   height: 90vh;
-  align-items: center;
+  text-align: center;
   justify-content: center;
   font-size: 3rem;
 }
@@ -71,6 +71,11 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
+  justify-content: top;
+  align-items: top;
+  font-size: 3rem;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  
 }
 
 .Searching {

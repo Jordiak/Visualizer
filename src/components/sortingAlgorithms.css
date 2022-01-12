@@ -1,0 +1,21 @@
+.ButtonContainer{
+    position:center;
+    
+}
+.Button{
+    margin-right:20px;
+    padding:10px;
+    background-color:blanchedalmond;
+}
+.array-container {
+    position: absolute;
+    left: 100px;
+    right: 100px;
+    top: 150px;
+  }
+  
+  .array-bar {
+    width: 2px;
+    display: inline-block;
+    margin: 0 1px;
+  }
