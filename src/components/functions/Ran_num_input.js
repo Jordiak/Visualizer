@@ -20,7 +20,6 @@ const Ran_nums = ({setCount}) => {
 
     return(
         <div>
-            {/* <h1>HOME</h1> */}
             <center>
             <label>Results:</label><input type="text" value={ran_numbers}></input>
             <br></br>
