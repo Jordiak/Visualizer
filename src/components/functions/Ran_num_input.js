@@ -21,7 +21,7 @@ const Ran_nums = () => {
         <div>
             {/* <h1>HOME</h1> */}
             <center>
-            <label>Results:</label><input type="text" id='txtbox1' value={ran_numbers}></input>
+            <label>Results:</label><input type="text" value={ran_numbers}></input>
             <br></br>
             <label htmlFor='quantity'>Number of Items :</label>
             <input type="number" id='quantity' name='quantity' min={1} max={10}></input>
