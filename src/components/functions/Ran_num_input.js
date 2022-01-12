@@ -4,11 +4,20 @@ import { useState } from 'react';
 const Ran_nums = ({setCount}) => {
     const [ran_numbers, setData] = useState("")
 
+    function randomIntegers(quantity, max){
+        const arr = []
+        while(arr.length < quantity){
+          var candidateInt = Math.floor(Math.random() * max) + 1
+          if(arr.indexOf(candidateInt) === -1) arr.push(candidateInt)
+        }
+      return(arr)
+      }
+
     const handleClick = (value) =>{
         if(Number.isNaN(value))
             setData("Enter numerical values only")
         else{
-            var array = Array.from({length: value}, () => Math.floor(Math.random() * 50))
+            var array = randomIntegers(value,50);
             var result = array.join(",").toString();
             if(value == "")
                 setData("Enter the number of random numbers to be generated")
