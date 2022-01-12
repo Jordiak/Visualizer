@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 export default function Stack(){
 
-    const intArray = [];
     const [int_array, setArray] = useState([])
 
     const loop_Values = () =>{
