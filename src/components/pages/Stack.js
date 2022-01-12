@@ -4,13 +4,10 @@ import Ran_nums from '../functions/Ran_num_input';
 export default function Stack(){
     return(
         <>
-        <div className='Stack'>
-        <br></br>
-             {/* line break doesn't work. Please help me with the formatting and make
-            the Data structure name on the top */}
-        <h1>STACK</h1>
+        <center><h1>STACK</h1></center>
         <Ran_nums/>
-        </div>
+
+        I want to get the the value from the txtbox1 that came from the child component Ran_nums
         </>
     );
 }
