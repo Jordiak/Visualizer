@@ -6,6 +6,15 @@ export default function Stack(){
 
     const [int_array, setArray] = useState([])
 
+    const mystyle = {
+        color: "white",
+        backgroundColor: "DodgerBlue",
+        padding: "10px",
+        fontFamily: "Arial",
+        width:"250px",
+        height:"50px",
+        border:"1px solid #000"
+      };
     const loop_Values = () =>{
         var numbers = {random_numbers};
         var intArray = [];
@@ -40,7 +49,7 @@ export default function Stack(){
 
         <ul>
         {int_array.map((value, index) => {
-            return <li key={index}>{value}</li>
+            return <li style={mystyle} key={index}>{value}</li>
         })}
         </ul>
         </>
