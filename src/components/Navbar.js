@@ -47,6 +47,17 @@ function Navbar() {
               Home
             </Link>
           </li>
+          
+          <li className='nav-item'>
+            <Link to='/sorting-algorithms' className='nav-links' onClick={closeMobileMenu}>
+              Sorting Algorithms
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to='/searching-algorithms' className='nav-links' onClick={closeMobileMenu}>
+              Searching Algorithms
+            </Link>
+          </li>
           <li
             className='nav-item'
             onMouseEnter={onMouseEnter}
@@ -60,16 +71,6 @@ function Navbar() {
               Data Structures <i className='fas fa-caret-down' />
             </Link>
             {dropdown && <Dropdown />}
-          </li>
-          <li className='nav-item'>
-            <Link to='/sorting-algorithms' className='nav-links' onClick={closeMobileMenu}>
-              Sorting Algorithms
-            </Link>
-          </li>
-          <li className='nav-item'>
-            <Link to='/searching-algorithms' className='nav-links' onClick={closeMobileMenu}>
-              Searching Algorithms
-            </Link>
           </li>
         </ul>
       </nav>
