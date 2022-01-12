@@ -9,7 +9,9 @@
 .Stack,
 .Queue,
 .Tree,
-.Graph {
+.Graph,
+.Sorting,
+.Searching {
   display: flex;
   height: 90vh;
   align-items: center;
@@ -54,6 +56,24 @@
 }
 
 .Graph {
+  background-image: url("./components/images/3.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+}
+
+.Sorting {
+  background-image: url("./components/images/2.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
+}
+
+.Searching {
   background-image: url("./components/images/3.png");
   background-position: center;
   background-size: cover;
