@@ -37,6 +37,12 @@ export default function Stack(){
         <center>
         <button onClick={() =>loop_Values()} className='btn'>Generate Stack</button>
              </center>
+
+        <ul>
+        {int_array.map((value, index) => {
+            return <li key={index}>{value}</li>
+        })}
+        </ul>
         </>
     );
 }
