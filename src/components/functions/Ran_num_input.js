@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-const Ran_nums = () => {
+const Ran_nums = ({setCount}) => {
     const [ran_numbers, setData] = useState("")
 
     const handleClick = (value) =>{
@@ -14,6 +14,7 @@ const Ran_nums = () => {
                 setData("Enter the number of random numbers to be generated")
             else
                 setData(result)
+            setCount(result)
         }
     }
 
