@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SortingVisualizer from '../functions/SortingVisualizer';
+
 
 
 export default function Sorting(){
@@ -9,8 +9,6 @@ export default function Sorting(){
         <div>
             Merge Sort
         </div>
-          <SortingVisualizer></SortingVisualizer>
-        
         </div>
       );
 }
