@@ -2,7 +2,7 @@ import React from 'react';
 import Ran_nums from '../functions/Ran_num_input';
 import { useState } from 'react';
 
-export default function Stack(){
+export default function LinkedList(){
 
     const [int_array, setArray] = useState([])
 

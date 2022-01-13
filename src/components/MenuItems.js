@@ -1,7 +1,7 @@
 export const MenuItems = [
     {
-        title: 'Stack',
-        path: '/stack',
+        title: 'Linked List',
+        path: '/linked-list',
         cName: 'dropdown-link'
     },
     {
@@ -12,11 +12,6 @@ export const MenuItems = [
     {
         title: 'Tree',
         path: '/tree',
-        cName: 'dropdown-link'
-    },
-    {
-        title: 'Unweighted Directed Graph',
-        path: '/unweighted-directed-graph',
         cName: 'dropdown-link'
     },
 ]

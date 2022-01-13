@@ -5,18 +5,25 @@
   font-family: "PT Sans", sans-serif;
 }
 
-.Stack,
+.LinkedList,
 .Home,
 .Queue,
 .Tree,
-.Graph,
-.Searching {
+.ShortestPath {
   display: flex;
   height: 90vh;
   text-align: center;
   justify-content: center;
   align-items: center;
   font-size: 3rem;
+}
+.LinkedList {
+  background-image: url("./components/images/3.png");
+  background-position: center;
+  background-size: fill;
+  background-repeat: no-repeat;
+  color: #fff;
+  font-size: 100px;
 }
 .Home {
   background-image: url("./components/images/1.png");
@@ -25,15 +32,6 @@
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
-}
-
-.Stack {
-  background-image: url("./components/images/2.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 30px;
 }
 
 .Queue {
@@ -54,15 +52,6 @@
   font-size: 100px;
 }
 
-.Graph {
-  background-image: url("./components/images/3.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
 .Sorting {
   background-image: url("./components/images/2.png");
   background-position: center;
@@ -70,7 +59,7 @@
   background-repeat: no-repeat;
 }
 
-.Searching {
+.ShortestPath {
   background-image: url("./components/images/3.png");
   background-position: center;
   background-size: cover;

@@ -54,8 +54,8 @@ function Navbar() {
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/searching-algorithms' className='nav-links' onClick={closeMobileMenu}>
-              Searching Algorithms
+            <Link to='/shortest-path-algorithms' className='nav-links' onClick={closeMobileMenu}>
+              Shortest Path Algorithms
             </Link>
           </li>
           <li
