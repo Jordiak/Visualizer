@@ -53,6 +53,8 @@
 }
 
 .Sorting {
+  width: 100%;
+  overflow: hidden;
   background-image: url("./components/images/2.png");
   background-position: center;
   background-size: cover;

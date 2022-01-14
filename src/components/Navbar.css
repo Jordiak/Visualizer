@@ -5,7 +5,6 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  
 }
 
 .navbar-logo {
@@ -42,7 +41,7 @@
   color: white;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  font-family:'Century Gothic';
+  font-family: "Century Gothic";
 }
 
 .nav-links:hover {
@@ -98,6 +97,7 @@
   .nav-links:hover {
     background-color: rgb(0, 0, 0);
     border-radius: 0;
+    cursor: pointer;
   }
 
   .navbar-logo {

@@ -1,0 +1,16 @@
+.collapsible .toggle {
+  cursor: pointer;
+  font: unset;
+  padding: 0.5rem;
+  margin-bottom: unset;
+}
+
+.collapsible .content {
+  padding: 1rem;
+}
+
+.collapsible .content-parent {
+  height: 0px;
+  overflow: hidden;
+  transition: height ease 0.3s;
+}
