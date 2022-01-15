@@ -1,0 +1,16 @@
+.grid-container {
+  margin: 8% auto;
+}
+
+.grid {
+  white-space: pre;
+}
+
+button {
+  padding: unset;
+  padding: 0.5 rem;
+}
+
+table {
+  text-align: center;
+}
