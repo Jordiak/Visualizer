@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import ShowSection from './components/ShowSection'
-import InputSection from './components/InputSection'
-import './Dsa.css'
-import testDatas from './data/testDatas'
-import parsing from './data/parsing'
+import ShowSection from '../ShowSection'
+import InputSection from '../InputSection'
+import '../../stylesheet/Dsa.css'
+import testDatas from '../../data/testDatas'
+import parsing from '../../data/parsing'
 
 class Dsa extends Component {
   constructor() {

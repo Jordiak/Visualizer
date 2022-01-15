@@ -9,7 +9,7 @@ import LinkedList from './components/pages/LinkedList';
 import Tree from './components/pages/Tree';
 import ShortestPath from './components/pages/ShortestPath';
 import Sorting from './components/pages/Sorting';
-import Dsa from './Dsa';
+import Dsa from './components/pages/Dsa';
 
 function App() {
   return (
