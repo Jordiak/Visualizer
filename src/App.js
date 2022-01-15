@@ -9,6 +9,7 @@ import LinkedList from './components/pages/LinkedList';
 import Tree from './components/pages/Tree';
 import ShortestPath from './components/pages/ShortestPath';
 import Sorting from './components/pages/Sorting';
+import Dsa from './Dsa';
 
 function App() {
   return (
@@ -20,9 +21,10 @@ function App() {
         <Route path="/sorting-algorithms" exact component={Sorting} />
         <Route path="/shortest-path-algorithms" exact component={ShortestPath} />
         <Route path="/unweighted-directed-graph" exact component={Graph} />
-        <Route path="/queue" exact component={Queue} />
-        <Route path="/linked-list" exact component={LinkedList} />
-        <Route path="/tree" exact component={Tree} />
+        <Route path="/data-structures" exact component={Dsa} />
+        <Route path="/queue" exact component={Dsa} />
+        <Route path="/linked-list" exact component={Dsa} />
+        <Route path="/tree" exact component={Dsa} />
       </Switch>
     </Router>
   );
