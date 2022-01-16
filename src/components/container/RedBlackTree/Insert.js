@@ -4,13 +4,6 @@ import Arrow from '../TreeArrow'
 import PropTypes from 'prop-types'
 import Node from 'js_dsal/src/containers/node/TreeNode'
 import '../../../stylesheet/container/RedBlackTree/insert.css'
-/*
-red-black tree의 insert 
-svg에 보이는 값은 node.getKey().toString()
-node를 클릭하면 전체 node.toString()이 보여짐.
-set, map에 따라서 전체 값인 node.toString()은 달라진다.
-multi or not처리
-*/
 
 /**
  * get parent of node.
@@ -312,9 +305,7 @@ class Insert extends Component {
   // internal methods
   findInsertPose(node = null) {
     const key = this.props.params[0];
-    // 삽입할 위치를 찾는다, leaf면은 끝
 
-    // leaf면 노드 삽입하고 repair step으로
     if (node.getLeftChild() === null) {
       const textSvg = [<text key={this.keyid} x={this.interval} y={50} width={30} height={15}>Insert Node</text>];
       let ElementSvg;
