@@ -64,15 +64,15 @@ data.push.map(d => pq.push(d));
   render() {
     return (
       <div className='samplecode'>
-        <button className='samplecodebutton' onClick={this.closeButton}>Data Structure</button>
+        <button className='samplecodebutton' onClick={this.closeButton}>Select Data Structure</button>
         {(this.state.open)?
           <div className='coverDom2'>
             <div className='changecodecontent'>
-              <button className='gosample' onClick={() => this.clickButton(this.settreecode, this.settreedata)}>SetTree Example</button>
-              <button className='gosample' onClick={() => this.clickButton(this.maptreecode, this.maptreedata)}>MapTree Example</button>
-              <button className='gosample' onClick={() => this.clickButton(this.listcode, this.listdata)}>List Example</button>
-              <button className='gosample' onClick={() => this.clickButton(this.queuecode, this.queuedata)}>Queue Example</button>
-              <button className='gosample' onClick={() => this.clickButton(this.pqcode, this.pqdata)}>Priority Queue Example</button>
+              <button className='gosample' onClick={() => this.clickButton(this.settreecode, this.settreedata)}>SetTree</button>
+              <button className='gosample' onClick={() => this.clickButton(this.maptreecode, this.maptreedata)}>MapTree</button>
+              <button className='gosample' onClick={() => this.clickButton(this.listcode, this.listdata)}>List</button>
+              <button className='gosample' onClick={() => this.clickButton(this.queuecode, this.queuedata)}>Queue</button>
+              <button className='gosample' onClick={() => this.clickButton(this.pqcode, this.pqdata)}>Priority Queue</button>
               <button className='closeshowdata' onClick={this.closeButton}>close</button>
             </div>
           </div>
