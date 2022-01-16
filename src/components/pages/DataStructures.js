@@ -5,10 +5,10 @@ import Dsa from './Dsa.js';
 export default function DataStructures(){
     return(
         <div className='DataStructures'>
-            <div className='left'>
+            <div className='DSleft'>
                 <Dsa />
             </div>
-            <div className='right'>
+            <div className='DSright'>
             <Collapsible label="Dijkstra's Algorithm Information">
                         <h1>Dijkstra's Algorithm</h1>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 

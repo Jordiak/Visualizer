@@ -2,7 +2,8 @@ div.show-datas {
   width: 100%;
   height: 10%;
   float: left;
-  color:aliceblue
+  color: aliceblue;
+  background-color: black;
 }
 
 svg.data-svg {
