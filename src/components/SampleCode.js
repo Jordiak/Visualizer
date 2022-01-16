@@ -64,7 +64,7 @@ data.push.map(d => pq.push(d));
   render() {
     return (
       <div className='samplecode'>
-        <button className='samplecodebutton' onClick={this.closeButton}>Sample Code</button>
+        <button className='samplecodebutton' onClick={this.closeButton}>Data Structure</button>
         {(this.state.open)?
           <div className='coverDom2'>
             <div className='changecodecontent'>

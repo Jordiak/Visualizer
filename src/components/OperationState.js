@@ -4,7 +4,7 @@ import '../stylesheet/OperationState.css'
 
 const OperationState = ({ operationCount={count: 0} }) =>
   <div className='operation-state'>
-    <b className='op-section'>rhfktj@gmail.com</b>
+    <b className='op-section'></b>
   </div>
 
 OperationState.propTypes = {

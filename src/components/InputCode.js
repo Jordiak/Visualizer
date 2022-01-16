@@ -55,8 +55,6 @@ qu.push(4);
   render() {
     return (
       <div className = 'code-write'>
-        <div className = 'fixedCode'>import std from 'js_dsal'</div>
-        <div className = 'fixedCode'>const data = inputDataObject</div>
         <textarea ref={input=>this.txtarea=input} className='code-write' spellCheck='false' wrap='off' defaultValue={this.code}>
         </textarea>
       </div>
