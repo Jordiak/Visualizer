@@ -1,12 +1,12 @@
 import React from 'react';
-import PathfindingVisualizer from '../pathFindingVisualizer/PathfindingVisualizer'
 import Collapsible from '../functions/Collapsible.js';
+import Dsa from './Dsa.js';
 
-export default function ShortestPath(){
+export default function DataStructures(){
     return(
-        <div className='ShortestPath'>
+        <div className='DataStructures'>
             <div className='left'>
-                <PathfindingVisualizer />
+                <Dsa />
             </div>
             <div className='right'>
             <Collapsible label="Dijkstra's Algorithm Information">

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Node from './Node/Node';
 import {dijkstra} from '../pathFindingAlgorithms/dijkstra';
-import {AStar} from '../pathFindingAlgorithms/aStar';
 import {dfs} from '../pathFindingAlgorithms/dfs';
 import {bfs} from '../pathFindingAlgorithms/bfs';
 
@@ -290,9 +289,6 @@ export default class PathfindingVisualizer extends Component {
         case 'Dijkstra':
           visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
           break;
-        case 'AStar':
-          visitedNodesInOrder = AStar(grid, startNode, finishNode);
-          break;
         case 'BFS':
           visitedNodesInOrder = bfs(grid, startNode, finishNode);
           break;
@@ -413,12 +409,7 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.visualize('Dijkstra')}>
           Dijkstra's
         </button>
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => this.visualize('AStar')}>
-          A*
-        </button>
+       
         <button
           type="button"
           className="btn btn-primary"

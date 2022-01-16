@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import Dropdown from './Dropdown';
 import logoImage from './images/DSALOGO.png';
 
 
@@ -13,21 +11,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(true);
-    }
-  };
-
-  const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(false);
-    }
-  };
+ 
 
   return (
     <>
@@ -58,19 +42,10 @@ function Navbar() {
               Shortest Path Algorithms
             </Link>
           </li>
-          <li
-            className='nav-item'
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            <Link
-              to='/data-structures'
-              className='nav-links'
-              onClick={closeMobileMenu}
-            >
-              Data Structures <i className='fas fa-caret-down' />
+          <li className='nav-item'>
+            <Link to='/data-structures' className='nav-links' onClick={closeMobileMenu}>
+              Data Structures
             </Link>
-            {dropdown && <Dropdown />}
           </li>
         </ul>
       </nav>
