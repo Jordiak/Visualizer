@@ -9,17 +9,18 @@
 }
 .cell {
   flex: 0.5;
-  margin: 1px;
+  margin: 1.5px;
   display: flex;
   resize: horizontal;
   position: relative;
   align-items: flex-start;
-  background-color: #d6d6d6;
+  background-color: rgba(175, 218, 248, 0.911);
   transition: all 0.4s ease-in;
+  border-radius: 3px;
 }
 .cell.done {
-  background-color: #beff89;
-  border-color: #beff89;
+  background-color: #03af20;
+  border-color: #03af20;
   transition: all 0.4s ease-out;
 }
 .cell.current {
@@ -36,7 +37,7 @@ button {
   padding: 10px;
   margin: 10px;
   color: rgba(255, 255, 255, 0.9);
-  border-radius: 0px;
+  border-radius: 3px;
   background: linear-gradient(-45deg, #ffa63d, #ff3d77, #338aff, #3cf0c5);
   background-size: 600%;
   animation: anime 16s linear infinite;

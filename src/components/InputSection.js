@@ -56,13 +56,11 @@ class InputSection extends Component {
         {(this.state.showCaution)?
         <div className='coverDom'>
         <div className='cautionContent'>
-          <p className='linestyle'>1. Declare variables at the top of the scope block.</p>
-          <p className='linestyle'>2. Semicolon is need to the end of line</p>
-          <p className='linestyle'>3. Method Chaining does not animationized</p>
-          <p className='linestyle'>4. The method in parameter does not animationized</p>
-          <p className='linestyle'>5. Paste the '.' and name</p>
-          <p className='linestyle'>6. Make toString() function to object data. This shows you 6 characters</p>
-          <button className='input-button-close' onClick={this.changeShow}>close</button>
+          <p className='linestyle'>1. Declare the variables at the top of the scope block.</p>
+          <p className='linestyle'>2. Semicolon is needed at the end of each line</p>
+          <p className='linestyle'>3. Method Chaining is not animated</p>
+          <p className='linestyle'>4. The method in parameter is not animated</p>
+          <button className='input-button-close' onClick={this.changeShow}>Close</button>
         </div> 
         </div>
         :null}

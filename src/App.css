@@ -75,6 +75,7 @@
   background-repeat: no-repeat;
 }
 .DSleft {
+  margin-left: 10px;
   width: 75%;
   float: left;
 }
