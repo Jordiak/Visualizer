@@ -11,14 +11,14 @@ class SampleCode extends Component {
   }
 
   settreedata = `{
-  keys: [100, 90, 80, 85, 83, 103, 110, 120, 130]
+  keys: [100, 90, 80, 85, 100]
 }`
   settreecode = `let tree = new std.SetTree();
 data.keys.map(n => tree.insert(n));
 `
   
   maptreedata = `{
-  keys: [100, 90, 80, 85, 83, 103, 110, 120, 130]
+  keys: [100, 90, 80, 85, 103]
 }`
   maptreecode = `let tree = new std.MapTree();
 data.keys.map(
