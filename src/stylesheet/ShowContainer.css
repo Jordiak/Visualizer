@@ -13,8 +13,8 @@ div.drawing {
   height: 100%;
   float: left;
   border-width: 1px;
-  border-color: red;
-  border-style: solid;
+  border-color:none;
+  border-style: hidden;
   color: aliceblue;
 }
 
@@ -58,7 +58,7 @@ div.text-show2 {
   -webkit-appearance: none; /* Override default CSS styles */
   width: 100%; /* Full-width */
   height: 10px; /* Specified height */
-  background-color: #c72f2f; /* Grey background */
+  background-color: #dfc5c5; /* Grey background */
   color: aliceblue;
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */

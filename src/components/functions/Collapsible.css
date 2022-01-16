@@ -3,10 +3,12 @@
   font: unset;
   padding: 0.5rem;
   margin-bottom: unset;
+  width:90%;
 }
 
 .collapsible .content {
   padding: 1rem;
+  text-align: justify;
 }
 
 .collapsible .content-parent {

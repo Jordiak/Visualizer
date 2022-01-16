@@ -9,49 +9,34 @@ export default function DataStructures(){
                 <Dsa />
             </div>
             <div className='DSright'>
-            <Collapsible label="Dijkstra's Algorithm Information">
-                        <h1>Dijkstra's Algorithm</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.
+            <Collapsible label="Linked List">
+                        <h1>Linked List</h1>
+                        <p>A linked list is a linear data structure that includes a series of connected nodes. Here, each node stores the data and the address of the next node.Linked lists can be of multiple types: singly, doubly, and circular linked list.
                         </p>
+                        <h1>Applications</h1>
+                        <p><ol><li>Dynamic memory allocation</li><li>Implemented in stack and queue</li><li>In undo functionality of softwares</li><li>Hash tables, Graphs</li></ol></p>
             </Collapsible>
-            <Collapsible label="Breadth First Search Algorithm Information">
-                        <h1>Breadth First Search Algorithm</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.
+            <Collapsible label="Queue">
+                        <h1>Queue</h1>
+                        <p> A queue is a useful data structure in programming. It is similar to the ticket queue outside a cinema hall, where the first person entering the queue is the first person who gets the ticket.Queue follows the First In First Out (FIFO) rule - the item that goes in first is the item that comes out first.
                         </p>
+                        <h1>Priority Queue</h1>
+                        <p>A priority queue is a special type of queue in which each element is associated with a priority value. And, elements are served on the basis of their priority. That is, higher priority elements are served first.However, if elements with the same priority occur, they are served according to their order in the queue.</p>
             </Collapsible>
-            <Collapsible label="Depth First Search Algorithm Information">
-                        <h1>Depth First Search Algorithm</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.
+            <Collapsible label="Tree">
+                        <h1>Tree</h1>
+                        <p>A tree is a nonlinear hierarchical data structure that consists of nodes connected by edges.Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
                         </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.
+                        <h1>Applications</h1>
+                        <p>
+<ol><li> Binary Search Trees(BSTs) are used to quickly check whether an element is present in a set or not.</li>
+<li> Heap is a kind of tree that is used for heap sort.</li>
+<li> A modified version of a tree called Tries is used in modern routers to store routing information.</li>
+<li> Most popular databases use B-Trees and T-Trees, which are variants of the tree structure we learned above to store their data</li>
+<li> Compilers use a syntax tree to validate the syntax of every program you write.</li>
+</ol>
                         </p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
-                            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
-                            irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
-                            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia 
-                            deserunt mollit anim id est laborum.
-                        </p>
+                       
             </Collapsible>
             </div>
         </div>

@@ -3,7 +3,7 @@ div.show-datas {
   height: 10%;
   float: left;
   color: aliceblue;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.425);
 }
 
 svg.data-svg {
@@ -12,6 +12,6 @@ svg.data-svg {
   border-width: 1px;
   border-color: red;
   border-style: solid;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.479);
   color: aliceblue;
 }
