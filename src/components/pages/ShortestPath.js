@@ -8,11 +8,31 @@ export default function ShortestPath(){
         <div className='ShortestPath'>
             <div className='left-panel'>
             <SideCollapsible label = " ">
-            <h1>Depth First Search</h1>
-                        <p>The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes by going ahead, if possible, else by backtracking.
-                        Here, the word backtrack means that when you are moving forward and there are no more nodes along the current path, you move backwards on the same path to find nodes to traverse. All the nodes will be visited on the current path till all the unvisited nodes have been traversed after which the next path will be selected. 
-
-                        </p>
+            <h1 style={{textAlign:"center"}}>Shortest Path Algorithms</h1><br/>
+            <h3 style={{textAlign:"center"}}>Complexity</h3><br/>
+                      <table className='left-table'>
+                          <tr>
+                              <th>AGORITHM</th>
+                              <th>Time Complexity</th>
+                              <th>Space Complexity</th>
+                          </tr>
+                          <tr>
+                              <td>Dijkstra</td>
+                              <td>O((|V| + |E|) log V)</td>
+                              <td>O(|V| + |E|)</td>
+                          </tr>
+                          <tr>
+                              <td>Breadth First Search</td>
+                              <td>O(V+E)</td>
+                              <td>O(l), l is no. of node in single level</td>
+                          </tr>
+                          <tr>
+                              <td>Depth First Search</td>
+                              <td>O(V+E)</td>
+                              <td>O(h), h is max height</td>
+                          </tr>
+                          
+                      </table>
             </SideCollapsible>
             </div>
             <div className='left'>

@@ -1,7 +1,7 @@
 div.App {
-  width: 100%;
+  width: 112%;
   height: 1000px;
-  margin: right;
+ margin-right:0px;
   background-size: cover;
   outline: 0px !important;
   color: aliceblue;

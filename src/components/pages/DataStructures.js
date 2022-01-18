@@ -8,11 +8,97 @@ export default function DataStructures(){
         <div className='DataStructures'>
             <div className='left-panel'>
             <SideCollapsible label = " ">
-            <h1>Depth First Search</h1>
-                        <p>The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes by going ahead, if possible, else by backtracking.
-                        Here, the word backtrack means that when you are moving forward and there are no more nodes along the current path, you move backwards on the same path to find nodes to traverse. All the nodes will be visited on the current path till all the unvisited nodes have been traversed after which the next path will be selected. 
-
-                        </p>
+            <h1 style={{textAlign:"center"}}>Time Complexity</h1><br/>
+            <h4 style={{textAlign:"center"}}>Doubly Linked List</h4><br/>
+                      <table className='left-table'>
+                          <tr>
+                              <th>OPERATIONS</th>
+                              <th>BEST</th>
+                              <th>WORST</th>
+                          </tr>
+                          <tr>
+                              <td>Access</td>
+                              <td>Θ(n)</td>
+                              <td>O(n)</td>
+                          </tr>
+                          <tr>
+                              <td>Search</td>
+                              <td>O(n)</td>
+                              <td>O(n)</td>
+                          </tr>
+                          <tr>
+                              <td>Insertion</td>
+                              <td>O(1)</td>
+                              <td>O(1)</td>
+                          </tr>
+                          <tr>
+                              <td>Deletion</td>
+                              <td>O(1)</td>
+                              <td>O(1)</td>
+                          </tr>
+                          
+                          
+                      </table><br/>
+                      <h4 style={{textAlign:"center"}}>Queue</h4><br/>
+                      <table className='left-table' style={{textAlign:"center"}}>
+                          <tr>
+                              <th>OPERATIONS</th>
+                              <th>BEST</th>
+                              <th>WORST</th>
+                          </tr>
+                          <tr>
+                              <td>Access</td>
+                              <td>Θ(n)</td>
+                              <td>O(n)</td>
+                          </tr>
+                          <tr>
+                              <td>Search</td>
+                              <td>O(n)</td>
+                              <td>O(n)</td>
+                          </tr>
+                          <tr>
+                              <td>Insertion</td>
+                              <td>O(1)</td>
+                              <td>O(1)</td>
+                          </tr>
+                          <tr>
+                              <td>Deletion</td>
+                              <td>O(1)</td>
+                              <td>O(1)</td>
+                          </tr>
+                          
+                          
+                      </table><br/>
+                      <h4 style={{textAlign:"center"}}>Binary Tree</h4><br/>
+                      <table className='left-table' style={{textAlign:"center"}}>
+                          <tr>
+                              <th>OPERATIONS</th>
+                              <th>BEST</th>
+                              <th>WORST</th>
+                          </tr>
+                          <tr>
+                              <td>Access</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Search</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Insertion</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Deletion</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          
+                          
+                      </table>
             </SideCollapsible>
             </div>
             <div className='DSleft'>

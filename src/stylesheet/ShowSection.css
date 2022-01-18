@@ -1,8 +1,9 @@
 section.show-section {
-  width: 60%;
+  width: 65%;
   height: 90%;
   margin: 0;
   float: left;
+  margin-left:1%;
 }
 
 div.text-show1 {

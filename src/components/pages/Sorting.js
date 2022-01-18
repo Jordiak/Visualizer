@@ -12,7 +12,7 @@ export default function Sorting(){
         <div className='Sorting'>
             <div className='left-panel'>
             <SideCollapsible label = " ">
-            <h1 style={{textAlign:"center"}}>Depth First Search</h1><br/>
+            <h1 style={{textAlign:"center"}}>Sorting Algorithms</h1><br/>
             <h3 style={{textAlign:"center"}}>Big O Time Complexity</h3><br/>
                       <table className='left-table'>
                           <tr>
