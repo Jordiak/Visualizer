@@ -15,55 +15,35 @@
   align-items: center;
   font-size: 3rem;
 }
-.LinkedList {
-  background-image: url("./components/images/3.png");
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
-
-.Queue {
-  background-image: url("./components/images/3.png");
-  background-position: center;
-  background-size: fill;
-  background-repeat: no-repeat;
-}
-
-.Tree {
-  background-image: url("./components/images/2.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: #fff;
-  font-size: 100px;
-}
 
 .Sorting {
   width: 100%;
   overflow: hidden;
-  background-image: url("./components/images/2.png");
+  background-image: url("../src/components/images/blackhills.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .ShortestPath {
   width: 100%;
   overflow: hidden;
-  background-image: url("./components/images/3.png");
+  background-image: url("../src/components/images/blackhills.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
+
 .DataStructures {
   width: 100%;
   overflow: hidden;
-  background-image: url("./components/images/3.png");
+  background-image: url("../src/components/images/blackhills.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 .DSleft {
   width: 55%;
