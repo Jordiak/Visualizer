@@ -69,7 +69,7 @@ export default function DataStructures(){
                           
                           
                       </table><br/>
-                      <h4 style={{textAlign:"center"}}>Binary Tree</h4><br/>
+                      <h4 style={{textAlign:"center"}}>Red & Black Tree</h4><br/>
                       <table className='left-table' style={{textAlign:"center"}}>
                           <tr>
                               <th>OPERATIONS</th>
@@ -126,7 +126,7 @@ export default function DataStructures(){
                         <h1>Applications</h1>
                         <p>
 <ol><li> Binary Search Trees(BSTs) are used to quickly check whether an element is present in a set or not.</li>
-<li> Heap is a kind of tree that is used for heap sort.</li>
+<li> A Red Black Tree is a kind of self-balancing binary search tree. Each node stores an extra bit representing "color" ("red" or "black"), used to ensure that the tree remains balanced during insertions and deletions.</li>
 <li> A modified version of a tree called Tries is used in modern routers to store routing information.</li>
 <li> Most popular databases use B-Trees and T-Trees, which are variants of the tree structure we learned above to store their data</li>
 <li> Compilers use a syntax tree to validate the syntax of every program you write.</li>
