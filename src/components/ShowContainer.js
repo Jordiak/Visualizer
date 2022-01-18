@@ -208,13 +208,12 @@ class ShowContainer extends Component{
     this.showstep += 1;
   }
 
-  // 마지막 선택에서는 svg를 초기화 하지않도록 한다.
+  
   initiate = (time) => {
     const submitStack = this.props.submitStack;
     console.log('call initiate')
     console.log(this.props.containerState.object)
     this.sto1 = setTimeout(() => {
-      // this.setState({Visualize: NextComp, Executing: EmptyComp, Stop: false})
       this.setState({Visualize: EmptyComp, Executing: EmptyComp, Stop: false})
       this.sto2 = setTimeout(() => this.props.nextStep(submitStack), 10)
     }, time)
@@ -223,9 +222,9 @@ class ShowContainer extends Component{
   render() {
     return (
       <div className='show-container'>
-        <div className='text-show2'>DataStructure</div>
+        <div className='text-show2'>Data Structure</div>
         <div className='slidercontainer'> 
-          <div className='slidername'>speed bar</div>
+          <div className='slidername'>SPEED BAR</div>
           <input type='range' min={20} max={250} value={this.props.duration} onChange={e => this.props.changeDuration(e.target.value)} className='slider' />
         </div>
         <div className='text-show3'>Executing: </div>

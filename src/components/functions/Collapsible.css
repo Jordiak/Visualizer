@@ -40,3 +40,12 @@
   overflow: hidden;
   transition: height ease 0.3s;
 }
+
+.left-table tr:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+  
+ 
+}
+.left-table th:nth-child(even),.left-table td:nth-child(even) {
+  background-color: rgba(150, 212, 212, 0.4);
+}

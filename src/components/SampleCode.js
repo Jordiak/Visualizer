@@ -73,7 +73,7 @@ data.push.map(d => pq.push(d));
               <button className='gosample' onClick={() => this.clickButton(this.listcode, this.listdata)}>List</button>
               <button className='gosample' onClick={() => this.clickButton(this.queuecode, this.queuedata)}>Queue</button>
               <button className='gosample' onClick={() => this.clickButton(this.pqcode, this.pqdata)}>Priority Queue</button>
-              <button className='closeshowdata' onClick={this.closeButton}>close</button>
+              <button className='closeshowdata' onClick={this.closeButton}>CLOSE</button>
             </div>
           </div>
         : null}

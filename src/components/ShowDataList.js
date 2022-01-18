@@ -53,7 +53,7 @@ class ShowDataList extends React.Component {
         <div className='coverDom2'>
           <div className='dataContent'>
             {this.props.dataStates.map(data=>this.dataScript(data))}
-            <button className='closeshowdata' onClick={this.changeShowdata}>close</button>
+            <button className='closeshowdata' onClick={this.changeShowdata}>CLOSE</button>
           </div>
         </div>
         :null}
@@ -62,7 +62,7 @@ class ShowDataList extends React.Component {
           <div className='datastring'>
           {this.state.string.split('\n').map(n => <div>{'+'+n}<br /></div>)}
           </div>
-          <button className='closeshowdata' onClick={this.changeShowString}>close</button>
+          <button className='closeshowdata' onClick={this.changeShowString}>CLOSE</button>
         </div>
         :null}
       </div>

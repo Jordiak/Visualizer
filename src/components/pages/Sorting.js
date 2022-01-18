@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 
 import Visualizer from './sortingVisualizer.jsx';
 import './sorting.css';
@@ -12,11 +12,41 @@ export default function Sorting(){
         <div className='Sorting'>
             <div className='left-panel'>
             <SideCollapsible label = " ">
-            <h1>Depth First Search</h1>
-                        <p>The DFS algorithm is a recursive algorithm that uses the idea of backtracking. It involves exhaustive searches of all the nodes by going ahead, if possible, else by backtracking.
-                        Here, the word backtrack means that when you are moving forward and there are no more nodes along the current path, you move backwards on the same path to find nodes to traverse. All the nodes will be visited on the current path till all the unvisited nodes have been traversed after which the next path will be selected. 
-
-                        </p>
+            <h1 style={{textAlign:"center"}}>Depth First Search</h1><br/>
+            <h3 style={{textAlign:"center"}}>Big O Time Complexity</h3><br/>
+                      <table className='left-table'>
+                          <tr>
+                              <th>AGORITHM</th>
+                              <th>BEST</th>
+                              <th>WORST</th>
+                          </tr>
+                          <tr>
+                              <td>Bubble Sort</td>
+                              <td>Ω(n)</td>
+                              <td>O(n^2)</td>
+                          </tr>
+                          <tr>
+                              <td>Quick Sort</td>
+                              <td>Ω(n log(n))</td>
+                              <td>O(n^2)</td>
+                          </tr>
+                          <tr>
+                              <td>Merge Sort</td>
+                              <td>Ω(n log(n))</td>
+                              <td>O(n log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Insertion Sort</td>
+                              <td>Ω(n)</td>
+                              <td>O(n^2)</td>
+                          </tr>
+                          <tr>
+                              <td>Heap Sort</td>
+                              <td>Ω(n log(n))</td>
+                              <td>O(n log(n))</td>
+                          </tr>
+                          
+                      </table>
             </SideCollapsible>
             </div>
                 <div className='left'>
