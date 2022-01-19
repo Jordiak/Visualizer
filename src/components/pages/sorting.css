@@ -14,7 +14,7 @@
   resize: horizontal;
   position: relative;
   align-items: flex-start;
-  background-color: rgba(175, 218, 248, 0.911);
+  background-color: rgba(132, 141, 146, 0.623);
   transition: all 0.4s ease-in;
   border-radius: 3px;
 }
@@ -59,34 +59,34 @@ button {
   }
 }
 /* NAVBAR STARTS */
-.navbar {
+.navbar-sorting {
   top: 0;
   overflow: hidden;
   font-size: 16px;
   min-height: 60px;
   text-align: center;
 }
-.navbar .options {
+.navbar-sorting .options {
   margin: 10px;
   text-align: center;
 }
-.navbar a {
+.navbar-sorting a {
   outline: none;
   cursor: pointer;
   color: #ccd6f6;
   padding: 13px 13px;
   text-decoration: none;
 }
-.navbar > a:hover {
+.navbar-sorting > a:hover {
   color: #64ffda;
 }
-.navbar #menu {
+.navbar-sorting #menu {
   margin-top: 15px;
   width: 150px;
   height: 25px;
   outline: none;
 }
-.navbar > .icon {
+.navbar-sorting > .icon {
   display: none;
 }
 #start {

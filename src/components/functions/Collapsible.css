@@ -15,7 +15,7 @@
   width: 50px;
   height: 50px;
   background: unset;
-  background-color: rgba(214, 2, 2, 0.726);
+  background-color: rgba(214, 2, 2, 0.4);
   background-size: cover;
   border-radius: 0px;
   animation: unset;
@@ -30,7 +30,7 @@
 .collapsible .side-content {
   padding: 1rem;
   text-align: justify;
-  background-color: rgba(214, 2, 2, 0.726);
+  background-color: rgba(214, 2, 2, 0.2);
   width: 100%;
   color: aliceblue;
 }
@@ -42,10 +42,9 @@
 }
 
 .left-table tr:nth-child(even) {
-  background-color: rgba(150, 212, 212, 0.4);
-  
- 
+  background-color: rgba(150, 212, 212, 0.2);
 }
-.left-table th:nth-child(even),.left-table td:nth-child(even) {
+.left-table th:nth-child(even),
+.left-table td:nth-child(even) {
   background-color: rgba(150, 212, 212, 0.4);
 }

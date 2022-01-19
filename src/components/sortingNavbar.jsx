@@ -27,7 +27,7 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div className="navbar" id="navbar">
+            <div className="navbar-sorting" id="navbar">
                 <Algorithms 
                     onChange = {this.props.onChange}
                     algorithms = {this.state.Algorithms}
