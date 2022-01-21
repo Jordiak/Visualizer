@@ -9,9 +9,9 @@ div.show-datas {
 svg.data-svg {
   width: 99.5%;
   height: 100%;
-  border-width: 2px;
-  border-color: red;
-  border-style:inset;
+  border-width: 4px;
+  border-color: rgba(209, 46, 46, 0.815);
+  border-style:double;
   background-color: rgba(0, 0, 0, 0.479);
   color: aliceblue;
 }

@@ -4,6 +4,8 @@ import Visualizer from './sortingVisualizer.jsx';
 import './sorting.css';
 import Collapsible from '../functions/Collapsible.js';
 import SideCollapsible from '../functions/SideCollapsible.js';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
 
 
 
@@ -48,6 +50,55 @@ export default function Sorting(){
                           
                       </table>
             </SideCollapsible>
+            <div className="TabBox">
+            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", marginTop:"15px", borderRadius:"7px",width:"100%"}}>
+                <TabList>
+                    <Tab>Bubble</Tab>
+                    <Tab>Insertion</Tab>
+                    <Tab>Merge</Tab>
+                    <Tab>Quick</Tab>
+                    <Tab>Heap</Tab>
+                </TabList>
+
+            <TabPanel style={{padding:"10px"}}>
+            <p>def bubbleSort(arr):<br/>
+    n = len(arr)<br/>
+
+    # Traverse through all array elements<br/>
+    for i in range(n):<br/>
+
+        # Last i elements are already in place<br/>
+        for j in range(0, n-i-1):<br/>
+
+            # traverse the array from 0 to n-i-1<br/>
+            # Swap if the element found is greater<br/>
+            # than the next element<br/>
+            if arr[j]  arr[j+1] :<br/>
+                arr[j], arr[j+1] = arr[j+1], arr[j]<br/>
+        
+      </p>
+      <p>
+        Source:{' '}
+        <a href="https://en.wikipedia.org/wiki/Mario" target="_blank">
+          Wikipedia
+        </a>
+      </p>
+            </TabPanel>
+            <TabPanel>
+                <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+                <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+                <h2>Any content 2</h2>
+            </TabPanel>
+            <TabPanel>
+                <h2>Any content 2</h2>
+            </TabPanel>
+        </Tabs>
+            </div>
+            
             </div>
                 <div className='left'>
                     <Visualizer />

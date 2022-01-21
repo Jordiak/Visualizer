@@ -12,6 +12,7 @@ const ShowSection = ({specificData={}, showSpecificData=f=>f, methodAnimation = 
     <div className='text-show1'>VARIABLES</div>
     <ShowDataList showSpecificData={showSpecificData} stopShow={stopShow} dataStates={dataStates} changeStop={changeStop}/>
     <ShowMethodList stopShow={stopShow} goMethod={goMethod} methodList={methodList} changeStop={changeStop}/>
+    
     <button className='stopping' onClick={changeStop}>{(stopShow)?'RESTART':'STOP'}</button>
     <ShowDatas dataStates={dataStates} />
     {

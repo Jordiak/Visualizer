@@ -1,23 +1,6 @@
 import std from './visualizeContainer'
 
-/*
-변수 사용 체크
-모든 변수이름을 일단 읽는다.
-모든 변수이름에 대해서 필터를 건다 (변수이름 !== undefined)
-있는거 변수로 넘긴다.
 
-생성자
-모든 생성자를 그 자신의 문자열과 매핑시키고
-constructors['new std.Stack([1,2,3'])].copy()로 바꿔버린다.
-
-코드에서 클래스 메소드에 세 개의 변수 추가, 현재 이 변수 이름, variable state, visualizeDatas
-문자열처리
-
-
-2019.02.15
-몇번째 줄에서 발생했는지 처리추가 구상
-
-*/
 
 const collectionName = {
   List:true,
@@ -55,8 +38,8 @@ const varFilter = 'variables.filter(nkffadv_43s => eval("typeof("+nkffadv_43s+")
  * @returns {array|false} - if code have error, return false
  */
 const parsing = ({inputCode='', inputData=''}) => {
-  // 시각화하고자 하는 식들의 배열
-  // 한 배열의 원소는 {dataStates: array, executingCode: string, containerState:{object:object, method:string, params: array}} 형식을 갖춘다.
+  // 
+  // {dataStates: array, executingCode: string, containerState:{object:object, method:string, params: array}} 
   const visualizeDatas = [];
   const constructors = {'List': new std.List(),
     'Stack': new std.Stack(),
@@ -69,7 +52,7 @@ const parsing = ({inputCode='', inputData=''}) => {
     'MultiMapTree': new std.MultiMapTree(),
   }; 
   
-  // data에 값 할당
+  // data
   eval('data = ' + inputData);
   console.log(data);
   
@@ -79,7 +62,7 @@ const parsing = ({inputCode='', inputData=''}) => {
   console.log(variables)
 
   
-  // code 변환
+  // code
   inputCode = codeTransition(inputCode)
   
   
