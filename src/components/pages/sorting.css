@@ -14,7 +14,7 @@
   resize: horizontal;
   position: relative;
   align-items: flex-start;
-  background-color: rgba(132, 141, 146, 0.623);
+  background-color: rgba(179, 187, 190, 0.795);
   transition: all 0.4s ease-in;
   border-radius: 3px;
 }

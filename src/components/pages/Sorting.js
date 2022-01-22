@@ -51,7 +51,7 @@ export default function Sorting(){
                       </table>
             </SideCollapsible>
             <div className="TabBox">
-            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.6)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Bubble</Tab>
                     <Tab>Insertion</Tab>
