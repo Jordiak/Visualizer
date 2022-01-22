@@ -357,10 +357,9 @@ export default class PathfindingVisualizer extends Component {
   render() {
     const {grid, mouseIsPressed} = this.state;
     return (
-      <div>
+      <div className="pathfindcontent">
 
         <table
-          className="grid-container"
           onMouseLeave={() => this.handleMouseLeave()}>
           <tbody className="grid">
             {grid.map((row, rowIdx) => {
@@ -390,19 +389,7 @@ export default class PathfindingVisualizer extends Component {
               );
             })}
           </tbody>
-        </table>
-        <button
-          type="button"
-          className="btn btn-danger"
-          onClick={() => this.clearGrid()}>
-          Clear Grid
-        </button>
-        <button
-          type="button"
-          className="btn btn-warning"
-          onClick={() => this.clearWalls()}>
-          Clear Walls
-        </button>
+        
         <button
           type="button"
           className="btn btn-primary"
@@ -422,6 +409,20 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.visualize('DFS')}>
           Depth First Search
         </button>
+        <br/>
+        <button
+          type="button"
+          className="btn btn-danger"
+          onClick={() => this.clearGrid()}>
+          Clear Grid
+        </button>
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={() => this.clearWalls()}>
+          Clear Walls
+        </button>
+        </table>
       </div>
     );
   }

@@ -5,10 +5,10 @@ const Size = (props) => {
     return (
         <span className="options">
             <select 
-                name="size" id="menu" className="size-menu"
+                name="size" id="menu" className="config-menu"
                 onChange = {(e) => props.onChange(e.target.value, "size")}>
                 {props.lengths.map(element => (
-                    <option 
+                    <option className="config-option" 
                         key = {10*element}
                         value = {element}>
                         {element}

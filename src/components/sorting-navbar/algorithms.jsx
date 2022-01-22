@@ -8,7 +8,7 @@ const Algorithms = (props) => {
                 name="Algorithm" id="menu" className="algo-menu"
                 onChange = {(e) => props.onChange(e.target.value, "algo")}>
                 {props.algorithms.map(element => (
-                    <option 
+                    <option className="algo-option"
                         key = {element.value}
                         value = {element.value}>
                         {element.type}

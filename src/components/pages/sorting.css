@@ -4,7 +4,7 @@
   margin-left: 20%;
   margin-right: 20%;
   display: flex;
-  min-height: 80vh;
+  min-height: 50vh;
   align-items: flex-start;
 }
 .cell {
@@ -59,12 +59,26 @@ button {
   }
 }
 /* NAVBAR STARTS */
+.navbar-algorithms{
+  top: 0;
+  overflow: hidden;
+  font-size: 20px;
+  color:rgba(255, 255, 255, 0.9);
+  min-height: 60px;
+  text-align: center;
+}
 .navbar-sorting {
   top: 0;
   overflow: hidden;
-  font-size: 16px;
+  font-size: 18px;
+  color:rgba(255, 255, 255, 0.9);
   min-height: 60px;
   text-align: center;
+}
+.navbar-table{
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 .navbar-sorting .options {
   margin: 10px;
@@ -82,8 +96,6 @@ button {
 }
 .navbar-sorting #menu {
   margin-top: 15px;
-  width: 150px;
-  height: 25px;
   outline: none;
 }
 .navbar-sorting > .icon {
@@ -124,3 +136,37 @@ button {
 }
 
 /* NAVBAR ENDS */
+
+/* ALGO MENU STYLE */
+.algo-menu{
+  background-color: transparent;
+  color: white;
+  font-size: 48px;
+  border:0px;
+  outline:0px;
+  text-align: center;
+}
+.algo-option{
+  background-color: #444444;
+  color: white;
+  font-size: 36px;
+  border:0px;
+  outline:0px;
+}
+.config-menu{
+  background-color: #444444;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  width: 60px;
+  height: 40px;
+  text-overflow: ellipsis;
+}
+.config-option{
+  background-color: #444444;
+  color: white;
+  font-size: 18px;
+  width: 30px;
+  height: 60px;
+  text-overflow: ellipsis;
+}

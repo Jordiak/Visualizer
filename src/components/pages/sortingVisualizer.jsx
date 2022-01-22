@@ -10,6 +10,7 @@ import { heapSort } from '../sortingAlgorithms/heapSort.js';
 
 // components
 import Navbar from '../sortingNavbar';
+import SortType from '../sortingSortType';
 import Frame from '../sortingFrame';
 
 // helpers
@@ -46,6 +47,13 @@ class Visualizer extends React.Component {
     render() { 
         return (
             <React.Fragment>
+                <SortType
+                    start = {this.start}
+                    response = {this.response}
+                    newList = {this.generateList}
+                    onChange = {this.onChange}
+                    
+                />
                 <Frame 
                     list = {this.state.list}
                 />

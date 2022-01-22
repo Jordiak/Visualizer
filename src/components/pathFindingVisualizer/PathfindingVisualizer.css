@@ -11,7 +11,12 @@ button {
   padding: 0.5 rem;
 }
 
-table {
+.pathfindcontent {
+  width: 100%;
   text-align: center;
+}
+
+table {
+  width: 100%;
 }
 

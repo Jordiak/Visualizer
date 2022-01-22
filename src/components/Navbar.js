@@ -16,11 +16,9 @@ function Navbar() {
   return (
     <>
       <nav className='navbar'>
-     
-      <img src={logoImage} alt='' width={100} height={80}/>
-        <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-          isualizer
-        </Link>
+      <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
+      <img src={logoImage} alt='' width={200} height={80}/>
+      </Link>
         
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
