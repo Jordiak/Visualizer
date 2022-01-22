@@ -104,7 +104,7 @@ export default function DataStructures(){
             </SideCollapsible>
 
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", marginTop:"15px", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Linked List</Tab>
                     <Tab>Queue</Tab>
@@ -114,31 +114,506 @@ export default function DataStructures(){
                 </TabList>
 
             <TabPanel style={{padding:"10px"}}>
-            <p>
-        <b>Mario</b> (<i>Japanese: マリオ Hepburn: Mario, [ma.ɾʲi.o]</i>) (<i>English:
-        /ˈmɑːrioʊ/; Italian: [ˈmaːrjo]</i>) is a fictional character in the Mario video
-        game franchise, owned by Nintendo and created by Japanese video game designer
-        Shigeru Miyamoto. Serving as the company's mascot and the eponymous protagonist
-        of the series, Mario has appeared in over 200 video games since his creation.
-        Depicted as a short, pudgy, Italian plumber who resides in the Mushroom
-        Kingdom, his adventures generally center upon rescuing Princess Peach from the
-        Koopa villain Bowser. His younger brother and sidekick is Luigi.
-      </p>
-      <p>
-        Source:{' '}
-        <a href="https://en.wikipedia.org/wiki/Mario" target="_blank">
-          Wikipedia
-        </a>
-      </p>
+                <code>
+                    <pre>
+{`
+class Node {
+    // constructor
+    constructor(element) {
+        this.element = element;
+        this.next = null
+    }
+}
+// linkedlist class
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.size = 0;
+    }
+ 
+    // adds an element at the end
+    // of list
+    add(element) {
+        // creates a new node
+        var node = new Node(element);
+ 
+        // to store current node
+        var current;
+ 
+        // if list is Empty add the
+        // element and make it head
+        if (this.head == null)
+            this.head = node;
+        else {
+            current = this.head;
+ 
+            // iterate to the end of the
+            // list
+            while (current.next) {
+                current = current.next;
+            }
+ 
+            // add node
+            current.next = node;
+        }
+        this.size++;
+    }
+ 
+    // insert element at the position index
+    // of the list
+    insertAt(element, index) {
+        if (index < 0 || index > this.size)
+            return console.log("Please enter 
+            a valid index.");
+        else {
+            // creates a new node
+            var node = new Node(element);
+            var curr, prev;
+ 
+            curr = this.head;
+ 
+            // add the element to the
+            // first index
+            if (index == 0) {
+                node.next = this.head;
+                this.head = node;
+            } else {
+                curr = this.head;
+                var it = 0;
+ 
+                // iterate over the list to find
+                // the position to insert
+                while (it < index) {
+                    it++;
+                    prev = curr;
+                    curr = curr.next;
+                }
+ 
+                // adding an element
+                node.next = curr;
+                prev.next = node;
+            }
+            this.size++;
+        }
+    }
+ 
+    // removes an element from the
+    // specified location
+    removeFrom(index) {
+        if (index < 0 || index >= this.size)
+            return console.log("Please Enter 
+            a valid index");
+        else {
+            var curr, prev, it = 0;
+            curr = this.head;
+            prev = curr;
+ 
+            // deleting first element
+            if (index === 0) {
+                this.head = curr.next;
+            } else {
+                // iterate over the list to the
+                // position to removce an element
+                while (it < index) {
+                    it++;
+                    prev = curr;
+                    curr = curr.next;
+                }
+ 
+                // remove the element
+                prev.next = curr.next;
+            }
+            this.size--;
+ 
+            // return the remove element
+            return curr.element;
+        }
+    }
+ 
+    // removes a given element from the
+    // list
+    removeElement(element) {
+        var current = this.head;
+        var prev = null;
+ 
+        // iterate over the list
+        while (current != null) {
+            // comparing element with current
+            // element if found then remove the
+            // and return true
+            if (current.element === element) {
+                if (prev == null) {
+                    this.head = current.next;
+                } else {
+                    prev.next = current.next;
+                }
+                this.size--;
+                return current.element;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return -1;
+    }
+ 
+ 
+    // finds the index of element
+    indexOf(element) {
+        var count = 0;
+        var current = this.head;
+ 
+        // iterate over the list
+        while (current != null) {
+            // compare each element of the list
+            // with given element
+            if (current.element === element)
+                return count;
+            count++;
+            current = current.next;
+        }
+ 
+        // not found
+        return -1;
+    }
+ 
+    // checks the list for empty
+    isEmpty() {
+        return this.size == 0;
+    }
+ 
+    // gives the size of the list
+    size_of_list() {
+        console.log(this.size);
+    }
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>Any content 2</h2>
+            <TabPanel style={{padding:"10px"}}>
+            <code>
+                <pre>
+{`
+class Queue {
+    constructor() {
+      this.items = {};
+      this.headIndex = 0;
+      this.tailIndex = 0;
+    }
+    enqueue(item) {
+      this.items[this.tailIndex] = item;
+      this.tailIndex++;
+    }
+    dequeue() {
+      const item = this.items[this.headIndex];
+      delete this.items[this.headIndex];
+      this.headIndex++;
+      return item;
+    }
+    peek() {
+      return this.items[this.headIndex];
+    }
+    get length() {
+      return this.tailIndex - this.headIndex;
+    }
+  }
+`}
+                </pre>
+            </code>
             </TabPanel>
-            <TabPanel>
-                <h2>Any content 2</h2>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+const top = 0;
+const parent = i => ((i + 1) >>> 1) - 1;
+const left = i => (i << 1) + 1;
+const right = i => (i + 1) << 1;
+
+class PriorityQueue {
+  constructor(comparator = (a, b) => a > b) {
+    this._heap = [];
+    this._comparator = comparator;
+  }
+  size() {
+    return this._heap.length;
+  }
+  isEmpty() {
+    return this.size() == 0;
+  }
+  peek() {
+    return this._heap[top];
+  }
+  push(...values) {
+    values.forEach(value => {
+      this._heap.push(value);
+      this._siftUp();
+    });
+    return this.size();
+  }
+  pop() {
+    const poppedValue = this.peek();
+    const bottom = this.size() - 1;
+    if (bottom > top) {
+      this._swap(top, bottom);
+    }
+    this._heap.pop();
+    this._siftDown();
+    return poppedValue;
+  }
+  replace(value) {
+    const replacedValue = this.peek();
+    this._heap[top] = value;
+    this._siftDown();
+    return replacedValue;
+  }
+  _greater(i, j) {
+    return this._comparator(this._heap[i], 
+        this._heap[j]);
+  }
+  _swap(i, j) {
+    [this._heap[i], this._heap[j]] = 
+    [this._heap[j], this._heap[i]];
+  }
+  _siftUp() {
+    let node = this.size() - 1;
+    while (node > top && 
+        this._greater(node, parent(node))) {
+      this._swap(node, parent(node));
+      node = parent(node);
+    }
+  }
+  _siftDown() {
+    let node = top;
+    while (
+      (left(node) < this.size() && 
+      this._greater(left(node), node)) ||
+      (right(node) < this.size() && 
+      this._greater(right(node), node))
+    ) {
+      let maxChild = (right(node) < this.size() 
+      && this._greater(right(node), 
+      left(node))) ? right(node) : left(node);
+      this._swap(node, maxChild);
+      node = maxChild;
+    }
+  }
+}
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>Any content 2</h2>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+//General Tree
+
+function Node(value) {
+
+    this.value = value;
+    this.children = [];
+    this.parent = null;
+
+    this.setParentNode = function(node) {
+        this.parent = node;
+    }
+
+    this.getParentNode = function() {
+        return this.parent;
+    }
+
+    this.addChild = function(node) {
+        node.setParentNode(this);
+        this.children[this.children.length] = node;
+    }
+
+    this.getChildren = function() {
+        return this.children;
+    }
+
+    this.removeChildren = function() {
+        this.children = [];
+    }
+}
+
+var root = new Node('root');
+root.addChild(new Node('child 0'));
+root.addChild(new Node('child 1'));
+var children = root.getChildren();
+for(var i = 0; i < children.length; i++) {
+    for(var j = 0; j < 5; j++) {
+        children[i].addChild(new Node(
+            'second level child ' + j));
+    }
+}
+console.log(root);
+children[0].removeChildren();
+console.log(root);
+console.log(root.getParentNode());
+console.log(children[1].getParentNode());
+
+//Red & Black Tree
+
+const RED = true;
+const BLACK = false;
+class Node {
+    constructor(key, value) {
+        this.key = key;
+        this.value = value;
+        this.left = null;
+        this.right = null;
+        this.color = RED;
+    }
+}
+class RBT {
+    constructor() {
+        this.root = null;
+        this.size = 0;
+    }
+    isRed(node) {
+        if (!node) return BLACK;
+        return node.color;
+    }
+    // Left right red left black
+    leftRotate(node) {
+        let tmp = node.right;
+        node.right = tmp.left;
+        tmp.left = node;
+        tmp.color = node.color;
+        node.color = RED;
+        return tmp;
+    }
+    // Right rotation left red left sub red
+    rightRoate(node) {
+        let tmp = node.left;
+        node.left = tmp.right;
+        tmp.right = node;
+        tmp.color = node.color;
+        node.color = RED;
+        return tmp;
+    }
+    // Color reversal
+    flipColors(node) {
+        node.color = RED;
+        node.left.color = BLACK;
+        node.right.color = BLACK;
+    }
+    add(key, value) {
+        this.root = this.addRoot(this.root,
+             key, value);
+        this.root.color = BLACK; 
+        // Root node is always black
+    }
+    addRoot(node, key, value) {
+        if (!node) {
+            this.size++;
+            return new Node(key, value);
+        }
+        if (key < node.key) {
+            node.left = this.addRoot(node.left, 
+                key, value);
+        } else if (key > node.key) {
+            node.right = this.addRoot(node.right, 
+                key, value);
+        } else {
+            node.value = value;
+        }
+        if (this.isRed(node.right) && 
+        !this.isRed((node.left))) {
+            node = this.leftRotate(node);
+        }
+        if (this.isRed(node.left) && 
+        this.isRed((node.left.left))) {
+            node = this.rightRoate(node);
+        }
+        if (this.isRed(node.left) && 
+        this.isRed(node.right)) {
+            this.flipColors(node);
+        }
+        return node;
+    }
+    isEmpty() {
+        return this.size == 0 ? true : false;
+    }
+    getSize() {
+        return this.size;
+    }
+    contains(key) {
+        let ans = '';
+        !(function getNode(node, key) {
+            if (!node || key == node.key) {
+                ans = node;
+                return node;
+            } else if (key > node.key) {
+                return getNode(node.right, key);
+            } else {
+                return getNode(node.right, key);
+            }
+        })(this.root, key);
+        return !!ans;
+    }
+    // bst preamble traversal (recursive version)
+    preOrder(node = this.root) {
+        if (node == null) return;
+        console.log(node.key);
+        this.preOrder(node.left);
+        this.preOrder(node.right);
+    }
+    preOrderNR() {
+        if (this.root == null) return;
+        let stack = [];
+        stack.push(this.root);
+        while (stack.length > 0) {
+            let curNode = stack.pop();
+            console.log(curNode.key);
+            if (curNode.right != null) 
+                stack.push(curNode.right);
+            if (curNode.left != null) 
+                curNode.push(curNode.left);
+        }
+    }
+    // bst middle order traversal
+    inOrder(node = this.root) {
+        if (node == null) return;
+        this.inOrder(node.left);
+        console.log(node.key);
+        this.inOrder(node.right);
+    }
+    // bst subsequent traversal
+    postOrder(node = this.root) {
+        if (node == null) return;
+        this.postOrder(node.left);
+        this.postOrder(node.right);
+        console.log(node.key);
+    }
+    // The way of bsf + queue to 
+    // realize hierarchical traversal
+    generateDepthString1() {
+        let queue = [];
+        queue.unshift(this.root);
+        while (queue.length > 0) {
+            let tmpqueue = []; let ans = [];
+            queue.forEach(item => {
+                ans.push(item.key);
+            item.left ? tmpqueue.push(item.left):'';
+            item.right ? tmpqueue.push(item.right):'';
+            });
+            console.log(...ans);
+            queue = tmpqueue;
+        }
+    }
+    minmun(node = this.root) {
+        if (node.left == null) return node;
+        return this.minmun(node.left);
+    }
+    maximum(node = this.root) {
+        if (node.right == null) return node;
+        return this.maximum(node.right);
+    }
+}
+`}
+                    </pre>
+                </code>
             </TabPanel>
             
         </Tabs>
