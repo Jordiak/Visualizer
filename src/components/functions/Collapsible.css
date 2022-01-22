@@ -23,8 +23,9 @@
 }
 
 .collapsible .content {
-  padding: 1rem;
+  padding: 10px;
   text-align: justify;
+  background-color: rgba(0, 0, 0, 0.685);
 }
 
 .collapsible .side-content {

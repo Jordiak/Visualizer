@@ -104,7 +104,7 @@ export default function DataStructures(){
             </SideCollapsible>
 
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.6)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Linked List</Tab>
                     <Tab>Queue</Tab>
