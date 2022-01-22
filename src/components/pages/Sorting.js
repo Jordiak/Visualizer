@@ -51,7 +51,7 @@ export default function Sorting(){
                       </table>
             </SideCollapsible>
             <div className="TabBox">
-            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", marginTop:"15px", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Bubble</Tab>
                     <Tab>Insertion</Tab>
@@ -61,63 +61,201 @@ export default function Sorting(){
                 </TabList>
 
             <TabPanel style={{padding:"10px"}}>
-            <p>def bubbleSort(arr):<br/>
-    n = len(arr)<br/>
-
-    # Traverse through all array elements<br/>
-    for i in range(n):<br/>
-
-        # Last i elements are already in place<br/>
-        for j in range(0, n-i-1):<br/>
-
-            # traverse the array from 0 to n-i-1<br/>
-            # Swap if the element found is greater<br/>
-            # than the next element<br/>
-            if arr[j]  arr[j+1] :<br/>
-                arr[j], arr[j+1] = arr[j+1], arr[j]<br/>
-        
-      </p>
-      <p>
-        Source:{' '}
-        <a href="https://en.wikipedia.org/wiki/Mario" target="_blank">
-          Wikipedia
-        </a>
-      </p>
+            <code>
+                <pre>
+{`
+function swap(arr, xp, yp)
+    {
+        var temp = arr[xp];
+        arr[xp] = arr[yp];
+        arr[yp] = temp;
+    }
+    
+    
+    function bubbleSort( arr, n)
+    {
+    var i, j;
+    for (i = 0; i < n-1; i++)
+    {
+        for (j = 0; j < n-i-1; j++)
+        {
+            if (arr[j] > arr[j+1])
+                {
+                swap(arr,j,j+1);
+                }
+        }
+    
+    }
+    }
+`}
+                    </pre>
+            </code>
             </TabPanel>
             <TabPanel style={{padding:"10px"}}>
-                    def insertionSort(alist):<br></br>
-for i in range(1,len(alist)):<br></br>
+                    <code>
+                        <pre>
+{`
+function insertionSort(arr, n) 
+{ 
+    let i, key, j; 
+    for (i = 1; i < n; i++)
+    { 
+        key = arr[i]; 
+        j = i - 1; 
+        
+        /* Move elements of arr[0..i-1], 
+        that are greater than key, to 
+        one position ahead of their 
+        current position */
 
-#el current = alist[i]<br></br>
-
-    #comparing the current element with the sorted portion and swapping<br></br>
-    while i &gt; 0 and alist[i-1]&gt;current:<br></br>
-        alist[i] = alist[i-1]<br></br>
-        i = i-1<br></br>
-       alist[i] = current<br></br>
-
-    #print(alist)<br></br>
-
-return alist
-ement to be compared<br></br>
-<p>
-        Source:{' '}
-        <a href="https://www.programiz.com/dsa/insertion-sort" target="_blank">
-        programiz.com/dsa/insertion-sort
-        </a>
-      </p>
-   
+        while (j >= 0 && arr[j] > key)
+        { 
+            arr[j + 1] = arr[j]; 
+            j = j - 1; 
+        } 
+        arr[j + 1] = key; 
+    } 
+} 
+`}
+                        </pre>
+                    </code>
             </TabPanel>
-            <TabPanel>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+function merge(left, right) {
+    let arr = []
+    /*Break out of loop if any one 
+    of the array gets empty*/
+    while (left.length && right.length) {
+        /*Pick the smaller among the 
+        smallest element of left and 
+        right sub arrays*/
+        if (left[0] < right[0]) {
+            arr.push(left.shift())  
+        } else {
+            arr.push(right.shift()) 
+        }
+    }
+    
+    /*Concatenating the leftover elements
+    (in case we didn't go through the 
+    entire left or right array)*/
+    return [ ...arr, ...left, ...right ]
+}
 
+function mergeSort(array) {
+    const half = array.length / 2
+    
+    // Base case or terminating case
+    if(array.length < 2){
+        return array 
+    }
+    
+    const left = array.splice(0, half)
+    return merge(mergeSort(left),
+    mergeSort(array))
+    }
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+function quick_Sort(origArray) {
+    if (origArray.length <= 1) { 
+        return origArray;
+    } else {
 
-</h2>
+        var left = [];
+        var right = [];
+        var newArray = [];
+        var pivot = origArray.pop();
+        var length = origArray.length;
+
+        for (var i = 0; i < length; i++) {
+            if (origArray[i] <= pivot) {
+                left.push(origArray[i]);
+            } else {
+                right.push(origArray[i]);
+            }
+        }
+
+        return newArray.concat(
+        quick_Sort(left), 
+        pivot, quick_Sort(right)
+        );
+    }
+}
+
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>  </h2>
+            <TabPanel style={{padding:"10px"}}>
+            <code>
+                <pre>
+{`
+function sort( arr)
+{
+    var n = arr.length;
+
+    // Build heap (rearrange array)
+    for (var i = Math.floor(n / 2)
+        - 1; i >= 0; i--)
+        heapify(arr, n, i);
+
+    // One by one extract an
+    // element from heap
+    for (var i = n - 1; i > 0; i--) {
+        // Move current root to end
+        var temp = arr[0];
+        arr[0] = arr[i];
+        arr[i] = temp;
+
+        // call max heapify on 
+        // the reduced heap
+        heapify(arr, i, 0);
+    }
+}
+
+// To heapify a subtree rooted 
+// with node i which is
+// an index in arr[]. n is size of heap
+function heapify(arr, n, i)
+{
+    var largest = i; // Initialize 
+                    // largest as root
+    var l = 2 * i + 1; // left = 2*i + 1
+    var r = 2 * i + 2; // right = 2*i + 2
+
+    // If left child is larger than root
+    if (l < n && arr[l] > arr[largest])
+        largest = l;
+
+    // If right child is 
+    // larger than largest so far
+    if (r < n && arr[r] > arr[largest])
+        largest = r;
+
+    // If largest is not root
+    if (largest != i) {
+        var swap = arr[i];
+        arr[i] = arr[largest];
+        arr[largest] = swap;
+
+        // Recursively heapify 
+        // the affected sub-tree
+        heapify(arr, n, largest);
+    }
+}
+
+`}
+                </pre>
+            </code>   
             </TabPanel>
         </Tabs>
             </div>

@@ -33,6 +33,7 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .DataStructures {
@@ -115,16 +116,6 @@
   background-image: url("../src/components/images/yard2.jpg");
 }
 
-.box-seperator {
-  height: 30vh;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  display: table;
-  background-attachment: fixed;
-  background: linear-gradient(rgba(47, 18, 46, 0.876), rgba(15, 30, 37, 0.883));
-}
-
 .Home {
   scroll-behavior: smooth;
   background-color: black;
@@ -149,8 +140,8 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   text-align: center;
   margin-top: 10%;
-  -webkit-text-stroke-width:1px ;
-  -webkit-text-stroke-color:rgb(31, 39, 14);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(31, 39, 14);
 }
 
 .box2 p {
@@ -164,8 +155,33 @@
   margin-right: 25%;
   padding: 4vh;
   font-size: 3vh;
-  -webkit-text-stroke-width:1px ;
-  -webkit-text-stroke-color:rgb(31, 39, 14);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(31, 39, 14);
   color: rgb(253, 253, 251);
 }
 
+.TabBox {
+  font-size: calc(0.5vh + 0.5vw);
+  height: 80vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

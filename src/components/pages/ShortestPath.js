@@ -38,7 +38,7 @@ export default function ShortestPath(){
             </SideCollapsible>
             
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", marginTop:"15px", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.2)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Dijkstra</Tab>
                     <Tab>Breadth First Search</Tab>
@@ -47,28 +47,124 @@ export default function ShortestPath(){
                 </TabList>
 
             <TabPanel style={{padding:"10px"}}>
-            <p>
-        <b>Mario</b> (<i>Japanese: マリオ Hepburn: Mario, [ma.ɾʲi.o]</i>) (<i>English:
-        /ˈmɑːrioʊ/; Italian: [ˈmaːrjo]</i>) is a fictional character in the Mario video
-        game franchise, owned by Nintendo and created by Japanese video game designer
-        Shigeru Miyamoto. Serving as the company's mascot and the eponymous protagonist
-        of the series, Mario has appeared in over 200 video games since his creation.
-        Depicted as a short, pudgy, Italian plumber who resides in the Mushroom
-        Kingdom, his adventures generally center upon rescuing Princess Peach from the
-        Koopa villain Bowser. His younger brother and sidekick is Luigi.
-      </p>
-      <p>
-        Source:{' '}
-        <a href="https://en.wikipedia.org/wiki/Mario" target="_blank">
-          Wikipedia
-        </a>
-      </p>
+                <code>
+                    <pre>
+{`
+djikstraAlgorithm(startNode) {
+    let distances = {};
+ 
+    // Stores the reference to previous nodes
+    let prev = {};
+    let pq = new PriorityQueue(this.nodes.length 
+        * this.nodes.length);
+ 
+    // Set distances to all nodes to be 
+    // infinite except startNode
+    distances[startNode] = 0;
+    pq.enqueue(startNode, 0);
+    this.nodes.forEach(node => {
+       if (node !== startNode) {
+           distances[node] = Infinity;
+           prev[node] = null;
+        }
+    });
+ 
+    while (!pq.isEmpty()) {
+       let minNode = pq.dequeue();
+       let currNode = minNode.data;
+       let weight = minNode.priority;
+       this.edges[currNode].forEach(neighbor => {
+          let alt = distances[currNode] 
+          + neighbor.weight;
+          if (alt < distances[neighbor.node]) {
+             distances[neighbor.node] = alt;
+             prev[neighbor.node] = currNode;
+             pq.enqueue(neighbor.node, 
+                distances[neighbor.node]);
+          }
+       });
+    }
+    return distances;
+ }
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>Any content 2</h2>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+BFS(node) {
+    // Create a Queue and add our initial node in it
+    let q = new Queue(this.nodes.length);
+    let explored = new Set();
+    q.enqueue(node);
+ 
+    // Mark the first node as explored explored.
+    add(node);
+ 
+    // We'll continue till our queue gets empty
+    while (!q.isEmpty()) {
+       let t = q.dequeue();
+ 
+       // Log every element that comes out of the Queue
+       console.log(t);
+ 
+       // 1. In the edges object, we search for
+       // nodes this node is directly connected to.
+       // 2. We filter out the nodes that have 
+       // already been explored.
+       // 3. Then we mark each unexplored node as 
+       // explored and add it to the queue.
+       this.edges[t]
+       .filter(n => !explored.has(n))
+       .forEach(n => {
+          explored.add(n);
+          q.enqueue(n);
+       });
+    }
+ }
+`}
+                    </pre>
+                </code>
             </TabPanel>
-            <TabPanel>
-                <h2>Any content 2</h2>
+            <TabPanel style={{padding:"10px"}}>
+                <code>
+                    <pre>
+{`
+DFS(node) {
+    // Create a Stack and add our initial node in it
+    let s = new Stack(this.nodes.length);
+    let explored = new Set();
+    s.push(node);
+ 
+    // Mark the first node as explored
+    explored.add(node);
+ 
+    // We'll continue till our Stack gets empty
+    while (!s.isEmpty()) {
+       let t = s.pop();
+ 
+    // Log every element that comes out of the Stack
+       console.log(t);
+ 
+    // 1. In the edges object, we search for
+    // nodes this node is directly connected to.
+    // 2. We filter out the nodes that have
+    // already been explored.
+    // 3. Then we mark each unexplored node as explored 
+    // and push it to the Stack.
+    this.edges[t]
+    .filter(n => !explored.has(n))
+    .forEach(n => {
+       explored.add(n);
+       s.push(n);
+       });
+    }
+ }
+`}
+                    </pre>
+                </code>
             </TabPanel>
             
         </Tabs>
