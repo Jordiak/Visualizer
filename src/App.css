@@ -21,7 +21,7 @@
   overflow: hidden;
   background-image: url("../src/components/images/pixel.jpg");
   background-position: center;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
 }
