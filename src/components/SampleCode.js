@@ -3,6 +3,16 @@ import PropTypes from 'prop-types'
 import '../stylesheet/SampleCode.css'
 
 class SampleCode extends Component {
+  arr = null;
+
+  generateArray = () => {
+    var arr = [];
+    while(arr.length < 5){
+        var r = Math.floor(Math.random() * 100) + 1;
+        if(arr.indexOf(r) === -1) arr.push(r);
+    }
+    return arr;
+  }
   constructor() {
     super()
     this.state = {
@@ -11,15 +21,15 @@ class SampleCode extends Component {
   }
 
   settreedata = `{
-  keys: [100, 90, 80, 85, 100]
+  keys:[`+this.generateArray()+`]
 }`
   settreecode = `let tree = new std.SetTree();
 data.keys.map(n => tree.insert(n));
 `
   
   maptreedata = `{
-  keys: [100, 90, 80, 85, 103]
-}`
+    keys:[`+this.generateArray()+`]
+  }`
   maptreecode = `let tree = new std.MapTree();
 data.keys.map(
   n=>tree.insert(n, 'number' + n.toString())
@@ -27,7 +37,7 @@ data.keys.map(
 `
 
   listdata = `{
-  push: [6, 3, 2, 1, 5]
+    push:[`+this.generateArray()+`]
 }`
   listcode = `let li = new std.List();
 data.push.map(d => li.pushBack(d));
@@ -37,8 +47,8 @@ data.push.map(n => li.pushFront(n));
 `
   
   queuedata = `{
-  base: [1,2,3,4],
-  push: [5,6,7,8]
+  base:[`+this.generateArray()+`]
+  push:[`+this.generateArray()+`]
 }`
   queuecode = `let qu = new std.Queue(data.base);
 [1,1,1].map(n=>qu.pop());
@@ -46,8 +56,8 @@ data.push.map(d => qu.push(d));
 `
   
   pqdata = `{
-  push: [1,5,3,4,7,2,9,15,6,8]
-}`
+    push:[`+this.generateArray()+`]
+  }`
   pqcode = `let pq = new std.PriorityQueue();
 data.push.map(d => pq.push(d));
 [1,1,1,1,1].map(k => pq.pop());
