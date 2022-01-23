@@ -21,7 +21,7 @@
   overflow: hidden;
   background-image: url("../src/components/images/pixel.jpg");
   background-position: center;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
 }
@@ -98,7 +98,6 @@
   background-attachment: fixed;
   background-image: url("../src/components/images/night5.gif");
   align-items: center;
-
 }
 .box2 {
   height: 100vh;
@@ -173,6 +172,7 @@
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #888;
+  border-radius: 4px;
 }
 
 /* Handle on hover */
