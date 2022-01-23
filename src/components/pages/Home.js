@@ -10,10 +10,10 @@ export default function Home(){
     return(
         <div className='Home'>
                 <div className='box1'>
-                <h1 id='typer1'>
-                <Typewriter
+                <h1 id='typer1' >
+                <Typewriter id='typer0'
                     onInit={(Typewriter) => {
-                        Typewriter
+                        Typewriter 
                         .typeString("Welcome to DSA Visualizer!")
                         .pauseFor(2000)
                         .deleteAll()
@@ -25,7 +25,7 @@ export default function Home(){
                 </h1>
                 </div>
                 <div className='box2'>
-                    <h1 id="typer2">About DSA Visualizer</h1>
+                    <h1 id="typer2" >About DSA Visualizer</h1>
                     <p>
                         DSA Visualizer or Data Structures and Algorithms Visualizer is a website created for the purposes of 
                         hosting animated visualizers fo data structures like queue, linked list, and trees as well as algorithms 

@@ -36,9 +36,9 @@ export default function ShortestPath(){
                           
                       </table>
             </SideCollapsible>
-            
+            <SideCollapsible label=' '>
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.6)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Dijkstra</Tab>
                     <Tab>Breadth First Search</Tab>
@@ -169,7 +169,7 @@ DFS(node) {
             
         </Tabs>
             </div>
-            
+        </SideCollapsible>
 
             </div>
             <div className='left'>

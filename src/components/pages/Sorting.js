@@ -50,8 +50,9 @@ export default function Sorting(){
                           
                       </table>
             </SideCollapsible>
+            <SideCollapsible label=' '>
             <div className="TabBox">
-            <Tabs style={{backgroundColor:" rgba(214, 2, 2, 0.6)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Bubble</Tab>
                     <Tab>Insertion</Tab>
@@ -259,7 +260,7 @@ function heapify(arr, n, i)
             </TabPanel>
         </Tabs>
             </div>
-            
+        </SideCollapsible>
             </div>
                 <div className='left'>
                     <Visualizer />

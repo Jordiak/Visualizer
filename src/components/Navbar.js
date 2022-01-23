@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logoImage from './images/DSALOGO.png';
+import logoImage from './images/bitLogo.png';
 
 
 function Navbar() {
@@ -17,7 +17,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
       <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-      <img src={logoImage} alt='' width={200} height={80}/>
+      <img src={logoImage} alt='' width={198} height={97} />
       </Link>
         
         <div className='menu-icon' onClick={handleClick}>

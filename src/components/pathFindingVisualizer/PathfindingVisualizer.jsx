@@ -359,38 +359,7 @@ export default class PathfindingVisualizer extends Component {
     return (
       <div className="pathfindcontent">
 
-        <table
-          onMouseLeave={() => this.handleMouseLeave()}>
-          <tbody className="grid">
-            {grid.map((row, rowIdx) => {
-              return (
-                <tr key={rowIdx}>
-                  {row.map((node, nodeIdx) => {
-                    const {row, col, isFinish, isStart, isWall} = node;
-                    return (
-                      <Node
-                        key={nodeIdx}
-                        col={col}
-                        isFinish={isFinish}
-                        isStart={isStart}
-                        isWall={isWall}
-                        mouseIsPressed={mouseIsPressed}
-                        onMouseDown={(row, col) =>
-                          this.handleMouseDown(row, col)
-                        }
-                        onMouseEnter={(row, col) =>
-                          this.handleMouseEnter(row, col)
-                        }
-                        onMouseUp={() => this.handleMouseUp(row, col)}
-                        row={row}></Node>
-                    );
-                  })}
-                </tr>
-              );
-            })}
-          </tbody>
-        
-        <button
+<button
           type="button"
           className="btn btn-primary"
           onClick={() => this.visualize('Dijkstra')}>
@@ -422,6 +391,39 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.clearWalls()}>
           Clear Walls
         </button>
+
+        <table
+          onMouseLeave={() => this.handleMouseLeave()}>
+          <tbody className="grid">
+            {grid.map((row, rowIdx) => {
+              return (
+                <tr key={rowIdx}>
+                  {row.map((node, nodeIdx) => {
+                    const {row, col, isFinish, isStart, isWall} = node;
+                    return (
+                      <Node
+                        key={nodeIdx}
+                        col={col}
+                        isFinish={isFinish}
+                        isStart={isStart}
+                        isWall={isWall}
+                        mouseIsPressed={mouseIsPressed}
+                        onMouseDown={(row, col) =>
+                          this.handleMouseDown(row, col)
+                        }
+                        onMouseEnter={(row, col) =>
+                          this.handleMouseEnter(row, col)
+                        }
+                        onMouseUp={() => this.handleMouseUp(row, col)}
+                        row={row}></Node>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        
+        
         </table>
       </div>
     );

@@ -101,10 +101,11 @@ export default function DataStructures(){
                           
                           
                       </table>
+            
             </SideCollapsible>
-
+            <SideCollapsible label=' '>
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgba(214, 2, 2, 0.6)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>
                     <Tab>Linked List</Tab>
                     <Tab>Queue</Tab>
@@ -402,7 +403,7 @@ class PriorityQueue {
                     </pre>
                 </code>
             </TabPanel>
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"1px"}}>
                 <code>
                     <pre>
 {`
@@ -423,8 +424,8 @@ function Node(value) {
     }
 
     this.addChild = function(node) {
-        node.setParentNode(this);
-        this.children[this.children.length] = node;
+    node.setParentNode(this);
+    this.children[this.children.length] = node;
     }
 
     this.getChildren = function() {
@@ -552,7 +553,8 @@ class RBT {
         })(this.root, key);
         return !!ans;
     }
-    // bst preamble traversal (recursive version)
+    // bst preamble traversal 
+    (recursive version)
     preOrder(node = this.root) {
         if (node == null) return;
         console.log(node.key);
@@ -617,9 +619,9 @@ class RBT {
             </TabPanel>
             
         </Tabs>
-            </div>
-          
 
+            </div>
+          </SideCollapsible>
             </div>
             <div className='DSleft'>
                 <Dsa />

@@ -38,11 +38,11 @@ button {
   margin: 10px;
   color: rgba(255, 255, 255, 0.9);
   border-radius: 3px;
-  background: linear-gradient(-45deg, #ffa63d, #ff3d77, rgb(170, 1, 1));
+  background: linear-gradient(-45deg,  rgb(71,231,239), rgb(11,35,65));
   background-size: 600%;
   animation: anime 16s linear infinite;
   border-style: hidden;
-  font-family: "Century Gothic";
+  font-family: monospace;
   font-weight: bold;
   cursor: pointer;
 }
@@ -74,6 +74,8 @@ button {
   color:rgba(255, 255, 255, 0.9);
   min-height: 60px;
   text-align: center;
+  font-family: monospace;
+  font-weight: bold;
 }
 .navbar-table{
   width: auto;
