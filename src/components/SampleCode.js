@@ -5,9 +5,9 @@ import '../stylesheet/SampleCode.css'
 class SampleCode extends Component {
   arr = null;
 
-  generateArray = () => {
+  generateArray = (size) => {
     var arr = [];
-    while(arr.length < 5){
+    while(arr.length < size){
         var r = Math.floor(Math.random() * 100) + 1;
         if(arr.indexOf(r) === -1) arr.push(r);
     }
@@ -21,45 +21,45 @@ class SampleCode extends Component {
   }
 
   settreedata = `{
-  keys:[`+this.generateArray()+`]
+  Set_Tree_Keys:[`+this.generateArray(5)+`]
 }`
   settreecode = `let tree = new std.SetTree();
-data.keys.map(n => tree.insert(n));
+data.Set_Tree_Keys.map(n => tree.insert(n));
 `
   
   maptreedata = `{
-    keys:[`+this.generateArray()+`]
-  }`
+    Map_Tree_Keys:[`+this.generateArray(5)+`]
+}`
   maptreecode = `let tree = new std.MapTree();
-data.keys.map(
+data.Map_Tree_Keys.map(
   n=>tree.insert(n, 'number' + n.toString())
 );
 `
 
   listdata = `{
-    push:[`+this.generateArray()+`]
+    Doubly_Linked_List:[`+this.generateArray(5)+`]
 }`
   listcode = `let li = new std.List();
-data.push.map(d => li.pushBack(d));
+data.Doubly_Linked_List.map(d => li.pushBack(d));
 [1,1,1].map(x => li.popFront());
-data.push.map(n => li.pushFront(n));
+data.Doubly_Linked_List.map(n => li.pushFront(n));
 [1,1,1].map(x => li.popBack());
 `
   
   queuedata = `{
-  base:[`+this.generateArray()+`]
-  push:[`+this.generateArray()+`]
+  Queue_base:[`+this.generateArray(3)+`],
+  Queue_push:[`+this.generateArray(5)+`]
 }`
-  queuecode = `let qu = new std.Queue(data.base);
+  queuecode = `let qu = new std.Queue(data.Queue_base);
+data.Queue_push.map(d => qu.push(d));
 [1,1,1].map(n=>qu.pop());
-data.push.map(d => qu.push(d));
 `
   
   pqdata = `{
-    push:[`+this.generateArray()+`]
+    Priority_Queue:[`+this.generateArray(5)+`]
 }`
   pqcode = `let pq = new std.PriorityQueue();
-data.push.map(d => pq.push(d));
+data.Priority_Queue.map(d => pq.push(d));
 [1,1,1,1,1].map(k => pq.pop());
 `
 

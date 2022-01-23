@@ -11,7 +11,7 @@ class InputData extends Component {
         if(arr.indexOf(r) === -1) arr.push(r);
     }
     this.inputData = `{
-  keys:[`+arr+`]
+  Set_Tree_Keys:[`+arr+`]
 }`
   }
 

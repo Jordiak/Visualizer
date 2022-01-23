@@ -36,8 +36,8 @@ class ShowDataList extends React.Component {
     return (
       <div className='datascript'>
         <div className='dataname'>Name: {data.name.substring(0,20)}</div>
-        <button className='consolelog' onClick={() => console.log(data.value)}>Console.log</button>        
-        <button className='toString' onClick={() => this.changeShowString(data.value.toString())}>toString</button>   
+        {/* <button className='consolelog' onClick={() => console.log(data.value)}>Log</button>         */}
+        <button className='toString' onClick={() => this.changeShowString(data.value.toString())}>Show</button>   
         {(data.value.classname === 'List')?
         <button className='viewobject' onClick={() => this.viewContainer(data)}>View</button>   
         :null}

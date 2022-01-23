@@ -18,7 +18,7 @@ class InputCode extends Component {
     super()
     this.code = `
     let tree = new std.SetTree();
-    data.keys.map(n => tree.insert(n));    
+data.Set_Tree_Keys.map(n => tree.insert(n));    
 `
   }
   
