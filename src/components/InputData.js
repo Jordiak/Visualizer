@@ -5,10 +5,15 @@ import '../stylesheet/InputData.css'
 class InputData extends Component {
   constructor() {
     super()
+    var tree = [];
+    var ctr = 0;
+    for(let i=0; i<5; i+=1) {
+      const n = Math.floor(Math.random()*1000);
+      tree[ctr] = n;
+      ctr+=1;
+    }
     this.inputData = `{
-  a:3,
-  b:6,
-  c:[1,2,3]
+  keys:[`+tree+`]
 }`
   }
 
