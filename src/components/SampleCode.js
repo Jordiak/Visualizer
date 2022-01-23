@@ -57,7 +57,7 @@ data.push.map(d => qu.push(d));
   
   pqdata = `{
     push:[`+this.generateArray()+`]
-  }`
+}`
   pqcode = `let pq = new std.PriorityQueue();
 data.push.map(d => pq.push(d));
 [1,1,1,1,1].map(k => pq.pop());
