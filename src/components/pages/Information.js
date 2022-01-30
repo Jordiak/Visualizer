@@ -31,7 +31,7 @@ export default function Information(){
                     Non-linear data structures are further divided into graph and tree based data structures.
 
                     </ul>
-                    <br/><h1 style={{color:'turquoise'}} >Why Data Structure?</h1>
+                    <br/><h1 style={{color:'turquoise'}} >Why Use Data Structure?</h1>
                     Knowledge about data structures help you understand the working of each data structure. And, based on that you can select the right data structures for your project.
 
                     This helps you write memory and time efficient code.
@@ -67,10 +67,11 @@ export default function Information(){
                     </ul><br/>
                     <h1 style={{color:'turquoise'}}>Importance of Algorithms?</h1>
 Algorithmic thinking, or the ability to define clear steps to solve a problem, is crucial in many different fields. Even if we’re not conscious of it, we use algorithms and algorithmic thinking all the time. Algorithmic thinking allows students to break down problems and conceptualize solutions in terms of discrete steps. Being able to understand and implement an algorithm requires students to practice structured thinking and reasoning abilities.
-                <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'yellow'}}>Additional Information</a>
+                <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'yellow'}} target={"_blank"}>Additional Information</a>
                 </div>
                 <div className='rightInfo' style={{alignContent:'center'}}>
-                    <img src={Algorithms} ></img>
+
+                    <a href='https://www.educba.com/types-of-algorithms/' target={"_blank"}><img src={Algorithms} ></img></a>
 
                 </div>
 
