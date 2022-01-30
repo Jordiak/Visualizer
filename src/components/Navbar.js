@@ -29,7 +29,11 @@ function Navbar() {
               Home
             </Link>
           </li>
-          
+          <li className='nav-item'>
+            <Link to='/information' className='nav-links' onClick={closeMobileMenu}>
+              Introduction
+            </Link>
+          </li>
           <li className='nav-item'>
             <Link to='/sorting-algorithms' className='nav-links' onClick={closeMobileMenu}>
               Sorting Algorithms
