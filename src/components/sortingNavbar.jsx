@@ -7,7 +7,7 @@ import Speed from './sorting-navbar/speed';
 // Navbar Component
 class Navbar extends React.Component {
     state = {
-		lengths: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+		lengths: [10, 20, 30],
 		speeds: [0.50, 0.75, 1.00, 2.00, 4.00,8.00,16.00,32.00,64.00,128.00]
     };
 
@@ -21,9 +21,10 @@ class Navbar extends React.Component {
     render() {
         return (
             <div className="navbar-sorting" id="navbar">
+                
                 <table className="navbar-table">
                     <tr>
-                        <td>Items to Sort</td>
+                        <td>Number of Items to Sort</td>
                         <td><Size 
                         onChange = {this.props.onChange}
                         lengths = {this.state.lengths}

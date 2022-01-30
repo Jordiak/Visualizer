@@ -6,12 +6,14 @@ class Frame extends React.Component {
         return (
             <div className="frame">
                 <div className="array">
+                   
                     {this.props.list.map((element, index) => (
                         <div
                             className = {this.getClass(element.classType)}
                             key = {index}
-                            style = {{height : `${4*element.key}px`}}
+                            style = {{height : `${4.5*element.key}px`}}
                             value = {element.key}>
+                            {element.key}
                         </div>
                     ))}
                 </div>
