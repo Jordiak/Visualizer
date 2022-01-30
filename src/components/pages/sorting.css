@@ -38,7 +38,7 @@ button {
   margin: 10px;
   color: rgba(255, 255, 255, 0.9);
   border-radius: 3px;
-  background: linear-gradient(-45deg,  rgb(71,231,239), rgb(11,35,65));
+  background: linear-gradient(-45deg, rgb(71, 231, 239), rgb(11, 35, 65));
   background-size: 600%;
   animation: anime 16s linear infinite;
   border-style: hidden;
@@ -59,11 +59,11 @@ button {
   }
 }
 /* NAVBAR STARTS */
-.navbar-algorithms{
+.navbar-algorithms {
   top: 0;
   overflow: hidden;
   font-size: 20px;
-  color:rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   min-height: 60px;
   text-align: center;
 }
@@ -71,13 +71,13 @@ button {
   top: 0;
   overflow: hidden;
   font-size: 18px;
-  color:rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.9);
   min-height: 60px;
   text-align: center;
   font-family: monospace;
   font-weight: bold;
 }
-.navbar-table{
+.navbar-table {
   width: auto;
   margin-left: auto;
   margin-right: auto;
@@ -140,22 +140,22 @@ button {
 /* NAVBAR ENDS */
 
 /* ALGO MENU STYLE */
-.algo-menu{
+.algo-menu {
   background-color: transparent;
   color: white;
   font-size: 48px;
-  border:0px;
-  outline:0px;
+  border: 0px;
+  outline: 0px;
   text-align: center;
 }
-.algo-option{
+.algo-option {
   background-color: #444444;
   color: white;
   font-size: 36px;
-  border:0px;
-  outline:0px;
+  border: 0px;
+  outline: 0px;
 }
-.config-menu{
+.config-menu {
   background-color: #444444;
   color: white;
   font-size: 18px;
@@ -164,7 +164,7 @@ button {
   height: 40px;
   text-overflow: ellipsis;
 }
-.config-option{
+.config-option {
   background-color: #444444;
   color: white;
   font-size: 18px;

@@ -20,6 +20,7 @@ import {ALGORITHM, SPEED, SIZE, SWAP, CURRENT, NORMAL, DONE} from '../helper/con
 import { getKeysCopy } from '../helper/keys.js';
 import { isVisible } from '@testing-library/user-event/dist/utils';
 
+let executionTime = " ";
 class Visualizer extends React.Component {
     /*  each element in the list contains a <key, classType> where:
         key - integer value of element,
@@ -57,12 +58,16 @@ class Visualizer extends React.Component {
                 <Frame 
                     list = {this.state.list}
                 />
+                <div className='ExecutionTime'>
+                    <h1>{executionTime}</h1>
+                </div>
                 <Navbar
                     start = {this.start}
                     response = {this.response}
                     newList = {this.generateList}
                     onChange = {this.onChange}
                 />
+                
         
             </React.Fragment>
         );
@@ -93,10 +98,13 @@ class Visualizer extends React.Component {
 
     // select and run the corresponding algorithm  
     start = async() => {
+        let startTime = performance.now();
         this.lock(true);
         let moves = await this.getMoves(this.state.algorithm);
         await this.visualizeMoves(moves);
         await this.done();
+        let endTime = performance.now();
+        executionTime = (`Execution Time: ${Math.round((endTime + Number.EPSILON) - (startTime + Number.EPSILON))/1000} seconds`);
         this.lock(false);
     };
 

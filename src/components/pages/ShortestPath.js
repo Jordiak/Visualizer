@@ -46,17 +46,17 @@ export default function ShortestPath(){
                 
                 </TabList>
 
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"5px"}}>
                 <code>
                     <pre>
 {`
 djikstraAlgorithm(startNode) {
     let distances = {};
  
-    // Stores the reference to previous nodes
+    //Stores the reference to previous nodes
     let prev = {};
-    let pq = new PriorityQueue(this.nodes.length 
-        * this.nodes.length);
+    let pq = new PriorityQueue(this.nodes
+        .length * this.nodes.length);
  
     // Set distances to all nodes to be 
     // infinite except startNode
@@ -73,10 +73,11 @@ djikstraAlgorithm(startNode) {
        let minNode = pq.dequeue();
        let currNode = minNode.data;
        let weight = minNode.priority;
-       this.edges[currNode].forEach(neighbor => {
-          let alt = distances[currNode] 
+       this.edges[currNode].forEach(neighbor 
+        => {let alt = distances[currNode] 
           + neighbor.weight;
-          if (alt < distances[neighbor.node]) {
+        if (alt < distances[neighbor.node]) 
+          {
              distances[neighbor.node] = alt;
              prev[neighbor.node] = currNode;
              pq.enqueue(neighbor.node, 
@@ -90,32 +91,38 @@ djikstraAlgorithm(startNode) {
                     </pre>
                 </code>
             </TabPanel>
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"5px"}}>
                 <code>
                     <pre>
 {`
 BFS(node) {
-    // Create a Queue and add our initial node in it
+    // Create a Queue and add 
+    // our initial node in it
     let q = new Queue(this.nodes.length);
     let explored = new Set();
     q.enqueue(node);
  
-    // Mark the first node as explored explored.
+    // Mark the first node as 
+    // explored explored.
     add(node);
  
-    // We'll continue till our queue gets empty
+    // We'll continue till our 
+    // queue gets empty
     while (!q.isEmpty()) {
        let t = q.dequeue();
  
-       // Log every element that comes out of the Queue
+       // Log every element that comes 
+       // out of the Queue
        console.log(t);
  
-       // 1. In the edges object, we search for
-       // nodes this node is directly connected to.
-       // 2. We filter out the nodes that have 
-       // already been explored.
-       // 3. Then we mark each unexplored node as 
-       // explored and add it to the queue.
+       // 1. In the edges object, we search  
+       // for nodes this node is directly 
+       // connected to.
+       // 2. We filter out the nodes that 
+       // have already been explored.
+       // 3. Then we mark each unexplored 
+       // node as explored and add it to 
+       // the queue.
        this.edges[t]
        .filter(n => !explored.has(n))
        .forEach(n => {
@@ -128,12 +135,13 @@ BFS(node) {
                     </pre>
                 </code>
             </TabPanel>
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"5px"}}>
                 <code>
                     <pre>
 {`
 DFS(node) {
-    // Create a Stack and add our initial node in it
+    // Create a Stack and add our initial 
+    // node in it
     let s = new Stack(this.nodes.length);
     let explored = new Set();
     s.push(node);
@@ -141,19 +149,22 @@ DFS(node) {
     // Mark the first node as explored
     explored.add(node);
  
-    // We'll continue till our Stack gets empty
+    // We'll continue till our Stack
+    // gets empty
     while (!s.isEmpty()) {
        let t = s.pop();
  
-    // Log every element that comes out of the Stack
+    // Log every element that comes 
+    // out of the Stack
        console.log(t);
  
     // 1. In the edges object, we search for
-    // nodes this node is directly connected to.
+    // nodes this node is directly 
+    // connected to.
     // 2. We filter out the nodes that have
     // already been explored.
-    // 3. Then we mark each unexplored node as explored 
-    // and push it to the Stack.
+    // 3. Then we mark each unexplored node 
+    // as explored and push it to the Stack.
     this.edges[t]
     .filter(n => !explored.has(n))
     .forEach(n => {

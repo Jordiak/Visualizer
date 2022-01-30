@@ -2,7 +2,6 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
 }
 
 .LinkedList,
@@ -100,7 +99,6 @@
   background-image: url("../src/components/images/night5.gif");
   align-items: center;
   font-family: monospace;
-
 }
 .box2 {
   height: 100vh;
@@ -183,4 +181,10 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
+}
+
+.ExecutionTime {
+  color: white;
+  font-family: monospace;
+  text-align: center;
 }

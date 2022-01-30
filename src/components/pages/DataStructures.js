@@ -105,7 +105,7 @@ export default function DataStructures(){
             </SideCollapsible>
             <SideCollapsible label=' '>
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%",fontSize:12}}>
                 <TabList>
                     <Tab>Linked List</Tab>
                     <Tab>Queue</Tab>
@@ -114,7 +114,7 @@ export default function DataStructures(){
                 
                 </TabList>
 
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"0px"}}>
                 <code>
                     <pre>
 {`
@@ -182,8 +182,9 @@ class LinkedList {
                 curr = this.head;
                 var it = 0;
  
-                // iterate over the list to find
-                // the position to insert
+                // iterate over the list 
+                // to find the position 
+                // to insert
                 while (it < index) {
                     it++;
                     prev = curr;
@@ -213,8 +214,9 @@ class LinkedList {
             if (index === 0) {
                 this.head = curr.next;
             } else {
-                // iterate over the list to the
-                // position to removce an element
+                // iterate over the list 
+                // to the position to 
+                // remove an element
                 while (it < index) {
                     it++;
                     prev = curr;
@@ -239,10 +241,12 @@ class LinkedList {
  
         // iterate over the list
         while (current != null) {
-            // comparing element with current
-            // element if found then remove the
-            // and return true
-            if (current.element === element) {
+            // comparing element with 
+            // current element if found 
+            // then remove the and 
+            // return true
+            if (current.element === element) 
+            {
                 if (prev == null) {
                     this.head = current.next;
                 } else {
@@ -265,8 +269,8 @@ class LinkedList {
  
         // iterate over the list
         while (current != null) {
-            // compare each element of the list
-            // with given element
+            // compare each element of 
+            // the list with given element
             if (current.element === element)
                 return count;
             count++;
@@ -290,7 +294,7 @@ class LinkedList {
                     </pre>
                 </code>
             </TabPanel>
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"0px"}}>
             <code>
                 <pre>
 {`
@@ -321,7 +325,7 @@ class Queue {
                 </pre>
             </code>
             </TabPanel>
-            <TabPanel style={{padding:"10px"}}>
+            <TabPanel style={{padding:"0px"}}>
                 <code>
                     <pre>
 {`
@@ -391,9 +395,10 @@ class PriorityQueue {
       (right(node) < this.size() && 
       this._greater(right(node), node))
     ) {
-      let maxChild = (right(node) < this.size() 
-      && this._greater(right(node), 
-      left(node))) ? right(node) : left(node);
+      let maxChild = (right(node) < 
+      this.size() && 
+      this._greater(right(node), 
+      left(node))) ? right(node):left(node);
       this._swap(node, maxChild);
       node = maxChild;
     }
@@ -403,7 +408,7 @@ class PriorityQueue {
                     </pre>
                 </code>
             </TabPanel>
-            <TabPanel style={{padding:"1px"}}>
+            <TabPanel style={{padding:"0px"}}>
                 <code>
                     <pre>
 {`
@@ -425,7 +430,7 @@ function Node(value) {
 
     this.addChild = function(node) {
     node.setParentNode(this);
-    this.children[this.children.length] = node;
+    this.children[this.children.length]=node;
     }
 
     this.getChildren = function() {
@@ -511,10 +516,10 @@ class RBT {
             return new Node(key, value);
         }
         if (key < node.key) {
-            node.left = this.addRoot(node.left, 
+        node.left = this.addRoot(node.left, 
                 key, value);
         } else if (key > node.key) {
-            node.right = this.addRoot(node.right, 
+        node.right = this.addRoot(node.right, 
                 key, value);
         } else {
             node.value = value;
@@ -546,9 +551,9 @@ class RBT {
                 ans = node;
                 return node;
             } else if (key > node.key) {
-                return getNode(node.right, key);
+            return getNode(node.right, key);
             } else {
-                return getNode(node.right, key);
+            return getNode(node.right, key);
             }
         })(this.root, key);
         return !!ans;
@@ -594,14 +599,16 @@ class RBT {
         let queue = [];
         queue.unshift(this.root);
         while (queue.length > 0) {
-            let tmpqueue = []; let ans = [];
-            queue.forEach(item => {
-                ans.push(item.key);
-            item.left ? tmpqueue.push(item.left):'';
-            item.right ? tmpqueue.push(item.right):'';
-            });
-            console.log(...ans);
-            queue = tmpqueue;
+        let tmpqueue = []; let ans = [];
+        queue.forEach(item => {
+            ans.push(item.key);
+        item.left ? 
+        tmpqueue.push(item.left):'';
+        item.right ? 
+        tmpqueue.push(item.right):'';
+        });
+        console.log(...ans);
+        queue = tmpqueue;
         }
     }
     minmun(node = this.root) {
