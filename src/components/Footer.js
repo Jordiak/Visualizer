@@ -9,7 +9,7 @@ function Navbar() {
     <>
       <div className='footer'>
       <img src={logoImage} alt='' width={100} height={50} />
-      <p>© 2022 DSA. All Rights Reserved.</p>
+      <p>© 2022 DSA. Some Rights Reserved.</p>
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import Collapsible from '../functions/Collapsible.js';
 import SideCollapsible from '../functions/SideCollapsible';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import DataStructures1 from '../images/dt.png';
+import DataStructures1 from '../images/dt.PNG';
 import Algorithms from '../images/Algortihms.png';
 import girl1 from '../images/girl1.gif';
 import girl2 from '../images/girl2.gif';
