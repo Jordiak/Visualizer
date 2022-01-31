@@ -105,7 +105,7 @@ export default function DataStructures(){
             </SideCollapsible>
             <SideCollapsible label=' '>
             <div className="TabBox">
-            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%",fontSize:12}}>
+            <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:'120%',fontSize:'0.7rem',}}>
                 <TabList>
                     <Tab>Linked List</Tab>
                     <Tab>Queue</Tab>
@@ -636,25 +636,25 @@ class RBT {
             <div className='DSright'>
             <Collapsible label="Linked List">
                         <h1>Linked List</h1>
-                        <p>A linked list is a linear data structure that includes a series of connected nodes. Here, each node stores the data and the address of the next node.Linked lists can be of multiple types: singly, doubly, and circular linked list.
+                        <p>A linked list is a <mark>linear</mark> data structure that includes a series of <mark>connected nodes</mark>. Here, each node stores the data and the address of the next node.Linked lists can be of multiple types: singly, doubly, and circular linked list.
                         </p>
                         <h1>Applications</h1>
-                        <p><ol><li>Dynamic memory allocation</li><li>Implemented in stack and queue</li><li>In undo functionality of softwares</li><li>Hash tables, Graphs</li></ol></p>
+                        <p><ol style={{marginLeft:"10px"}}><li>Dynamic memory allocation</li><li>Implemented in stack and queue</li><li>In undo functionality of softwares</li><li>Hash tables, Graphs</li></ol></p>
             </Collapsible>
             <Collapsible label="Queue">
                         <h1>Queue</h1>
-                        <p> A queue is a useful data structure in programming. It is similar to the ticket queue outside a cinema hall, where the first person entering the queue is the first person who gets the ticket.Queue follows the First In First Out (FIFO) rule - the item that goes in first is the item that comes out first.
+                        <p> A queue is a useful data structure in programming. It is similar to the ticket queue outside a cinema hall, where the first person entering the queue is the first person who gets the ticket.Queue follows the <mark>First In First Out</mark> (FIFO) rule - the item that goes in first is the item that comes out first.
                         </p>
                         <h1>Priority Queue</h1>
-                        <p>A priority queue is a special type of queue in which each element is associated with a priority value. And, elements are served on the basis of their priority. That is, higher priority elements are served first.However, if elements with the same priority occur, they are served according to their order in the queue.</p>
+                        <p>A priority queue is a special type of queue in which <mark>each element is associated with a priority value</mark>. And, elements are served on the basis of their priority. That is, higher priority elements are served first.However, if elements with the same priority occur, they are served according to their order in the queue.</p>
             </Collapsible>
             <Collapsible label="Tree">
                         <h1>Tree</h1>
-                        <p>A tree is a nonlinear hierarchical data structure that consists of nodes connected by edges.Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
+                        <p>A tree is a <mark>nonlinear</mark> hierarchical data structure that consists of nodes <mark>connected by edges</mark>. Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
                         </p>
                         <h1>Applications</h1>
                         <p>
-<ol><li> Binary Search Trees(BSTs) are used to quickly check whether an element is present in a set or not.</li>
+<ol style={{marginLeft:"10px"}}><li> Binary Search Trees(BSTs) are used to quickly check whether an element is present in a set or not.</li>
 <li> Heap is a kind of tree that is used for heap sort.</li>
 <li> A modified version of a tree called Tries is used in modern routers to store routing information.</li>
 <li> Most popular databases use B-Trees and T-Trees, which are variants of the tree structure we learned above to store their data</li>

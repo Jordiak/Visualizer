@@ -83,7 +83,7 @@ button.input-button {
   font-size: 15px;
   cursor: pointer;
   padding: 4px;
-  margin-left:-17%;
+  
   font-family: monospace;
 }
 
@@ -112,5 +112,6 @@ div.text-input2 {
   position: relative;
   text-align: middle;
   color: aliceblue;
-  font-family: monospace
+  font-family: monospace;
+  font-size: larger;
 }
