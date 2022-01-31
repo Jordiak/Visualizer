@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import ShowSection from '../ShowSection'
 import InputSection from '../InputSection'
 import '../../stylesheet/Dsa.css'
-import testDatas from '../../data/testDatas'
+import sampleDatas from '../../data/testDatas'
 import parsing from '../../data/parsing'
 
 class Dsa extends Component {
   constructor() {
     super()
-    this.testDatas =  testDatas
+    this.sampleDatas =  sampleDatas
     const start = 0;
     this.state = {
       dataStates: [],
       executingCode: '',
       containerState: {object:'', method: '', params:[]},
       step: -1,
-      // executingCode: testDatas[start].executingCode,
-      // containerState: testDatas[start].containerState,
+      // executingCode: sampleDatas[start].executingCode,
+      // containerState: sampleDatas[start].containerState,
       // step: start,
       code: ``,
       data: {},
@@ -58,8 +58,8 @@ class Dsa extends Component {
     console.log(this.state.submitStack, nextState.submitStack)
     if((this.state.submitStack !== nextState.submitStack)) {
       console.log('call nextStep in update')
-      this.testDatas = parsing({inputCode: nextState.code, inputData: nextState.data});
-      console.log(this.testDatas)
+      this.sampleDatas = parsing({inputCode: nextState.code, inputData: nextState.data});
+      console.log(this.sampleDatas)
       this.nextStep(nextState.submitStack, nextState);
       return false
     }
@@ -72,15 +72,15 @@ class Dsa extends Component {
     }
     
     const nextstep = state.step + 1
-    const lastvalue = this.testDatas.length 
+    const lastvalue = this.sampleDatas.length 
     console.log("stack: ",submitStack, state.submitStack)
     console.log("step: ", nextstep, lastvalue)
       
     if (submitStack === state.submitStack && nextstep < lastvalue) {
       this.setState({
-        dataStates: this.testDatas[nextstep].dataStates,
-        executingCode: this.testDatas[nextstep].executingCode,
-        containerState: this.testDatas[nextstep].containerState,
+        dataStates: this.sampleDatas[nextstep].dataStates,
+        executingCode: this.sampleDatas[nextstep].executingCode,
+        containerState: this.sampleDatas[nextstep].containerState,
         step: nextstep,
         methodAnimation: true,})
     } else if (submitStack === state.submitStack && nextstep === lastvalue) {
@@ -105,9 +105,9 @@ class Dsa extends Component {
   goMethod = (idx) => {
     this.setState({
       stopShow: !this.state.stopShow,
-      dataStates: this.testDatas[idx].dataStates,
-      executingCode: this.testDatas[idx].executingCode,
-      containerState: this.testDatas[idx].containerState,
+      dataStates: this.sampleDatas[idx].dataStates,
+      executingCode: this.sampleDatas[idx].executingCode,
+      containerState: this.sampleDatas[idx].containerState,
       step: idx,
       methodAnimation: true,
     })
@@ -128,7 +128,7 @@ class Dsa extends Component {
   render() {
     return (
       <div className="App">
-        <ShowSection specificData={this.state.specificData} showSpecificData={this.showSpecificData} methodAnimation={this.state.methodAnimation} goMethod={this.goMethod} methodList={this.testDatas.filter(n=>n.executingCode)} duration={this.state.duration} changeDuration={this.changeDuration} changeStop={this.changeStop} stopShow = {this.state.stopShow} step={this.state.step} submitStack={this.state.submitStack} nextStep={this.nextStep} dataStates={this.state.dataStates} executingCode = {this.state.executingCode} containerState={this.state.containerState}/>
+        <ShowSection specificData={this.state.specificData} showSpecificData={this.showSpecificData} methodAnimation={this.state.methodAnimation} goMethod={this.goMethod} methodList={this.sampleDatas.filter(n=>n.executingCode)} duration={this.state.duration} changeDuration={this.changeDuration} changeStop={this.changeStop} stopShow = {this.state.stopShow} step={this.state.step} submitStack={this.state.submitStack} nextStep={this.nextStep} dataStates={this.state.dataStates} executingCode = {this.state.executingCode} containerState={this.state.containerState}/>
         <InputSection getCode={this.getCode} getData={this.getData}/>
       </div>
     );

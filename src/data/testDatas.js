@@ -1,8 +1,8 @@
 import std from '../data/visualizeContainer'
 
 
-const testDatas = [
+const sampleDatas = [
   {}
 ]
 
-export default testDatas
+export default sampleDatas

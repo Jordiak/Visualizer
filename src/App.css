@@ -80,7 +80,7 @@ h2{
   background-image: url("../src/components/images/pixel.jpg");
   background-position: center;
   background-size: cover;
-  height:100vh;
+  height:110vh;
 }
 
 .ShortestPath {
@@ -89,7 +89,7 @@ h2{
   background-image: url("../src/components/images/pixel.jpg");
   background-position: center;
   background-size: cover;
-  height: 100vh;
+  height: 105vh;
 }
 
 .DataStructures {
