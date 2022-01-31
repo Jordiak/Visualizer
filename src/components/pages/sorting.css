@@ -85,10 +85,13 @@ button {
   
 }
 .navbar-table {
-  width: auto;
+  width: 350px;
+  height: 100px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 50px;
+  margin-top: 30px;
+  background-color:rgb(0,0,0, 0.8);
+  border-radius: 12px;
 }
 .navbar-sorting .options {
   margin: 10px;
@@ -154,28 +157,33 @@ button {
   font-size: 48px;
   border: 0px;
   outline: 0px;
+  font-family: monospace;
+  font-weight: bold;
   text-align: center;
 }
 .algo-option {
-  background-color: #444444;
+  background-color: rgb(0,0,34);
   color: white;
   font-size: 36px;
+  font-family: monospace;
   border: 0px;
   outline: 0px;
 }
 .config-menu {
-  background-color: #444444;
+  background-color: rgb(0,0,34);
   color: white;
   font-size: 18px;
   text-align: center;
-  width: 60px;
+  font-family: monospace;
+  width: 70px;
   height: 40px;
   text-overflow: ellipsis;
 }
 .config-option {
-  background-color: #444444;
+  background-color: rgb(0,0,34);
   color: white;
   font-size: 18px;
+  font-family: monospace;
   width: 30px;
   height: 60px;
   text-overflow: ellipsis;

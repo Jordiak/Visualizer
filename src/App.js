@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShortestPath from './components/pages/ShortestPath';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shortest-path-algorithms" exact component={ShortestPath} />
         <Route path="/data-structures" exact component={DataStructures} />
       </Switch>
+      <Footer />
     </Router>
   );
 }

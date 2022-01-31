@@ -6,7 +6,17 @@
   align-items: center;
   font-size: 1.2rem;
 }
-
+.footer {
+  background:rgb(0, 0, 0);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(255,255,255);
+  font-family: monospace;
+}
 .navbar-logo {
   color: #fff;
   justify-self: start;

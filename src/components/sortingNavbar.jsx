@@ -24,7 +24,7 @@ class Navbar extends React.Component {
                 
                 <table className="navbar-table">
                     <tr>
-                        <td style={{backgroundColor:'rgb(0,0,34)'}}>Number of Items to Sort</td>
+                        <td>Number of Items to Sort</td>
                         <td><Size 
                         onChange = {this.props.onChange}
                         lengths = {this.state.lengths}
@@ -32,7 +32,7 @@ class Navbar extends React.Component {
                        </td>
                     </tr>
                     <tr>
-                        <td style={{backgroundColor:'rgb(0,0,34)'}}>Sorting Speed</td>
+                        <td>Sorting Speed</td>
                         <td>
                         <Speed 
                         onChange = {this.props.onChange}
