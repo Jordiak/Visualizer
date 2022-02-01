@@ -123,13 +123,9 @@ h2 {
 .leftInfo {
   width: 60%;
   float: left;
-  color: white;
-<<<<<<< HEAD
+  color:white;
   padding:5rem;
-=======
-  padding: 5rem;
->>>>>>> 9b4219fdd19968a393018fad99cbe2295484e085
-  font-size: 1.15rem;
+  font-size:1.15rem;
   /* background-image: url("../src/components/images/bluebox.png"); */
   text-align: justify;
 
@@ -143,13 +139,9 @@ h2 {
   width: 80%;
 }
 .speechbubble1 {
-  position: relative;
-<<<<<<< HEAD
+  position:relative;
   float:left;
-=======
-  float: left;
->>>>>>> 9b4219fdd19968a393018fad99cbe2295484e085
-  left: 10vw;
+  left:10vw;
   bottom: -21vh;
   width: 50%;
 }
