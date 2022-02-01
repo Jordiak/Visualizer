@@ -20,5 +20,12 @@ button {
 
 table {
   width: 100%;
+  padding-bottom: 10rem;
 }
 
+.textDistance{
+  color: white;
+  font-weight:800;
+  font-size: larger;
+  font-family: 'Courier New', Courier, monospace;
+}

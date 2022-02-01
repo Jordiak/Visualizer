@@ -8,11 +8,11 @@
 }
 
 .node-finish {
-  background-color: rgb(192, 43, 43);
+  background-color: rgb(243, 17, 17);
 }
 
 .node-start {
-  background-color: rgb(83, 83, 238);
+  background-color: rgb(32, 32, 255);
 }
 
 .node-visited {
@@ -34,22 +34,22 @@
   }
 
   50% {
-    background-color: rgba(217, 17, 187, 0.75);
+    background-color:rgb(224,144,223, 0.75);
   }
 
   75% {
     transform: scale(1.2);
-    background-color: rgba(34, 17, 217, 0.75);
+    background-color: rgb(164,76,211, 0.75);
   }
 
   100% {
     transform: scale(1);
-    background-color: rgba(0, 218, 69, 0.75);
+    background-color: rgb(53,0,117);
   }
 }
 
 .node-wall {
-  background-color: rgba(255, 255, 255, 0.829);
+  background-color: rgba(197, 229, 231, 0.829);
 }
 
 .node-shortest-path {
@@ -66,16 +66,16 @@
 @keyframes shortestPath {
   0% {
     transform: scale(0.6);
-    background-color: rgb(255, 254, 106);
+    background-color: rgb(3,89,86);
   }
 
   50% {
     transform: scale(1.2);
-    background-color: rgb(255, 254, 106);
+    background-color: rgb(0,145,124);
   }
 
   100% {
     transform: scale(1);
-    background-color: rgb(255, 254, 106);
+    background-color: rgb(18, 187, 187);
   }
 }

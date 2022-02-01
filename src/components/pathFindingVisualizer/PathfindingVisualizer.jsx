@@ -6,6 +6,8 @@ import {bfs} from '../pathFindingAlgorithms/bfs';
 
 import './PathfindingVisualizer.css';
 
+let distancestr='';
+
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -40,7 +42,7 @@ export default class PathfindingVisualizer extends Component {
     this.setState({isRunning: !this.state.isRunning});
   }
 
-  /******************** Set up the initial grid ********************/
+  //INITIALIZING GRID
   getInitialGrid = (
     rowCount = this.state.ROW_COUNT,
     colCount = this.state.COLUMN_COUNT,
@@ -76,7 +78,7 @@ export default class PathfindingVisualizer extends Component {
     };
   };
 
-  /******************** Control mouse events ********************/
+  //MOUSE CONTROL HANDLING
   handleMouseDown(row, col) {
     if (!this.state.isRunning) {
       if (this.isGridClear()) {
@@ -212,7 +214,7 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Clear Board/Walls ********************/
+  //CLEAR WALLS AND GRID
 
   clearGrid() {
     if (!this.state.isRunning) {
@@ -274,7 +276,8 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Create Animations ********************/
+  //ANIMATION FOR PATH FINDING
+  
   visualize(algo) {
     if (!this.state.isRunning) {
       this.clearGrid();
@@ -329,8 +332,9 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  /******************** Create path from start to finish ********************/
+  //DRAWS PATH FROM START TO FINISH
   animateShortestPath(nodesInShortestPathOrder) {
+    distancestr="Path Distance: "+(nodesInShortestPathOrder.length-3).toString()+" cells"
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       if (nodesInShortestPathOrder[i] === 'end') {
         setTimeout(() => {
@@ -358,6 +362,7 @@ export default class PathfindingVisualizer extends Component {
     const {grid, mouseIsPressed} = this.state;
     return (
       <div className="pathfindcontent">
+        
 
 <button
           type="button"
@@ -391,6 +396,8 @@ export default class PathfindingVisualizer extends Component {
           onClick={() => this.clearWalls()}>
           Clear Walls
         </button>
+
+        <div className='textDistance'>{distancestr}</div>
 
         <table
           onMouseLeave={() => this.handleMouseLeave()}>

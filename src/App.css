@@ -48,7 +48,7 @@
   
 }
 .InformationDivider {
-  padding-top: 10vh;
+  padding-top: 3vh;
   color: white;
   font-family: monospace;
   font-weight: bold;
@@ -89,7 +89,7 @@ h2{
   background-image: url("../src/components/images/pixel.jpg");
   background-position: center;
   background-size: cover;
-  height: 105vh;
+  height: 115vh;
 }
 
 .DataStructures {
@@ -125,7 +125,7 @@ h2{
   width: 60%;
   float:left;
   color: white;
-  padding:10rem;
+  padding:5rem;
   font-size: 1.15rem;
   /* background-image: url("../src/components/images/bluebox.png"); */
   text-align: justify;
@@ -140,8 +140,9 @@ h2{
 }
 .speechbubble1{
   position: relative;
-  left: 150px;
-  bottom: 80px;
+  float:left;
+  left: 10vw;
+  bottom: -21vh;
   width: 50%;
 }
 .speechbubble2{
@@ -153,11 +154,12 @@ h2{
 .htext{
   font-weight: bold;
   color: gold;
+  font-size: x-large;
 }
 .girl1{
   position: relative;
-  right: 350px;
-  top: 200px;
+  right: 20vw;
+  top: 25vh;
   width: 40%;
   transform: scaleX(-1);
 }
