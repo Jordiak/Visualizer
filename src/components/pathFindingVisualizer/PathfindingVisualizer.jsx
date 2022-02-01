@@ -7,6 +7,7 @@ import {bfs} from '../pathFindingAlgorithms/bfs';
 import './PathfindingVisualizer.css';
 
 let distancestr='';
+let visited_nodes = -2;
 
 export default class PathfindingVisualizer extends Component {
   constructor() {
@@ -308,8 +309,13 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
+
+
   animate(visitedNodesInOrder, nodesInShortestPathOrder) {
+    if(visited_nodes>0)
+      visited_nodes=-2;
     for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+      visited_nodes+=1;
       if (i === visitedNodesInOrder.length) {
         setTimeout(() => {
           this.animateShortestPath(nodesInShortestPathOrder);
@@ -335,6 +341,7 @@ export default class PathfindingVisualizer extends Component {
   //DRAWS PATH FROM START TO FINISH
   animateShortestPath(nodesInShortestPathOrder) {
     distancestr="Path Distance: "+(nodesInShortestPathOrder.length-3).toString()+" cells"
+    // visited_nodes="No. of Visited Nodes: "+ visited_nodes.toString() +" Cells";
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       if (nodesInShortestPathOrder[i] === 'end') {
         setTimeout(() => {
@@ -356,6 +363,9 @@ export default class PathfindingVisualizer extends Component {
         }, i * 40);
       }
     }
+
+    document.getElementById('textDistance').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
+    document.getElementById('textDistance1').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
   }
 
   render() {
@@ -397,8 +407,11 @@ export default class PathfindingVisualizer extends Component {
           Clear Walls
         </button>
 
-        <div className='textDistance'>{distancestr}</div>
-
+        <br></br>
+        <span id='textDistance'>{distancestr}</span>
+        <br></br>
+        <span id='textDistance1'>No. of visited nodes: {visited_nodes} Cells</span>
+        
         <table
           onMouseLeave={() => this.handleMouseLeave()}>
           <tbody className="grid">
