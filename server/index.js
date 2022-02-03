@@ -15,6 +15,16 @@ app.use(cors());
 app.use(express.json()); //grab the request from the front end as a json
 app.use(bodyParser.urlencoded({extended:true}));
 
+//Read
+app.get('/api/get', (req, res) =>{
+    const sqlSelect = "SELECT * FROM user_infos;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
+
+//Create
 app.post('/api/insert', (req, res)=>{
 
     const Reg_username = req.body.Reg_username
