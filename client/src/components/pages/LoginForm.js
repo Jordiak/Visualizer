@@ -7,10 +7,9 @@ function LoginForm() {
   //Getting the user infos from the DB
   useEffect(() =>{
     Axios.get('http://localhost:3001/api/get').then((response)=>{
-      console.log(response.data);
       setuserNameList(response.data)
     })
-  }) //Calling it once
+  },[]) //Calling it once
 
 
   //Registration
@@ -39,15 +38,22 @@ function LoginForm() {
       Reg_username: Reg_username,
       Reg_email: Reg_email, 
       Reg_password: Reg_password
-  })
+  });
+  setuserNameList([
+    ...usernameList,
+    { useremail_reg: Reg_username,
+      username_reg: Reg_email, 
+      userpassword_reg: Reg_password},
+  ])
   alert("Registration Successful!")
+  ReactSession.set("username",Reg_username)
 }
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
   };
-  console.log(ReactSession.get("username"))
-
+  // console.log(ReactSession.get("username"))
+  console.log(usernameList)
 }
 
     //Login
@@ -89,6 +95,7 @@ function LoginForm() {
        <div className='box1'>
          <div className='login_form'>
          <h1 className='log_h1'>Login</h1>
+         <br></br>
            <div className='logbox'>
              <center>
                <label style={{marginLeft:"24px"}}>Email:</label>
@@ -100,7 +107,7 @@ function LoginForm() {
            <div>
              <center>
                <label>Password:</label>
-               <input type="text" name="password" id="log_password" onChange={(e) => {
+               <input type="password" name="password" id="log_password" onChange={(e) => {
                   setLog_Password(e.target.value)
                }} ></input>
              </center>
@@ -111,6 +118,7 @@ function LoginForm() {
          <div>
          <div className='login_form'>
          <h1 className='log_h1'>Register</h1>
+         <br></br>
            <div>
              <center>
                <label>Username:</label>
@@ -124,7 +132,7 @@ function LoginForm() {
                }} ></input>
 <br></br>
                <label>Password:</label>
-               <input type="text" name="Reg_password" id="reg_user_pass" onChange={(e) => {
+               <input type="password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                   setReg_password(e.target.value)
                }} ></input>
              </center>

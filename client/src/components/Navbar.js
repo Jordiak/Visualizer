@@ -9,12 +9,15 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
+  const [userName, setUserName] = useState('Login/Registerx');
+
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-
+  console.log(userName)
   useEffect(() =>{
-    let name = ReactSession.get('username')
-  })
+    if(userName!=null)
+      setUserName(ReactSession.get('username'));
+  },[])
 
   return (
     <>
