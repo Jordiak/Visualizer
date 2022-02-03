@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
 import ReactSession from 'react-client-session/dist/ReactSession';
+import Swal from 'sweetalert2'
 
 function LoginForm() {
 
@@ -20,17 +21,35 @@ function LoginForm() {
 
   const registerUser = () =>{
     if (document.getElementById('reg_user_input').value == '')
-      alert("Enter a username")
+    Swal.fire({
+      icon: 'info',
+      title: 'Blank Input',
+      text: 'Enter a username.',
+    })
     else if (document.getElementById('reg_user_pass').value == '')
-      alert("Enter a password")
+    Swal.fire({
+      icon: 'info',
+      title: 'Blank Input',
+      text: 'Enter a password.',
+    })
     else if (document.getElementById('reg_email').value == '')
-      alert("Enter an email")
+    Swal.fire({
+      icon: 'info',
+      title: 'Blank Input',
+      text: 'Enter an email.',
+    })
     else{
     let emails = usernameList.map((val)=> val.useremail_reg)
 
     //Validation of email PK
-    if(emails.includes(Reg_email))
-      alert("Email already exists! Please enter a new one.")
+    if(emails.includes(Reg_email)){
+    Swal.fire({
+      icon: 'error',
+      title: 'Email already taken',
+      text: 'Enter another email.',
+    })
+    document.getElementById('reg_email').value = ''
+  }
     
     else{
     //Call the api using Axios
@@ -45,12 +64,27 @@ function LoginForm() {
       username_reg: Reg_email, 
       userpassword_reg: Reg_password},
   ])
-  alert("Registration Successful!")
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+  
+  Toast.fire({
+    icon: 'success',
+    title: 'Registration Successful!'
+  })
   ReactSession.set("username",Reg_username)
-}
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
+}
   };
   // console.log(ReactSession.get("username"))
   console.log(usernameList)
@@ -67,11 +101,26 @@ function LoginForm() {
     let names = usernameList.map((val)=> [val.username_reg])
     let userNamesPassword = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg])
     // console.log(userNamesPassword)
-    // console.log(log_Email, log_Password)
-    if(log_Email != "" && log_Password!= "")
+    console.log(log_Email, log_Password)
+    if(log_Email != null && log_Password!= null)
       for (i=0;i<userNamesPassword.length;i++){
         if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el))){
-          alert("Login Successful")
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Signed in successfully'
+          })
           success = true;
           
           document.getElementById('log_email').value = ''
@@ -79,13 +128,19 @@ function LoginForm() {
 
           ReactSession.setStoreType("localStorage");
           ReactSession.set("username", names[i]);
-
+          setLog_Password("")
+          setLog_Email("")
           break;
         }
     }
 
-    if (!success)
-      alert("Invalid username or password")
+    if (!success){
+      Swal.fire({
+        icon: 'error',
+        title: 'Invalid Email or Password'
+      })
+      document.getElementById('log_password').value = ''
+    }
   }
 
 
