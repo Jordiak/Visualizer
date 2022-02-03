@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logoImage from './images/bitLogo.png';
+import ReactSession from 'react-client-session/dist/ReactSession';
 
 
 function Navbar() {
@@ -11,7 +12,9 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
 
- 
+  useEffect(() =>{
+    let name = ReactSession.get('username')
+  })
 
   return (
     <>
@@ -25,8 +28,8 @@ function Navbar() {
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
-            <Link to='/home' className='nav-links' onClick={closeMobileMenu}>
-              Home
+            <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
+            Login/Register
             </Link>
           </li>
           <li className='nav-item'>
@@ -49,11 +52,17 @@ function Navbar() {
               Data Structures
             </Link>
           </li>
-          <li className='nav-item'>
-            <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
-              Login
-            </Link>
+          <li>
+            {localStorage.getItem("username")}
           </li>
+          {/* <li className='nav-item'>
+            <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
+              Login/Register
+            </Link>
+          </li> */}
+          {/* <li className='nav-item' onClick={closeMobileMenu}>
+          {ReactSession.get("username")}
+          </li> */}
         </ul>
       </nav>
     </>

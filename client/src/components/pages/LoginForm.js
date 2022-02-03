@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios'
+import ReactSession from 'react-client-session/dist/ReactSession';
 
 function LoginForm() {
 
@@ -9,44 +10,72 @@ function LoginForm() {
       console.log(response.data);
       setuserNameList(response.data)
     })
-  }, []) //Calling it once
+  }) //Calling it once
 
 
   //Registration
   const [Reg_username, setReg_username] = useState('')
   const [Reg_password, setReg_password] = useState('')
+  const [Reg_email, setReg_email] = useState('')
   const [usernameList, setuserNameList] = useState([])
 
   const registerUser = () =>{
+    if (document.getElementById('reg_user_input').value == '')
+      alert("Enter a username")
+    else if (document.getElementById('reg_user_pass').value == '')
+      alert("Enter a password")
+    else if (document.getElementById('reg_email').value == '')
+      alert("Enter an email")
+    else{
+    let emails = usernameList.map((val)=> val.useremail_reg)
+
+    //Validation of email PK
+    if(emails.includes(Reg_email))
+      alert("Email already exists! Please enter a new one.")
+    
+    else{
     //Call the api using Axios
     Axios.post('http://localhost:3001/api/insert', {
-      Reg_username: Reg_username, 
+      Reg_username: Reg_username,
+      Reg_email: Reg_email, 
       Reg_password: Reg_password
   })
   alert("Registration Successful!")
-
+}
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
+  document.getElementById('reg_email').value = ''
   };
+  console.log(ReactSession.get("username"))
+
+}
 
     //Login
-  const [log_Username, setLog_Username] = useState('')
+  const [log_Email, setLog_Email] = useState('')
   const [log_Password, setLog_Password] = useState('')
 
 
   const login_User = ()=>{
     let success = false;
     let i;
-    let userNamesPassword = usernameList.map((val) => [val.username_reg, val.userpassword_reg])
+    let names = usernameList.map((val)=> [val.username_reg])
+    let userNamesPassword = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg])
+    // console.log(userNamesPassword)
+    // console.log(log_Email, log_Password)
+    if(log_Email != "" && log_Password!= "")
+      for (i=0;i<userNamesPassword.length;i++){
+        if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el))){
+          alert("Login Successful")
+          success = true;
+          
+          document.getElementById('log_email').value = ''
+          document.getElementById('log_password').value = ''
 
-    for (i=0;i<userNamesPassword.length;i++){
-      console.log([log_Username, log_Password])
-      console.log(userNamesPassword[i])
-      if([log_Username, log_Password].length === userNamesPassword[i].length && [log_Username, log_Password].every((el) => userNamesPassword[i].includes(el))){
-        alert("Login Successful")
-        success = true;
-        break;
-      }
+          ReactSession.setStoreType("localStorage");
+          ReactSession.set("username", names[i]);
+
+          break;
+        }
     }
 
     if (!success)
@@ -58,13 +87,13 @@ function LoginForm() {
   return (
    <div className='Home'>
        <div className='box1'>
-        <h1 className='log_h1'>Login</h1>
          <div className='login_form'>
-           <div>
+         <h1 className='log_h1'>Login</h1>
+           <div className='logbox'>
              <center>
-               <label>Username:</label>
-               <input type="text" name="username" id="log_username" onChange={(e) => {
-                  setLog_Username(e.target.value)
+               <label style={{marginLeft:"24px"}}>Email:</label>
+               <input type="text" name="email" id="log_email" onChange={(e) => {
+                  setLog_Email(e.target.value)
                }} ></input>
              </center>
            </div>
@@ -80,18 +109,20 @@ function LoginForm() {
          </div>
 
          <div>
-<h1 className='log_h1'>Register</h1>
          <div className='login_form'>
+         <h1 className='log_h1'>Register</h1>
            <div>
              <center>
                <label>Username:</label>
                <input type="text" name="Reg_username" id="reg_user_input" onChange={(e) => {
                   setReg_username(e.target.value)
                }} ></input>
-             </center>
-           </div>
-           <div>
-             <center>
+<br></br>
+               <label style={{marginLeft:"22px"}}>Email:</label>
+               <input type="text" name="Reg_email" id="reg_email" onChange={(e) => {
+                  setReg_email(e.target.value)
+               }} ></input>
+<br></br>
                <label>Password:</label>
                <input type="text" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                   setReg_password(e.target.value)
@@ -101,9 +132,10 @@ function LoginForm() {
            <center><button onClick={registerUser}>Register</button></center>
          </div>
               
-              {usernameList.map((val)=>{
+              {/* {usernameList.map((val)=>{
                   return <h1>ID {val.user_id} | Username: {val.username_reg} | Password: {val.userpassword_reg}</h1>
-              })}
+              })} */}
+              {ReactSession.get("username")}
        </div>
        </div>
 

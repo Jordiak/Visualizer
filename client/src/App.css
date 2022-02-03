@@ -13,6 +13,9 @@
   margin-top: 30px;
   display: flex;
   flex-direction: column;
+  background: rgba(0, 0, 0, 0.5);
+  width: 25%;
+  margin-left:75vh;
 }
 
 .login_form button{

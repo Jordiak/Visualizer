@@ -27,12 +27,13 @@ app.get('/api/get', (req, res) =>{
 //Create
 app.post('/api/insert', (req, res)=>{
 
+    const Reg_email = req.body.Reg_email
     const Reg_username = req.body.Reg_username
     const Reg_password = req.body.Reg_password
 
-    const sqlInsert = "INSERT INTO user_infos (username_reg, userpassword_reg) VALUES (?,?)"
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg) VALUES (?,?,?)"
 
-    db.query(sqlInsert, [Reg_username, Reg_password], (err, result)=>{
+    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password], (err, result)=>{
         console.log(err);
     })
 });
