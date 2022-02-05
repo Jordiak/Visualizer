@@ -40,3 +40,24 @@ export default function Home(){
         
     );
 } 
+
+// export default function Home(){
+//     return(
+//         <div className='Home'>
+//       {(() => {
+//         if (ReactSession.get('username')) {
+//           return (
+//             <div><h1>Logged in {ReactSession.get('username')}</h1></div>
+//           )
+//         }  else {
+//           return (
+//             <div><h1>Not logged in</h1></div>
+//           )
+//         }
+//       })()}
+          
+//         </div>
+        
+        
+//     );
+// } 

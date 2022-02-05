@@ -14,10 +14,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   console.log(userName)
-  useEffect(() =>{
-    if(userName!=null)
-      setUserName(ReactSession.get('username'));
-  },[])
+
 
   return (
     <>
@@ -32,11 +29,11 @@ function Navbar() {
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
             <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
-            Login/Register
+            {ReactSession.get("username") ? ReactSession.get("username") :"Login/Register"}
             </Link>
           </li>
           <li className='nav-item'>
-            <Link to='/information' className='nav-links' onClick={closeMobileMenu}>
+            <Link to='/information' className='nav-links' onClick={() => { closeMobileMenu();}}>
               Introduction
             </Link>
           </li>
@@ -54,9 +51,6 @@ function Navbar() {
             <Link to='/data-structures' className='nav-links' onClick={closeMobileMenu}>
               Data Structures
             </Link>
-          </li>
-          <li>
-            {localStorage.getItem("username")}
           </li>
           {/* <li className='nav-item'>
             <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>

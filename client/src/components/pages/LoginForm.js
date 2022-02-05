@@ -101,10 +101,15 @@ function LoginForm() {
     let names = usernameList.map((val)=> [val.username_reg])
     let userNamesPassword = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg])
     // console.log(userNamesPassword)
+
+    // if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el)))
+
     console.log(log_Email, log_Password)
     if(log_Email != null && log_Password!= null)
       for (i=0;i<userNamesPassword.length;i++){
-        if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el))){
+        console.log([userNamesPassword[i][0], userNamesPassword[i][1]])
+        console.log([log_Email, log_Password])
+        if(log_Email+log_Password == userNamesPassword[i][0]+userNamesPassword[i][1]){
           const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -126,8 +131,9 @@ function LoginForm() {
           document.getElementById('log_email').value = ''
           document.getElementById('log_password').value = ''
 
-          ReactSession.setStoreType("localStorage");
           ReactSession.set("username", names[i]);
+          ReactSession.set("email", userNamesPassword[i][0]);
+          ReactSession.set("password", userNamesPassword[i][1]);
           setLog_Password("")
           setLog_Email("")
           break;
@@ -146,64 +152,79 @@ function LoginForm() {
 
 
   return (
-   <div className='Home'>
-       <div className='box1'>
-         <div className='login_form'>
-         <h1 className='log_h1'>Login</h1>
-         <br></br>
-           <div className='logbox'>
-             <center>
-               <label style={{marginLeft:"24px"}}>Email:</label>
-               <input type="text" name="email" id="log_email" onChange={(e) => {
-                  setLog_Email(e.target.value)
-               }} ></input>
-             </center>
-           </div>
-           <div>
-             <center>
-               <label>Password:</label>
-               <input type="password" name="password" id="log_password" onChange={(e) => {
-                  setLog_Password(e.target.value)
-               }} ></input>
-             </center>
-           </div>
-           <center><button onClick={login_User}>Login</button></center>
-         </div>
 
-         <div>
-         <div className='login_form'>
-         <h1 className='log_h1'>Register</h1>
-         <br></br>
-           <div>
-             <center>
-               <label>Username:</label>
-               <input type="text" name="Reg_username" id="reg_user_input" onChange={(e) => {
-                  setReg_username(e.target.value)
-               }} ></input>
-<br></br>
-               <label style={{marginLeft:"22px"}}>Email:</label>
-               <input type="text" name="Reg_email" id="reg_email" onChange={(e) => {
-                  setReg_email(e.target.value)
-               }} ></input>
-<br></br>
-               <label>Password:</label>
-               <input type="password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
-                  setReg_password(e.target.value)
-               }} ></input>
-             </center>
-           </div>
-           <center><button onClick={registerUser}>Register</button></center>
-         </div>
-              
-              {/* {usernameList.map((val)=>{
-                  return <h1>ID {val.user_id} | Username: {val.username_reg} | Password: {val.userpassword_reg}</h1>
-              })} */}
-              {ReactSession.get("username")}
-       </div>
-       </div>
-
-      
-   </div> 
+<div className='Home'>
+         {(() => {
+        if (ReactSession.get('username')) {
+          return (
+            <div><h1>Username: {ReactSession.get('username')}</h1>
+                 <h1>Email: {ReactSession.get('email')}</h1>
+                 <h1>Password: {ReactSession.get('password')}</h1>
+                 <button>Logout</button>
+            </div>
+          )
+        }  else {
+          return (
+              <div className='box1'>
+              <div className='login_form'>
+              <h1 className='log_h1'>Login</h1>
+              <br></br>
+                <div className='logbox'>
+                  <center>
+                    <label style={{marginLeft:"24px"}}>Email:</label>
+                    <input type="text" name="email" id="log_email" onChange={(e) => {
+                       setLog_Email(e.target.value)
+                    }} ></input>
+                  </center>
+                </div>
+                <div>
+                  <center>
+                    <label>Password:</label>
+                    <input type="password" name="password" id="log_password" onChange={(e) => {
+                       setLog_Password(e.target.value)
+                    }} ></input>
+                  </center>
+                </div>
+                <center><button onClick={login_User}>Login</button></center>
+              </div>
+     
+              <div>
+              <div className='login_form'>
+              <h1 className='log_h1'>Register</h1>
+              <br></br>
+                <div>
+                  <center>
+                    <label>Username:</label>
+                    <input type="text" name="Reg_username" id="reg_user_input" onChange={(e) => {
+                       setReg_username(e.target.value)
+                    }} ></input>
+     <br></br>
+                    <label style={{marginLeft:"22px"}}>Email:</label>
+                    <input type="text" name="Reg_email" id="reg_email" onChange={(e) => {
+                       setReg_email(e.target.value)
+                    }} ></input>
+     <br></br>
+                    <label>Password:</label>
+                    <input type="password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
+                       setReg_password(e.target.value)
+                    }} ></input>
+                  </center>
+                </div>
+                <center><button onClick={registerUser}>Register</button></center>
+              </div>
+                   
+                   {/* {usernameList.map((val)=>{
+                       return <h1>ID {val.user_id} | Username: {val.username_reg} | Password: {val.userpassword_reg}</h1>
+                   })} */}
+                   {ReactSession.get("username")}
+            </div>
+            </div>
+     
+          )
+        }
+      })()}
+          
+        </div>
   )
 }
 
