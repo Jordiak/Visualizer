@@ -18,6 +18,7 @@ function LoginForm() {
   const [Reg_password, setReg_password] = useState('')
   const [Reg_email, setReg_email] = useState('')
   const [usernameList, setuserNameList] = useState([])
+  const [userSession, setUserSession] = useState("")
 
   const registerUser = () =>{
     if (document.getElementById('reg_user_input').value == '')
@@ -107,8 +108,6 @@ function LoginForm() {
     console.log(log_Email, log_Password)
     if(log_Email != null && log_Password!= null)
       for (i=0;i<userNamesPassword.length;i++){
-        console.log([userNamesPassword[i][0], userNamesPassword[i][1]])
-        console.log([log_Email, log_Password])
         if(log_Email+log_Password == userNamesPassword[i][0]+userNamesPassword[i][1]){
           const Toast = Swal.mixin({
             toast: true,
@@ -149,6 +148,30 @@ function LoginForm() {
     }
   }
 
+  function logOut(){
+    Swal.fire({
+      icon: 'error',
+      title: 'Logged out'
+    })
+    
+  
+    Swal.fire({
+      title: 'Are you sure you?',
+      text: "Logout?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'No',
+      cancelButtonText:'Yes'
+    }).then((result) => {
+      if (!result.isConfirmed) {
+        ReactSession.remove("username");
+        window.location.reload(false);
+      }
+    })
+  }
+
 
 
   return (
@@ -157,10 +180,15 @@ function LoginForm() {
          {(() => {
         if (ReactSession.get('username')) {
           return (
-            <div><h1>Username: {ReactSession.get('username')}</h1>
-                 <h1>Email: {ReactSession.get('email')}</h1>
-                 <h1>Password: {ReactSession.get('password')}</h1>
-                 <button>Logout</button>
+            <div className='box1'>
+              <div className='login_form'>
+                <center>
+                  <h1>Username: {ReactSession.get('username')}</h1>
+                     <h1>Email: {ReactSession.get('email')}</h1>
+                     <h1>Password: {ReactSession.get('password')}</h1>
+                     <button onClick={logOut}>Logout</button>
+                </center>
+              </div>
             </div>
           )
         }  else {
