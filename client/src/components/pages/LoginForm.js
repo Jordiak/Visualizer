@@ -82,6 +82,9 @@ function LoginForm() {
     title: 'Registration Successful!'
   })
   ReactSession.set("username",Reg_username)
+  ReactSession.set("email", Reg_email)
+  ReactSession.set("password", Reg_password)
+
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
