@@ -3,6 +3,15 @@ import Axios from 'axios'
 import ReactSession from 'react-client-session/dist/ReactSession';
 import Swal from 'sweetalert2'
 
+
+
+//create your forceUpdate hook
+function useForceUpdate(){
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue(value => value + 1); // update the state to force render
+}
+
+
 function LoginForm() {
 
   //Getting the user infos from the DB
@@ -151,6 +160,8 @@ function LoginForm() {
     }
   }
 
+  const forceUpdate = useForceUpdate();
+
   function logOut(){
     Swal.fire({
       icon: 'error',
@@ -170,7 +181,7 @@ function LoginForm() {
     }).then((result) => {
       if (!result.isConfirmed) {
         ReactSession.remove("username");
-        window.location.reload(false);
+        forceUpdate();
       }
     })
   }
