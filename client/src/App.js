@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -10,11 +10,15 @@ import Dsa from './components/pages/Dsa';
 import DataStructures from './components/pages/DataStructures';
 import Information from './components/pages/Information';
 import LoginForm from './components/pages/LoginForm';
+import { UserContext } from './components/UserContext';
 
 function App() {
+  const [value, setValue] = useState('Login/Register')
   return (
     <Router>
+      <UserContext.Provider value={{value,setValue}}>
       <Navbar />
+      
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
@@ -25,6 +29,7 @@ function App() {
         <Route path="/login-form" exact component={LoginForm} />
       </Switch>
       <Footer />
+      </UserContext.Provider>
     </Router>
   );
 }

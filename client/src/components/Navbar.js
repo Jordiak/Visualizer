@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React,{ useState, useEffect, useContext } from 'react';
+
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logoImage from './images/bitLogo.png';
 import ReactSession from 'react-client-session/dist/ReactSession';
+import { UserContext } from './UserContext';
 
 
 function Navbar() {
@@ -14,7 +16,7 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   console.log(userName)
-
+  const {value,setValue} = useContext(UserContext);
 
   return (
     <>
@@ -29,7 +31,7 @@ function Navbar() {
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
           <li className='nav-item'>
             <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
-            {ReactSession.get("username") ? ReactSession.get("username") :"Login/Register"}
+            {value}
             </Link>
           </li>
           <li className='nav-item'>

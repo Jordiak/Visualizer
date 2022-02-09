@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios'
 import ReactSession from 'react-client-session/dist/ReactSession';
 import Swal from 'sweetalert2'
+import {UserContext} from '../UserContext'
+
 
 
 
@@ -13,7 +15,7 @@ function useForceUpdate(){
 
 
 function LoginForm() {
-
+  const {value,setValue} = useContext(UserContext);
   //Getting the user infos from the DB
   useEffect(() =>{
     Axios.get('http://localhost:3001/api/get').then((response)=>{
@@ -90,6 +92,7 @@ function LoginForm() {
     icon: 'success',
     title: 'Registration Successful!'
   })
+  {setValue(Reg_username)}
   ReactSession.set("username",Reg_username)
   ReactSession.set("email", Reg_email)
   ReactSession.set("password", Reg_password)
@@ -141,7 +144,7 @@ function LoginForm() {
           
           document.getElementById('log_email').value = ''
           document.getElementById('log_password').value = ''
-
+          {setValue(names[i])}
           ReactSession.set("username", names[i]);
           ReactSession.set("email", userNamesPassword[i][0]);
           ReactSession.set("password", userNamesPassword[i][1]);
@@ -179,6 +182,7 @@ function LoginForm() {
       confirmButtonText: 'No',
       cancelButtonText:'Yes'
     }).then((result) => {
+      {setValue('Login/Register')}
       if (!result.isConfirmed) {
         ReactSession.remove("username");
         forceUpdate();
