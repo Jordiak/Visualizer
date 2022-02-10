@@ -334,3 +334,53 @@ h2 {
   font-family: monospace;
   text-align: center;
 }
+.commentform{
+  align-content: center ;
+  display: flex;
+  flex-direction: column;
+ 
+  
+}
+.commentform input{
+  width: 50%;
+  height:50px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 5px;
+  border:2px solid turquoise;
+  background-color: rgba(97, 43, 122, 0.836);
+  padding: 15px;
+  color: aliceblue;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: large;
+ 
+}
+.commentform label{
+  color: aliceblue;
+  text-align: center;
+  font-size: large;
+}
+.commentform button{
+  width: fit-content;
+  text-align: center;
+  margin-left: 48%;
+  margin-right: 48%;
+
+}
+.cardholder{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.card{
+  width: 97%;
+  height: auto;
+  padding: 20px;
+  border:2px solid turquoise;
+  border-radius: 15px;
+  margin:10px;
+  color:turquoise;
+  text-align: justify;
+  font-size: large;
+  background-color: rgba(0, 0, 0, 0.781);
+
+}

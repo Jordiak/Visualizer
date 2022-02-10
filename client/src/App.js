@@ -11,6 +11,8 @@ import DataStructures from './components/pages/DataStructures';
 import Information from './components/pages/Information';
 import LoginForm from './components/pages/LoginForm';
 import { UserContext } from './components/UserContext';
+import Comment from './components/pages/comment';
+
 
 function App() {
   const [value, setValue] = useState('Login/Register')
@@ -27,7 +29,9 @@ function App() {
         <Route path="/shortest-path-algorithms" exact component={ShortestPath} />
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
+        <Route path="/comments" exact component={Comment} />
       </Switch>
+    
       <Footer />
       </UserContext.Provider>
     </Router>

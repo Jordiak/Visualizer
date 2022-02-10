@@ -17,12 +17,29 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Read
 app.get('/api/get', (req, res) =>{
-    const sqlSelect = "SELECT * FROM user_infos;";
+    const sqlSelect = "SELECT * FROM user_infos";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
 })
 
+app.get('/api/comment/get', (req, res) =>{
+    const sqlSelect = "SELECT * FROM comment_infos";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
+app.post('/api/comment/insert', (req, res) =>{
+     
+    const username=req.body.username
+    const comment=req.body.comment
+
+    const sqlInsert= "INSERT INTO comment_infos (username, comment) VALUES (?,?)"
+    db.query(sqlInsert,[username,comment],(err,result)=>{
+        console.log(err);
+    })
+});
 
 //Create
 app.post('/api/insert', (req, res)=>{

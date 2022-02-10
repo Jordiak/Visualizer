@@ -410,7 +410,7 @@ export default class PathfindingVisualizer extends Component {
         <br></br>
         <span id='textDistance'>{distancestr}</span>
         <br></br>
-        <span id='textDistance1'>No. of visited nodes: {visited_nodes} Cells</span>
+        <span id='textDistance1'>Number of visited nodes: {visited_nodes} Cells</span>
         
         <table
           onMouseLeave={() => this.handleMouseLeave()}>

@@ -5,6 +5,7 @@ import './Navbar.css';
 import logoImage from './images/bitLogo.png';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import { UserContext } from './UserContext';
+import discboardpic from './images/discboard.png';
 
 
 function Navbar() {
@@ -22,7 +23,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
       <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-      <img src={logoImage} alt='' width={198} height={97} />
+      <img src={logoImage} alt='' width={168} height={82} />
       </Link>
         
         <div className='menu-icon' onClick={handleClick}>
@@ -52,6 +53,11 @@ function Navbar() {
           <li className='nav-item'>
             <Link to='/data-structures' className='nav-links' onClick={closeMobileMenu}>
               Data Structures
+            </Link>
+          </li>
+          <li className='nav-item'>
+            <Link to='/comments' className='nav-links' onClick={closeMobileMenu}>
+            <img src={discboardpic} alt='comment' width={90} height={68} style={{marginTop:"30px"}} />
             </Link>
           </li>
           {/* <li className='nav-item'>
