@@ -7,10 +7,9 @@ import {UserContext} from '../UserContext'
 
 
 
-//create your forceUpdate hook
 function useForceUpdate(){
-  const [value, setValue] = useState(0); // integer state
-  return () => setValue(value => value + 1); // update the state to force render
+  const [value, setValue] = useState(0);
+  return () => setValue(value => value + 1); 
 }
 
 
