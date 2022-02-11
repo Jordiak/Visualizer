@@ -3,6 +3,7 @@ import {UserContext} from '../UserContext';
 import axios from 'axios';
 import Reg_username from './LoginForm';
 import ReactSession from 'react-client-session/dist/ReactSession';
+import { useHistory } from 'react-router-dom';
 
 function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
@@ -18,7 +19,9 @@ function Comment(){
         setcommentList(response.data)
     })
     } , [])
-   
+
+    
+    let history = useHistory();
     const [comment,setcomment]=useState("");
     const [username,setusername]=useState(ReactSession.get('email'));
     
@@ -45,10 +48,12 @@ function Comment(){
     const submit=()=>{
         setusername(ReactSession.get('username'));
         submitComment();
-        axios.get('http://localhost:3001/api/comment/get').then((response)=>{
-            setcommentList(response.data)
-        })
+
         forceUpdate();
+    }
+
+    function Login(){
+        history.push("/login-form");
     }
 
 
@@ -57,11 +62,24 @@ function Comment(){
         <div className="box1">
             <h1 style={{textAlign:"center"}}>DISCUSSION BOARD</h1>
             <div className="commentform">
+
+      {(() => {
+        if (ReactSession.get("username")) {
+          return (
+            <div className="commentform">
                 <label >Name:{ReactSession.get("username")}</label>
                 
-                <label>COMMENT: </label>
-                <input type="text" name="comment" onChange={(e)=>{setcomment(e.target.value)}}/>
-                <button onClick={submit} >Submit</button>
+            <label>COMMENT: </label>
+            <button onClick={submit} >Submit</button>
+            </div>
+          )
+        } else {
+          return (
+            <div className="commentform"><label>Login to join the discussion!</label><button onClick={Login} >Login</button></div>
+          )
+        }
+      })()}
+                
             </div>
             <div className="cardholder">
             {commentList.map((val)=>{
