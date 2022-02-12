@@ -24,7 +24,7 @@ app.get('/api/get', (req, res) =>{
 })
 
 app.get('/api/comment/get', (req, res) =>{
-    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.comments_table.comment_text  from cruddatabase.user_infos right join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
+    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.comments_table.comment_text,cruddatabase.comments_table.date_written  from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
@@ -34,9 +34,10 @@ app.post('/api/comment/insert', (req, res) =>{
      
     const useremail_reg = req.body.useremail_reg
     const comment_text = req.body.comment_text
+    const date_written = req.body.date_written
 
-    const sqlInsert= "INSERT INTO comments_table (useremail_reg, comment_text) VALUES (?,?)"
-    db.query(sqlInsert,[useremail_reg,comment_text],(err,result)=>{
+    const sqlInsert= "INSERT INTO comments_table (useremail_reg, comment_text, date_written) VALUES (?,?,?)"
+    db.query(sqlInsert,[useremail_reg,comment_text, date_written],(err,result)=>{
         console.log(err);
     })
 });
