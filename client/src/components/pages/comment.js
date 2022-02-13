@@ -13,16 +13,13 @@ function useForceUpdate(){
   }
 
 function Comment(){
-  var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date+' '+time;
+
   const[commentList,setcommentList]=useState([]);
     //get comment
     useEffect(() => {
         Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
         setcommentList(response.data)
-        console.log(dateTime)
+
     })
     } , [])
 
@@ -59,6 +56,8 @@ const forceUpdate = useForceUpdate();
           ...commentList,
           { useremail_reg:username, comment_text:comment, date_written:dateTime },
         ]);
+        // forceUpdate();
+        console.log(commentList)
       };
       
 
@@ -124,9 +123,20 @@ const forceUpdate = useForceUpdate();
             {commentList.map((val)=>{
                return (
                 <div className="card">
-               <h2>{String(val.username_reg)}</h2> <p>Comment: {val.comment_text}</p> 
-               <label> {convertDate(val.date_written)}</label>
-               {/* <label>Day:{val.date_written.substring(5,7)}</label><label>Month:{val.date_written.substring(8,10)}</label><label> Time:{convertDate(val.date_written.substring(14,19))}</label> */}
+                  {(() => {
+        if (String(val.username_reg)=="undefined") {
+          return (
+            <div>               <h2>{ReactSession.get('username')}</h2> <p>Comment: {val.comment_text}</p> 
+            <label> {convertDate(val.date_written)}</label></div>
+          )
+        } else {
+          return (
+            <div>               <h2>{val.username_reg}</h2> <p>Comment: {val.comment_text}</p> 
+            <label> {convertDate(val.date_written)}</label></div>
+          )
+        }
+      })()}
+
                </div>
                )
                 
