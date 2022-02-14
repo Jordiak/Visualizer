@@ -126,16 +126,20 @@ const forceUpdate = useForceUpdate();
                   {(() => {
         if (String(val.username_reg)=="undefined") {
           return (
-            <div>               <h2>{ReactSession.get('username')}</h2> <p>Comment: {val.comment_text}</p> 
-            <label> {convertDate(val.date_written)}</label></div>
+            <div>
+              <h2>{ReactSession.get('username')}</h2>
+              </div>
           )
         } else {
           return (
-            <div>               <h2>{val.username_reg}</h2> <p>Comment: {val.comment_text}</p> 
-            <label> {convertDate(val.date_written)}</label></div>
+            <div>
+              <h2>{val.username_reg}</h2>
+            </div>
           )
         }
       })()}
+      <p>Comment: {val.comment_text}</p> 
+            <label> {convertDate(val.date_written)}</label>
 
                </div>
                )

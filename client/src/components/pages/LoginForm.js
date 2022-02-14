@@ -23,6 +23,16 @@ function LoginForm() {
   },[]) //Calling it once
 
 
+  function validateEmail (emailAdress)
+  {
+    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (emailAdress.match(regexEmail)) {
+      return true; 
+    } else {
+      return false; 
+    }
+  }
+
   //Registration
   const [Reg_username, setReg_username] = useState('')
   const [Reg_password, setReg_password] = useState('')
@@ -63,6 +73,26 @@ function LoginForm() {
   }
     
     else{
+      if(Reg_username.length < 3)
+        Swal.fire({
+          icon: 'info',
+          title: 'Name is too short',
+          text: 'Username must be greater than 3',
+        })
+      
+      else if(Reg_password.length < 5)
+          Swal.fire({
+      icon: 'info',
+      title: 'Password is too short',
+      text: 'Password length must be greater than 5.',
+    })
+    else if(!validateEmail(Reg_email))
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Email',
+      text: 'Enter a valid email',
+    })
+    else{
     //Call the api using Axios
     Axios.post('http://localhost:3001/api/insert', {
       Reg_username: Reg_username,
@@ -100,9 +130,9 @@ function LoginForm() {
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
 }
+    }
   };
-  // console.log(ReactSession.get("username"))
-  console.log(usernameList)
+
 }
 
     //Login
@@ -217,7 +247,7 @@ function LoginForm() {
                 <div className='logbox'>
                   <center>
                     <label style={{marginLeft:"24px"}}>Email:</label>
-                    <input type="text" name="email" id="log_email" onChange={(e) => {
+                    <input type="email" name="email" id="log_email" onChange={(e) => {
                        setLog_Email(e.target.value)
                     }} ></input>
                   </center>
@@ -245,7 +275,7 @@ function LoginForm() {
                     }} ></input>
      <br></br>
                     <label style={{marginLeft:"22px"}}>Email:</label>
-                    <input type="text" name="Reg_email" id="reg_email" onChange={(e) => {
+                    <input type="email" name="Reg_email" id="reg_email" onChange={(e) => {
                        setReg_email(e.target.value)
                     }} ></input>
      <br></br>
