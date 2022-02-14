@@ -9,7 +9,7 @@ export default function DataStructures(){
     return(
         <div className='DataStructures'>
             <div className='left-panel'>
-            <SideCollapsible label = " ">
+            <SideCollapsible label = "Complexity ➤">
             <h1 style={{textAlign:"center"}}>Time Complexity</h1><br/>
             <h4 style={{textAlign:"center"}}>Doubly Linked List</h4><br/>
                       <table className='left-table'>
@@ -103,7 +103,7 @@ export default function DataStructures(){
                       </table>
             
             </SideCollapsible>
-            <SideCollapsible label=' '>
+            <SideCollapsible label='Code ➤'>
             <div className="TabBox">
             <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:'120%',fontSize:'0.7rem',}}>
                 <TabList>

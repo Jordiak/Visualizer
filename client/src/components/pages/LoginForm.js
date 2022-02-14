@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Axios from 'axios'
+import Axios from 'axios';
 import ReactSession from 'react-client-session/dist/ReactSession';
-import Swal from 'sweetalert2'
-import {UserContext} from '../UserContext'
+import Swal from 'sweetalert2';
+import {UserContext} from '../UserContext';
 
 
 
 
+//create your forceUpdate hook
 function useForceUpdate(){
-  const [value, setValue] = useState(0);
-  return () => setValue(value => value + 1); 
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue(value => value + 1); // update the state to force render
 }
 
 
@@ -79,7 +80,7 @@ function LoginForm() {
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
-    timer: 1000,
+    timer: 3000,
     timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -127,7 +128,7 @@ function LoginForm() {
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 1000,
             timerProgressBar: true,
             didOpen: (toast) => {
               toast.addEventListener('mouseenter', Swal.stopTimer)
