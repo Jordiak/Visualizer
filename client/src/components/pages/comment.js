@@ -41,6 +41,7 @@ const Toast = Swal.mixin({
   }
 })
 const forceUpdate = useForceUpdate();
+
 //submit comment
     const submitComment = () => {
       var today = new Date();
@@ -74,6 +75,8 @@ const forceUpdate = useForceUpdate();
       }).then((result) => {
         if (!result.isConfirmed) {
           submitComment();
+          setcomment(" ");
+        
         }
       })
     }
@@ -104,8 +107,8 @@ const forceUpdate = useForceUpdate();
                 <label >Name:{ReactSession.get("username")}</label>
                 
             <label>COMMENT: </label>
-            <input type="text" name="comment" onChange={(e)=>{setcomment(e.target.value)}}/>
-            <button onClick={submit} >Submit</button>
+            <input type="text" name="comment" value={comment} onChange={(e)=>{setcomment(e.target.value)}}/>
+            <button onClick={submit}  >Submit</button>
             </div>
           )
         } else {
@@ -120,7 +123,8 @@ const forceUpdate = useForceUpdate();
                 
             </div>
             <div className="cardholder">
-            {commentList.map((val)=>{
+            {commentList
+            .map((val)=>{
                return (
                 <div className="card">
                   {(() => {
@@ -137,6 +141,7 @@ const forceUpdate = useForceUpdate();
             </div>
           )
         }
+        
       })()}
       <p>Comment: {val.comment_text}</p> 
             <label> {convertDate(val.date_written)}</label>

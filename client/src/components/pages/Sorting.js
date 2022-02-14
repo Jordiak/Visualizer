@@ -13,7 +13,7 @@ export default function Sorting(){
     return (
         <div className='Sorting'>
             <div className='left-panel'>
-            <SideCollapsible label = " ">
+            <SideCollapsible label = "Complexity ➤">
             <h1 style={{textAlign:"center"}}>Sorting Algorithms</h1><br/>
             <h3 style={{textAlign:"center"}}>Big O Time Complexity</h3><br/>
                       <table className='left-table'>
@@ -50,7 +50,7 @@ export default function Sorting(){
                           
                       </table>
             </SideCollapsible>
-            <SideCollapsible label=' '>
+            <SideCollapsible label='Code ➤'>
             <div className="TabBox">
             <Tabs style={{fontSize:'0.75rem',backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>

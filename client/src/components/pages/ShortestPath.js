@@ -4,12 +4,14 @@ import Collapsible from '../functions/Collapsible.js';
 import SideCollapsible from '../functions/SideCollapsible';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import arrow from '../images/arrow.png';
 
 export default function ShortestPath(){
     return(
         <div className='ShortestPath'>
             <div className='left-panel'>
-            <SideCollapsible label = " ">
+            
+            <SideCollapsible label = "Complexity ➤"  >
             <h1 style={{textAlign:"center"}}>Shortest Path Algorithms</h1><br/>
             <h3 style={{textAlign:"center"}}>Complexity</h3><br/>
                       <table className='left-table'>
@@ -36,7 +38,7 @@ export default function ShortestPath(){
                           
                       </table>
             </SideCollapsible>
-            <SideCollapsible label=' '>
+            <SideCollapsible label='Code ➤'>
             <div className="TabBox">
             <Tabs style={{alignContent:"center",backgroundColor:" rgb(11,35,65, 0.9)" ,color:"white", textAlign:"justify", borderRadius:"7px",width:"100%"}}>
                 <TabList>

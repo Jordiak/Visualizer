@@ -20,9 +20,9 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div className="navbar-sorting" id="navbar">
+            <div className="navbar-sorting"  id="navbar">
                 
-                <table className="navbar-table">
+                <table style={{paddingBottom:'0px'}} className="navbar-table" >
                     <tr>
                         <td>Number of Items to Sort</td>
                         <td><Size 
