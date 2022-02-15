@@ -24,7 +24,7 @@ app.get('/api/get', (req, res) =>{
 })
 
 app.get('/api/comment/get', (req, res) =>{
-    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.user_infos.useremail_reg,cruddatabase.comments_table.comment_id,cruddatabase.comments_table.comment_text,cruddatabase.comments_table.date_written  from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
+    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.user_infos.useremail_reg,cruddatabase.comments_table.comment_id,cruddatabase.comments_table.comment_text, cruddatabase.comments_table.date_written,useravatar_url from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })

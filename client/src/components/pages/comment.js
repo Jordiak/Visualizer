@@ -191,7 +191,7 @@ const forceUpdate = useForceUpdate();
         if (String(val.username_reg)=="undefined") {
           return (
             <div>
-              <img className='usericon' width={'45px'} height={'50px'}src={usericon}></img>
+              <img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img>
               <h2 className='user' value={userid}>{ReactSession.get('username')}</h2>
               </div>
           )
@@ -201,7 +201,7 @@ const forceUpdate = useForceUpdate();
           return (
             <div>
               
-              <img className='usericon' width={'45px'} height={'50px'}src={generator.generateRandomAvatar()}></img>
+              <img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img>
               <h2 className='user' value={userid}>{val.username_reg}</h2>
             </div>
           )
