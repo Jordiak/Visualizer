@@ -80,7 +80,6 @@ app.post('/api/insert', (req, res)=>{
 app.post('/api/avatar_get', (req, res) =>{
 
     const Reg_email = req.body.Reg_email
-    console.log(Reg_email);
     const sqlSelect = "SELECT useravatar_url FROM cruddatabase.user_infos where useremail_reg = ?";
     db.query(sqlSelect,[Reg_email], (err, result) =>{
         res.send(result);
@@ -93,7 +92,6 @@ app.put('/api/avatar/update', (req,res) => {
     const Reg_email = req.body.Reg_email
 
     const sqlUpdate ='UPDATE user_infos SET useravatar_url=? WHERE useremail_reg=?';
-    console.log(Reg_email)
     db.query(sqlUpdate,[Reg_avatar_url,Reg_email], (err,result) =>{
         if (err) 
             console.log(err)
