@@ -229,8 +229,11 @@ function LoginForm() {
 
   function changeAvatar()
   {
-
-    console.log(ReactSession.get('email'))
+    let new_avatar = generator.generateRandomAvatar()
+    set_avatar(new_avatar)
+    Axios.put('http://localhost:3001/api/avatar/update',{
+            Reg_email: ReactSession.get('email'),
+          Reg_avatar_url: new_avatar} )
   }
 
   return (
@@ -247,7 +250,7 @@ function LoginForm() {
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
                      {/* <button onClick={changeAvatar}>Change Avatar</button> */}
-                     <button onClick={(e) => {set_avatar(generator.generateRandomAvatar())}}>Change Avatar</button>
+                     <button onClick={changeAvatar}>Change Avatar</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
                 </center>

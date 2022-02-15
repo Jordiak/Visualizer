@@ -88,6 +88,18 @@ app.post('/api/avatar_get', (req, res) =>{
     })
 })
 
+app.put('/api/avatar/update', (req,res) => {
+    const Reg_avatar_url = req.body.Reg_avatar_url
+    const Reg_email = req.body.Reg_email
+
+    const sqlUpdate ='UPDATE user_infos SET useravatar_url=? WHERE useremail_reg=?';
+    console.log(Reg_email)
+    db.query(sqlUpdate,[Reg_avatar_url,Reg_email], (err,result) =>{
+        if (err) 
+            console.log(err)
+    })
+})
+
 
 
 
