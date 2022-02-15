@@ -20,6 +20,7 @@
     "save": "^2.4.0",
     "seedrandom": "^3.0.5",
     "sweetalert2": "^11.3.10",
+    "typescript": "^3.9.10",
     "typewriter-effect": "^2.18.2",
     "web-vitals": "^2.1.3"
   },

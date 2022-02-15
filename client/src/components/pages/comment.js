@@ -9,7 +9,7 @@ import usericon from '../images/usericon.png';
 import { AvatarGenerator } from './generator_avatar.ts';
 
 const generator = new AvatarGenerator();
-const ctr = 0;
+
 
 function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
@@ -17,7 +17,7 @@ function useForceUpdate(){
   }
 
 function Comment(){
-
+  
   const[commentList,setcommentList]=useState([]);
     //get comment
     useEffect(() => {
@@ -34,6 +34,7 @@ function Comment(){
     const [commentID,setcommentID]=useState(0);
     const [userid,setuserid]=useState("");
     const [newComment,setnewComment]=useState("");
+    const [dis, setDis] = useState(true);
     
 const Toast = Swal.mixin({
   toast: true,
@@ -149,6 +150,10 @@ const forceUpdate = useForceUpdate();
      
     }
 
+    function editing() {
+      setDis(!dis);
+      } 
+
     return(
         
         <div className="box1">
@@ -201,26 +206,33 @@ const forceUpdate = useForceUpdate();
             </div>
           )
         }
-
-      
-        
-    
-        
       })()}
-      <p>Comment: {val.comment_text}</p> 
+      <p>Comment: <input type='text' id='editText' defaultValue={val.comment_text} disabled={dis} className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/></p> 
             <label> {convertDate(val.date_written)}</label>
 
             {(() => {
         if (val.useremail_reg == ReactSession.get("email")) {
           return (
             <div>
-            <button id='editBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Edit</button>
-            <input type='text' className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
+            <button id='editBtn' className='commentbtn' onClick={editing}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
+            
               </div>
           )
-        }         
+        }           
       })()}
+      {(() => {
+              if (dis == false && val.useremail_reg == ReactSession.get("email")){
+                return(
+                  <div>
+                    
+                    <div>Edit Mode: Enabled<button id='submitEditBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Confirm</button></div>
+
+                  </div>
+                )
+              }
+            })()}
+            
 
                </div>
                )
