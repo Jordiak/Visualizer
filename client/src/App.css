@@ -4,37 +4,35 @@
   padding: 0;
 }
 
-.log_h1{
+.log_h1 {
   margin-top: 10px;
   text-align: center;
   font-family: monospace;
 }
 
-.login_form{
+.login_form {
   margin-top: 30px;
   display: flex;
   flex-direction: column;
   background: rgba(0, 0, 0, 0.5);
   width: 25%;
-  margin-left:75vh;
+  margin-left: 75vh;
 }
 
-.login_form button{
+.login_form button {
   width: 120px;
   margin-left: 30px;
   font-family: monospace;
-  
 }
 
-.login_form input{
+.login_form input {
   margin: 5px;
 }
 
-.login_form label{
+.login_form label {
   color: white;
   font-weight: bold;
   font-size: 14px;
-  
 }
 
 .LinkedList,
@@ -156,9 +154,9 @@ h2 {
 .leftInfo {
   width: 60%;
   float: left;
-  color:white;
-  padding:5rem;
-  font-size:1.15rem;
+  color: white;
+  padding: 5rem;
+  font-size: 1.15rem;
   /* background-image: url("../src/components/images/bluebox.png"); */
   text-align: justify;
 
@@ -172,9 +170,9 @@ h2 {
   width: 80%;
 }
 .speechbubble1 {
-  position:relative;
-  float:left;
-  left:10vw;
+  position: relative;
+  float: left;
+  left: 10vw;
   bottom: -21vh;
   width: 50%;
 }
@@ -337,83 +335,76 @@ h2 {
   font-family: monospace;
   text-align: center;
 }
-.commentform{
-  align-content: center ;
+.commentform {
+  align-content: center;
   display: flex;
   flex-direction: column;
- 
-  
 }
-.commentform input{
+.commentform input {
   width: 50%;
-  height:50px;
+  height: 50px;
   margin-left: 25%;
   margin-right: 25%;
   border-radius: 5px;
-  border:2px solid turquoise;
+  border: 2px solid turquoise;
   background-color: rgba(97, 43, 122, 0.836);
   padding: 15px;
   color: aliceblue;
-  font-family: 'Courier New', Courier, monospace;
+  font-family: "Courier New", Courier, monospace;
   font-size: large;
- 
 }
-.commentform label{
+.commentform label {
   color: aliceblue;
   text-align: center;
   font-size: large;
 }
-.commentform button{
+.commentform button {
   width: fit-content;
   text-align: center;
   margin-left: 48%;
   margin-right: 48%;
-
 }
-.cardholder{
+.cardholder {
   margin-left: 5%;
   margin-right: 5%;
-  display:flex;
+  display: flex;
   flex-direction: column-reverse;
 }
-.card{
+.card {
   width: 97%;
   height: auto;
   padding: 20px;
-  border-style:double;
-  border-width:6px;
-  border-color:  turquoise;
+  border-style: double;
+  border-width: 6px;
+  border-color: turquoise;
   border-radius: 10px;
-  margin:10px;
-  color:turquoise;
+  margin: 10px;
+  color: turquoise;
   text-align: justify;
   font-size: large;
   border-radius: 19px;
   background: rgba(0, 0, 0, 0.788);
   margin-bottom: 10px;
   font-family: monospace;
-      
 }
-.user{
+.user {
   display: inline-block;
   padding-left: 7px;
 }
-.usericon{
-  vertical-align:middle;
-  
+.usericon {
+  vertical-align: middle;
 }
-.commentbtn{
-    border:none;
-    background: none;
-    font-size: large;
-    font-family: monospace;
+.commentbtn {
+  border: none;
+  background: none;
+  font-size: large;
+  font-family: monospace;
 }
 
-.updateinput{
-  background: rgba(15, 73, 68, 0.842);
+.updateinput {
+  background: transparent;
   border-style: hidden;
-  border-bottom: 2px solid turquoise;
-  color:white;
+  color: white;
   font-family: monospace;
-  
+  width: 90%;
 }
