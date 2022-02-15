@@ -207,11 +207,18 @@ const forceUpdate = useForceUpdate();
       <p>Comment: {val.comment_text}</p> 
             <label> {convertDate(val.date_written)}</label>
 
-            
+            {(() => {
+        if (val.useremail_reg == ReactSession.get("email")) {
+          return (
+            <div>
             <button id='editBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Edit</button>
             <input type='text' className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
-            
+              </div>
+          )
+        }         
+      })()}
+
                </div>
                )
                 
