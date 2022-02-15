@@ -68,13 +68,27 @@ app.post('/api/insert', (req, res)=>{
     const Reg_email = req.body.Reg_email
     const Reg_username = req.body.Reg_username
     const Reg_password = req.body.Reg_password
+    const Reg_avatar_url = req.body.Reg_avatar_url
 
-    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg) VALUES (?,?,?)"
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url) VALUES (?,?,?,?)"
 
-    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password], (err, result)=>{
+    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password, Reg_avatar_url], (err, result)=>{
         console.log(err);
     })
 });
+
+app.post('/api/avatar_get', (req, res) =>{
+
+    const Reg_email = req.body.Reg_email
+    console.log(Reg_email);
+    const sqlSelect = "SELECT useravatar_url FROM cruddatabase.user_infos where useremail_reg = ?";
+    db.query(sqlSelect,[Reg_email], (err, result) =>{
+        res.send(result);
+        console.log(err);
+    })
+})
+
+
 
 
 app.listen(3001, () => {
