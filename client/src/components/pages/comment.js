@@ -62,7 +62,7 @@ const forceUpdate = useForceUpdate();
         })
         setcommentList([
           ...commentList,
-          { useremail_reg:username, comment_text:comment, date_written:dateTime },
+          { useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
         ]);
         // forceUpdate();
         console.log(commentList)
