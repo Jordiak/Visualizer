@@ -5,6 +5,7 @@ import Reg_username from './LoginForm';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import usericon from '../images/usericon.png';
 
 const ctr = 0;
 function useForceUpdate(){
@@ -27,8 +28,10 @@ function Comment(){
     let history = useHistory();
     const [comment,setcomment]=useState("");
     const [username,setusername]=useState(ReactSession.get('email'));
+    const [commentID,setcommentID]=useState(0);
+    const [userid,setuserid]=useState("");
+    const [newComment,setnewComment]=useState("");
     
-
 const Toast = Swal.mixin({
   toast: true,
   position: 'top-end',
@@ -61,6 +64,7 @@ const forceUpdate = useForceUpdate();
         console.log(commentList)
       };
       
+    
 
     function submit(){
       Swal.fire({
@@ -92,7 +96,55 @@ const forceUpdate = useForceUpdate();
       return new Date(date_value).toLocaleString();
     }
 
+    const deleteComment=(id)=>{
+
+     
+      Swal.fire({
+        title: 'Are you sure you?',
+        text: "Submit?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'No',
+        cancelButtonText:'Yes'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+          Axios.delete(`http://localhost:3001/api/comment/delete/${id}`);
+          
+          
+
+        }
+      })
   
+    }
+
+    const updateComment=(id)=>{
+      Swal.fire({
+        title: 'Are you sure you?',
+        text: "Submit?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'No',
+        cancelButtonText:'Yes'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+          Axios.put('http://localhost:3001/api/comment/update',{
+            comment_text: newComment,
+            comment_id: id,
+
+          } );
+
+        setnewComment("")
+          
+          
+
+        }
+      })
+     
+    }
 
     return(
         
@@ -131,21 +183,35 @@ const forceUpdate = useForceUpdate();
         if (String(val.username_reg)=="undefined") {
           return (
             <div>
-              <h2>{ReactSession.get('username')}</h2>
+              <img className='usericon' width={'45px'} height={'50px'}src={usericon}></img>
+              <h2 className='user' value={userid}>{ReactSession.get('username')}</h2>
               </div>
           )
-        } else {
+        } 
+        
+        else {
           return (
             <div>
-              <h2>{val.username_reg}</h2>
+              
+              <img className='usericon' width={'45px'} height={'50px'}src={usericon}></img>
+              <h2 className='user' value={userid}>{val.username_reg}</h2>
             </div>
           )
         }
+
+      
+        
+    
         
       })()}
       <p>Comment: {val.comment_text}</p> 
             <label> {convertDate(val.date_written)}</label>
 
+            
+            <button id='editBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Edit</button>
+            <input type='text' className='updateinput' value={newComment} onChange={(e)=>{setnewComment(e.target.value)}}/>
+            <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
+            
                </div>
                )
                 

@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 import Size from './sorting-navbar/size';
 import Speed from './sorting-navbar/speed';
 

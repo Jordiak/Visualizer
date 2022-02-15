@@ -187,6 +187,7 @@ DFS(node) {
             </div>
             <div className='left'>
                 <PathfindingVisualizer />
+               
             </div>
             <div className='right'>
             <Collapsible label="Dijkstra's Algorithm Information">

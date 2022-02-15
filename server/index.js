@@ -24,7 +24,7 @@ app.get('/api/get', (req, res) =>{
 })
 
 app.get('/api/comment/get', (req, res) =>{
-    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.comments_table.comment_text,cruddatabase.comments_table.date_written  from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
+    const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.comments_table.comment_id,cruddatabase.comments_table.comment_text,cruddatabase.comments_table.date_written  from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
@@ -41,7 +41,27 @@ app.post('/api/comment/insert', (req, res) =>{
         console.log(err);
     })
 });
+//Delete
+app.delete('/api/comment/delete/:comment_id',(req,res) => {
+    const comment_id=req.params.comment_id
+    const sqlDelete= "DELETE FROM comments_table WHERE comment_id=?"
 
+    db.query(sqlDelete,comment_id, (err,result) => {
+       if (err) console.log(err)
+    })
+
+})
+//edit
+app.put('/api/comment/update', (req,res) => {
+    const comment_id=req.body.comment_id
+    const comment_text=req.body.comment_text
+
+    const sqlUpdate ='UPDATE comments_table SET comment_text=? WHERE comment_id=?';
+
+    db.query(sqlUpdate,[comment_text,comment_id], (err,result) =>{
+        if (err) console.log(err)
+    })
+})
 //Create
 app.post('/api/insert', (req, res)=>{
 
@@ -55,6 +75,7 @@ app.post('/api/insert', (req, res)=>{
         console.log(err);
     })
 });
+
 
 app.listen(3001, () => {
     console.log("Running on port 3001");
