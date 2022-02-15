@@ -3,8 +3,9 @@ import Axios from 'axios';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import Swal from 'sweetalert2';
 import {UserContext} from '../UserContext';
+import {AvatarGenerator} from './generator_avatar.ts'
 
-
+const generator = new AvatarGenerator();
 
 
 //create your forceUpdate hook
@@ -40,6 +41,7 @@ function LoginForm() {
   const [Reg_email, setReg_email] = useState('')
   const [usernameList, setuserNameList] = useState([])
   const [userSession, setUserSession] = useState("")
+  const [avatar_url, set_avatar] = useState(generator.generateRandomAvatar());
 
   const registerUser = () =>{
     if (document.getElementById('reg_user_input').value == '')
@@ -221,6 +223,9 @@ function LoginForm() {
   }
 
 
+  // function changeAvatar(){
+  //     set_avatar("")
+  // }
 
   return (
 
@@ -231,9 +236,12 @@ function LoginForm() {
             <div className='box1'>
               <div className='login_form'>
                 <center>
+                <img className='usericon' width={'120px'} height={'120px'} src={avatar_url}></img>
                   <h1>Username: {ReactSession.get('username')}</h1>
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
+                     <button onClick={(e) => {set_avatar(generator.generateRandomAvatar())}}>Change Avatar</button>
+                     <br></br>
                      <button onClick={logOut}>Logout</button>
                 </center>
               </div>
@@ -289,9 +297,6 @@ function LoginForm() {
                 <center><button onClick={registerUser}>Register</button></center>
               </div>
                    
-                   {/* {usernameList.map((val)=>{
-                       return <h1>ID {val.user_id} | Username: {val.username_reg} | Password: {val.userpassword_reg}</h1>
-                   })} */}
                    {ReactSession.get("username")}
             </div>
             </div>
