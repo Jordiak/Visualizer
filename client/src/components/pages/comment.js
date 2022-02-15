@@ -6,8 +6,11 @@ import ReactSession from 'react-client-session/dist/ReactSession';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import usericon from '../images/usericon.png';
+import { AvatarGenerator } from './generator_avatar.ts';
 
+const generator = new AvatarGenerator();
 const ctr = 0;
+
 function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
@@ -193,7 +196,7 @@ const forceUpdate = useForceUpdate();
           return (
             <div>
               
-              <img className='usericon' width={'45px'} height={'50px'}src={usericon}></img>
+              <img className='usericon' width={'45px'} height={'50px'}src={generator.generateRandomAvatar()}></img>
               <h2 className='user' value={userid}>{val.username_reg}</h2>
             </div>
           )
