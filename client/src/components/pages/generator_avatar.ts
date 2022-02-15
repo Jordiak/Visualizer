@@ -241,8 +241,4 @@ export class AvatarGenerator {
     }`;
   }
 }
- 
-const generator = new AvatarGenerator();
 
-// Simply get a random avatar
-console.log(generator.generateRandomAvatar())
