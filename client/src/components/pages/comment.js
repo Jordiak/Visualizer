@@ -209,7 +209,7 @@ const forceUpdate = useForceUpdate();
 
             
             <button id='editBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Edit</button>
-            <input type='text' className='updateinput' value={newComment} onChange={(e)=>{setnewComment(e.target.value)}}/>
+            <input type='text' className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
             
                </div>
