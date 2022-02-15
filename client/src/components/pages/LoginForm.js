@@ -100,13 +100,15 @@ function LoginForm() {
     Axios.post('http://localhost:3001/api/insert', {
       Reg_username: Reg_username,
       Reg_email: Reg_email, 
-      Reg_password: Reg_password
+      Reg_password: Reg_password,
+      Reg_avatar_url: avatar_url
   });
   setuserNameList([
     ...usernameList,
-    { useremail_reg: Reg_username,
-      username_reg: Reg_email, 
-      userpassword_reg: Reg_password},
+    { useremail_reg: Reg_email,
+      username_reg: Reg_username, 
+      userpassword_reg: Reg_password,
+      },
   ])
   const Toast = Swal.mixin({
     toast: true,
@@ -148,7 +150,7 @@ function LoginForm() {
     let i;
     let names = usernameList.map((val)=> [val.username_reg])
     let userNamesPassword = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg])
-    // console.log(userNamesPassword)
+    console.log(userNamesPassword)
 
     // if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el)))
 
@@ -182,6 +184,8 @@ function LoginForm() {
           ReactSession.set("password", userNamesPassword[i][1]);
           setLog_Password("")
           setLog_Email("")
+          Axios.post('http://localhost:3001/api/avatar_get',{
+            Reg_email:ReactSession.get('email')}).then((response)=>{set_avatar(response.data[0]["useravatar_url"])})
           break;
         }
     }
@@ -223,9 +227,11 @@ function LoginForm() {
   }
 
 
-  // function changeAvatar(){
-  //     set_avatar("")
-  // }
+  function changeAvatar()
+  {
+
+    console.log(ReactSession.get('email'))
+  }
 
   return (
 
@@ -240,6 +246,7 @@ function LoginForm() {
                   <h1>Username: {ReactSession.get('username')}</h1>
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
+                     {/* <button onClick={changeAvatar}>Change Avatar</button> */}
                      <button onClick={(e) => {set_avatar(generator.generateRandomAvatar())}}>Change Avatar</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
