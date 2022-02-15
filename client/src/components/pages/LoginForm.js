@@ -130,6 +130,7 @@ function LoginForm() {
   ReactSession.set("username",Reg_username)
   ReactSession.set("email", Reg_email)
   ReactSession.set("password", Reg_password)
+  ReactSession.set("avatar_url",avatar_url)
 
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
@@ -186,6 +187,7 @@ function LoginForm() {
           setLog_Email("")
           Axios.post('http://localhost:3001/api/avatar_get',{
             Reg_email:ReactSession.get('email')}).then((response)=>{set_avatar(response.data[0]["useravatar_url"])})
+            ReactSession.set("avatar_url", avatar_url)
           break;
         }
     }
@@ -231,9 +233,11 @@ function LoginForm() {
   {
     let new_avatar = generator.generateRandomAvatar()
     set_avatar(new_avatar)
+    ReactSession.set("avatar_url",new_avatar)
     Axios.put('http://localhost:3001/api/avatar/update',{
             Reg_email: ReactSession.get('email'),
           Reg_avatar_url: new_avatar} )
+  
   }
 
   return (
@@ -245,11 +249,10 @@ function LoginForm() {
             <div className='box1'>
               <div className='login_form'>
                 <center>
-                <img className='usericon' width={'120px'} height={'120px'} src={avatar_url}></img>
+                <img className='usericon' width={'120px'} height={'120px'} src={ReactSession.get('avatar_url')}></img>
                   <h1>Username: {ReactSession.get('username')}</h1>
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
-                     {/* <button onClick={changeAvatar}>Change Avatar</button> */}
                      <button onClick={changeAvatar}>Change Avatar</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
