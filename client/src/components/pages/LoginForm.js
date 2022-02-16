@@ -38,6 +38,7 @@ function LoginForm() {
   //Registration
   const [Reg_username, setReg_username] = useState('')
   const [Reg_password, setReg_password] = useState('')
+  const [Confirm_password, setConf_password] = useState('')
   const [Reg_email, setReg_email] = useState('')
   const [usernameList, setuserNameList] = useState([])
   const [userSession, setUserSession] = useState("")
@@ -95,6 +96,13 @@ function LoginForm() {
       title: 'Invalid Email',
       text: 'Enter a valid email',
     })
+    else if(Reg_password!=Confirm_password){
+      Swal.fire({
+        icon: 'info',
+        title: 'Password Unmatch',
+        text: 'Please input matching password',
+      })
+    }
     else{
     //Call the api using Axios
     Axios.post('http://localhost:3001/api/insert', {
@@ -269,7 +277,7 @@ function LoginForm() {
                 <div className='logbox'>
                   <center>
                     <label style={{marginLeft:"24px"}}>Email:</label>
-                    <input type="email" name="email" id="log_email" onChange={(e) => {
+                    <input placeholder="Enter Email" type="email" name="email" id="log_email" onChange={(e) => {
                        setLog_Email(e.target.value)
                     }} ></input>
                   </center>
@@ -277,7 +285,7 @@ function LoginForm() {
                 <div>
                   <center>
                     <label>Password:</label>
-                    <input type="password" name="password" id="log_password" onChange={(e) => {
+                    <input type="password" placeholder="Enter Password" name="password" id="log_password" onChange={(e) => {
                        setLog_Password(e.target.value)
                     }} ></input>
                   </center>
@@ -292,18 +300,24 @@ function LoginForm() {
                 <div>
                   <center>
                     <label>Username:</label>
-                    <input type="text" name="Reg_username" id="reg_user_input" onChange={(e) => {
+                    <input type="text" name="Reg_username" placeholder="Enter Username" id="reg_user_input" onChange={(e) => {
                        setReg_username(e.target.value)
                     }} ></input>
      <br></br>
                     <label style={{marginLeft:"22px"}}>Email:</label>
-                    <input type="email" name="Reg_email" id="reg_email" onChange={(e) => {
+                    <input type="email" name="Reg_email" placeholder="Enter Email" id="reg_email" onChange={(e) => {
                        setReg_email(e.target.value)
                     }} ></input>
      <br></br>
                     <label>Password:</label>
-                    <input type="password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
+                    <input type="password" placeholder="Enter Password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                        setReg_password(e.target.value)
+                    }} ></input>
+
+                    <br></br>
+                    <label>Confirm Password:</label>
+                    <input style={{marginRight:"69px"}} placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
+                       setConf_password(e.target.value)
                     }} ></input>
                   </center>
                 </div>
