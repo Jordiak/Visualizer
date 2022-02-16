@@ -35,6 +35,9 @@ function Comment(){
     const [userid,setuserid]=useState("");
     const [newComment,setnewComment]=useState("");
     const [dis, setDis] = useState(true);
+    const [open, setOpen] = useState(false);
+    const [clickedID, setClickedID] = useState(0);
+    const [cardIndex, setCardIndex] = useState(null)
     
 const Toast = Swal.mixin({
   toast: true,
@@ -150,9 +153,23 @@ const forceUpdate = useForceUpdate();
      
     }
 
+    const [show, setShow] = useState(false);
+
+    const visibleCard = show ? "show" : "hide";
     function editing() {
       setDis(!dis);
       } 
+      function handleCardIndex(index){
+        setCardIndex(index)
+        if (show)
+           setShow(false)
+        else
+           setShow(true)
+      }
+
+      const toggleCardVisibility = (e) => {
+        setOpen((prevState) => !prevState);
+      };
 
     return(
         
@@ -203,12 +220,21 @@ const forceUpdate = useForceUpdate();
               
               <img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img>
               <h2 className='user' value={userid}>{val.username_reg}</h2>
+
             </div>
           )
         }
       })()}
       <p>Comment: <input type='text' id='editText' defaultValue={val.comment_text} disabled={dis} className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/></p> 
             <label> {convertDate(val.date_written)}</label>
+
+<br></br>
+
+            <button onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}
+>
+  <input type="text"></input>
+</div>
 
             {(() => {
         if (val.useremail_reg == ReactSession.get("email")) {
