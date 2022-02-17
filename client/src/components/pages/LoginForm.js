@@ -231,6 +231,9 @@ function LoginForm() {
       {setValue('Login/Register')}
       if (!result.isConfirmed) {
         ReactSession.remove("username");
+        ReactSession.remove("email");
+        ReactSession.remove("password");
+        ReactSession.remove("avatar_url");
         forceUpdate();
       }
     })
