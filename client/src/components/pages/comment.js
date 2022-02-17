@@ -37,7 +37,8 @@ function Comment(){
     const [dis, setDis] = useState(true);
     const [open, setOpen] = useState(false);
     const [clickedID, setClickedID] = useState(0);
-    const [cardIndex, setCardIndex] = useState(null)
+    const [cardIndex, setCardIndex] = useState(null);
+    const [tempCommentID, setTempCommentID] = useState(0);
     
 const Toast = Swal.mixin({
   toast: true,
@@ -167,8 +168,11 @@ const forceUpdate = useForceUpdate();
 
     const visibleCard = show ? "show" : "hide";
 
-    function editing() {
-      setDis(!dis)
+      
+    
+    const editing=(val)=>{
+      setTempCommentID(val.comment_id)
+      setDis(!dis);
       } 
 
       function handleCardIndex(index){
@@ -252,7 +256,7 @@ const forceUpdate = useForceUpdate();
           return (
             <div>
             
-            <button id='editBtn' className='commentbtn' onClick={editing}>Edit</button>
+            <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
             
               </div>
@@ -260,7 +264,7 @@ const forceUpdate = useForceUpdate();
         }           
       })()}
       {(() => {
-              if (dis==false && val.useremail_reg == ReactSession.get("email") ){
+              if (tempCommentID == val.comment_id && dis==false && val.useremail_reg == ReactSession.get("email") ){
                 return(
                   <div>
                     <input type='text' id='editText'  className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
