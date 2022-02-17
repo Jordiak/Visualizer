@@ -130,7 +130,7 @@ const forceUpdate = useForceUpdate();
   
     }
 
-    const updateComment=(id)=>{
+    const updateComment=(comment_id)=>{
       Swal.fire({
         title: 'Are you sure you?',
         text: "Submit?",
@@ -144,13 +144,18 @@ const forceUpdate = useForceUpdate();
         if (!result.isConfirmed) {
           Axios.put('http://localhost:3001/api/comment/update',{
             comment_text: newComment,
-            comment_id: id,
+            comment_id: comment_id,
 
-          } );
-
-        setnewComment("")
-        setcommentList([...commentList]);
+          } )
+          const updatedcomm=setcommentList(commentList.map((val) => {   //maps comment for updating
+            return val.comment_id == comment_id?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val   
+          }))
+       
+            
           
+        
+        
+        setcommentList([...updatedcomm])
           
 
         }
@@ -161,9 +166,11 @@ const forceUpdate = useForceUpdate();
     const [show, setShow] = useState(false);
 
     const visibleCard = show ? "show" : "hide";
+
     function editing() {
-      setDis(!dis);
+      setDis(!dis)
       } 
+
       function handleCardIndex(index){
         setCardIndex(index)
         if (show)
@@ -230,14 +237,13 @@ const forceUpdate = useForceUpdate();
           )
         }
       })()}
-      <p>Comment:{val.comment_text} </p> 
+            <p>Comment:{val.comment_text} </p> 
             <label> {convertDate(val.date_written)}</label>
 
 <br></br>
 
             <button onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
-              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}
->
+              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
   <input type="text"></input>
 </div>
 
@@ -245,7 +251,7 @@ const forceUpdate = useForceUpdate();
         if (val.useremail_reg == ReactSession.get("email")) {
           return (
             <div>
-            <input type='text' id='editText'  disabled={dis} className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
+            
             <button id='editBtn' className='commentbtn' onClick={editing}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
             
@@ -254,10 +260,10 @@ const forceUpdate = useForceUpdate();
         }           
       })()}
       {(() => {
-              if (dis == false && val.useremail_reg == ReactSession.get("email")){
+              if (dis==false && val.useremail_reg == ReactSession.get("email")){
                 return(
                   <div>
-                    
+                    <input type='text' id='editText'  className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
                     <div>Edit Mode: Enabled<button id='submitEditBtn' className='commentbtn' onClick={()=>{updateComment(val.comment_id)}}>Confirm</button></div>
 
                   </div>
