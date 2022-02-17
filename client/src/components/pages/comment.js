@@ -155,7 +155,7 @@ const forceUpdate = useForceUpdate();
           
         
         
-        setcommentList([...updatedcomm])
+       
           
 
         }
@@ -196,7 +196,7 @@ const forceUpdate = useForceUpdate();
                 <label >Name:{ReactSession.get("username")}</label>
                 
             <label>COMMENT: </label>
-            <input type="text" name="comment" value={comment} onChange={(e)=>{setcomment(e.target.value)}}/>
+            <input type="text" name="comment" value={comment} placeholder="Type a response" onChange={(e)=>{setcomment(e.target.value)}}/>
             <button onClick={submit}  >Submit</button>
             </div>
           )
@@ -260,7 +260,7 @@ const forceUpdate = useForceUpdate();
         }           
       })()}
       {(() => {
-              if (dis==false && val.useremail_reg == ReactSession.get("email")){
+              if (dis==false && val.useremail_reg == ReactSession.get("email") ){
                 return(
                   <div>
                     <input type='text' id='editText'  className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
