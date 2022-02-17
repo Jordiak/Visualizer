@@ -117,12 +117,16 @@ const forceUpdate = useForceUpdate();
         cancelButtonText:'Yes'
       }).then((result) => {
         if (!result.isConfirmed) {
-          Axios.delete(`http://localhost:3001/api/comment/delete/${id}`);
-          
-          
+          Axios.delete(`http://localhost:3001/api/comment/delete/${id}`)
+            const updatedBackendComments = commentList.filter(val => val.comment_id != id);
+            setcommentList(updatedBackendComments);
+         
 
         }
+
       })
+      
+      
   
     }
 
@@ -145,6 +149,7 @@ const forceUpdate = useForceUpdate();
           } );
 
         setnewComment("")
+        setcommentList([...commentList]);
           
           
 
@@ -225,7 +230,7 @@ const forceUpdate = useForceUpdate();
           )
         }
       })()}
-      <p>Comment: <input type='text' id='editText' defaultValue={val.comment_text} disabled={dis} className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/></p> 
+      <p>Comment:{val.comment_text} </p> 
             <label> {convertDate(val.date_written)}</label>
 
 <br></br>
@@ -240,6 +245,7 @@ const forceUpdate = useForceUpdate();
         if (val.useremail_reg == ReactSession.get("email")) {
           return (
             <div>
+            <input type='text' id='editText'  disabled={dis} className='updateinput' onChange={(e)=>{setnewComment(e.target.value)}}/>
             <button id='editBtn' className='commentbtn' onClick={editing}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
             

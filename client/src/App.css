@@ -410,9 +410,9 @@ h2 {
 }
 
 .updateinput {
-  background: transparent;
+  background:turquoise;
   border-style: hidden;
-  color: white;
+  color:black;
   font-family: monospace;
-  width: 90%;
+  width: 30%;
 }
