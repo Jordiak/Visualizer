@@ -246,10 +246,10 @@ const forceUpdate = useForceUpdate();
 
 <br></br>
 
-            <button onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            {/* <button onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
               <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
   <input type="text"></input>
-</div>
+</div> */}
 
             {(() => {
         if (val.useremail_reg == ReactSession.get("email")) {
