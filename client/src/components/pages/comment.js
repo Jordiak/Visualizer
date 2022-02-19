@@ -161,7 +161,7 @@ const forceUpdate = useForceUpdate();
           }))
        
             
-          
+        setDis(!dis);
         
         
        
@@ -182,6 +182,7 @@ const forceUpdate = useForceUpdate();
       setTempCommentID(val.comment_id)
       setDis(!dis);
       } 
+    
 
       function handleCardIndex(index){
         setCardIndex(index)
