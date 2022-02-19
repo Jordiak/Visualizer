@@ -411,7 +411,7 @@ export default class PathfindingVisualizer extends Component {
         <span id='textDistance'>{distancestr}</span>
         <br></br>
         <span id='textDistance1'>Number of visited nodes: {visited_nodes} Cells</span>
-        <h3 style={{color:'rgba(255,255,255,0.5)',fontFamily:'monospace' }}><em>*To move the start(blue) and end(red) points, click and drag them </em></h3>
+        <h3 style={{color:'rgba(255,255,255,0.5)',fontFamily:'monospace' }}><em>*Draw walls by clicking empty cells. <br/>To move the start(blue) and end(red) points, click and drag them </em></h3>
             
         <table
           onMouseLeave={() => this.handleMouseLeave()}>

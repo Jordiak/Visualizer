@@ -41,6 +41,13 @@ app.get('/api/comment/get', (req, res) =>{
     })
 })
 
+app.get('/api/comment/comment_id/get', (req,res) =>{
+    const sqlSelect = "SELECT cruddatabase.comments_table.comment_id FROM cruddatabase.comments_table ORDER BY comment_id DESC LIMIT 1";
+    db.query(sqlSelect, (err,result) => {
+        res.send(result);
+    })
+})
+
 app.post('/api/comment/insert', (req, res) =>{
      
     const useremail_reg = req.body.useremail_reg

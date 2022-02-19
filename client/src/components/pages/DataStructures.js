@@ -636,21 +636,21 @@ class RBT {
             <div className='DSright'>
             <Collapsible label="Linked List">
                         <h1>Linked List</h1>
-                        <p>A linked list is a <mark>linear</mark> data structure that includes a series of <mark>connected nodes</mark>. Here, each node stores the data and the address of the next node.Linked lists can be of multiple types: singly, doubly, and circular linked list.
+                        <p>A linked list is a <font className="ideatext">linear</font> data structure that includes a series of <font className="ideatext">connected nodes</font>. Here, each node stores the data and the address of the next node.Linked lists can be of multiple types: singly, doubly, and circular linked list.
                         </p>
                         <h1>Applications</h1>
                         <p><ol style={{marginLeft:"10px"}}><li>Dynamic memory allocation</li><li>Implemented in stack and queue</li><li>In undo functionality of softwares</li><li>Hash tables, Graphs</li></ol></p>
             </Collapsible>
             <Collapsible label="Queue">
                         <h1>Queue</h1>
-                        <p> A queue is a useful data structure in programming. It is similar to the ticket queue outside a cinema hall, where the first person entering the queue is the first person who gets the ticket.Queue follows the <mark>First In First Out</mark> (FIFO) rule - the item that goes in first is the item that comes out first.
+                        <p> A queue is a useful data structure in programming. It is similar to the ticket queue outside a cinema hall, where the first person entering the queue is the first person who gets the ticket.Queue follows the <font className="ideatext">First In First Out</font> (FIFO) rule - the item that goes in first is the item that comes out first.
                         </p>
                         <h1>Priority Queue</h1>
-                        <p>A priority queue is a special type of queue in which <mark>each element is associated with a priority value</mark>. And, elements are served on the basis of their priority. That is, higher priority elements are served first.However, if elements with the same priority occur, they are served according to their order in the queue.</p>
+                        <p>A priority queue is a special type of queue in which <font className="ideatext">each element is associated with a priority value</font>. And, elements are served on the basis of their priority. That is, higher priority elements are served first.However, if elements with the same priority occur, they are served according to their order in the queue.</p>
             </Collapsible>
             <Collapsible label="Tree">
                         <h1>Tree</h1>
-                        <p>A tree is a <mark>nonlinear</mark> hierarchical data structure that consists of nodes <mark>connected by edges</mark>. Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
+                        <p>A tree is a <font className="ideatext">nonlinear</font> hierarchical data structure that consists of nodes <font className="ideatext">connected by edges</font>. Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
                         </p>
                         <h1>Applications</h1>
                         <p>

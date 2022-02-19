@@ -23,6 +23,11 @@ function Comment(){
     useEffect(() => {
         Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
         setcommentList(response.data)
+        Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
+        setcommentID((response.data)[0].comment_id+1)
+      console.log(((response.data)[0].comment_id), commentID)
+
+  })
 
     })
     } , [])
@@ -55,6 +60,8 @@ const forceUpdate = useForceUpdate();
 
 //submit comment
     const submitComment = () => {
+      setcommentID(commentID+1)
+      console.log(commentID)
       var today = new Date();
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
@@ -66,8 +73,9 @@ const forceUpdate = useForceUpdate();
         })
         setcommentList([
           ...commentList,
-          { useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
+          {comment_id:(commentID),useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
         ]);
+        
         // forceUpdate();
         console.log(commentList)
       };
@@ -149,11 +157,11 @@ const forceUpdate = useForceUpdate();
 
           } )
           const updatedcomm=setcommentList(commentList.map((val) => {   //maps comment for updating
-            return val.comment_id == comment_id?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val   
+            return val.comment_id == comment_id?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val
           }))
        
             
-          
+        setDis(!dis);
         
         
        
@@ -174,6 +182,7 @@ const forceUpdate = useForceUpdate();
       setTempCommentID(val.comment_id)
       setDis(!dis);
       } 
+    
 
       function handleCardIndex(index){
         setCardIndex(index)

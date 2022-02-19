@@ -268,7 +268,7 @@ function heapify(arr, n, i)
                 <div className='right'>
                     <Collapsible label="Bubble Sort Information">
                         <h1>Bubble Sort</h1>
-                        <p>Bubble sort is a sorting algorithm that <mark>compares two adjacent elements</mark> and swaps them until they are not in the intended order.
+                        <p>Bubble sort is a sorting algorithm that <font className="ideatext">compares two adjacent elements</font> and swaps them until they are not in the intended order.
 Just like the movement of air bubbles in the water that rise up to the surface, each element of the array move to the end in each iteration. 
 Therefore, it is called a bubble sort.
                         </p>
@@ -276,27 +276,27 @@ Therefore, it is called a bubble sort.
                     <Collapsible label="Insertion Sort Information">
                         <h1>Insertion Sort</h1>
                         <p>
-                        Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually <mark>split into a sorted and an unsorted part</mark>. 
+                        Insertion sort is a simple sorting algorithm that works similar to the way you sort playing cards in your hands. The array is virtually <font className="ideatext">split into a sorted and an unsorted part</font>. 
                         Values from the unsorted part are picked and placed at the correct position in the sorted part.
                         </p>
                     </Collapsible>
                     <Collapsible label="Merge Sort Information">
                         <h1>Merge Sort</h1>
                         <p>
-                        Like QuickSort, Merge Sort is a <mark>Divide and Conquer</mark> algorithm. 
-                        It divides the input array into <mark>two halves</mark>, calls itself for the two halves, and then merges the two sorted halves.
+                        Like QuickSort, Merge Sort is a <font className="ideatext">Divide and Conquer</font> algorithm. 
+                        It divides the input array into <font className="ideatext">two halves</font>, calls itself for the two halves, and then merges the two sorted halves.
                         </p>
                     </Collapsible>
                     <Collapsible label="Quick Sort Information">
                         <h1>Quick Sort</h1>
                         <p>
-                        QuickSort is a <mark>Divide and Conquer</mark> algorithm. It picks an element as <mark>pivot and partitions the given array</mark> around the picked pivot. 
+                        QuickSort is a <font className="ideatext">Divide and Conquer</font> algorithm. It picks an element as <font className="ideatext">pivot and partitions the given array</font> around the picked pivot. 
                         </p>
                     </Collapsible>
                     <Collapsible label="Heap Sort Information">
                         <h1>Heap Sort</h1>
-                        <p>Heap sort is a <mark>comparison-based sorting technique</mark> based on Binary Heap data structure. 
-                            It is similar to selection sort where we first <mark>find the minimum element</mark> and place the minimum element at the beginning. 
+                        <p>Heap sort is a <font className="ideatext">comparison-based sorting technique</font> based on Binary Heap data structure. 
+                            It is similar to selection sort where we first <font className="ideatext">find the minimum element</font> and place the minimum element at the beginning. 
          
                         </p>
                     </Collapsible>
