@@ -23,7 +23,8 @@ app.get('/api/get', (req, res) =>{
     })
 })
 
-app.put('/api/user/update', (req,res) => {
+//Password update
+app.put('/api/userpass/update', (req,res) => {
     const Reg_email=req.body.Reg_email
     const Reg_password=req.body.Reg_password
 
@@ -33,6 +34,19 @@ app.put('/api/user/update', (req,res) => {
         if (err) console.log(err)
     })
 })
+
+//Username update
+app.put('/api/username/update', (req,res) => {
+    const Reg_email=req.body.Reg_email
+    const Reg_username=req.body.Reg_username
+
+    const sqlUpdate ='UPDATE user_infos SET username_reg=? WHERE useremail_reg=?';
+
+    db.query(sqlUpdate,[Reg_username,Reg_email], (err,result) =>{
+        if (err) console.log(err)
+    })
+})
+
 
 app.get('/api/comment/get', (req, res) =>{
     const sqlSelect = "select cruddatabase.user_infos.username_reg,cruddatabase.user_infos.useremail_reg,cruddatabase.comments_table.comment_id,cruddatabase.comments_table.comment_text, cruddatabase.comments_table.date_written,useravatar_url from cruddatabase.user_infos inner join cruddatabase.comments_table on cruddatabase.user_infos.useremail_reg = cruddatabase.comments_table.useremail_reg;";

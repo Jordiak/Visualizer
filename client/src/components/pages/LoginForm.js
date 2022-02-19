@@ -278,7 +278,7 @@ function LoginForm() {
                 Swal.fire("Password's length must be at least be 5")
             else{
               ReactSession.set("password", newPass)
-              Axios.put('http://localhost:3001/api/user/update',{
+              Axios.put('http://localhost:3001/api/userpass/update',{
               Reg_email: ReactSession.get("email"),
               Reg_password: re_EnterPass
              } )
@@ -292,6 +292,38 @@ function LoginForm() {
         Swal.fire("Please enter a value for both fields")
       
       })()
+  }
+
+  function changeName(){
+
+    (async () => {
+
+      const { value: userName } = await Swal.fire({
+        title: 'Enter New Username',
+        input: 'text',
+        inputLabel: 'Username',
+        inputPlaceholder: 'Enter new username',
+        inputAttributes: {
+          maxlength: 20,
+          autocapitalize: 'off',
+          autocorrect: 'off'
+        }
+      })
+      
+      if (userName) {
+        Axios.put('http://localhost:3001/api/username/update',{
+              Reg_username: userName,
+              Reg_email: ReactSession.get("email")
+             } )
+             {setValue(userName)}
+             ReactSession.set("username", userName)
+        forceUpdate();
+      }
+      else
+        Swal.fire("Username cannot be blank")
+      
+      })()
+
   }
 
   return (
@@ -308,6 +340,7 @@ function LoginForm() {
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
 
+                     <button onClick={changeName}>Change Username</button>
                      <button onClick={changePassword}>Change Password</button>
                      <button onClick={changeAvatar}>Change Avatar</button>
                      <br></br>
