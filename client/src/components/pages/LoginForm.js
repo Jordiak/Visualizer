@@ -211,7 +211,7 @@ function LoginForm() {
 
   const forceUpdate = useForceUpdate();
 
-  function logOut(){
+   function logOut(){
     Swal.fire({
       icon: 'error',
       title: 'Logged out'
@@ -251,6 +251,49 @@ function LoginForm() {
   
   }
 
+  function changePassword(){
+    (async () => {
+
+      const { value: formValues } = await Swal.fire({
+        title: 'Multiple inputs',
+        html:
+          'New Password'+'<input type="password" id="swal-input1" class="swal2-input">' + ' <br></br> ' +'Re-Enter New Password' +
+          '<input type="password" id="swal-input2" class="swal2-input">',
+        focusConfirm: false,
+        showCancelButton: true,
+        preConfirm: () => {
+          return [
+            document.getElementById('swal-input1').value,
+            document.getElementById('swal-input2').value
+          ]
+        }
+      })
+      
+      if(formValues)
+        if (formValues[0] && formValues[1]) {
+           let newPass = formValues[0]
+           let re_EnterPass = formValues[1]
+           if(newPass == re_EnterPass){
+             if(newPass.length < 5 || re_EnterPass.length < 5)
+                Swal.fire("Password's length must be at least be 5")
+            else{
+              ReactSession.set("password", newPass)
+              Axios.put('http://localhost:3001/api/user/update',{
+              Reg_email: ReactSession.get("email"),
+              Reg_password: re_EnterPass
+             } )
+             forceUpdate();
+            }
+          }
+          else
+              Swal.fire("Passwords do not match")
+        }
+      else
+        Swal.fire("Please enter a value for both fields")
+      
+      })()
+  }
+
   return (
 
 <div className='Home'>
@@ -264,6 +307,8 @@ function LoginForm() {
                   <h1>Username: {ReactSession.get('username')}</h1>
                      <h1>Email: {ReactSession.get('email')}</h1>
                      <h1>Password: {ReactSession.get('password')}</h1>
+
+                     <button onClick={changePassword}>Change Password</button>
                      <button onClick={changeAvatar}>Change Avatar</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
