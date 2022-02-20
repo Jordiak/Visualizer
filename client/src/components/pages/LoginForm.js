@@ -255,7 +255,7 @@ function LoginForm() {
     (async () => {
 
       const { value: formValues } = await Swal.fire({
-        title: 'Multiple inputs',
+        title: 'Enter New Password',
         html:
           'New Password'+'<input type="password" id="swal-input1" class="swal2-input">' + ' <br></br> ' +'Re-Enter New Password' +
           '<input type="password" id="swal-input2" class="swal2-input">',

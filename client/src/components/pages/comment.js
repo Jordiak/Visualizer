@@ -11,12 +11,13 @@ import { render } from '@testing-library/react';
 
 const generator = new AvatarGenerator();
 
+function useForceUpdate(){
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue(value => value + 1); // update the state to force render
+}
 
 export default function Comment(){
-  function useForceUpdate(){
-    const [value, setValue] = useState(0); // integer state
-    return () => setValue(value => value + 1); // update the state to force render
-  }
+
   let history = useHistory();
     const [comment,setcomment]=useState("");
     const [username,setusername]=useState(ReactSession.get('email'));
@@ -207,6 +208,7 @@ const forceUpdate = useForceUpdate();
         
         <div className="box1">
             <h1 style={{textAlign:"center"}}>DISCUSSION BOARD</h1>
+            <br></br>
             <div className="commentform">
 
       {(() => {
@@ -222,9 +224,11 @@ const forceUpdate = useForceUpdate();
         else if (ReactSession.get("username")) {
           return (
             <div className="commentform">
-                <label >Name:{ReactSession.get("username")}</label>
+              <center><h2>{ReactSession.get("username")}</h2>
+              <img className='usericon' width={'70px'} height={'90px'}src={ReactSession.get("avatar_url")}></img></center>
                 
-            <label>COMMENT: </label>
+                
+            {/* <label>COMMENT: </label> */}
             <input type="text" name="comment" value={comment} placeholder="Type a response" onChange={(e)=>{setcomment(e.target.value)}}/>
             <button onClick={submit}  >Submit</button>
             </div>
