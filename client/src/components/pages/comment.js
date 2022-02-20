@@ -7,33 +7,17 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import usericon from '../images/usericon.png';
 import { AvatarGenerator } from './generator_avatar.ts';
+import { render } from '@testing-library/react';
 
 const generator = new AvatarGenerator();
 
 
-function useForceUpdate(){
+export default function Comment(){
+  function useForceUpdate(){
     const [value, setValue] = useState(0); // integer state
     return () => setValue(value => value + 1); // update the state to force render
   }
-
-function Comment(){
-  
-  const[commentList,setcommentList]=useState([]);
-    //get comment
-    useEffect(() => {
-        Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
-        setcommentList(response.data)
-        Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
-        setcommentID((response.data)[0].comment_id+1)
-      console.log(((response.data)[0].comment_id), commentID)
-
-  })
-
-    })
-    } , [])
-
-    
-    let history = useHistory();
+  let history = useHistory();
     const [comment,setcomment]=useState("");
     const [username,setusername]=useState(ReactSession.get('email'));
     const [commentID,setcommentID]=useState(0);
@@ -44,6 +28,26 @@ function Comment(){
     const [clickedID, setClickedID] = useState(0);
     const [cardIndex, setCardIndex] = useState(null);
     const [tempCommentID, setTempCommentID] = useState(0);
+    const [commentCount, setCommentCount] = useState(0);
+    const [deleteCount, setDeleteCount] = useState(0);
+    const [editCount, setEditCount] = useState(0);
+    const [commentList,setcommentList]=useState([]);
+    const [backupCommentList, setBackupCommentList] =useState([])
+    //get comment
+    useEffect(() => {
+        Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
+        setcommentList(response.data);
+    })
+    } , [])
+
+    useEffect(() => {
+     if (commentList.length){
+        setBackupCommentList([...commentList])
+     }
+  } , [commentList])
+
+    
+    
     
 const Toast = Swal.mixin({
   toast: true,
@@ -60,7 +64,6 @@ const forceUpdate = useForceUpdate();
 
 //submit comment
     const submitComment = () => {
-      setcommentID(commentID+1)
       console.log(commentID)
       var today = new Date();
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
@@ -71,13 +74,15 @@ const forceUpdate = useForceUpdate();
             comment_text:comment,
             date_written: dateTime,
         })
+        Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
+        console.log(((response.data)[0].comment_id))
         setcommentList([
           ...commentList,
-          {comment_id:(commentID),useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
+          {comment_id:((response.data)[0].comment_id+1),useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
         ]);
-        
-        // forceUpdate();
-        console.log(commentList)
+      }) 
+      setCommentCount(commentCount + 1)
+      console.log(commentList)
       };
       
     
@@ -95,7 +100,7 @@ const forceUpdate = useForceUpdate();
       }).then((result) => {
         if (!result.isConfirmed) {
           submitComment();
-          setcomment(" ");
+          setcomment("");
         
         }
       })
@@ -128,7 +133,8 @@ const forceUpdate = useForceUpdate();
         if (!result.isConfirmed) {
           Axios.delete(`http://localhost:3001/api/comment/delete/${id}`)
             const updatedBackendComments = commentList.filter(val => val.comment_id != id);
-            setcommentList(updatedBackendComments);
+            setDeleteCount(deleteCount + 1);
+            setcommentList([...updatedBackendComments]);
          
 
         }
@@ -156,6 +162,7 @@ const forceUpdate = useForceUpdate();
             comment_id: comment_id,
 
           } )
+          setEditCount(editCount + 1);
           const updatedcomm=setcommentList(commentList.map((val) => {   //maps comment for updating
             return val.comment_id == comment_id?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val
           }))
@@ -196,14 +203,23 @@ const forceUpdate = useForceUpdate();
         setOpen((prevState) => !prevState);
       };
 
-    return(
+     return(
         
         <div className="box1">
             <h1 style={{textAlign:"center"}}>DISCUSSION BOARD</h1>
             <div className="commentform">
 
       {(() => {
-        if (ReactSession.get("username")) {
+        if (ReactSession.get("username") && commentCount == 2){
+          return (
+            <div className="commentform">
+                <label >Name:{ReactSession.get("username")}</label>
+                
+            <label>Adding comments is restricted to 2 at a time</label>
+            </div>
+          )
+        }
+        else if (ReactSession.get("username")) {
           return (
             <div className="commentform">
                 <label >Name:{ReactSession.get("username")}</label>
@@ -225,7 +241,15 @@ const forceUpdate = useForceUpdate();
                 
             </div>
             <div className="cardholder">
-            {commentList
+        {(() => { 
+          if (!commentList.length){
+            console.log('comment list was emptied')
+            console.log(backupCommentList)
+            setcommentList([...backupCommentList])
+          }
+        })}
+            {
+            commentList
             .map((val)=>{
                return (
                 <div className="card">
@@ -261,7 +285,7 @@ const forceUpdate = useForceUpdate();
 </div> */}
 
             {(() => {
-        if (val.useremail_reg == ReactSession.get("email")) {
+        if (val.useremail_reg == ReactSession.get("email") && deleteCount==2 && editCount==2){
           return (
             <div>
             
@@ -270,8 +294,38 @@ const forceUpdate = useForceUpdate();
             
               </div>
           )
-        }           
+        }
+        else if (val.useremail_reg == ReactSession.get("email") && deleteCount==2){
+          return (
+            <div>
+            
+            <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
+            
+              </div>
+          )
+        }
+        else if (val.useremail_reg == ReactSession.get("email") && editCount==2){
+          return (
+            <div>
+            
+            <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
+            
+              </div>
+          )
+        }
+        else if (val.useremail_reg == ReactSession.get("email")) {
+          return (
+            <div>
+            
+            <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
+            <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
+            
+              </div>
+          )
+        } 
+             
       })()}
+      
       {(() => {
               if (tempCommentID == val.comment_id && dis==false && val.useremail_reg == ReactSession.get("email") ){
                 return(
@@ -283,17 +337,15 @@ const forceUpdate = useForceUpdate();
                 )
               }
             })()}
-            
-
                </div>
                )
-                
             })}
+            
             </div>
-           
         </div>
-    )
-
-    
+          
+     )
+     
+  
 }
-export default Comment;
+
