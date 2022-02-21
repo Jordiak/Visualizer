@@ -1,9 +1,9 @@
 .node {
   width: 25px;
   height: 25px;
-  outline: 1px solid rgba(165, 203, 253, 0.993);
+  outline: 2px solid rgba(121, 35, 143, 0.993);
   display: inline-block;
-  background-color:rgba(155, 150, 150, 0.753);
+  background-color:rgba(175, 169, 169, 0.753);
   
 }
 
@@ -19,11 +19,11 @@
   animation-name: visitedAnimation;
   animation-duration: 1.5s;
   animation-timing-function: ease-in-out;
-  animation-delay: 0;
-  animation-direction: alternate;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
   animation-play-state: running;
+  animation-delay: 0;
+  animation-direction: alternate;
 }
 
 @keyframes visitedAnimation {

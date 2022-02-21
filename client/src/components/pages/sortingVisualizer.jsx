@@ -26,6 +26,7 @@ class Visualizer extends React.Component {
         key - integer value of element,
         classType - css class for changing color of element
     */
+   //
     state = {
         list: [],
         size: 10,
