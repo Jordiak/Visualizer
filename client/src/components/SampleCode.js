@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheet/SampleCode.css'
 
+// component that allows for sample code to be performed within the data structure visualizer
 class SampleCode extends Component {
   arr = null;
 

@@ -7,7 +7,7 @@ import ReactSession from 'react-client-session/dist/ReactSession';
 import { UserContext } from './UserContext';
 import discboardpic from './images/discboard.png';
 
-
+// navbar for the entire website
 function Navbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);

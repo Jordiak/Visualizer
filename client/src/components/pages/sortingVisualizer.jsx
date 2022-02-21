@@ -22,11 +22,9 @@ import { isVisible } from '@testing-library/user-event/dist/utils';
 
 let executionTime = " ";
 class Visualizer extends React.Component {
-    /*  each element in the list contains a <key, classType> where:
-        key - integer value of element,
-        classType - css class for changing color of element
-    */
-   //
+   //all the elements present in the list have a key and class type
+   //key (value of comment in integer)
+   //classtype (Css Class)
     state = {
         list: [],
         size: 10,
@@ -35,17 +33,17 @@ class Visualizer extends React.Component {
         running: false,
     };
 
-    // for initial generation of list
+    // creating the list
     componentDidMount() {
         this.generateList();
     }
 
-    /* for hooking to the time instant of any change in state/event */
+    //When there is a change or event
     componentDidUpdate() {
         this.onChange();
         this.generateList();
     }
-
+    //Rendering the Sorting Visualizer
     render() { 
         return (
             <React.Fragment>
@@ -74,8 +72,8 @@ class Visualizer extends React.Component {
         );
     }
 
-    // for updating the state on changing navbar options
-    // avoid changing algorithm and size when algorithm is running
+    // updates the state when you choose a navbar options
+    // when the algorithm is running avoid changing navbar options
     onChange = (value, option) => {
         if(option === ALGORITHM && !this.state.running) {
             this.setState({ algorithm: Number(value) });
@@ -89,7 +87,7 @@ class Visualizer extends React.Component {
         }
     };
 
-    // generate a random list
+    // creates a random list of values
     generateList = (value = 0) => {
         if((this.state.list.length !== this.state.size && !this.state.running) || Number(value) === 1) {
             let list = generator(this.state.size);
@@ -97,7 +95,7 @@ class Visualizer extends React.Component {
         }
 	};
 
-    // select and run the corresponding algorithm  
+    // chooses and runs the chosen sorting algorithms
     start = async() => {
         let startTime = performance.now();
         this.lock(true);
@@ -109,7 +107,7 @@ class Visualizer extends React.Component {
         this.lock(false);
     };
 
-    // get moves for corresponding algorithms
+    // tracks the moves for the sorting algorithms
     getMoves = async(Name) => {
         let moves = [];
         let array = await getKeysCopy(this.state.list, this.state.size);
@@ -131,12 +129,12 @@ class Visualizer extends React.Component {
         return moves;
     };
 
-    // for visualizing obtained moves
+    // displaying acquired moves
     visualizeMoves = async(moves) => {
         if(moves.length === 0) {
             return;
         }
-        // if move length if 4, then we have to handle range part
+        // handles range when the move length is 4
         if(moves[0].length === 4) {
             await this.visualizeMovesInRange(moves);
         }
@@ -145,27 +143,11 @@ class Visualizer extends React.Component {
         }
     };
 
-    // for visualizing range based sorting algorithms
-    visualizeMovesInRange = async(Moves) => {
-        let prevRange = [];
-        while (Moves.length > 0 && Moves[0].length === 4) {
-            // change range only when required to avoid blinking
-            if(prevRange !== Moves[0][3]) {
-                await this.updateElementClass(prevRange, NORMAL);
-                prevRange = Moves[0][3];
-                await this.updateElementClass(Moves[0][3], CURRENT);
-            }
-            await this.updateElementValue([Moves[0][0], Moves[0][1]]);
-            Moves.shift();
-        }
-        await this.visualizeMoves(Moves);
-    };
-
-    // for visualizing swapping based sorting algorithms
-    visualizeMovesBySwapping = async(Moves) => {
+       // displaying of swapping based sorting algorithms
+       visualizeMovesBySwapping = async(Moves) => {
         while(Moves.length > 0) {
             let currMove = Moves[0];
-            // if container doesn't contains 3 elements then return
+            // when the container does not have 3 elements, then return
             if(currMove.length !== 3) {
                 await this.visualizeMoves(Moves);
                 return;
@@ -182,7 +164,25 @@ class Visualizer extends React.Component {
         }
     };
 
-    // swapping the values for current move
+    // displaying of range based sorting algorithms
+    visualizeMovesInRange = async(Moves) => {
+        let prevRange = [];
+        while (Moves.length > 0 && Moves[0].length === 4) {
+            // adjuest range when necessary to avoid blinking
+            if(prevRange !== Moves[0][3]) {
+                await this.updateElementClass(prevRange, NORMAL);
+                prevRange = Moves[0][3];
+                await this.updateElementClass(Moves[0][3], CURRENT);
+            }
+            await this.updateElementValue([Moves[0][0], Moves[0][1]]);
+            Moves.shift();
+        }
+        await this.visualizeMoves(Moves);
+    };
+
+ 
+
+    // swapping the values of moves
     updateList = async(indexes) => {
         let array = [...this.state.list];
         let stored = array[indexes[0]].key;
@@ -191,14 +191,20 @@ class Visualizer extends React.Component {
         await this.updateStateChanges(array);
     };
 
-    // update value of list element
+    // Updates the state attribute list when there is a change
+    updateStateChanges = async(newList) => {
+        this.setState({list: newList});
+        await pause(this.state.speed);
+    };
+
+    // changes the value of the element in the list
     updateElementValue = async(indexes) => {
         let array = [...this.state.list];
         array[indexes[0]].key = indexes[1];
         await this.updateStateChanges(array);
     };
 
-    // update classType of list element
+    // changes the class type of the element in the list
     updateElementClass = async(indexes, classType) => {
         let array = [...this.state.list];
         for(let i = 0 ; i < indexes.length ; ++i) {
@@ -207,18 +213,21 @@ class Visualizer extends React.Component {
         await this.updateStateChanges(array);
     };
 
-    // Updating the state attribute list every time on modification
-    updateStateChanges = async(newList) => {
-        this.setState({list: newList});
-        await pause(this.state.speed);
+    
+
+    // allows for the navbar to be responsive
+    response = () => {
+        let Navbar = document.querySelector(".navbar");
+        if(Navbar.className === "navbar") Navbar.className += " responsive";
+        else Navbar.className = "navbar";
     };
 
-    // To block changing of navbar options when the algorithm is running
+    // to prevent navbar options changes once the sorting algorithm has ran
     lock = (status) => {
         this.setState({ running: Boolean(status) });
     };
 
-    // Mark list as done
+    // List is done
     done = async() => {
         let indexes = [];
         for(let i = 0 ; i < this.state.size ; ++i) {
@@ -227,12 +236,7 @@ class Visualizer extends React.Component {
         await this.updateElementClass(indexes, DONE);
     };
     
-    // For responsive navbar
-    response = () => {
-        let Navbar = document.querySelector(".navbar");
-        if(Navbar.className === "navbar") Navbar.className += " responsive";
-        else Navbar.className = "navbar";
-    };
+    
 }
  
 export default Visualizer;

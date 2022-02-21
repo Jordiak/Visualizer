@@ -1,7 +1,8 @@
-// Returns all nodes in the order in which they were visited.
+// Returns the nodes in the order in which they were visited.
 // Make nodes point back to their previous node so that we can compute the shortest path
 // by backtracking from the finish node.
 
+// breadth-first search for the path finding visualizer
 export function bfs(grid, startNode, finishNode) {
     const visitedNodesInOrder = [];
     let nextNodesStack = [startNode];

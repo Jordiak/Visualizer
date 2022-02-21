@@ -1,3 +1,4 @@
+// randon number list generator for the sorting algorithms
 const generator = (length) => {
     let list = [];
     let min = 1, max = 100;

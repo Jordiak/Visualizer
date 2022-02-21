@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import './Node.css';
 
+// component for the nodes within the path finding visualizer
 export default class Node extends Component {
   render() {
     const {

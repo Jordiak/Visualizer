@@ -12,7 +12,7 @@ abc[].push()
 abc.push(dec.push())
 if(ab.pop())
 `
-
+// component for the input code section of the data structure visualizer
 class InputCode extends Component {
   constructor() {
     super()

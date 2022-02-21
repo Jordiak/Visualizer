@@ -5,6 +5,7 @@ import InputData from './InputData'
 import SampleCode from './SampleCode'
 import '../stylesheet/InputSection.css'
 
+// component for holding the different components contained within the input section of the data structure visualizer
 class InputSection extends Component {
   constructor() {
     super()

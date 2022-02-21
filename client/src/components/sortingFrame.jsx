@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Frame Component for rendering list
+// frame that allows for rendering of the list
 class Frame extends React.Component {
     render() { 
         return (
@@ -21,7 +21,7 @@ class Frame extends React.Component {
         );
     }
 
-    // using css classes to change color of elements
+    // css classes are used the change the color of the elemets (indicates current state within the sort)
     getClass = (value) => {
         if(value === 0) return 'cell';
         else if(value === 1) return 'cell current';

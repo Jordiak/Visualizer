@@ -9,6 +9,7 @@ import './PathfindingVisualizer.css';
 let distancestr='';
 let visited_nodes = -2;
 
+// main component for the path finding visualizer
 export default class PathfindingVisualizer extends Component {
   constructor() {
     super();
@@ -24,7 +25,7 @@ export default class PathfindingVisualizer extends Component {
       isRunning: false,
       isStartNode: false,
       isFinishNode: false,
-      isWallNode: false, // xxxxxxx
+      isWallNode: false, 
       currRow: 0,
       currCol: 0,
     };
@@ -34,6 +35,7 @@ export default class PathfindingVisualizer extends Component {
     this.toggleIsRunning = this.toggleIsRunning.bind(this);
   }
 
+  // creates the grid
   componentDidMount() {
     const grid = this.getInitialGrid();
     this.setState({grid});
@@ -43,7 +45,7 @@ export default class PathfindingVisualizer extends Component {
     this.setState({isRunning: !this.state.isRunning});
   }
 
-  //INITIALIZING GRID
+  // initialization of the grid
   getInitialGrid = (
     rowCount = this.state.ROW_COUNT,
     colCount = this.state.COLUMN_COUNT,
@@ -59,6 +61,7 @@ export default class PathfindingVisualizer extends Component {
     return initialGrid;
   };
 
+  // creating nodes
   createNode = (row, col) => {
     return {
       row,
@@ -79,7 +82,7 @@ export default class PathfindingVisualizer extends Component {
     };
   };
 
-  //MOUSE CONTROL HANDLING
+  //handles the different controls for the mouse (editing walls, changing start and end positions)
   handleMouseDown(row, col) {
     if (!this.state.isRunning) {
       if (this.isGridClear()) {
@@ -119,6 +122,7 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
+  // checks if the grid is clear
   isGridClear() {
     for (const row of this.state.grid) {
       for (const node of row) {
@@ -136,6 +140,7 @@ export default class PathfindingVisualizer extends Component {
     return true;
   }
 
+  // when there is a mouse action inside the grid
   handleMouseEnter(row, col) {
     if (!this.state.isRunning) {
       if (this.state.mouseIsPressed) {
@@ -183,6 +188,22 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
+    // when mouse action is outside the grid
+    handleMouseLeave() {
+      if (this.state.isStartNode) {
+        const isStartNode = !this.state.isStartNode;
+        this.setState({isStartNode, mouseIsPressed: false});
+      } else if (this.state.isFinishNode) {
+        const isFinishNode = !this.state.isFinishNode;
+        this.setState({isFinishNode, mouseIsPressed: false});
+      } else if (this.state.isWallNode) {
+        const isWallNode = !this.state.isWallNode;
+        this.setState({isWallNode, mouseIsPressed: false});
+        this.getInitialGrid();
+      }
+    }
+
+  // when mouse action is released
   handleMouseUp(row, col) {
     if (!this.state.isRunning) {
       this.setState({mouseIsPressed: false});
@@ -201,22 +222,29 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  handleMouseLeave() {
-    if (this.state.isStartNode) {
-      const isStartNode = !this.state.isStartNode;
-      this.setState({isStartNode, mouseIsPressed: false});
-    } else if (this.state.isFinishNode) {
-      const isFinishNode = !this.state.isFinishNode;
-      this.setState({isFinishNode, mouseIsPressed: false});
-    } else if (this.state.isWallNode) {
-      const isWallNode = !this.state.isWallNode;
-      this.setState({isWallNode, mouseIsPressed: false});
-      this.getInitialGrid();
+
+
+  
+  // clears grid of walls 
+  clearWalls() {
+    if (!this.state.isRunning) {
+      const newGrid = this.state.grid.slice();
+      for (const row of newGrid) {
+        for (const node of row) {
+          let nodeClassName = document.getElementById(
+            `node-${node.row}-${node.col}`,
+          ).className;
+          if (nodeClassName === 'node node-wall') {
+            document.getElementById(`node-${node.row}-${node.col}`).className =
+              'node';
+            node.isWall = false;
+          }
+        }
+      }
     }
   }
 
-  //CLEAR WALLS AND GRID
-
+  // clears grid of pathfinding nodes and path nodes
   clearGrid() {
     if (!this.state.isRunning) {
       const newGrid = this.state.grid.slice();
@@ -259,26 +287,8 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-  clearWalls() {
-    if (!this.state.isRunning) {
-      const newGrid = this.state.grid.slice();
-      for (const row of newGrid) {
-        for (const node of row) {
-          let nodeClassName = document.getElementById(
-            `node-${node.row}-${node.col}`,
-          ).className;
-          if (nodeClassName === 'node node-wall') {
-            document.getElementById(`node-${node.row}-${node.col}`).className =
-              'node';
-            node.isWall = false;
-          }
-        }
-      }
-    }
-  }
 
-  //ANIMATION FOR PATH FINDING
-  
+  // main animation for the pathfinding
   visualize(algo) {
     if (!this.state.isRunning) {
       this.clearGrid();
@@ -309,36 +319,7 @@ export default class PathfindingVisualizer extends Component {
     }
   }
 
-
-
-  animate(visitedNodesInOrder, nodesInShortestPathOrder) {
-    if(visited_nodes>0)
-      visited_nodes=-2;
-    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
-      visited_nodes+=1;
-      if (i === visitedNodesInOrder.length) {
-        setTimeout(() => {
-          this.animateShortestPath(nodesInShortestPathOrder);
-        }, 10 * i);
-        return;
-      }
-      setTimeout(() => {
-        const node = visitedNodesInOrder[i];
-        const nodeClassName = document.getElementById(
-          `node-${node.row}-${node.col}`,
-        ).className;
-        if (
-          nodeClassName !== 'node node-start' &&
-          nodeClassName !== 'node node-finish'
-        ) {
-          document.getElementById(`node-${node.row}-${node.col}`).className =
-            'node node-visited';
-        }
-      }, 10 * i);
-    }
-  }
-
-  //DRAWS PATH FROM START TO FINISH
+  // draws a path from the start to the end node
   animateShortestPath(nodesInShortestPathOrder) {
     distancestr="Path Distance: "+(nodesInShortestPathOrder.length-3).toString()+" cells"
     // visited_nodes="No. of Visited Nodes: "+ visited_nodes.toString() +" Cells";
@@ -367,6 +348,34 @@ export default class PathfindingVisualizer extends Component {
     document.getElementById('textDistance').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
     document.getElementById('textDistance1').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
   }
+
+  animate(visitedNodesInOrder, nodesInShortestPathOrder) {
+    if(visited_nodes>0)
+      visited_nodes=-2;
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
+      visited_nodes+=1;
+      if (i === visitedNodesInOrder.length) {
+        setTimeout(() => {
+          this.animateShortestPath(nodesInShortestPathOrder);
+        }, 10 * i);
+        return;
+      }
+      setTimeout(() => {
+        const node = visitedNodesInOrder[i];
+        const nodeClassName = document.getElementById(
+          `node-${node.row}-${node.col}`,
+        ).className;
+        if (
+          nodeClassName !== 'node node-start' &&
+          nodeClassName !== 'node node-finish'
+        ) {
+          document.getElementById(`node-${node.row}-${node.col}`).className =
+            'node node-visited';
+        }
+      }, 10 * i);
+    }
+  }
+
 
   render() {
     const {grid, mouseIsPressed} = this.state;
@@ -451,10 +460,20 @@ export default class PathfindingVisualizer extends Component {
     );
   }
 }
+// finds the shortest path by backtracking from the end node
+function getNodesInShortestPathOrder(finishNode) {
+  const nodesInShortestPathOrder = [];
+  let currentNode = finishNode;
+  while (currentNode !== null) {
+    nodesInShortestPathOrder.unshift(currentNode);
+    currentNode = currentNode.previousNode;
+  }
+  return nodesInShortestPathOrder;
+}
 
-/******************** Create Walls ********************/
+// create walls 
 const getNewGridWithWallToggled = (grid, row, col) => {
-  // mouseDown starts to act strange if I don't make newGrid and work off of grid instead.
+
   const newGrid = grid.slice();
   const node = newGrid[row][col];
   if (!node.isStart && !node.isFinish && node.isNode) {
@@ -467,14 +486,3 @@ const getNewGridWithWallToggled = (grid, row, col) => {
   return newGrid;
 };
 
-// Backtracks from the finishNode to find the shortest path.
-// Only works when called after the pathfinding methods.
-function getNodesInShortestPathOrder(finishNode) {
-  const nodesInShortestPathOrder = [];
-  let currentNode = finishNode;
-  while (currentNode !== null) {
-    nodesInShortestPathOrder.unshift(currentNode);
-    currentNode = currentNode.previousNode;
-  }
-  return nodesInShortestPathOrder;
-}

@@ -1,3 +1,4 @@
+// copies keys for the sorting algorithms
 export const getKeysCopy = async(array, length) => {
     let list = [];
     for(let i = 0 ; i < length ; ++i) {

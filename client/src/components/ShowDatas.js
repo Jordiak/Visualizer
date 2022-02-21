@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheet/ShowDatas.css'
 
+// data shown within the data list
 const ShowDatas = ({dataStates = []}) => {
   const width = 63
   return (

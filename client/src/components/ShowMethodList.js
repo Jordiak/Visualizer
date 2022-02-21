@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheet/ShowMethodList.css'
 
+// component for displaying the method list for the data structure visualizer
 class ShowMethodList extends React.Component {
   constructor(goMethod=f=>f, methodList=[], changeStop = f=>f, stopShow=false) {
     super()
