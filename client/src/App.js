@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import NavbarBackend from './components/NavbarBackend';
 import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShortestPath from './components/pages/ShortestPath';
@@ -12,10 +13,26 @@ import Information from './components/pages/Information';
 import LoginForm from './components/pages/LoginForm';
 import { UserContext } from './components/UserContext';
 import Comment from './components/pages/comment';
-
+import Admin from './components/pages/Admin';
+import ManageUsers from './components/pages/ManageUsers';
+import ManageDiscussion from './components/pages/ManageDiscussion';
 
 function App() {
   const [value, setValue] = useState('Login/Register')
+  if(window.location.pathname=="/admin" || window.location.pathname=="/manage-users" || window.location.pathname=="/manage-discussion"){
+    return (
+      <Router>
+      <UserContext.Provider value={{value,setValue}}>
+        <NavbarBackend />  
+        <Switch>
+        <Route path="/admin" exact component={Admin} />
+        <Route path="/manage-users" exact component={ManageUsers} />
+        <Route path="/manage-discussion" exact component={ManageDiscussion} />
+        </Switch>
+        </UserContext.Provider>
+      </Router>  
+    );
+  }
   return (
     <Router>
       <UserContext.Provider value={{value,setValue}}>
@@ -34,7 +51,7 @@ function App() {
     
       <Footer />
       </UserContext.Provider>
-    </Router>
+    </Router> 
   );
 }
 

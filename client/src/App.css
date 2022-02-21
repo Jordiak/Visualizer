@@ -138,6 +138,15 @@ h2 {
   background-size: cover;
   height: 100vh;
 }
+.Admin {
+  background-color: rgba(86, 139, 139, 0.808);
+}
+.ManageUsers {
+  background-color: rgba(86, 139, 139, 0.808);
+}
+.ManageDiscussion {
+  background-color: rgba(86, 139, 139, 0.808);
+}
 .DSleft {
   width: 60%;
   float: left;
@@ -394,6 +403,27 @@ h2 {
   background: rgba(0, 0, 0, 0.788);
   margin-bottom: 10px;
   font-family: monospace;
+}
+.backendcard {
+  width: 97%;
+  height: auto;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px;
+  font-size: large;
+  border-radius: 19px;
+  background: rgb(255, 255, 255);
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+.backend_title{
+  color: black;
+  font-size: 48px;
+  text-align: center;
+  font-weight: bold;
+}
+.userinfo{
+  color: black;
 }
 .user {
   display: inline-block;
