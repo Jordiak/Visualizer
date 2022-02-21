@@ -1,8 +1,8 @@
 import {SWAP} from '../helper/constants.js';
 import {swap} from '../helper/swap.js';
 
-// quick sort returns container with 2 indexes and boolean
-// describing to swap or not
+// quick sort algorithm for the sorting visualizer
+// this function returns a container with 2 indexes and boolean
 export const quickSort = async(array, length) => {
     let moves = [];
     await divider(moves, array, 0, length-1);

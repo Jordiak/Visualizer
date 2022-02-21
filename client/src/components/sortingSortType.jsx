@@ -2,7 +2,7 @@ import React from 'react';
 
 import Algorithms from './sorting-navbar/algorithms';
 
-// Navbar Component
+// part of the navbar
 class SortType extends React.Component {
     state = {
         Algorithms: [
@@ -14,8 +14,7 @@ class SortType extends React.Component {
 		]
     };
 
-    // prevent the default link behaviour for navbar
-    // hide/display button
+    // makes the button visible/invisible
     handleClick = (e) => {
         e.preventDefault();
         this.props.response();

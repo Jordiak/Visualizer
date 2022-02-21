@@ -1,8 +1,8 @@
 import {SWAP} from '../helper/constants.js';
 import {swap} from '../helper/swap.js';
 
-// heap sort returns container with 2 indexes and boolean
-// describing to swap or not
+// heap sort algorithm for the sorting visualizer
+// this function returns a container with 2 indexes and boolean
 export const heapSort = async(array, length) => {
     let moves = [];
     for(let index = Math.ceil(length/2)-1 ; index >= 0 ; --index) {

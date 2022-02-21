@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import '../stylesheet/ShowDataList.css'
 
+//Component for displaying the data list for the data structure visualizer
 class ShowDataList extends React.Component {
   constructor({dataStates=[], changeStop= f=>f, stopShow=false}) {
     super()

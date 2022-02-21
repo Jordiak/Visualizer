@@ -7,6 +7,7 @@ import ShowMethodList from './ShowMethodList'
 import ShowContainer from './ShowContainer'
 import ShowSpecificData from './ShowSpecificData'
 
+// holds the components used within the show section
 const ShowSection = ({specificData={}, showSpecificData=f=>f, methodAnimation = true, goMethod=f=>f, methodList=[], duration = 1, changeDuration = f=>f, changeStop=f=>f, stopShow=false,step=0,submitStack=0, nextStep= f=>f, dataStates=[], executingCode="", containerState={} }) =>
   <section className='show-section'>
     <div className='text-show1'>VARIABLES</div>

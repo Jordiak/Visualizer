@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Speed list component
+// the speed option component for the sorting navbar
 const Speed = (props) => {
     return (
         <span className="options">

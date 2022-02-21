@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Algorithm list component
+// the algorithm option component for the sorting navbar
 const Algorithms = (props) => {
     return (
         <span className="options">

@@ -3,15 +3,14 @@ import React from 'react';
 import Size from './sorting-navbar/size';
 import Speed from './sorting-navbar/speed';
 
-// Navbar Component
+// part of the navbar
 class Navbar extends React.Component {
     state = {
 		lengths: [10, 20, 30],
 		speeds: [0.50, 0.75, 1.00, 2.00, 4.00,8.00,16.00,32.00,64.00,128.00]
     };
 
-    // prevent the default link behaviour for navbar
-    // hide/display button
+    // makes the button visible/invisible
     handleClick = (e) => {
         e.preventDefault();
         this.props.response();

@@ -1,6 +1,6 @@
 import React from 'react';
 
-// Size list component
+// the size or number of items option component for the sorting navbar
 const Size = (props) => {
     return (
         <span className="options">

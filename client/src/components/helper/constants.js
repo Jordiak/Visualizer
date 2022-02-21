@@ -1,9 +1,9 @@
-// for swapping
+// constants for swapping in the sorting algorithms
 export const SWAP = 1;
 export const CHANGE_VALUE = 2;
 export const HIGHLIGHT = 3;
 
-// for option menu
+// constants for the option menu
 export const ALGORITHM = "algo";
 export const SPEED = "speed";
 export const SIZE = "size";
