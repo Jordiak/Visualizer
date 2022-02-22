@@ -5,6 +5,17 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const nodemailer = require("nodemailer");
 
+var fs = require('fs');
+
+try {
+    var data = fs.readFileSync('my-file.txt', 'utf8');
+    var line = data.split("/n")
+    var email_auth = line[0].substring(0,23)
+    var password_auth = line[0].substring(25,41)    
+} catch(e) {
+    console.log('Error:', e.stack);
+}
+
 const db = mysql.createPool({
     host: 'localhost',
     user: 'root',
@@ -186,8 +197,8 @@ app.post('/api/sendemail', (req,res) => {
         port: 465,
         secure: true, // true for 465, false for other ports
         auth: {
-          user: 'visualizerdsa@gmail.com',
-          pass: 'uxS6~7^&Vxe~@R9L', 
+          user: email_auth,
+          pass: password_auth, 
         },
       });
     
