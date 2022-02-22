@@ -21,10 +21,12 @@
 
 .reply_shown{
   display: block;
+  margin-bottom: -20px;
 }
 
 .reply_hidden{
   visibility: hidden;
+  margin-top: -80px;
 }
 
 .login_form button {
@@ -378,6 +380,8 @@ h2 {
   display: flex;
   flex-direction: column-reverse;
 }
+
+
 .card {
   width: 97%;
   height: auto;
@@ -403,6 +407,12 @@ h2 {
   vertical-align: middle;
 }
 .commentbtn {
+  border: none;
+  background: none;
+  font-size: large;
+  font-family: monospace;
+}
+.replybtn {
   border: none;
   background: none;
   font-size: large;

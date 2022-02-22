@@ -33,19 +33,51 @@ export default function Comment(){
     const [deleteCount, setDeleteCount] = useState(0);
     const [editCount, setEditCount] = useState(0);
     const [commentList,setcommentList]=useState([]);
+    const [replies, setReplyList] = useState([]);
     const [backupCommentList, setBackupCommentList] =useState([])
-    //get comment
+    const [replyValue, setReplyValue] = useState("")
+
+
+    
+    //get comment and replies
     useEffect(() => {
+      Axios.post('http://localhost:3001/api/reply_get').then((response)=>{
+        setReplyList(response.data);
+    });
         Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
         setcommentList(response.data);
-    })
+    });
     } , [])
+
+    //append replies to comment
+    useEffect(() => {
+      appendReplies(commentList)
+  } , [commentList])
 
     useEffect(() => {
      if (commentList.length){
         setBackupCommentList([...commentList])
      }
   } , [commentList])
+
+
+  function appendReplies(comments){
+    for (let i = 0; i < comments.length; i++) {
+      for (let j = 0; j < replies.length; j++) {
+        if(replies[j]["comment_id"] == comments[i]["comment_id"]){
+          if(!comments[i]["reply_details"])
+               comments[i]["reply_details"] = [replies[j]]
+          else
+               comments[i]["reply_details"].push(replies[j])
+
+            console.log(comments[i]);
+        }
+      }
+
+      // console.log(comments[i]);
+    }
+    setcommentList(comments)
+  }
 
     
     
@@ -204,6 +236,50 @@ const forceUpdate = useForceUpdate();
         setOpen((prevState) => !prevState);
       };
 
+      function submitReply(replyMessage, comm_ID){
+        {
+          let new_reply = [];
+          var today = new Date();
+          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+          var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+          var dateTime = date+' '+time;
+            Axios.post("http://localhost:3001/api/reply_insert", {
+                Reg_email:ReactSession.get("email"),
+                Reply_content:replyMessage,
+                Reply_written: dateTime,
+                Comment_ID:comm_ID
+            })
+
+
+
+ 
+var newCommentList= [];
+
+              if(commentList[0]["comment_id"] == comm_ID){
+                var tempHolder = commentList[0]["reply_details"]
+                tempHolder.push({"reply_id":62,
+                "comment_id":comm_ID,"useravatar_url":ReactSession.get("avatar_url"),
+                "reply_content":replyMessage,"reply_written":dateTime,"useremail_reg":ReactSession.get("email"), 
+                "username_reg":ReactSession.get("username")})
+                // reply_details.push(tempHolder)
+                
+                  newCommentList.push({"username_reg":commentList[0]["username_reg"],"useremail_reg":commentList[0]["useremail_reg"],
+                  "comment_id":commentList[0]["comment_id"],"comment_text":commentList[0]["comment_text"],
+                  "date_written":commentList[0]["date_written"],"reply_details":tempHolder,
+                   "useravatar_url":commentList[0]["useravatar_url"],
+                   "useremail_reg":commentList[0]["useremail_reg"],
+                  "username_reg":commentList[0]["username_reg"]})
+              }
+
+console.log(newCommentList)
+// setcommentList(newCommentList)
+appendReplies(commentList)
+
+          };
+      }
+
+
+
      return(
         
         <div className="box1">
@@ -225,7 +301,8 @@ const forceUpdate = useForceUpdate();
           return (
             <div className="commentform">
               <center><h2>{ReactSession.get("username")}</h2>
-              <img className='usericon' width={'70px'} height={'90px'}src={ReactSession.get("avatar_url")}></img></center>
+              <img className='usericon' width={'70px'} height={'90px'}src={ReactSession.get("avatar_url")}></img>
+              </center>
                 
                 
             {/* <label>COMMENT: </label> */}
@@ -283,10 +360,15 @@ const forceUpdate = useForceUpdate();
 
 <br></br>
 
-            {/* <button onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+
+            {ReactSession.get("email") == val.useremail_reg ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
               <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
-  <input type="text"></input>
-</div> */}
+  <input onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
+</div></div> : ""}
+
+                    
+
+
 
             {(() => {
         if (val.useremail_reg == ReactSession.get("email") && deleteCount==2 && editCount==2){
@@ -341,8 +423,31 @@ const forceUpdate = useForceUpdate();
                 )
               }
             })()}
+
+
+{/* Replies */}
+{val.reply_details ? <div>
+              Replies:
+        {val.reply_details.map((item) => (
+          <div className="replyholder">
+            
+            {item.username_reg}
+            <br></br>
+            <img src={item.useravatar_url} width="20px" height="20px"></img>
+            <span className="reply_message">{item.reply_content}</span>
+            <br></br>
+            {convertDate(item.reply_written)}
+            
+          </div>
+          
+        ))}
+              </div> : ""}
                </div>
+
+               
                )
+
+          
             })}
             
             </div>
@@ -352,4 +457,7 @@ const forceUpdate = useForceUpdate();
      
   
 }
+
+
+
 
