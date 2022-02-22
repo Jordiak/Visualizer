@@ -36,6 +36,7 @@ export default function Comment(){
     const [replies, setReplyList] = useState([]);
     const [backupCommentList, setBackupCommentList] =useState([])
     const [replyValue, setReplyValue] = useState("")
+    const [highestReplyID, setHighestReplyID] = useState(9900)
 
 
     
@@ -254,26 +255,38 @@ const forceUpdate = useForceUpdate();
 
  
 var newCommentList= [];
+var newReplyValue = [];
 
-              if(commentList[0]["comment_id"] == comm_ID){
+
+         for (let i = 0; i < commentList.length; i++) {
+              var reply_details = [];
+              if(commentList[i]["comment_id"] == comm_ID){
                 var tempHolder = commentList[0]["reply_details"]
                 tempHolder.push({"reply_id":62,
                 "comment_id":comm_ID,"useravatar_url":ReactSession.get("avatar_url"),
                 "reply_content":replyMessage,"reply_written":dateTime,"useremail_reg":ReactSession.get("email"), 
-                "username_reg":ReactSession.get("username")})
-                // reply_details.push(tempHolder)
+                "username_reg":ReactSession.get("username")[0]})
+                reply_details.push(tempHolder)
+                // newReplyValue.push(commentList[i]["reply_details"],{"reply_id":highestReplyID,
+                // "comment_id":comm_ID,"useravatar_url":ReactSession.get("avatar_url"),
+                // "reply_content":replyMessage,"reply_written":dateTime,"useremail_reg":ReactSession.get("email"), 
+                // "username_reg":ReactSession.get("username")})
                 
-                  newCommentList.push({"username_reg":commentList[0]["username_reg"],"useremail_reg":commentList[0]["useremail_reg"],
-                  "comment_id":commentList[0]["comment_id"],"comment_text":commentList[0]["comment_text"],
-                  "date_written":commentList[0]["date_written"],"reply_details":tempHolder,
-                   "useravatar_url":commentList[0]["useravatar_url"],
-                   "useremail_reg":commentList[0]["useremail_reg"],
-                  "username_reg":commentList[0]["username_reg"]})
+                  newCommentList.push({"username_reg":commentList[i]["username_reg"],"useremail_reg":commentList[i]["useremail_reg"],
+                  "comment_id":commentList[i]["comment_id"],"comment_text":commentList[i]["comment_text"],
+                  "date_written":commentList[i]["date_written"],"reply_details":reply_details,
+                   "useravatar_url":commentList[i]["useravatar_url"],
+                   "useremail_reg":commentList[i]["useremail_reg"],
+                  "username_reg":commentList[i]["username_reg"]})
               }
-
+              else
+                  newCommentList.push(commentList[i])
+            }
 console.log(newCommentList)
-// setcommentList(newCommentList)
 appendReplies(commentList)
+setcommentList(newCommentList)
+
+setHighestReplyID(highestReplyID+1)
 
           };
       }
@@ -361,7 +374,7 @@ appendReplies(commentList)
 <br></br>
 
 
-            {ReactSession.get("email") == val.useremail_reg ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            {ReactSession.get("email") ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
               <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
   <input onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
 </div></div> : ""}
@@ -426,17 +439,19 @@ appendReplies(commentList)
 
 
 {/* Replies */}
-{val.reply_details ? <div>
+{String(val.reply_details) !== "undefined" ? <div>
               Replies:
         {val.reply_details.map((item) => (
           <div className="replyholder">
-            
-            {item.username_reg}
+                      {convertDate(item.reply_written) == "Invalid Date" ? "" :    <div>
+                                {item.username_reg}
             <br></br>
             <img src={item.useravatar_url} width="20px" height="20px"></img>
             <span className="reply_message">{item.reply_content}</span>
             <br></br>
             {convertDate(item.reply_written)}
+            </div>}
+
             
           </div>
           
