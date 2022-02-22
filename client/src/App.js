@@ -17,6 +17,7 @@ import Admin from './components/pages/Admin';
 import ManageUsers from './components/pages/ManageUsers';
 import ManageDiscussion from './components/pages/ManageDiscussion';
 
+
 function App() {
   const [value, setValue] = useState('Login/Register')
   if(window.location.pathname=="/admin" || window.location.pathname=="/manage-users" || window.location.pathname=="/manage-discussion"){

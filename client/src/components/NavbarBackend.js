@@ -3,21 +3,14 @@ import React,{ useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './NavbarBackend.css';
 import logoImage from './images/backendlogo.png';
-import ReactSession from 'react-client-session/dist/ReactSession';
 import { UserContext } from './UserContext';
-import discboardpic from './images/discboard.png';
 
 // navbar for backend
 function Navbar() {
   const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-
-  const [userName, setUserName] = useState('Login/Registerx');
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  console.log(userName)
-  const {value,setValue} = useContext(UserContext);
 
   return (
     <>

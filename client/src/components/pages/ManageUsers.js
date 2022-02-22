@@ -1,41 +1,39 @@
-import React, { useState, useEffect, useContext } from 'react';
-import Axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import UserTable from "./UserTable";
+import axios from 'axios'
+
 export default function ManageUsers(){
-    const [userid]=useState("");
-    const [userList,setuserList]=useState([]);
-    //get user info
-    useEffect(() => {
-        Axios.get('http://localhost:3001/api/get').then((response)=>{
-        setuserList(response.data);
-    })
-    } , [])
-     return(
-        
-        <div className="ManageUsers">
-            <h1 className="backend_title">User Management</h1>
-            <br></br>
-            <div className="cardholder">
-            {
-            userList.map((val)=>{
-               return (
-                <div className="backendcard">
-                  {(() => {
-          return (
-            <div>
-                  <img className='usericon' width={'50px'} height={'50px'}src={val.useravatar_url}></img>
-                  <h2 className='userinfo' value={userid}>Username: {val.username_reg}</h2>
-                  <h2 className='userinfo' value={userid}>Password: {val.userpassword_reg}</h2> 
-            </div>
-          )
-        }
-                  )()}
-               </div>
-               )})}
-            
-            </div>
-        </div>
-          
-     )
-     
-  
+  const [data, setData] = useState([]);
+
+  const columns = [{  
+    Header: 'E-mail',  
+    accessor: 'useremail_reg',
+   }
+   ,{  
+    Header: 'Username',  
+    accessor: 'username_reg' ,
+    }
+   
+   ,{  
+   Header: 'Password',  
+   accessor: 'userpassword_reg' ,
+   }
+   ,{  
+   Header: 'Avatar',
+   accessor: 'useravatar_url',
+   Cell: ({ cell: { value } }) => <img height={30} src={value}/> 
+  }]
+  //Gather UserData
+  useEffect(() => {
+    (async () => {
+      const result = await axios("http://localhost:3001/api/get");
+      setData(result.data);
+    })();
+  }, []);
+
+  return (
+    <div className="ManageUsersBox">
+      <UserTable columns={columns} data={data} />
+    </div>
+  );
 }
