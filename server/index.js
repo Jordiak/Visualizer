@@ -72,7 +72,8 @@ app.post('/api/comment/insert', (req, res) =>{
 
     const sqlInsert= "INSERT INTO comments_table (useremail_reg, comment_text, date_written) VALUES (?,?,?)"
     db.query(sqlInsert,[useremail_reg,comment_text, date_written],(err,result)=>{
-        // console.log(err);
+        res.send(result);
+        console.log(err);
     })
 });
 //Delete
@@ -81,7 +82,8 @@ app.delete('/api/comment/delete/:comment_id',(req,res) => {
     const sqlDelete= "DELETE FROM comments_table WHERE comment_id=?"
 
     db.query(sqlDelete,comment_id, (err,result) => {
-    //    if (err) console.log(err)
+        res.send(result);
+       if (err) console.log(err)
     })
 
 })
@@ -93,7 +95,8 @@ app.put('/api/comment/update', (req,res) => {
     const sqlUpdate ='UPDATE comments_table SET comment_text=? WHERE comment_id=?';
 
     db.query(sqlUpdate,[comment_text,comment_id], (err,result) =>{
-        // if (err) console.log(err)
+        res.send(result);
+        if (err) console.log(err)
     })
 })
 
@@ -134,7 +137,8 @@ app.post('/api/insert', (req, res)=>{
     const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url) VALUES (?,?,?,?)"
 
     db.query(sqlInsert, [Reg_email, Reg_username, Reg_password, Reg_avatar_url], (err, result)=>{
-        // console.log(err);
+        res.send(result);
+        console.log(err);
     })
 });
 

@@ -114,7 +114,7 @@ const forceUpdate = useForceUpdate();
           {comment_id:((response.data)[0].comment_id+1),useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
         ]);
       }) 
-      setCommentCount(commentCount + 1)
+      //setCommentCount(commentCount + 1)
       console.log(commentList)
       };
       
@@ -166,7 +166,7 @@ const forceUpdate = useForceUpdate();
         if (!result.isConfirmed) {
           Axios.delete(`http://localhost:3001/api/comment/delete/${id}`)
             const updatedBackendComments = commentList.filter(val => val.comment_id != id);
-            setDeleteCount(deleteCount + 1);
+            //setDeleteCount(deleteCount + 1);
             setcommentList([...updatedBackendComments]);
          
 
@@ -195,7 +195,7 @@ const forceUpdate = useForceUpdate();
             comment_id: comment_id,
 
           } )
-          setEditCount(editCount + 1);
+          //setEditCount(editCount + 1);
           const updatedcomm=setcommentList(commentList.map((val) => {   //maps comment for updating
             return val.comment_id == comment_id?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val
           }))
