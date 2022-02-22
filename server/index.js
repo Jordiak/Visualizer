@@ -3,6 +3,7 @@ const app = express()
 const mysql = require('mysql');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const nodemailer = require("nodemailer");
 
 const db = mysql.createPool({
     host: 'localhost',
@@ -100,6 +101,18 @@ app.put('/api/comment/update', (req,res) => {
     })
 })
 
+app.put('/api/confirm/update', (req,res) => {
+    const log_Email = req.body.log_Email
+    const confirm = req.body.confirm
+
+    const sqlUpdate='UPDATE user_infos SET confirmed=? WHERE useremail_reg=?';
+
+    db.query(sqlUpdate,[confirm,log_Email], (err, result) => {
+        res.send(result);
+        if (err) console.log(err)
+    })
+})
+
 //replies_get
 app.post('/api/reply_get', (req, res) =>{
 
@@ -133,10 +146,11 @@ app.post('/api/insert', (req, res)=>{
     const Reg_username = req.body.Reg_username
     const Reg_password = req.body.Reg_password
     const Reg_avatar_url = req.body.Reg_avatar_url
+    const confirmed = req.body.confirmed
+    const code = req.body.code
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code) VALUES (?,?,?,?,?,?)"
 
-    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url) VALUES (?,?,?,?)"
-
-    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password, Reg_avatar_url], (err, result)=>{
+    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password, Reg_avatar_url, confirmed, code], (err, result)=>{
         res.send(result);
         console.log(err);
     })
@@ -161,6 +175,38 @@ app.put('/api/avatar/update', (req,res) => {
         // if (err) 
         //     console.log(err)
     })
+})
+
+
+app.post('/api/sendemail', (req,res) => {
+    const code = req.body.code;
+    const email = req.body.email;
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 465,
+        secure: true, // true for 465, false for other ports
+        auth: {
+          user: 'visualizerdsa@gmail.com',
+          pass: 'uxS6~7^&Vxe~@R9L', 
+        },
+      });
+    
+      // send mail with defined transport object
+      let info = transporter.sendMail({
+        from: '"DSA Visualizer" <visualizerdsa@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: "E-mail Confirmation", // Subject line
+        text: "Please use this code to confirm your E-mail Address: \n",code, // plain text body
+        html: "<b>Please use this code to confirm your E-mail Address: \n</b>" + code, // html body
+      });
+    
+      console.log("Message sent: %s", info.messageId);
+      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+    
+      // Preview only available when sending through an Ethereal account
+      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+      // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+    
 })
 
 

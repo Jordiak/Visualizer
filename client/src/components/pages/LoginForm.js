@@ -43,6 +43,8 @@ function LoginForm() {
   const [usernameList, setuserNameList] = useState([])
   const [userSession, setUserSession] = useState("")
   const [avatar_url, set_avatar] = useState(generator.generateRandomAvatar());
+  const [confirmed, setConfirmed] = useState("false");
+  const [code, setCode] = useState("")
 
   const registerUser = () =>{
     if (document.getElementById('reg_user_input').value == '')
@@ -105,11 +107,17 @@ function LoginForm() {
     }
     else{
     //Call the api using Axios
+    //Generate Random Code for E-Mail Confirmation
+    const min = 100000;
+    const max = 1000000;
+    const rand = String(Math.round(min + Math.random() * (max - min)));
     Axios.post('http://localhost:3001/api/insert', {
       Reg_username: Reg_username,
       Reg_email: Reg_email, 
       Reg_password: Reg_password,
-      Reg_avatar_url: avatar_url
+      Reg_avatar_url: avatar_url,
+      confirmed: confirmed,
+      code: rand,
   });
   setuserNameList([
     ...usernameList,
@@ -132,17 +140,25 @@ function LoginForm() {
   
   Toast.fire({
     icon: 'success',
-    title: 'Registration Successful!'
+    title: 'Registration Successful! \n\nPlease confirm \nyour E-mail and \nenter your \nconfirmation code'
   })
-  {setValue(Reg_username)}
-  ReactSession.set("username",Reg_username)
-  ReactSession.set("email", Reg_email)
-  ReactSession.set("password", Reg_password)
-  ReactSession.set("avatar_url",avatar_url)
+  //{setValue(Reg_username)}
+  //ReactSession.set("username",Reg_username)
+  //ReactSession.set("email", Reg_email)
+  //ReactSession.set("password", Reg_password)
+  //ReactSession.set("avatar_url",avatar_url)
 
   document.getElementById('reg_user_input').value = ''
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
+  document.getElementById('confirm_user_pass').value =''
+
+  //Sending Confirmation E-mail
+ 
+  Axios.post('http://localhost:3001/api/sendemail', {
+      code: rand,
+      email: Reg_email,
+  });
 }
     }
   };
@@ -155,18 +171,18 @@ function LoginForm() {
 
 
   const login_User = ()=>{
+    let isConfirmed = false;
     let success = false;
     let i;
     let names = usernameList.map((val)=> [val.username_reg])
-    let userNamesPassword = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg])
-    console.log(userNamesPassword)
-
-    // if([log_Email, log_Password].length === userNamesPassword[i].length && [log_Email, log_Password].every((el) => userNamesPassword[i].includes(el)))
+    let userNamesPasswordConfirmed = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg,val.confirmed])
+    console.log(userNamesPasswordConfirmed)
 
     console.log(log_Email, log_Password)
     if(log_Email != null && log_Password!= null)
-      for (i=0;i<userNamesPassword.length;i++){
-        if(log_Email+log_Password == userNamesPassword[i][0]+userNamesPassword[i][1]){
+      for (i=0;i<userNamesPasswordConfirmed.length;i++){
+        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1]) && userNamesPasswordConfirmed[i][2] == 'true'){
+          
           const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -183,14 +199,15 @@ function LoginForm() {
             icon: 'success',
             title: 'Signed in successfully'
           })
+          isConfirmed = true;
           success = true;
           
           document.getElementById('log_email').value = ''
           document.getElementById('log_password').value = ''
           {setValue(names[i])}
           ReactSession.set("username", names[i]);
-          ReactSession.set("email", userNamesPassword[i][0]);
-          ReactSession.set("password", userNamesPassword[i][1]);
+          ReactSession.set("email", userNamesPasswordConfirmed[i][0]);
+          ReactSession.set("password", userNamesPasswordConfirmed[i][1]);
           setLog_Password("")
           setLog_Email("")
           Axios.post('http://localhost:3001/api/avatar_get',{
@@ -200,7 +217,14 @@ function LoginForm() {
         }
     }
 
-    if (!success){
+    if(!isConfirmed){
+      Swal.fire({
+        icon: 'error',
+        title: 'Email has not been confirmed'
+      })
+      document.getElementById('log_password').value = ''
+    }
+    else if (!success){
       Swal.fire({
         icon: 'error',
         title: 'Invalid Email or Password'
@@ -209,6 +233,22 @@ function LoginForm() {
     }
   }
 
+  const confirm_User = () => {
+    let i;
+    let userNamesConfirmCode = usernameList.map((val) => [val.useremail_reg, val.code, val.confirmed]);
+    for (i=0;i<userNamesConfirmCode.length;i++){
+      if(((log_Email.trim())+(code.trim()) == userNamesConfirmCode[i][0]+userNamesConfirmCode[i][1]) && userNamesConfirmCode[i][2] == 'false'){
+        Axios.put('http://localhost:3001/api/confirm/update',{
+          log_Email: log_Email,
+          confirm:'true',
+      })
+        Swal.fire({
+          icon: 'success',
+          title: 'Confirmed Code'
+        })
+      }
+    }
+  }
   const forceUpdate = useForceUpdate();
 
    function logOut(){
@@ -371,6 +411,15 @@ function LoginForm() {
                     }} ></input>
                   </center>
                 </div>
+                <div>
+                  <center>
+                    <label>Confirmation Code:</label>
+                    <input type="text" placeholder="Enter Confirmation Code" name="confirm" id="log_confirm_code" onChange={(e) => {
+                       setCode(e.target.value)
+                    }} ></input>
+                  </center>
+                </div>
+                <center><button onClick={confirm_User}>Submit Code</button></center>
                 <center><button onClick={login_User}>Login</button></center>
               </div>
      
