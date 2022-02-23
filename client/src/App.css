@@ -17,18 +17,48 @@
   background: rgba(0, 0, 0, 0.5);
   width: 30%;
   margin-left: 75vh;
+  margin-bottom: 30px;
+}
+
+.box1 input{
+  width: 60%;
+  height: 30px;
+  margin-left: 0%;
+  border-radius: 5px;
+  margin-top: 20px;
+  border: 2px solid turquoise;
+  background-color: rgba(97, 43, 122, 0.836);
+  padding: 20px;
+  color: aliceblue;
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
 }
 
 .reply_shown{
   display: block;
-  margin-bottom: -10px;
   margin-top: -20px;
 }
+
+.reply_shown input{
+  width: 40%;
+  height: 30px;
+  margin-left: 0%;
+  border-radius: 5px;
+  margin-top: 20px;
+  border: 2px solid turquoise;
+  background-color: rgba(97, 43, 122, 0.836);
+  padding: 20px;
+  color: aliceblue;
+  font-family: "Courier New", Courier, monospace;
+  font-size: large;
+}
+
+
 
 .reply_hidden{
   visibility: hidden;
   margin-top: -80px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
 
 .login_form button {
@@ -383,6 +413,10 @@ h2 {
   flex-direction: column-reverse;
 }
 
+.replyholder{
+  margin-top: 10px;
+}
+
 
 .card {
   width: 97%;
@@ -401,6 +435,7 @@ h2 {
   margin-bottom: 10px;
   font-family: monospace;
 }
+
 .user {
   display: inline-block;
   padding-left: 7px;
