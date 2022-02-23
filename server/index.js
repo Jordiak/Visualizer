@@ -233,7 +233,19 @@ app.post('/api/sendemail', (req,res) => {
     
 })
 
+//Backend
 
+//Delete Users
+app.delete('/api/username/delete/:useremail',(req,res) => {
+    const userindex= req.params.useremail
+    const sqlDelete= "DELETE FROM user_infos WHERE useremail_reg=?"
+
+    db.query(sqlDelete, userindex, (err,result) => {
+        res.send(result);
+       if (err) console.log(err)
+    })
+
+})
 
 
 app.listen(3001, () => {

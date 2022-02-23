@@ -489,13 +489,15 @@ h2 {
   color: black;
 }
 #listtable {
+  
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
+  font-size: large;
 }
 #listtable td, #listtable th {
-  border: 1px solid rgb(0, 0, 0);
+  border-bottom: 1px solid rgb(107, 107, 107); 
   padding: 8px;
   color: black;
   
@@ -510,5 +512,31 @@ h2 {
   padding-bottom: 12px;
   text-align: left;
   background-color: rgba(86, 139, 139, 0.808);
-  color: white;
+  color: rgb(0, 0, 0);
+}
+
+.pagination{
+  text-align: center;
+}
+.pagination input, .pagination select{
+  height: 30px;
+}
+.pagination button, .backendbtn{
+  background-color: rgba(86, 139, 139, 0.808);
+  border-radius: 8px;
+  border:rgb(0, 0, 0);
+  color: black;
+}
+.backendbtn{
+  font-size: 20px;
+}
+.pagination button:hover, .backendbtn:hover{
+  background-color: rgba(67, 110, 110, 0.808);
+  border-radius: 8px;
+  border:rgb(0, 0, 0);
+  color: black;
+}
+.backendchkbox{
+  width: 20px;
+  height: 20px;
 }
