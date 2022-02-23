@@ -456,7 +456,7 @@ h2 {
 #listtable {
   
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   font-size: large;
@@ -483,15 +483,25 @@ h2 {
 .pagination{
   text-align: center;
 }
-.pagination button{
+.pagination input, .pagination select{
+  height: 30px;
+}
+.pagination button, .backendbtn{
   background-color: rgba(86, 139, 139, 0.808);
-  border-radius: 15%;
+  border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
 }
-.pagination button:hover{
+.backendbtn{
+  font-size: 20px;
+}
+.pagination button:hover, .backendbtn:hover{
   background-color: rgba(67, 110, 110, 0.808);
-  border-radius: 15%;
+  border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
+}
+.backendchkbox{
+  width: 20px;
+  height: 20px;
 }
