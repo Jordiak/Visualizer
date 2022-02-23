@@ -142,15 +142,6 @@ h2 {
   background-size: cover;
   height: 100vh;
 }
-.Admin {
-  background-color: rgba(86, 139, 139, 0.808);
-}
-.ManageUsers {
-  background-color: rgba(86, 139, 139, 0.808);
-}
-.ManageDiscussion {
-  background-color: rgba(86, 139, 139, 0.808);
-}
 .DSleft {
   width: 60%;
   float: left;
@@ -410,27 +401,6 @@ h2 {
   margin-bottom: 10px;
   font-family: monospace;
 }
-.backendcard {
-  width: 97%;
-  height: auto;
-  padding: 20px;
-  border-radius: 10px;
-  margin: 10px;
-  font-size: large;
-  border-radius: 19px;
-  background: rgb(255, 255, 255);
-  margin-bottom: 10px;
-  font-family: monospace;
-}
-.backend_title{
-  color: black;
-  font-size: 48px;
-  text-align: center;
-  font-weight: bold;
-}
-.userinfo{
-  color: black;
-}
 .user {
   display: inline-block;
   padding-left: 7px;
@@ -462,4 +432,48 @@ h2 {
 .ideatext{
    color:violet;
    font-weight: bold;
+}
+/* Backend */
+.Admin {
+  background-color: rgba(86, 139, 139, 0.808);
+}
+.ManageUsersBox {
+  background-color: rgba(255, 255, 255, 0.808);
+  font-family: monospace;
+}
+.ManageDiscussion {
+  background-color: rgba(86, 139, 139, 0.808);
+}
+.backend_title{
+  color: black;
+  font-size: 48px;
+  text-align: center;
+  font-weight: bold;
+}
+.userinfo{
+  color: black;
+}
+#listtable {
+  border-collapse: collapse;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+#listtable td, #listtable th {
+  border: 1px solid rgb(0, 0, 0);
+  padding: 8px;
+  color: black;
+  
+}
+
+#listtable tr:nth-child(even){background-color: #f5f5f5;}
+
+#listtable tr:hover {background-color: #ddd;}
+
+#listtable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgba(86, 139, 139, 0.808);
+  color: white;
 }
