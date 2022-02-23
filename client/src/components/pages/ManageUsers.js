@@ -21,7 +21,7 @@ export default function ManageUsers(){
    ,{  
    Header: 'Avatar',
    accessor: 'useravatar_url',
-   Cell: ({ cell: { value } }) => <img height={30} src={value}/> 
+   Cell: ({ cell: { value } }) => <img height={30} src={value}/>//displays as an image instead of string
   }]
   //Gather UserData
   useEffect(() => {
