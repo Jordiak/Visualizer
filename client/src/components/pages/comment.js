@@ -44,6 +44,7 @@ export default function Comment(){
     useEffect(() => {
       Axios.post('http://localhost:3001/api/reply_get').then((response)=>{
         setReplyList(response.data);
+
     });
         Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
         setcommentList(response.data);
@@ -52,7 +53,7 @@ export default function Comment(){
 
     //append replies to comment
     useEffect(() => {
-      appendReplies(commentList)
+      console.log(replies)
   } , [commentList])
 
     useEffect(() => {
@@ -71,7 +72,7 @@ export default function Comment(){
           else
                comments[i]["reply_details"].push(replies[j])
 
-            console.log(comments[i]);
+            // console.log(comments[i]);
         }
       }
 
@@ -80,6 +81,28 @@ export default function Comment(){
     setcommentList(comments)
   }
 
+  function submitReply(replyMessage, comm_ID){
+    {
+      let new_reply = [];
+      var today = new Date();
+      var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      var dateTime = date+' '+time;
+        Axios.post("http://localhost:3001/api/reply_insert", {
+            Reg_email:ReactSession.get("email"),
+            Reply_content:replyMessage,
+            Reply_written: dateTime,
+            Comment_ID:comm_ID
+        })
+
+
+
+      setReplyList([...replies,{"reply_id":highestReplyID,"reply_written":dateTime,"comment_id":comm_ID,
+      "useravatar_url":ReactSession.get("avatar_url"),"useremail_reg":ReactSession.get("email"),
+    "reply_content":replyMessage,"username_reg":ReactSession.get("username")}])
+      setHighestReplyID(highestReplyID+1)
+      };
+  }
     
     
     
@@ -142,7 +165,6 @@ const forceUpdate = useForceUpdate();
 
     function Login(){
         history.push("/login-form");
-        console.log(new Date().toISOString().slice(0, 19).replace('T', ' '))
         
     }
 
@@ -237,59 +259,6 @@ const forceUpdate = useForceUpdate();
         setOpen((prevState) => !prevState);
       };
 
-      function submitReply(replyMessage, comm_ID){
-        {
-          let new_reply = [];
-          var today = new Date();
-          var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-          var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-          var dateTime = date+' '+time;
-            Axios.post("http://localhost:3001/api/reply_insert", {
-                Reg_email:ReactSession.get("email"),
-                Reply_content:replyMessage,
-                Reply_written: dateTime,
-                Comment_ID:comm_ID
-            })
-
-
-
- 
-var newCommentList= [];
-var newReplyValue = [];
-
-
-         for (let i = 0; i < commentList.length; i++) {
-              var reply_details = [];
-              if(commentList[i]["comment_id"] == comm_ID){
-                var tempHolder = commentList[0]["reply_details"]
-                tempHolder.push({"reply_id":62,
-                "comment_id":comm_ID,"useravatar_url":ReactSession.get("avatar_url"),
-                "reply_content":replyMessage,"reply_written":dateTime,"useremail_reg":ReactSession.get("email"), 
-                "username_reg":ReactSession.get("username")[0]})
-                reply_details.push(tempHolder)
-                // newReplyValue.push(commentList[i]["reply_details"],{"reply_id":highestReplyID,
-                // "comment_id":comm_ID,"useravatar_url":ReactSession.get("avatar_url"),
-                // "reply_content":replyMessage,"reply_written":dateTime,"useremail_reg":ReactSession.get("email"), 
-                // "username_reg":ReactSession.get("username")})
-                
-                  newCommentList.push({"username_reg":commentList[i]["username_reg"],"useremail_reg":commentList[i]["useremail_reg"],
-                  "comment_id":commentList[i]["comment_id"],"comment_text":commentList[i]["comment_text"],
-                  "date_written":commentList[i]["date_written"],"reply_details":reply_details,
-                   "useravatar_url":commentList[i]["useravatar_url"],
-                   "useremail_reg":commentList[i]["useremail_reg"],
-                  "username_reg":commentList[i]["username_reg"]})
-              }
-              else
-                  newCommentList.push(commentList[i])
-            }
-console.log(newCommentList)
-appendReplies(commentList)
-setcommentList(newCommentList)
-
-setHighestReplyID(highestReplyID+1)
-
-          };
-      }
 
 
 
@@ -338,7 +307,7 @@ setHighestReplyID(highestReplyID+1)
         {(() => { 
           if (!commentList.length){
             console.log('comment list was emptied')
-            console.log(backupCommentList)
+            // console.log(backupCommentList)
             setcommentList([...backupCommentList])
           }
         })}
@@ -439,11 +408,10 @@ setHighestReplyID(highestReplyID+1)
 
 
 {/* Replies */}
-{String(val.reply_details) !== "undefined" ? <div>
-              Replies:
-        {val.reply_details.map((item) => (
+
+        {replies.map((item) => (
           <div className="replyholder">
-                      {convertDate(item.reply_written) == "Invalid Date" ? "" :    <div>
+            {item.comment_id == val.comment_id ? <div>{convertDate(item.reply_written) == "Invalid Date" ? "" :    <div>
                                 {item.username_reg}
             <br></br>
             <img src={item.useravatar_url} width="20px" height="20px"></img>
@@ -453,11 +421,12 @@ setHighestReplyID(highestReplyID+1)
             </div>}
 
             
+          </div>:"" }
+          
           </div>
           
         ))}
-              </div> : ""}
-               </div>
+              </div>
 
                
                )
