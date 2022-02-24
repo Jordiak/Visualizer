@@ -192,7 +192,7 @@ function LoginForm() {
     console.log(log_Email, log_Password)
     if(log_Email != null && log_Password!= null)
       for (i=0;i<userNamesPasswordConfirmed.length;i++){
-        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1])){
+        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1]) && userNamesPasswordConfirmed[i][2] == 'true'){
           
           const Toast = Swal.mixin({
             toast: true,
@@ -226,22 +226,32 @@ function LoginForm() {
             ReactSession.set("avatar_url", avatar_url)
           break;
         }
-    }
-
-    if(!isConfirmed){
-      Swal.fire({
-        icon: 'error',
-        title: 'Email has not been confirmed'
-      })
-      document.getElementById('log_password').value = ''
-      dis(true)
-    }
-    else if (!success){
-      Swal.fire({
-        icon: 'error',
-        title: 'Invalid Email or Password'
-      })
-      document.getElementById('log_password').value = ''
+        else if ((log_Email != userNamesPasswordConfirmed[i][0]))
+        {
+          Swal.fire({
+            icon: 'info',
+            title: 'Invalid Email',
+            text: 'Please input a valid email.',
+          })
+          document.getElementById('log_password').value = ''
+        }
+        else if ((log_Password != userNamesPasswordConfirmed[i][1]))
+        {
+          Swal.fire({
+            icon: 'info',
+            title: 'Invalid Password',
+            text: 'Please input a valid password.',
+          })
+          document.getElementById('log_password').value = ''
+        }
+        else if (!isConfirmed){
+          Swal.fire({
+            icon: 'error',
+            title: 'Email has not been confirmed'
+          })
+          document.getElementById('log_password').value = ''
+          dis(true)
+        }
     }
   }
 
