@@ -384,7 +384,7 @@ const forceUpdate = useForceUpdate();
               </div>
           )
         } 
-        else{
+        else if (ReactSession.get("username")){
           return(
             <div>
                <button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
