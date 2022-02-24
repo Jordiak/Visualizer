@@ -17,10 +17,10 @@ try {
 }
 
 const db = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'password',
-    database: 'cruddatabase'
+    host: 'fet4bii3gp90.ap-southeast-2.psdb.cloud',
+    user: 'hsp3kw7sxoqr',
+    password: 'pscale_pw_9H1vNb0tECOu1EjB3cDXDSGC-5pJSVds0CnB-2P9ncM',
+    database: 'dsa-visualizer'
 })
 
 app.use(cors());
