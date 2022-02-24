@@ -251,8 +251,6 @@ app.delete('/api/username/delete/:useremail',(req,res) => {
 })
 
 
-app.listen(3001, () => {
-    console.log("Running on port 3001");
-});
+app.listen(process.env.PORT || 5000);
 
 
