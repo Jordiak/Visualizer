@@ -122,7 +122,7 @@ const forceUpdate = useForceUpdate();
         Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
         // console.log(response.data[0].comment_id)
 
-        if(commentID == 0){
+        if(commentID == null){// setting it to 0 will cause bug for shifting replies to new comment
         setcommentList([...commentList,
           {comment_id:highestCommentID,"useremail_reg":ReactSession.get("email"), "comment_text":comment, "date_written":dateTime, "useravatar_url":ReactSession.get('avatar_url')}])
         setHighestCommentID(highestCommentID+1)
@@ -136,7 +136,7 @@ const forceUpdate = useForceUpdate();
       }) 
       setCommentCount(commentCount + 1)
       setShow(false)
-      setReplyValue("")
+      setReplyValue(" ")
       };
 
       
