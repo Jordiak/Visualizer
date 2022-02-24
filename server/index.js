@@ -43,6 +43,7 @@ app.put('/api/userpass/update', (req,res) => {
     const sqlUpdate ='UPDATE user_infos SET userpassword_reg=? WHERE useremail_reg=?';
 
     db.query(sqlUpdate,[Reg_password,Reg_email], (err,result) =>{
+        res.send(result);
         // if (err) console.log(err)
     })
 })
@@ -55,6 +56,7 @@ app.put('/api/username/update', (req,res) => {
     const sqlUpdate ='UPDATE user_infos SET username_reg=? WHERE useremail_reg=?';
 
     db.query(sqlUpdate,[Reg_username,Reg_email], (err,result) =>{
+        res.send(result);
         // if (err) console.log(err)
     })
 })
@@ -196,6 +198,7 @@ app.put('/api/avatar/update', (req,res) => {
 
     const sqlUpdate ='UPDATE user_infos SET useravatar_url=? WHERE useremail_reg=?';
     db.query(sqlUpdate,[Reg_avatar_url,Reg_email], (err,result) =>{
+        res.send(result);
         // if (err) 
         //     console.log(err)
     })
