@@ -99,6 +99,18 @@ app.delete('/api/comment/delete/:comment_id',(req,res) => {
     })
 
 })
+
+app.delete('/api/reply/delete/:comment_id',(req,res) => {
+    const comment_id=req.params.comment_id
+    const sqlDelete= "DELETE FROM replies_table WHERE comment_id =?"
+
+    db.query(sqlDelete,comment_id, (err,result) => {
+        res.send(result);
+       if (err) console.log(err)
+    })
+
+})
+
 //edit
 app.put('/api/comment/update', (req,res) => {
     const comment_id=req.body.comment_id
@@ -147,6 +159,7 @@ app.post('/api/reply_insert', (req, res)=>{
 
     db.query(sqlInsert, [Reg_email, Reply_content, Reply_written, Comment_ID], (err, result)=>{
         // console.log(err);
+        res.send(result)
     })
 });
 
@@ -222,12 +235,12 @@ app.post('/api/sendemail', (req,res) => {
 
 //Backend
 
-//Delete Multiple Users
-app.delete('/api/username/delete/:useremail_reg',(req,res) => {
-    const Reg_email=req.body.Reg_email
+//Delete Users
+app.delete('/api/username/delete/:useremail',(req,res) => {
+    const userindex= req.params.useremail
     const sqlDelete= "DELETE FROM user_infos WHERE useremail_reg=?"
 
-    db.query(sqlDelete,Reg_email, (err,result) => {
+    db.query(sqlDelete, userindex, (err,result) => {
         res.send(result);
        if (err) console.log(err)
     })

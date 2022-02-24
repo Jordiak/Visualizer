@@ -37,6 +37,7 @@ export default function Comment(){
     const [backupCommentList, setBackupCommentList] =useState([])
     const [replyValue, setReplyValue] = useState("")
     const [highestReplyID, setHighestReplyID] = useState(9900)
+    const [highestCommentID, setHighestCommentID] = useState(1)
 
 
     
@@ -53,7 +54,7 @@ export default function Comment(){
 
     //append replies to comment
     useEffect(() => {
-      console.log(replies)
+      // console.log(replies)
   } , [commentList])
 
     useEffect(() => {
@@ -62,24 +63,6 @@ export default function Comment(){
      }
   } , [commentList])
 
-
-  function appendReplies(comments){
-    for (let i = 0; i < comments.length; i++) {
-      for (let j = 0; j < replies.length; j++) {
-        if(replies[j]["comment_id"] == comments[i]["comment_id"]){
-          if(!comments[i]["reply_details"])
-               comments[i]["reply_details"] = [replies[j]]
-          else
-               comments[i]["reply_details"].push(replies[j])
-
-            // console.log(comments[i]);
-        }
-      }
-
-      // console.log(comments[i]);
-    }
-    setcommentList(comments)
-  }
 
   function submitReply(replyMessage, comm_ID){
     {
@@ -102,6 +85,9 @@ export default function Comment(){
     "reply_content":replyMessage,"username_reg":ReactSession.get("username")}])
       setHighestReplyID(highestReplyID+1)
       };
+      setShow(false)
+      setReplyValue("")
+
   }
     
     
@@ -131,16 +117,27 @@ const forceUpdate = useForceUpdate();
             comment_text:comment,
             date_written: dateTime,
         })
+        
         Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
-        console.log(((response.data)[0].comment_id))
+        // console.log(response.data[0].comment_id)
+
+        if(commentID == 0){
+        setcommentList([...commentList,
+          {comment_id:highestCommentID,"useremail_reg":ReactSession.get("email"), "comment_text":comment, "date_written":dateTime, "useravatar_url":ReactSession.get('avatar_url')}])
+        setHighestCommentID(highestCommentID+1)
+        }
+        else
         setcommentList([
           ...commentList,
           {comment_id:((response.data)[0].comment_id+1),useremail_reg:username, comment_text:comment, date_written:dateTime, useravatar_url:ReactSession.get('avatar_url')},
         ]);
+
       }) 
-      //setCommentCount(commentCount + 1)
-      console.log(commentList)
+      setCommentCount(commentCount + 1)
+      setShow(false)
+      setReplyValue("")
       };
+
       
     
 
@@ -191,7 +188,7 @@ const forceUpdate = useForceUpdate();
             const updatedBackendComments = commentList.filter(val => val.comment_id != id);
             //setDeleteCount(deleteCount + 1);
             setcommentList([...updatedBackendComments]);
-         
+         Axios.delete(`http://localhost:3001/api/reply/delete/${id}`)
 
         }
 
@@ -343,10 +340,10 @@ const forceUpdate = useForceUpdate();
 <br></br>
 
 
-            {ReactSession.get("email") ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            {/* {ReactSession.get("email") ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
               <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
-  <input onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
-</div></div> : ""}
+  <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
+</div></div> : ""} */}
 
                     
 
@@ -385,9 +382,13 @@ const forceUpdate = useForceUpdate();
           return (
             <div>
             
+            <button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
             <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
-            
+              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
+  <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
+</div>
+
               </div>
           )
         } 
@@ -411,8 +412,9 @@ const forceUpdate = useForceUpdate();
 
         {replies.map((item) => (
           <div className="replyholder">
-            {item.comment_id == val.comment_id ? <div>{convertDate(item.reply_written) == "Invalid Date" ? "" :    <div>
-                                {item.username_reg}
+            {item.comment_id == val.comment_id ? <div>{convertDate(item.reply_written) == "Invalid Date" ? "" :    
+            <div>
+                                <label>{item.username_reg}</label>
             <br></br>
             <img src={item.useravatar_url} width="20px" height="20px"></img>
             <span className="reply_message">{item.reply_content}</span>

@@ -1,5 +1,8 @@
 import React from "react";
 import { useTable, useRowSelect, usePagination } from "react-table"; 
+import Axios from 'axios'
+import Swal from 'sweetalert2';
+
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
     const defaultRef = React.useRef()
@@ -11,17 +14,19 @@ const IndeterminateCheckbox = React.forwardRef(
 
     return (
       <>
-        <input type="checkbox" ref={resolvedRef} {...rest} />
+        <input type="checkbox" className="backendchkbox" ref={resolvedRef} {...rest} />
       </>
     )
   }
 )
-const deleteComment=(id)=>{
-
-  /*   
+const deleteComment = arr =>{
+  for (var key in arr) {
+    const userinfo = arr[key];
+    console.log(userinfo.useremail_reg);
+    }
   Swal.fire({
-    title: 'Are you sure you want to delete these records?',
-    text: "Submit?",
+    title: 'Caution',
+    text: "Are you sure you want to delete selected records?",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
@@ -30,20 +35,16 @@ const deleteComment=(id)=>{
     cancelButtonText:'Yes'
   }).then((result) => {
     if (!result.isConfirmed) {
-      Axios.delete(`http://localhost:3001/api/comment/delete/${id}`)
-        const updatedBackendComments = commentList.filter(val => val.comment_id != id);
-        //setDeleteCount(deleteCount + 1);
-        setcommentList([...updatedBackendComments]);
-     
-
+      for (var key in arr) {
+      const userinfo = arr[key];
+      console.log(userinfo.useremail_reg);
+      Axios.delete(`http://localhost:3001/api/username/delete/${userinfo.useremail_reg}`);
+      }
     }
-
-  })*/
-  
-  
-
+  }
+)
 }
-export default function UserTable({ columns, data }) {
+export default function UserTable({ columns, data }) {  
   // Use the useTable Hook to send the columns and data to build the table
   const {
     getTableProps, // table props from react-table
@@ -63,7 +64,7 @@ export default function UserTable({ columns, data }) {
     previousPage,
     setPageSize,
     selectedFlatRows,
-    state: { pageIndex, pageSize, selectedRowIds },
+    state: { pageIndex, pageSize},
   } = useTable(
     {
       columns,
@@ -102,44 +103,6 @@ export default function UserTable({ columns, data }) {
   */
   return (
     <>
-    <pre>
-      <code>
-        {JSON.stringify(
-          {
-            pageIndex,
-            pageSize,
-            pageCount,
-            canNextPage,
-            canPreviousPage,
-          },
-          null,
-          2
-        )}
-      </code>
-    </pre>
-    <table {...getTableProps()} id="listtable">
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
-          prepareRow(row);
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
     <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
@@ -147,20 +110,8 @@ export default function UserTable({ columns, data }) {
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
           {'<'}
         </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          {'>'}
-        </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          {'>>'}
-        </button>{' '}
         <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-        <span>
-          | Go to page:{' '}
+          Go to page:{' '}
           <input
             type="number"
             defaultValue={pageIndex + 1}
@@ -183,22 +134,44 @@ export default function UserTable({ columns, data }) {
             </option>
           ))}
         </select>
-        <button id='deleteUsers' className='commentbtn' onClick={()=>{deleteComment()}}>Delete</button>
-        <pre>
-          <code>
-            {JSON.stringify(
-              {
-                selectedRowIds: selectedRowIds,
-                'selectedFlatRows[].original': selectedFlatRows.map(
-                  d => d.original
-                ),
-              },
-              null,
-              2
-            )}
-          </code>
-        </pre>
+        <button onClick={() => nextPage()} disabled={!canNextPage}>
+          {'>'}
+        </button>{' '}
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+          {'>>'}
+        </button>{' '}
+        <br/>
+        <span>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </span>
       </div>
+    <button className='backendbtn' onClick={()=>{deleteComment(selectedFlatRows.map(d => d.original))}}>Delete</button>
+    <table {...getTableProps()} id="listtable">
+      <thead>
+        {headerGroups.map(headerGroup => (
+          <tr {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map(column => (
+              <th {...column.getHeaderProps()}>{column.render("Header")}</th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      <tbody {...getTableBodyProps()}>
+        {page.map((row, i) => {
+          prepareRow(row);
+          return (
+            <tr {...row.getRowProps()}>
+              {row.cells.map(cell => {
+                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+              })}
+            </tr>
+          );
+        })}
+      </tbody>
+    </table>
     </>
   )
 }

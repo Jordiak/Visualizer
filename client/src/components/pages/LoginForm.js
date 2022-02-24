@@ -192,7 +192,7 @@ function LoginForm() {
     console.log(log_Email, log_Password)
     if(log_Email != null && log_Password!= null)
       for (i=0;i<userNamesPasswordConfirmed.length;i++){
-        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1]) && userNamesPasswordConfirmed[i][2] == 'true'){
+        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1])){
           
           const Toast = Swal.mixin({
             toast: true,
@@ -461,24 +461,24 @@ function LoginForm() {
               <br></br>
                 <div>
                   <center>
-                    <label>Username:</label>
+
                     <input type="text" name="Reg_username" placeholder="Enter Username" id="reg_user_input" onChange={(e) => {
                        setReg_username(e.target.value)
                     }} ></input>
      <br></br>
-                    <label style={{marginLeft:"22px"}}>Email:</label>
+
                     <input type="email" name="Reg_email" placeholder="Enter Email" id="reg_email" onChange={(e) => {
                        setReg_email(e.target.value)
                     }} ></input>
      <br></br>
-                    <label>Password:</label>
+
                     <input type="password" placeholder="Enter Password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                        setReg_password(e.target.value)
                     }} ></input>
 
                     <br></br>
-                    <label>Confirm Password:</label>
-                    <input style={{marginRight:"69px"}} placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
+
+                    <input placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
                        setConf_password(e.target.value)
                     }} ></input>
                   </center>
