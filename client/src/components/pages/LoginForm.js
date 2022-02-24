@@ -442,64 +442,28 @@ function LoginForm() {
               <div className='box1'>
                 
                 <div className='login_form'>
-                  <h1 className='log_h1'>Confirm Code</h1>
+                  <h1 className='log_h1' style={{color:'yellow'}}>Confirm Code</h1>
                   <br></br>
                   <div className='logbox'>
                       <center>
-                        <label style={{marginLeft:"24px"}}>Email:</label>
+                        <label>Email:</label>
                         <input placeholder="Enter Email" type="email" name="email" id="log_email" onChange={(e) => {
                           setLog_Email(e.target.value)
                         }} ></input>
-                      </center>
-                  </div>
-                  <div>
-                      <center>
+                        </center>
+                        <center>
                         <label>Code:</label>
                         <input type="text" placeholder="Enter Confirmation Code" name="confirm" id="log_confirm_code" onChange={(e) => {
                            setCode(e.target.value)
                         }} ></input>
                       </center>
+                  
                   </div>
                       <center><button style={{width:'auto'}} onClick={confirm_User}>Submit Code</button></center>
                 
                <br></br>
                </div>
-     
-              <div>
-              <div className='login_form'>
-              <h1 className='log_h1'>Register</h1>
-              <br></br>
-                <div>
-                  <center>
-
-                    <input type="text" name="Reg_username" placeholder="Enter Username" id="reg_user_input" onChange={(e) => {
-                       setReg_username(e.target.value)
-                    }} ></input>
-     <br></br>
-
-                    <input type="email" name="Reg_email" placeholder="Enter Email" id="reg_email" onChange={(e) => {
-                       setReg_email(e.target.value)
-                    }} ></input>
-     <br></br>
-
-                    <input type="password" placeholder="Enter Password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
-                       setReg_password(e.target.value)
-                    }} ></input>
-
-                    <br></br>
-
-                    <input placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
-                       setConf_password(e.target.value)
-                    }} ></input>
-                  </center>
-                </div>
-                <center><button onClick={registerUser}>Register</button></center>
-              </div>
-                   
-                   {ReactSession.get("username")}
-            </div>
-            </div>
-
+               </div>
           )
         }
         else{
