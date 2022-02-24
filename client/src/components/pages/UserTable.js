@@ -19,14 +19,14 @@ const IndeterminateCheckbox = React.forwardRef(
     )
   }
 )
-const deleteComment = arr =>{
+const deleteUsers = arr =>{
   for (var key in arr) {
     const userinfo = arr[key];
     console.log(userinfo.useremail_reg);
     }
   Swal.fire({
-    title: 'Caution',
-    text: "Are you sure you want to delete selected records?",
+    title: 'Are you sure you want to delete selected records?',
+    text: "",
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
@@ -43,6 +43,9 @@ const deleteComment = arr =>{
     }
   }
 )
+}
+const editUser = str =>{
+  console.log(str);
 }
 export default function UserTable({ columns, data }) {  
   // Use the useTable Hook to send the columns and data to build the table
@@ -103,8 +106,9 @@ export default function UserTable({ columns, data }) {
   */
   return (
     <>
-    <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+      <button className='deletebtn' onClick={()=>{deleteUsers(selectedFlatRows.map(d => d.original))}}>Delete</button>
+      <div className="pagination">    
+      <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}
         </button>{' '}
         <button onClick={() => previousPage()} disabled={!canPreviousPage}>
@@ -140,15 +144,7 @@ export default function UserTable({ columns, data }) {
         <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
           {'>>'}
         </button>{' '}
-        <br/>
-        <span>
-          Page{' '}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{' '}
-        </span>
-      </div>
-    <button className='backendbtn' onClick={()=>{deleteComment(selectedFlatRows.map(d => d.original))}}>Delete</button>
+        </div>
     <table {...getTableProps()} id="listtable">
       <thead>
         {headerGroups.map(headerGroup => (
@@ -156,6 +152,7 @@ export default function UserTable({ columns, data }) {
             {headerGroup.headers.map(column => (
               <th {...column.getHeaderProps()}>{column.render("Header")}</th>
             ))}
+            <th></th>
           </tr>
         ))}
       </thead>
@@ -165,13 +162,27 @@ export default function UserTable({ columns, data }) {
           return (
             <tr {...row.getRowProps()}>
               {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
+                return (
+                  <>
+                <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+              </>
+                )
               })}
+                              <td>
+                <button className="backendbtn" onClick={()=>""}>Edit</button>
+                <button className="deletebtn" onClick={()=>""}>Delete</button>
+              </td>
             </tr>
           );
         })}
       </tbody>
     </table>
+    <p style={{textAlign:"center",fontSize:"15px"}}>
+          Page{' '}
+          <strong>
+            {pageIndex + 1} of {pageOptions.length}
+          </strong>{' '}
+        </p>
     </>
   )
 }

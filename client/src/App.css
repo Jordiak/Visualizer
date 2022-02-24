@@ -489,16 +489,15 @@ h2 {
   color: black;
 }
 #listtable {
-  
   border-collapse: collapse;
-  width: 100%;
+  table-layout: fixed;
   margin-left: auto;
   margin-right: auto;
   font-size: large;
 }
 #listtable td, #listtable th {
   border-bottom: 1px solid rgb(107, 107, 107); 
-  padding: 8px;
+  padding: 5px;
   color: black;
   
 }
@@ -514,21 +513,31 @@ h2 {
   background-color: rgba(86, 139, 139, 0.808);
   color: rgb(0, 0, 0);
 }
-
+.deletebtn{
+  font-size: 15px;
+  background-color: rgba(177, 36, 36, 0.808);
+  border-radius: 8px;
+  border:rgb(0, 0, 0);
+  color: black;
+}
+.deletebtn:hover{
+  background-color: rgba(199, 73, 73, 0.808);
+}
 .pagination{
+  display: inline-block;
   text-align: center;
+  margin-left: calc(50% - 350px);
+
 }
 .pagination input, .pagination select{
   height: 30px;
 }
 .pagination button, .backendbtn{
   background-color: rgba(86, 139, 139, 0.808);
+  font-size: 15px;
   border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
-}
-.backendbtn{
-  font-size: 20px;
 }
 .pagination button:hover, .backendbtn:hover{
   background-color: rgba(67, 110, 110, 0.808);
