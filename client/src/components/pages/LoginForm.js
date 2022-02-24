@@ -226,21 +226,21 @@ function LoginForm() {
             ReactSession.set("avatar_url", avatar_url)
           break;
         }
-        else if ((log_Email != userNamesPasswordConfirmed[i][0]))
+        else if ((log_Email == userNamesPasswordConfirmed[i][0]) && (log_Password == userNamesPasswordConfirmed[i][1]) && (userNamesPasswordConfirmed[i][2] == 'false'))
         {
           Swal.fire({
-            icon: 'info',
-            title: 'Invalid Email',
-            text: 'Please input a valid email.',
+            icon: 'error',
+            title: 'Email has not been confirmed'
           })
           document.getElementById('log_password').value = ''
+          dis(true)
         }
-        else if ((log_Password != userNamesPasswordConfirmed[i][1]))
+        else if ((log_Password != userNamesPasswordConfirmed[i][1]) && (log_Email != userNamesPasswordConfirmed[i][0]))
         {
           Swal.fire({
             icon: 'info',
-            title: 'Invalid Password',
-            text: 'Please input a valid password.',
+            title: 'Invalid Email or Password',
+            text: 'Please input a valid email or password.',
           })
           document.getElementById('log_password').value = ''
         }
@@ -271,8 +271,8 @@ function LoginForm() {
             })
             document.getElementById('log_confirm_code').value = ''
             dis(false);
-            const updatedConfirm=setuserNameList(usernameList.map((val) => {   //maps comment for updating
-              return val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
+            setuserNameList(usernameList.map((val) => { 
+              return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
             }))
           })
         }
@@ -285,7 +285,7 @@ function LoginForm() {
           dis(true);
           console.log('Confirm Code documentID: ',(document.getElementById('log_confirm_code').value),'Confirm Code state: ',code,'Log Email: ',log_Email)
         }
-        else{
+        else if (((log_Email.trim()) != userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false')){
           document.getElementById('log_confirm_code').value = ''
           Swal.fire({
             icon: 'error',
