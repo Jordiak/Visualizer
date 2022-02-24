@@ -19,6 +19,7 @@ function useForceUpdate(){
 export default function Comment(){
 
   let history = useHistory();
+  const {value,setValue} = useContext(UserContext);
     const [comment,setcomment]=useState("");
     const [username,setusername]=useState(ReactSession.get('email'));
     const [commentID,setcommentID]=useState(0);
@@ -338,7 +339,15 @@ const forceUpdate = useForceUpdate();
             <label> {convertDate(val.date_written)}</label>
 
 <br></br>
-
+{(() =>{
+  if (value != "Login/Register"){
+    return(
+      <div>
+        
+      </div>
+    )
+  }
+})}
 
             {/* {ReactSession.get("email") ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
               <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
@@ -360,38 +369,31 @@ const forceUpdate = useForceUpdate();
               </div>
           )
         }
-        else if (val.useremail_reg == ReactSession.get("email") && deleteCount==2){
-          return (
-            <div>
-            
-            <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
-            
-              </div>
-          )
-        }
-        else if (val.useremail_reg == ReactSession.get("email") && editCount==2){
-          return (
-            <div>
-            
-            <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
-            
-              </div>
-          )
-        }
+        
         else if (val.useremail_reg == ReactSession.get("email")) {
           return (
-            <div>
-            
-            <button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            <div>    
+           
             <button id='editBtn' className='commentbtn' onClick={()=>{editing(val)}}>Edit</button>
             <button id='deleteBtn' className='commentbtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
-              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
-  <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
-</div>
-
+            <button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
+            <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
+            </div>
+            
               </div>
           )
         } 
+        else{
+          return(
+            <div>
+               <button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
+            <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
+            <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
+            </div>
+            </div>
+          )
+        }
              
       })()}
       
