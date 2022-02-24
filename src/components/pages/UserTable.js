@@ -38,7 +38,7 @@ const deleteComment = arr =>{
       for (var key in arr) {
       const userinfo = arr[key];
       console.log(userinfo.useremail_reg);
-      Axios.delete(`http://localhost:3001/api/username/delete/${userinfo.useremail_reg}`);
+      Axios.delete(`https://dsa-visualizer-server.herokuapp.com/api/username/delete/${userinfo.useremail_reg}`);
       }
     }
   }

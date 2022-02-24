@@ -18,7 +18,7 @@ function LoginForm() {
   const {value,setValue} = useContext(UserContext);
   //Getting the user infos from the DB
   useEffect(() =>{
-    Axios.get('http://localhost:3001/api/get').then((response)=>{
+    Axios.get('https://dsa-visualizer-server.herokuapp.com/api/get').then((response)=>{
       setuserNameList(response.data)
     })
   },[]) //Calling it once
@@ -114,7 +114,7 @@ function LoginForm() {
     const min = 100000;
     const max = 1000000;
     const rand = String(Math.round(min + Math.random() * (max - min)));
-    Axios.post('http://localhost:3001/api/insert', {
+    Axios.post('https://dsa-visualizer-server.herokuapp.com/api/insert', {
       Reg_username: Reg_username,
       Reg_email: Reg_email, 
       Reg_password: Reg_password,
@@ -160,7 +160,7 @@ function LoginForm() {
 
   //Sending Confirmation E-mail
   try{
-    Axios.post('http://localhost:3001/api/sendemail', {
+    Axios.post('https://dsa-visualizer-server.herokuapp.com/api/sendemail', {
         code: rand,
         email: Reg_email,
     });
@@ -221,7 +221,7 @@ function LoginForm() {
           ReactSession.set("password", userNamesPasswordConfirmed[i][1]);
           setLog_Password("")
           setLog_Email("")
-          Axios.post('http://localhost:3001/api/avatar_get',{
+          Axios.post('https://dsa-visualizer-server.herokuapp.com/api/avatar_get',{
             Reg_email:ReactSession.get('email')}).then((response)=>{set_avatar(response.data[0]["useravatar_url"])})
             ReactSession.set("avatar_url", avatar_url)
           break;
@@ -261,7 +261,7 @@ function LoginForm() {
       let userNamesConfirmCode = usernameList.map((val) => [val.useremail_reg, val.code, val.confirmed]);
       for (i=0;i<userNamesConfirmCode.length;i++){
         if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
-          Axios.put('http://localhost:3001/api/confirm/update',{
+          Axios.put('https://dsa-visualizer-server.herokuapp.com/api/confirm/update',{
             log_Email: log_Email,
             confirm:'true',
           }).then(()=>{
@@ -333,7 +333,7 @@ function LoginForm() {
     let new_avatar = generator.generateRandomAvatar()
     set_avatar(new_avatar)
     ReactSession.set("avatar_url",new_avatar)
-    Axios.put('http://localhost:3001/api/avatar/update',{
+    Axios.put('https://dsa-visualizer-server.herokuapp.com/api/avatar/update',{
             Reg_email: ReactSession.get('email'),
           Reg_avatar_url: new_avatar} )
   
@@ -366,7 +366,7 @@ function LoginForm() {
                 Swal.fire("Password's length must be at least be 5")
             else{
               ReactSession.set("password", newPass)
-              Axios.put('http://localhost:3001/api/userpass/update',{
+              Axios.put('https://dsa-visualizer-server.herokuapp.com/api/userpass/update',{
               Reg_email: ReactSession.get("email"),
               Reg_password: re_EnterPass
              } )
@@ -399,7 +399,7 @@ function LoginForm() {
       })
       
       if (userName) {
-        Axios.put('http://localhost:3001/api/username/update',{
+        Axios.put('https://dsa-visualizer-server.herokuapp.com/api/username/update',{
               Reg_username: userName,
               Reg_email: ReactSession.get("email")
              } )

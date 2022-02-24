@@ -44,11 +44,11 @@ export default function Comment(){
     
     //get comment and replies
     useEffect(() => {
-      Axios.post('http://localhost:3001/api/reply_get').then((response)=>{
+      Axios.post('https://dsa-visualizer-server.herokuapp.com/api/reply_get').then((response)=>{
         setReplyList(response.data);
 
     });
-        Axios.get('http://localhost:3001/api/comment/get').then((response)=>{
+        Axios.get('https://dsa-visualizer-server.herokuapp.com/api/comment/get').then((response)=>{
         setcommentList(response.data);
     });
     } , [])
@@ -72,7 +72,7 @@ export default function Comment(){
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date+' '+time;
-        Axios.post("http://localhost:3001/api/reply_insert", {
+        Axios.post("https://dsa-visualizer-server.herokuapp.com/api/reply_insert", {
             Reg_email:ReactSession.get("email"),
             Reply_content:replyMessage,
             Reply_written: dateTime,
@@ -113,13 +113,13 @@ const forceUpdate = useForceUpdate();
       var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
       var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
       var dateTime = date+' '+time;
-        Axios.post("http://localhost:3001/api/comment/insert", {
+        Axios.post("https://dsa-visualizer-server.herokuapp.com/api/comment/insert", {
             useremail_reg:username,
             comment_text:comment,
             date_written: dateTime,
         })
         
-        Axios.get('http://localhost:3001/api/comment/comment_id/get').then((response)=>{
+        Axios.get('https://dsa-visualizer-server.herokuapp.com/api/comment/comment_id/get').then((response)=>{
         // console.log(response.data[0].comment_id)
 
         if(commentID == null){// setting it to 0 will cause bug for shifting replies to new comment
@@ -185,11 +185,11 @@ const forceUpdate = useForceUpdate();
         cancelButtonText:'Yes'
       }).then((result) => {
         if (!result.isConfirmed) {
-          Axios.delete(`http://localhost:3001/api/comment/delete/${id}`)
+          Axios.delete(`https://dsa-visualizer-server.herokuapp.com/api/comment/delete/${id}`)
             const updatedBackendComments = commentList.filter(val => val.comment_id != id);
             //setDeleteCount(deleteCount + 1);
             setcommentList([...updatedBackendComments]);
-         Axios.delete(`http://localhost:3001/api/reply/delete/${id}`)
+         Axios.delete(`https://dsa-visualizer-server.herokuapp.com/api/reply/delete/${id}`)
 
         }
 
@@ -211,7 +211,7 @@ const forceUpdate = useForceUpdate();
         cancelButtonText:'Yes'
       }).then((result) => {
         if (!result.isConfirmed) {
-          Axios.put('http://localhost:3001/api/comment/update',{
+          Axios.put('https://dsa-visualizer-server.herokuapp.com/api/comment/update',{
             comment_text: newComment,
             comment_id: comment_id,
 

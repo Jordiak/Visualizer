@@ -26,7 +26,7 @@ export default function ManageUsers(){
   //Gather UserData
   useEffect(() => {
     (async () => {
-      const result = await axios("http://localhost:3001/api/get");
+      const result = await axios("https://dsa-visualizer-server.herokuapp.com/api/get");
       setData(result.data);
     })();
   }, []);
@@ -35,6 +35,7 @@ export default function ManageUsers(){
     <>
     <div className="ManageUsersBox">
       <h2 className="backend_title">User Management</h2>
+      {console.log(data)}
       <UserTable columns={columns} data={data} />
     </div>
 </>
