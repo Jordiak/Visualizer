@@ -29,7 +29,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 //Read
 app.get('/api/get', (req, res) =>{
-    const sqlSelect = "SELECT * FROM `user_infos`";
+    const sqlSelect = "SELECT * FROM user_infos";
     db.query(sqlSelect, (err, result) =>{
         res.send(result)
     })
