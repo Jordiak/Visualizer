@@ -469,15 +469,9 @@ h2 {
    font-weight: bold;
 }
 /* Backend */
-.Admin {
-  background-color: rgba(86, 139, 139, 0.808);
-}
-.ManageUsersBox {
+.BackendPage {
   background-color: rgba(255, 255, 255, 0.808);
   font-family: monospace;
-}
-.ManageDiscussion {
-  background-color: rgba(86, 139, 139, 0.808);
 }
 .backend_title{
   color: black;
@@ -490,7 +484,6 @@ h2 {
 }
 #listtable {
   border-collapse: collapse;
-  table-layout: fixed;
   margin-left: auto;
   margin-right: auto;
   font-size: large;
@@ -548,4 +541,37 @@ h2 {
 .backendchkbox{
   width: 20px;
   height: 20px;
+}
+.backendcard {
+  width: 97%;
+  height: auto;
+  padding: 20px;
+  border-color: rgb(0, 0, 0);
+  border-style: solid;
+  border-radius: 5px;
+  margin: 10px;
+  color: black;
+  text-align: left;
+  font-size: large;
+  border-radius: 19px;
+  background: rgba(255, 255, 255);
+  margin-bottom: 10px;
+}
+.backenduser {
+  font-size: 24px;
+  font-weight: bolder;
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  padding-left: 7px;
+}
+.backendinput {
+  background:rgba(233, 233, 233);
+  height: 30px;
+  border-style: hidden;
+  color:black;
+  font-family: monospace;
+  width: 100%;
+  border-color: rgba(233, 233, 233);
+  border-style: solid;
+  border-radius: 5px;
 }

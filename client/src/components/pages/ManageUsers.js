@@ -5,23 +5,30 @@ import axios from 'axios'
 export default function ManageUsers(){
   const [data, setData] = useState([]);
 
-  const columns = [{  
+  const columns = [{
+    Header: 'Avatar',
+    accessor: 'useravatar_url',
+    Cell: ({ cell: { value } }) => <img height={30} src={value}/>
+  }
+  ,{ //displays as an image instead of string
     Header: 'E-Mail',  
-    accessor: 'useremail_reg',
+    accessor: 'useremail_reg'
    }
    ,{  
     Header: 'Username',  
-    accessor: 'username_reg' ,
-    }
-   
+    accessor: 'username_reg'
+    } 
    ,{  
    Header: 'Password',  
-   accessor: 'userpassword_reg' ,
+   accessor: 'userpassword_reg'
    }
    ,{  
-   Header: 'Avatar',
-   accessor: 'useravatar_url',
-   Cell: ({ cell: { value } }) => <img height={30} src={value}/>//displays as an image instead of string
+    Header: 'Confirm Status',  
+    accessor: 'confirmed'
+    }
+    ,{  
+      Header: 'Code',  
+      accessor: 'code'
   }]
   //Gather UserData
   useEffect(() => {
@@ -33,7 +40,7 @@ export default function ManageUsers(){
 
   return (
     <>
-    <div className="ManageUsersBox">
+    <div className="BackendPage">
       <h2 className="backend_title">User Management</h2>
       <UserTable columns={columns} data={data} />
     </div>
