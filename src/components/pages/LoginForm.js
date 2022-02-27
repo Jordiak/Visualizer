@@ -7,6 +7,7 @@ import {AvatarGenerator} from './generator_avatar.ts'
 
 const generator = new AvatarGenerator();
 
+
 //create your forceUpdate hook
 function useForceUpdate(){
   const [value, setValue] = useState(0); // integer state
@@ -18,7 +19,7 @@ function LoginForm() {
   const {value,setValue} = useContext(UserContext);
   //Getting the user infos from the DB
   useEffect(() =>{
-    Axios.get('https://dsa-visualizer-server.herokuapp.com/api/get').then((response)=>{
+    Axios.get('http://localhost:3001/api/get').then((response)=>{
       setuserNameList(response.data)
     })
   },[]) //Calling it once
@@ -114,7 +115,7 @@ function LoginForm() {
     const min = 100000;
     const max = 1000000;
     const rand = String(Math.round(min + Math.random() * (max - min)));
-    Axios.post('https://dsa-visualizer-server.herokuapp.com/api/insert', {
+    Axios.post('http://localhost:3001/api/insert', {
       Reg_username: Reg_username,
       Reg_email: Reg_email, 
       Reg_password: Reg_password,
@@ -160,7 +161,7 @@ function LoginForm() {
 
   //Sending Confirmation E-mail
   try{
-    Axios.post('https://dsa-visualizer-server.herokuapp.com/api/sendemail', {
+    Axios.post('http://localhost:3001/api/sendemail', {
         code: rand,
         email: Reg_email,
     });
@@ -181,78 +182,84 @@ function LoginForm() {
   const [log_Password, setLog_Password] = useState('')
 
 
+  function correctPass_Confirmed(username, email, password){
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 1000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Signed in successfully'
+    })
+
+    
+    document.getElementById('log_email').value = ''
+    document.getElementById('log_password').value = ''
+    {setValue(username)}
+    ReactSession.set("username", username);
+    ReactSession.set("email", email);
+    ReactSession.set("password", password);
+    setLog_Password("")
+    setLog_Email("")
+    Axios.post('http://localhost:3001/api/avatar_get',{
+      Reg_email:ReactSession.get('email')}).then((response)=>{set_avatar(response.data[0]["useravatar_url"])})
+      ReactSession.set("avatar_url", avatar_url)
+  }
+
+
   const login_User = ()=>{
     let isConfirmed = false;
     let success = false;
-    let i;
-    let names = usernameList.map((val)=> [val.username_reg])
-    let userNamesPasswordConfirmed = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg, val.confirmed])
-    console.log(userNamesPasswordConfirmed)
+    // let i;
+    // let names = usernameList.map((val)=> [val.username_reg])
+    // let userNamesPasswordConfirmed = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg, val.confirmed])
+    // console.log(userNamesPasswordConfirmed)
 
-    console.log(log_Email, log_Password)
-    if(log_Email != null && log_Password!= null)
-      for (i=0;i<userNamesPasswordConfirmed.length;i++){
-        if((log_Email+log_Password == userNamesPasswordConfirmed[i][0]+userNamesPasswordConfirmed[i][1]) && userNamesPasswordConfirmed[i][2] == 'true'){
-          
-          const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 1000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
-          })
-          
-          Toast.fire({
-            icon: 'success',
-            title: 'Signed in successfully'
-          })
-          isConfirmed = true;
-          success = true;
-          
-          document.getElementById('log_email').value = ''
-          document.getElementById('log_password').value = ''
-          {setValue(names[i])}
-          ReactSession.set("username", names[i]);
-          ReactSession.set("email", userNamesPasswordConfirmed[i][0]);
-          ReactSession.set("password", userNamesPasswordConfirmed[i][1]);
-          setLog_Password("")
-          setLog_Email("")
-          Axios.post('https://dsa-visualizer-server.herokuapp.com/api/avatar_get',{
-            Reg_email:ReactSession.get('email')}).then((response)=>{set_avatar(response.data[0]["useravatar_url"])})
-            ReactSession.set("avatar_url", avatar_url)
-          break;
-        }
-        else if ((log_Email == userNamesPasswordConfirmed[i][0]) && (log_Password == userNamesPasswordConfirmed[i][1]) && (userNamesPasswordConfirmed[i][2] == 'false'))
-        {
+    Axios.post('http://localhost:3001/api/userpass/check', {
+      Reg_email: log_Email, 
+      Reg_password: log_Password
+  }).then((response) => {
+    console.log(response.data);
+    if(response.data){
+      if(response.data["correct_pass"] && response.data["confirmed"] == 'true'){
+           correctPass_Confirmed(response.data["username_reg"], log_Email, log_Password)
+           isConfirmed = true;
+           success = true;
+           console.log(response.data["correct_pass"])
+           console.log(response.data["confirmed"])
+         }
+      else if(response.data["correct_pass"] && response.data["confirmed"] == 'false'){
           Swal.fire({
             icon: 'error',
             title: 'Email has not been confirmed'
           })
           document.getElementById('log_password').value = ''
           dis(true)
-        }
-        else if ((log_Password != userNamesPasswordConfirmed[i][1]) && (log_Email != userNamesPasswordConfirmed[i][0]))
-        {
+      }
+      else{
           Swal.fire({
             icon: 'info',
             title: 'Invalid Email or Password',
-            text: 'Please input a valid email or password.',
+            text: 'Please input a valid email or password',
           })
           document.getElementById('log_password').value = ''
-        }
-        else if (!isConfirmed){
-          Swal.fire({
-            icon: 'error',
-            title: 'Email has not been confirmed'
-          })
-          document.getElementById('log_password').value = ''
-          dis(true)
-        }
+      }
     }
+    else{
+      alert("Email does not exist")
+    }
+  });
+
+
+
   }
 
   const confirm_User = () => {
@@ -261,7 +268,7 @@ function LoginForm() {
       let userNamesConfirmCode = usernameList.map((val) => [val.useremail_reg, val.code, val.confirmed]);
       for (i=0;i<userNamesConfirmCode.length;i++){
         if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
-          Axios.put('https://dsa-visualizer-server.herokuapp.com/api/confirm/update',{
+          Axios.put('http://localhost:3001/api/confirm/update',{
             log_Email: log_Email,
             confirm:'true',
           }).then(()=>{
@@ -333,7 +340,7 @@ function LoginForm() {
     let new_avatar = generator.generateRandomAvatar()
     set_avatar(new_avatar)
     ReactSession.set("avatar_url",new_avatar)
-    Axios.put('https://dsa-visualizer-server.herokuapp.com/api/avatar/update',{
+    Axios.put('http://localhost:3001/api/avatar/update',{
             Reg_email: ReactSession.get('email'),
           Reg_avatar_url: new_avatar} )
   
@@ -366,7 +373,7 @@ function LoginForm() {
                 Swal.fire("Password's length must be at least be 5")
             else{
               ReactSession.set("password", newPass)
-              Axios.put('https://dsa-visualizer-server.herokuapp.com/api/userpass/update',{
+              Axios.put('http://localhost:3001/api/userpass/update',{
               Reg_email: ReactSession.get("email"),
               Reg_password: re_EnterPass
              } )
@@ -399,7 +406,7 @@ function LoginForm() {
       })
       
       if (userName) {
-        Axios.put('https://dsa-visualizer-server.herokuapp.com/api/username/update',{
+        Axios.put('http://localhost:3001/api/username/update',{
               Reg_username: userName,
               Reg_email: ReactSession.get("email")
              } )
