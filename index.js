@@ -6,6 +6,7 @@ const cors = require('cors')
 const nodemailer = require("nodemailer");
 
 var fs = require('fs');
+const bcrypt = require('bcrypt');
 
 try {
     var data = fs.readFileSync('my-file.txt', 'utf8');
@@ -17,10 +18,10 @@ try {
 }
 
 const db = mysql.createPool({
-    host: 'fet4bii3gp90.ap-southeast-2.psdb.cloud',
-    user: 'hsp3kw7sxoqr',
-    password: 'pscale_pw_9H1vNb0tECOu1EjB3cDXDSGC-5pJSVds0CnB-2P9ncM',
-    database: 'dsa-visualizer'
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'cruddatabase'
 })
 
 app.use(cors());
@@ -35,6 +36,38 @@ app.get('/api/get', (req, res) =>{
     })
 })
 
+//Password Check
+app.post('/api/userpass/check', (req, res) =>{
+
+    const Reg_email = req.body.Reg_email
+    const Reg_password = req.body.Reg_password
+    const sqlSelect = "SELECT userpassword_reg,username_reg,confirmed FROM cruddatabase.user_infos where useremail_reg = ?;";
+    db.query(sqlSelect,[Reg_email], (err, result) =>{
+        try{
+        const is_confirmed = JSON.parse(JSON.stringify(result))[0].confirmed
+        const pass_result = JSON.parse(JSON.stringify(result))[0].userpassword_reg
+        const pass_confirm_obj = JSON.parse(JSON.stringify(result))[0]
+        
+        // pass_confirm_obj.correct_pass = true;
+        // console.log(pass_confirm_obj)
+        bcrypt.compare(Reg_password, pass_result, function(err, result_hashed) {
+            const correctPass_confirmed_obj = {"username_reg":JSON.parse(JSON.stringify(result))[0].username_reg,
+            "confirmed":JSON.parse(JSON.stringify(result))[0].confirmed,
+            "correct_pass":result_hashed}
+
+            console.log(correctPass_confirmed_obj)
+            res.send(correctPass_confirmed_obj)
+            //{ confirmed: 'false', correct_pass: false }
+        });
+    }
+    catch{
+        res.send([])
+    }
+        // console.log(err);
+    })
+})
+
+
 //Password update
 app.put('/api/userpass/update', (req,res) => {
     const Reg_email=req.body.Reg_email
@@ -42,10 +75,12 @@ app.put('/api/userpass/update', (req,res) => {
 
     const sqlUpdate ='UPDATE user_infos SET userpassword_reg=? WHERE useremail_reg=?';
 
-    db.query(sqlUpdate,[Reg_password,Reg_email], (err,result) =>{
-        res.send(result);
-        // if (err) console.log(err)
-    })
+    bcrypt.hash(Reg_password, 10, function(err, hash) {
+        db.query(sqlUpdate,[hash,Reg_email], (err,result) =>{
+            res.send(result);
+            // if (err) console.log(err)
+        })
+    });
 })
 
 //Username update
@@ -176,10 +211,13 @@ app.post('/api/insert', (req, res)=>{
     const code = req.body.code
     const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code) VALUES (?,?,?,?,?,?)"
 
-    db.query(sqlInsert, [Reg_email, Reg_username, Reg_password, Reg_avatar_url, confirmed, code], (err, result)=>{
-        res.send(result);
-        console.log(err);
-    })
+    bcrypt.hash(Reg_password, 10, function(err, hash) {
+        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code], (err, result)=>{
+            res.send(result);
+        })
+    });
+
+
 });
 
 app.post('/api/avatar_get', (req, res) =>{
@@ -251,6 +289,6 @@ app.delete('/api/username/delete/:useremail',(req,res) => {
 })
 
 
-app.listen(process.env.PORT || 5000);
-
-
+app.listen(3001, () => {
+    console.log("Running on port 3001");
+});
