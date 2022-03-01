@@ -7,7 +7,6 @@ import {AvatarGenerator} from './generator_avatar.ts'
 
 const generator = new AvatarGenerator();
 
-
 //create your forceUpdate hook
 function useForceUpdate(){
   const [value, setValue] = useState(0); // integer state
@@ -46,6 +45,7 @@ function LoginForm() {
   const [confirmed, setConfirmed] = useState("false");
   const [code, setCode] = useState("")
   const [enableSubmitCode, setEnableSubmitCode] = useState(false);
+  const [backUpUserList, setBackupUserList] = useState([])
 
   const dis = (param) => {
     setEnableSubmitCode(param);
@@ -112,6 +112,9 @@ function LoginForm() {
     else{
     //Call the api using Axios
     //Generate Random Code for E-Mail Confirmation
+    // let new_avatar = generator.generateRandomAvatar()
+    // set_avatar(new_avatar)
+    // ReactSession.set("avatar_url", new_avatar)
     const min = 100000;
     const max = 1000000;
     const rand = String(Math.round(min + Math.random() * (max - min)));
@@ -132,6 +135,10 @@ function LoginForm() {
       code: rand,
       },
   ])
+
+  Axios.post('http://localhost:3001/api/fetch_user_infos',{
+    Reg_email:Reg_email}).then((response)=>{setUserInfo(response.data)})
+
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -218,10 +225,7 @@ function LoginForm() {
   const login_User = ()=>{
     let isConfirmed = false;
     let success = false;
-    // let i;
-    // let names = usernameList.map((val)=> [val.username_reg])
-    // let userNamesPasswordConfirmed = usernameList.map((val) => [val.useremail_reg, val.userpassword_reg, val.confirmed])
-    // console.log(userNamesPasswordConfirmed)
+
 
     Axios.post('http://localhost:3001/api/userpass/check', {
       Reg_email: log_Email, 
@@ -242,6 +246,8 @@ function LoginForm() {
             title: 'Email has not been confirmed'
           })
           document.getElementById('log_password').value = ''
+          Axios.post('http://localhost:3001/api/fetch_user_infos',{
+            Reg_email:log_Email}).then((response)=>{setUserInfo(response.data)})
           dis(true)
       }
       else{
@@ -262,13 +268,15 @@ function LoginForm() {
 
   }
 
+  const [userInfo, setUserInfo] = useState([]);
+
   const confirm_User = () => {
-      let i;
+    let i;
       let names = usernameList.map((val)=> [val.username_reg])
       let userNamesConfirmCode = usernameList.map((val) => [val.useremail_reg, val.code, val.confirmed]);
       for (i=0;i<userNamesConfirmCode.length;i++){
         if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
-          Axios.put('http://localhost:3001/api/confirm/update',{
+          Axios.put('https://dsa-visualizer-server.herokuapp.com/api/confirm/update',{
             log_Email: log_Email,
             confirm:'true',
           }).then(()=>{
@@ -281,6 +289,8 @@ function LoginForm() {
             setuserNameList(usernameList.map((val) => { 
               return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
             }))
+ 
+            correctPass_Confirmed(Reg_username, log_Email, Reg_password)
           })
         }
         else if ((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) != userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
@@ -290,7 +300,7 @@ function LoginForm() {
             title: 'Incorrect Code'
           })
           dis(true);
-          console.log('Confirm Code documentID: ',(document.getElementById('log_confirm_code').value),'Confirm Code state: ',code,'Log Email: ',log_Email)
+          // console.log('Confirm Code documentID: ',(document.getElementById('log_confirm_code').value),'Confirm Code state: ',code,'Log Email: ',log_Email)
         }
         else if (((log_Email.trim()) != userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false')){
           document.getElementById('log_confirm_code').value = ''
@@ -299,9 +309,52 @@ function LoginForm() {
             title: 'Incorrect Email'
           })
           dis(true);
-          console.log('Confirm Code documentID: ',(document.getElementById('log_confirm_code').value),'Confirm Code state: ',code,'Log Email: ',log_Email)
+          // console.log('Confirm Code documentID: ',(document.getElementById('log_confirm_code').value),'Confirm Code state: ',code,'Log Email: ',log_Email)
         }
       }
+
+    // console.log(userInfo)
+    // console.log(JSON.stringify(userInfo).length == 0)
+    // if(JSON.stringify(userInfo).length != 0){
+    //   console.log(userInfo[0].code)
+    //   console.log(userInfo[0].useremail_reg)
+    //   console.log(userInfo[0].confirmed)
+    //   if((code.trim()) == userInfo[0].code){
+    //     Axios.put('http://localhost:3001/api/confirm/update',{
+    //       log_Email: log_Email,
+    //       confirm:'true',
+    //     }).then(()=>{
+    //       Swal.fire({
+    //         icon: 'success',
+    //         title: 'Confirmed Code'
+    //       })
+    //       document.getElementById('log_confirm_code').value = ''
+    //       dis(false);
+    //       setuserNameList(usernameList.map((val) => { 
+    //         return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
+    //       }))
+    //       correctPass_Confirmed(userInfo[0].username_reg, userInfo[0].useremail_reg, Reg_password)
+    //     })
+    //   }
+
+    //   else if((code.trim()) != userInfo[0].code){
+    //     document.getElementById('log_confirm_code').value = ''
+    //     Swal.fire({
+    //       icon: 'error',
+    //       title: 'Incorrect Code'
+    //     })
+    //     dis(true);
+    //   }
+    // }
+    // else{
+    //   document.getElementById('log_confirm_code').value = ''
+    //   Swal.fire({
+    //     icon: 'error',
+    //     title: 'Incorrect Email'
+    //   })
+    //   dis(true);
+    // }
+
   }
   const forceUpdate = useForceUpdate();
 
@@ -322,12 +375,12 @@ function LoginForm() {
       confirmButtonText: 'No',
       cancelButtonText:'Yes'
     }).then((result) => {
-      {setValue('Login/Register')}
       if (!result.isConfirmed) {
         ReactSession.remove("username");
         ReactSession.remove("email");
         ReactSession.remove("password");
         ReactSession.remove("avatar_url");
+        {setValue('Login/Register')}
         dis(false);
         forceUpdate();
       }
@@ -421,6 +474,58 @@ function LoginForm() {
 
   }
 
+
+  function deleteAccount(){
+    
+    Swal.fire({
+      title: 'Delete Account?',
+      text: "This will delete every info including comments and replies from the account",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Yes'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      cancelButtonText: 'Cancel',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Axios.delete(`http://localhost:3001/api/username/delete/${ReactSession.get("email")}`);
+          setBackupUserList(usernameList.filter(val => val.useremail_reg != ReactSession.get("email")));
+          setuserNameList([...backUpUserList]);
+
+       Axios.delete(`http://localhost:3001/api/user_comment/delete/${ReactSession.get("email")}`);
+       Axios.delete(`http://localhost:3001/api/user_reply/delete/:${ReactSession.get("email")}`);
+       ReactSession.remove("username");
+       ReactSession.remove("email");
+       ReactSession.remove("password");
+       ReactSession.remove("avatar_url");
+       {setValue("Login/Register")}
+       dis(false);
+       forceUpdate();
+            Swal.fire(
+              'Deleted!',
+              'Your account has been deleted.',
+              'success'
+            )
+
+      }
+    })
+      }
+    })
+
+    
+  }
+
   return (
 
 <div className='Home'>
@@ -440,6 +545,10 @@ function LoginForm() {
                      <button onClick={changeAvatar}>Change Avatar</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
+                     <br></br>
+                     <br></br>
+                     <br></br>
+                     <button onClick={deleteAccount}>Delete Account</button>
                 </center>
               </div>
             </div>
@@ -453,13 +562,13 @@ function LoginForm() {
                   <br></br>
                   <div className='logbox'>
                       <center>
-                        <label>Email:</label>
-                        <input placeholder="Enter Email" type="email" name="email" id="log_email" onChange={(e) => {
+                        {/* {document.getElementById("log_email").value = log_Email} */}
+                        <input type="email" value={log_Email} name="email" id="log_email" onChange={(e) => {
                           setLog_Email(e.target.value)
                         }} ></input>
                         </center>
                         <center>
-                        <label>Code:</label>
+           
                         <input type="text" placeholder="Enter Confirmation Code" name="confirm" id="log_confirm_code" onChange={(e) => {
                            setCode(e.target.value)
                         }} ></input>
@@ -482,7 +591,7 @@ function LoginForm() {
               
               <div className='logbox'>
                 <center>
-                  <label style={{marginLeft:"24px"}}>Email:</label>
+
                   <input placeholder="Enter Email" type="email" name="email" id="log_email" onChange={(e) => {
                      setLog_Email(e.target.value)
                   }} ></input>
@@ -490,7 +599,7 @@ function LoginForm() {
               </div>
               <div>
                 <center>
-                  <label>Password:</label>
+
                   <input type="password" placeholder="Enter Password" name="password" id="log_password" onChange={(e) => {
                      setLog_Password(e.target.value)
                   }} ></input>
@@ -505,24 +614,22 @@ function LoginForm() {
             <br></br>
               <div>
                 <center>
-                  <label>Username:</label>
+
                   <input type="text" name="Reg_username" placeholder="Enter Username" id="reg_user_input" onChange={(e) => {
                      setReg_username(e.target.value)
                   }} ></input>
    <br></br>
-                  <label style={{marginLeft:"22px"}}>Email:</label>
+                 
                   <input type="email" name="Reg_email" placeholder="Enter Email" id="reg_email" onChange={(e) => {
                      setReg_email(e.target.value)
                   }} ></input>
    <br></br>
-                  <label>Password:</label>
                   <input type="password" placeholder="Enter Password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                      setReg_password(e.target.value)
                   }} ></input>
 
                   <br></br>
-                  <label>Confirm Password:</label>
-                  <input style={{marginRight:"69px"}} placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
+                  <input placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
                      setConf_password(e.target.value)
                   }} ></input>
                 </center>

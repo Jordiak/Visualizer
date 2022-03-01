@@ -40,6 +40,10 @@ export default function Comment(){
     const [replyValue, setReplyValue] = useState("")
     const [highestReplyID, setHighestReplyID] = useState(9900)
     const [highestCommentID, setHighestCommentID] = useState(1)
+    const [replyCardIndex, setReplyCardIndex] = useState(null);
+    const [commentReplyIndex, setCommentReplyIndex] = useState(null)
+    const [editReplyValue, setEditReplyValue] = useState("")
+    // const [backupReplyList, setBackUpReplyList] = useState([])
 
 
     
@@ -172,6 +176,29 @@ const forceUpdate = useForceUpdate();
       return new Date(date_value).toLocaleString();
     }
 
+    function deleteReply(id){
+      Swal.fire({
+        title: 'Are you sure you?',
+        text: "Submit?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        confirmButtonText: 'No',
+        cancelButtonText:'Yes'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+
+            const updatedReplies = replies.filter(val => val.reply_id != id);
+            //setDeleteCount(deleteCount + 1);
+            setReplyList([...updatedReplies]);
+         Axios.delete(`http://localhost:3001/api/user_reply/delete/${id}`)
+
+        }
+
+      })
+    }
+
     const deleteComment=(id)=>{
 
      
@@ -235,8 +262,8 @@ const forceUpdate = useForceUpdate();
     }
 
     const [show, setShow] = useState(false);
+    const [editReplyShow, setEditReplyShow] = useState(false);
 
-    const visibleCard = show ? "show" : "hide";
 
       
     
@@ -254,9 +281,44 @@ const forceUpdate = useForceUpdate();
            setShow(true)
       }
 
-      const toggleCardVisibility = (e) => {
-        setOpen((prevState) => !prevState);
-      };
+      function handleReplyCardIndex(index, commID){
+        setCommentReplyIndex(commID)
+        setReplyCardIndex(index)
+          if(editReplyShow)
+          setEditReplyShow(false)
+          else
+          setEditReplyShow(true)
+      }
+      
+
+      function editReply(replyID){
+        
+        Swal.fire({
+          title: 'Are you sure you?',
+          text: "Submit?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d33',
+          cancelButtonColor: '#3085d6',
+          confirmButtonText: 'No',
+          cancelButtonText:'Yes'
+        }).then((result) => {
+          if (!result.isConfirmed) {
+            Axios.put('http://localhost:3001/api/comment/update',{
+              comment_text: newComment,
+              comment_id: replyID,
+  
+            } )
+            //setEditCount(editCount + 1);
+            const updatedcomm=setcommentList(commentList.map((val) => {   //maps comment for updating
+              return val.comment_id == replyID?{comment_id:val.comment_id,useravatar_url:val.useravatar_url,useremail_reg:val.useremail_reg,comment_text:newComment,date_written:val.date_written}:val
+            }))
+         
+            setEditReplyShow(false)
+
+          }
+        })
+      }
 
 
 
@@ -350,10 +412,6 @@ const forceUpdate = useForceUpdate();
   }
 })}
 
-            {/* {ReactSession.get("email") ? <div><button className='replybtn' onClick={() => handleCardIndex(val.comment_id)}>Reply</button>
-              <div className={val.comment_id == cardIndex && show ? 'reply_shown' : 'reply_hidden'}>
-  <input value={replyValue} placeholder="Input Reply" onChange={(e) => {setReplyValue(e.target.value)}} type="text"></input> <button onClick={() => submitReply(replyValue, val.comment_id)} className='replybtn'>Confirm</button>
-</div></div> : ""} */}
 
                     
 
@@ -423,6 +481,18 @@ const forceUpdate = useForceUpdate();
             <span className="reply_message">{item.reply_content}</span>
             <br></br>
             {convertDate(item.reply_written)}
+
+
+            {item.useremail_reg == ReactSession.get("email") ?
+             <div>
+            <button className='replybtn' onClick={() => handleReplyCardIndex(item.reply_id, val.comment_id)}>Reply</button>
+             <button className='replybtn' onClick={()=>{deleteReply(item.reply_id)}}>Delete</button>
+
+             <div className={(val.comment_id == commentReplyIndex && item.reply_id == replyCardIndex) && editReplyShow ? 'reply_shown' : 'reply_hidden'}>
+            <input value={editReplyValue} placeholder="Edit Reply" onChange={(e) => {setEditReplyValue(e.target.value)}} type="text"></input> <button onClick={() => editReply(item.reply_id)} className='replybtn'>Confirm</button>
+            </div>
+             
+             </div> : ""}
             </div>}
 
             
