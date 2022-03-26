@@ -33,7 +33,7 @@ export default function ManageUsers(){
   //Gather UserData
   useEffect(() => {
     (async () => {
-      const result = await axios("https://dsa-visualizer-server.herokuapp.com/api/get");
+      const result = await axios("http://localhost:3001/api/get");
       setData(result.data);
     })();
   }, []);
