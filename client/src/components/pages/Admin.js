@@ -9,7 +9,7 @@ function Admin() {
   const {value,setValue} = useContext(UserContext);
   //Getting the user infos from the DB
   useEffect(() =>{
-    Axios.get('https://dsa-visualizer-server.herokuapp.com/api/admin/get').then((response)=>{
+    Axios.get('http://localhost:3001/api/admin/get').then((response)=>{
       setuserNameList(response.data)
     })
   },[]) //Calling it once

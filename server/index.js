@@ -17,7 +17,12 @@ try {
     console.log('Error:', e.stack);
 }
 
-const db = mysql.createConnection(process.env.DATABASE_URL);
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'cruddatabase'
+});
 
 
 app.use(cors())
@@ -356,6 +361,6 @@ app.delete('/api/user_reply/delete/:reg_email',(req,res) => {
 
 })
 
-app.listen(process.env.PORT || 5000);
-
-
+app.listen(3001, () => {
+    console.log("Running on port 3001");
+});
