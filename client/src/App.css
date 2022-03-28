@@ -18,7 +18,7 @@
   margin-top: 30px;
   display: flex;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.5);
+  background:transparent;
   width: 30%;
   margin-left: 75vh;
   margin-bottom: 30px;
@@ -73,10 +73,19 @@
   width: 120px;
   margin-left: 30px;
   font-family: monospace;
+  background:linear-gradient(90deg, rgb(10, 129, 197) 0%,rgb(9, 131, 168) 35%, rgba(0,212,255,1) 100%);
+  border:hidden;
+  border-radius:100px;
+  
 }
 
 .login_form input {
   margin: 5px;
+  border:turquoise solid 1px;
+  width: 70%;
+  height: 2rem;
+  border-radius: 100px;
+  padding:5px;
 }
 
 .login_form label {
@@ -157,28 +166,33 @@ h2 {
 .Sorting {
   width: 100%;
   overflow: hidden;
-  background-image: url("../src/components/images/pixel.jpg");
+  background-image: url("../src/components/images/newwallpaper2.png");
   background-position: center;
   background-size: cover;
   height: 130vh;
+  background-attachment: fixed;
 }
 
 .ShortestPath {
   width: 100%;
   overflow: hidden;
-  background-image: url("../src/components/images/pixel.jpg");
+  background-image: url("../src/components/images/newwallpaper2.png");
   background-position: center;
   background-size: cover;
   height: 115vh;
+  background-attachment: fixed;
 }
 
 .DataStructures {
   width: 100%;
   overflow: hidden;
-  background-image: url("../src/components/images/pixel.jpg");
+  background-image: url("../src/components/images/newwallpaper2.png");
   background-position: center;
   background-size: cover;
   height: 100vh;
+  display: table;
+  background-attachment: fixed;
+  
 }
 .DSleft {
   width: 60%;
@@ -306,6 +320,19 @@ h2 {
   background: white;
   background-size: cover;
   padding:unset;
+}
+
+
+.box1-login {
+  height: 100vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  display:table;
+  background-attachment: fixed;
+  background-image: url("../src/components/images/l2.png");
+  align-items: center;
+  font-family: monospace;
 }
 
 .Home {

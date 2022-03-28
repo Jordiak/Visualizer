@@ -580,7 +580,7 @@ function LoginForm() {
          {(() => {
         if (ReactSession.get('username')){
           return (
-            <div className='box1'>
+            <div className='box1-login'>
               <div className='login_form'>
                 <center>
                 <img className='usericon' width={'120px'} height={'120px'} src={ReactSession.get('avatar_display')}></img>
@@ -603,7 +603,7 @@ function LoginForm() {
           )
         }  else if (enableSubmitCode == true) {
           return (
-              <div className='box1'>
+              <div className='box1-login'>
                 
                 <div className='login_form'>
                   <h1 className='log_h1' style={{color:'yellow'}}>Confirm Code</h1>
@@ -632,7 +632,7 @@ function LoginForm() {
         }
         else{
           return (
-            <div className='box1'>
+            <div className='box1-login'>
             <div className='login_form'>
             <h1 className='log_h1'>Login</h1>
             <br></br>
