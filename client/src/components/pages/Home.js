@@ -1,7 +1,6 @@
 import React from 'react';
 import Typewriter from 'typewriter-effect';
-
-
+import members from '../images/members.png';
 
 
 
@@ -25,6 +24,7 @@ export default function Home(){
                 </h1>
                 </div>
                 <div className='box2'>
+                    <img className= "members-image"src={members}/>
                     <h1 id="typer2" >About DSA Visualizer</h1>
                     <p>
                         DSA Visualizer or Data Structures and Algorithms Visualizer is a website created for the purposes of 

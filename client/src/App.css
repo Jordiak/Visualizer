@@ -328,15 +328,23 @@ h2 {
 
 #typer2 {
   color: rgb(73,72,201);
-  font-size: 10vh;
+  font-size: 9vh;
   font-weight: 700;
   font-family:Georgia, 'Times New Roman', Times, serif;
   text-align: right;
   margin-top: 10%;
   padding-right: 5%;
+  float:right;
   
 }
+.members-image{
+  margin-left:5%;
+  width:508px;
+  height:360px;
+  float:left;
+  margin-top:15%;
 
+}
 #typer0 {
   font-family: monospace;
 }
@@ -346,8 +354,11 @@ h2 {
   font-family:Georgia, 'Times New Roman', Times, serif;
   font-weight: 700;
   text-align: justify;
-  padding:3vh;
-  padding-left: 50%;
+  margin-right:4%;
+  margin-left:7%;
+  margin-top:20%;
+  padding:5vh;
+  padding-left: 40%;
   font-size: 3vh;
   width: 90%;
 }
