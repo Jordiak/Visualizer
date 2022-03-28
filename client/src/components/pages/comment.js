@@ -358,7 +358,7 @@ const forceUpdate = useForceUpdate();
 
      return(
         
-        <div className="box1">
+        <div className="InformationBox1">
             <h1 style={{textAlign:"center"}}>DISCUSSION BOARD</h1>
             <br></br>
             <div className="commentform">
@@ -389,8 +389,8 @@ const forceUpdate = useForceUpdate();
         } else {
           return (
             <div className="commentform">
-              <label>Login to join the discussion!</label>
-              <button onClick={Login} >Login</button>
+              <label style={{color:'black'}}>Login to join the discussion!</label>
+              <button className="disc-button"onClick={Login} >Login</button>
               </div>
           )
         }

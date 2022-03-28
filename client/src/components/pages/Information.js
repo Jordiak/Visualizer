@@ -12,10 +12,13 @@ import speechbubble from '../images/speechbubble.gif';
 
 export default function Information(){
     return(
+        
         <div className='Information'>
-            <span className='InformationDivider'>Data Structures Background Information</span>
+
+
             <div className='InformationBox1'>
                 <div className='leftInfo'>
+                    <div className='rounded-container'>
                 <h1>What are Data Structures?</h1><br/>
                 Data structure is a storage that is used to <span className='htext'>store and organize data</span>. It is a way of arranging data on a computer so that it can be accessed and updated <span className='htext'>efficiently</span>.
 
@@ -40,19 +43,19 @@ export default function Information(){
                     Knowledge about data structures help you understand the working of each data structure. And, based on that you can select the right data structures for your project.
 
                     This helps you <span className='htext'>write memory and time efficient code</span>.
-               
+                    </div>
                 </div>
                 <div className='rightInfo' >
                 <a href='https://www.javatpoint.com/data-structure-introduction' target={"_blank"}><img src={DataStructures1} className="boximg" /></a>
-                    <img src={speechbubble} className="speechbubble1"/>
-                    <img src={girl1} className="girl1"/>
+            
+                    
                 </div>
             </div>
-            <div className='InformationDivider'>
-            Algorithm Background Information
-            </div>
+            
             <div className='InformationBox2'>
                 <div className='leftInfo'>
+                   
+                    <div className="rounded-container">
                 <h1>What is an Algorithm?</h1><br/>
 
                     In computer programming terms, an algorithm is a set of <span className='htext'>well-defined instructions</span> to solve a particular problem. It takes a set of input and produces a desired output. For example,
@@ -73,17 +76,19 @@ export default function Information(){
                     </ul><br/>
                     <h1>Importance of Algorithms</h1>
                     Algorithmic thinking, or the ability to define clear steps to solve a problem, is crucial in many different fields. Even if we’re not conscious of it, we use algorithms and algorithmic thinking all the time. Algorithmic thinking <span className='htext'>allows students to break down problems and conceptualize solutions</span> in terms of discrete steps. Being able to understand and implement an algorithm requires students to practice structured thinking and reasoning abilities.
-                <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'yellow'}} target={"_blank"}>Additional Information</a>
+                <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'black'}} target={"_blank"}>Additional Information</a>
                 </div>
-                <div className='rightInfo' style={{alignContent:'center'}}>
-
-                    <a href='https://www.educba.com/types-of-algorithms/' target={"_blank"}><img src={Algorithms} className='boximg'></img></a>
-                    <img src={speechbubble} className='speechbubble2'></img>
-                    <img src={girl2} className='girl2'></img>
+                
+                
+                
+                
+            
                     
-
+                
+                    
+                
                 </div>
-
+                <a href='https://www.educba.com/types-of-algorithms/' target={"_blank"}><img src={Algorithms} className='boximg2'></img></a>
             </div>
 
         </div>
