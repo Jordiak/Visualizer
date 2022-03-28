@@ -26,6 +26,9 @@
   cursor: pointer;
   text-decoration: none;
   font-size: 2rem;
+  padding-top: 7px;
+  margin-left: -1%;
+  margin-right: 5%;
  
 }
 
@@ -50,7 +53,16 @@
   align-items: center;
   height: 80px;
 }
-
+.nav-item-disc {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  border: 3px outset;
+  border-color: turquoise;
+  height: 37px;
+  margin-top: 10%;
+  
+}
 .nav-links {
   color:rgb(73,72,201);
   text-decoration: none;

@@ -2,7 +2,7 @@ import React,{ useState, useEffect, useContext } from 'react';
 
 import { Link } from 'react-router-dom';
 import './Navbar.css';
-import logoImage from './images/bitLogo.png';
+import logoImage from './images/newL.png';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import { UserContext } from './UserContext';
 import discboardpic from './images/discboard.png';
@@ -23,7 +23,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
       <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-      <img src={logoImage} alt='' width={168} height={82} />
+      <img src={logoImage} alt='' width={163} height={70} />
       </Link>
         
         <div className='menu-icon' onClick={handleClick}>
@@ -55,9 +55,9 @@ function Navbar() {
               Data Structures
             </Link>
           </li>
-          <li className='nav-item'>
+          <li className='nav-item-disc'>
             <Link to='/comments' className='nav-links' onClick={closeMobileMenu}>
-            <img src={discboardpic} alt='comment' width={90} height={68} style={{marginTop:"30px"}} />
+            Discussion Board
             </Link>
           </li>
           {/* <li className='nav-item'>
