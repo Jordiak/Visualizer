@@ -292,7 +292,7 @@ h2 {
   background-position: center;
   display: table;
   background-attachment: fixed;
-  background-image: url("../src/components/images/night5.gif");
+  background-image: url("../src/components/images/newwallpaper.png");
   align-items: center;
   font-family: monospace;
 }
@@ -314,13 +314,15 @@ h2 {
 }
 
 #typer1 {
-  color: aliceblue;
+  color: rgb(73,72,201);
+  text-align: center;
   font-size: 10vh;
   font-weight: 700;
   font-family: monospace;
   display: table-cell;
   vertical-align: middle;
-  text-align: center;
+  width:50%;
+  padding-right: 50%;
 }
 
 #typer2 {

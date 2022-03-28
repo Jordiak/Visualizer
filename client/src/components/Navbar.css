@@ -1,5 +1,8 @@
 .navbar {
-  background:rgb(0,0,34);
+  background-image: url(../components/images/newwallpaper.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -49,7 +52,7 @@
 }
 
 .nav-links {
-  color: white;
+  color:rgb(73,72,201);
   text-decoration: none;
   padding: 0.5rem 1rem;
   font-family:monospace;
