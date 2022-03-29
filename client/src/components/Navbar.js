@@ -23,7 +23,7 @@ function Navbar() {
     <>
       <nav className='navbar'>
       <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-      <img src={logoImage} alt='' width={163} height={70} />
+      <img src={logoImage} alt='' width={154} height={61} />
       </Link>
         
         <div className='menu-icon' onClick={handleClick}>

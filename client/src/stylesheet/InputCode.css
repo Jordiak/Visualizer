@@ -1,11 +1,11 @@
 div.code-write {
-  width: 100%;
+  width: 70%;
   height: 50%;
   margin: 0;
   position: relative;
   float: left;
-  border-color: black;
-  border-width: 1px;
+  border-color:rgb(38,89,166);
+  border-width: 2px;
   border-style: solid;
 }
 

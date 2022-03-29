@@ -79,6 +79,7 @@ button.input-button {
   text-align: middle;
   margin-top: 100px;
   border: none;
+  margin-left:-10%;
   color: white;
   font-size: 15px;
   cursor: pointer;
