@@ -23,13 +23,13 @@
   ;
 }
 .cell.done {
-  background-color: #03af20;
-  border-color: #03af20;
+  background-color: rgb(169,219,251);
+  border-color: rgb(169,219,251);
   transition: all 0.4s ease-out;
 }
 .cell.current {
-  border-color: rgba(255, 22, 22, 0.5);
-  background-color: rgba(255, 22, 22, 0.5);
+  border-color: rgba(238, 255, 143, 0.952);
+  background-color: rgba(238, 255, 143, 0.952);
   transition: all 0.4s ease-out;
 }
 /* FRAME ENDS */
@@ -40,18 +40,19 @@ button {
   text-align: center;
   padding: 10px;
   margin: 10px;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgb(238, 241, 245);
   border-radius: 0px;
-  background:rgb(10,32,62);
+  background:rgb(38,89,166);
   background-size: 600%;
   animation: anime 16s linear infinite;
   border-style: hidden;
   font-weight: bold;
   cursor: pointer;
   font-family: monospace;
-  border: 1px solid rgb(180, 73, 180);
+  border-radius: 7px;
+  border: 3px solid rgb(38,89,166);
 }
-button:hover {background-color:rgb(88,28,118)}
+button:hover {background-color:rgb(113, 220, 228)}
 
 @keyframes anime {
   0% {
@@ -92,8 +93,9 @@ button:hover {background-color:rgb(88,28,118)}
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
-  background-color:rgb(0,0,0, 0.8);
+  background-color:rgba(0, 0, 0, 0);
   border-radius: 12px;
+  color:rgb(38,89,166);
 }
 .navbar-sorting .options {
   margin: 10px;
@@ -172,17 +174,19 @@ button:hover {background-color:rgb(88,28,118)}
   outline: 0px;
 }
 .config-menu {
-  background-color: rgb(0,0,34);
-  color: white;
+  background-color: transparent;
+  color: rgb(38,89,166);
   font-size: 18px;
   text-align: center;
   font-family: monospace;
   width: 70px;
   height: 40px;
   text-overflow: ellipsis;
+  border:rgb(38,89,166) solid 2px;
+  border-radius:5px;
 }
 .config-option {
-  background-color: rgb(0,0,34);
+  background-color: rgb(38,89,166);
   color: white;
   font-size: 18px;
   font-family: monospace;

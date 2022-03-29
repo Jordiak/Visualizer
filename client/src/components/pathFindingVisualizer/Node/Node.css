@@ -1,9 +1,9 @@
 .node {
   width: 25px;
   height: 25px;
-  outline: 2px solid rgba(121, 35, 143, 0.993);
-  display: inline-block;
-  background-color:rgba(175, 169, 169, 0.753);
+  outline: 1px solid rgb(38,89,166);
+  display:inline-block;
+  background-color:transparent;
   
 }
 
@@ -49,7 +49,7 @@
 }
 
 .node-wall {
-  background-color: rgba(197, 229, 231, 0.829);
+  background-color: rgb(139,207,249);
 }
 
 .node-shortest-path {
