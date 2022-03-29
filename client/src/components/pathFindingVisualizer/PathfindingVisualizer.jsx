@@ -7,7 +7,8 @@ import {bfs} from '../pathFindingAlgorithms/bfs';
 import './PathfindingVisualizer.css';
 
 let distancestr='';
-let visited_nodes = -2;
+let visited_nodes =-2;
+let visiNode='';
 
 // main component for the path finding visualizer
 export default class PathfindingVisualizer extends Component {
@@ -322,6 +323,7 @@ export default class PathfindingVisualizer extends Component {
   // draws a path from the start to the end node
   animateShortestPath(nodesInShortestPathOrder) {
     distancestr="Path Distance: "+(nodesInShortestPathOrder.length-3).toString()+" cells"
+   
     // visited_nodes="No. of Visited Nodes: "+ visited_nodes.toString() +" Cells";
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       if (nodesInShortestPathOrder[i] === 'end') {
@@ -344,7 +346,7 @@ export default class PathfindingVisualizer extends Component {
         }, i * 40);
       }
     }
-
+    visiNode="Number of Visited Nodes: "+(visited_nodes-1).toString()+" cells";
     document.getElementById('textDistance').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
     document.getElementById('textDistance1').style.cssText = "color: white;font-weight:800;font-size: larger;font-family: 'Courier New', Courier, monospace;";
   }
@@ -374,6 +376,7 @@ export default class PathfindingVisualizer extends Component {
         }
       }, 10 * i);
     }
+    
   }
 
 
@@ -417,10 +420,10 @@ export default class PathfindingVisualizer extends Component {
         </button>
 
         <br></br>
-        <span id='textDistance'>{distancestr}</span>
+        <span style={{color:'black'}}>{distancestr}</span>
         <br></br>
-        <span id='textDistance1'>Number of visited nodes: {visited_nodes} Cells</span>
-        <h3 style={{color:'rgba(255,255,255,0.5)',fontFamily:'monospace' }}><em>*Draw walls by clicking empty cells. <br/>To move the start(blue) and end(red) points, click and drag them </em></h3>
+        <span style={{color:'black'}}>{visiNode}</span>
+        <h3 style={{color:'black',fontFamily:'monospace' }}><em>*Draw walls by clicking empty cells. <br/>To move the start(blue) and end(red) points, click and drag them </em></h3>
             
         <table
           onMouseLeave={() => this.handleMouseLeave()}>

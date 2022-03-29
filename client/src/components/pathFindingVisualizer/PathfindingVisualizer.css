@@ -24,7 +24,14 @@ table {
 }
 
 .textDistance{
-  color: white;
+  color:black;
+  font-weight:800;
+  font-size: larger;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.textDistance1{
+  color:black;
   font-weight:800;
   font-size: larger;
   font-family: 'Courier New', Courier, monospace;
