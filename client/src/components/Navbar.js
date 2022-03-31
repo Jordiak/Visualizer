@@ -42,12 +42,12 @@ function Navbar() {
           </li>
           <li className='nav-item'>
             <Link to='/sorting-algorithms' className='nav-links' onClick={closeMobileMenu}>
-              Sorting Algorithms
+              Sorting
             </Link>
           </li>
           <li className='nav-item'>
             <Link to='/shortest-path-algorithms' className='nav-links' onClick={closeMobileMenu}>
-              Path Finding Algorithms
+              Path Finding
             </Link>
           </li>
           <li className='nav-item'>
@@ -55,20 +55,19 @@ function Navbar() {
               Data Structures
             </Link>
           </li>
-          <li className='nav-item-disc'>
+          <li className='nav-item'>
+            <Link to='/quiz' className='nav-links' onClick={closeMobileMenu}>
+            Quiz
+            </Link>
+          </li>
+         
+          
+        </ul>
+        <li className='nav-item-disc'>
             <Link to='/comments' className='nav-links' onClick={closeMobileMenu}>
             Discussion Board
             </Link>
           </li>
-          {/* <li className='nav-item'>
-            <Link to='/login-form' className='nav-links' onClick={closeMobileMenu}>
-              Login/Register
-            </Link>
-          </li> */}
-          {/* <li className='nav-item' onClick={closeMobileMenu}>
-          {ReactSession.get("username")}
-          </li> */}
-        </ul>
       </nav>
     </>
   );

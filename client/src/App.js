@@ -16,6 +16,7 @@ import Comment from './components/pages/comment';
 import Admin from './components/pages/Admin';
 import ManageUsers from './components/pages/ManageUsers';
 import ManageDiscussion from './components/pages/ManageDiscussion';
+import Quiz from './components/pages/quiz';
 
 function App() {
   const [value, setValue] = useState('Login/Register')
@@ -58,6 +59,7 @@ function App() {
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
         <Route path="/login-form/:id" exact component={LoginForm} />
+        <Route path="/quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
       </Switch>
     

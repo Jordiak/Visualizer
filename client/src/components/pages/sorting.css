@@ -44,7 +44,6 @@ button {
   border-radius: 0px;
   background:rgb(38,89,166);
   background-size: 600%;
-  animation: anime 16s linear infinite;
   border-style: hidden;
   font-weight: bold;
   cursor: pointer;

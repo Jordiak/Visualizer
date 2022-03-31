@@ -1,7 +1,7 @@
 import React from 'react';
 import Typewriter from 'typewriter-effect';
 import members from '../images/members.png';
-
+import {Link} from 'react-router-dom';
 
 
 
@@ -22,7 +22,10 @@ export default function Home(){
                     }}
                 />
                 </h1>
+                <div className='message2' ><h3 className='message2'>Log in or Register to join our discussion board and to take the daily quiz!</h3></div><br/><br/>
+                    <Link to='/login-form' className='newlogin'> Login/Register</Link>
                 </div>
+                
                 <div className='box2'>
                     <img className= "members-image"src={members}/>
                     <h1 id="typer2" >About DSA Visualizer</h1>
