@@ -70,7 +70,7 @@
   margin-bottom: 0px;
 }
 
-.login_form button {
+/* .login_form button {
   width: 120px;
   margin-left: 30px;
   font-family: monospace;
@@ -78,7 +78,17 @@
   border:hidden;
   border-radius:100px;
   
+} */
+
+.buttonRegLog{
+  margin-left: 30px;
+  font-family: monospace;
+  background: none;
+  border:hidden;
+  color:rgb(0, 0, 0);
 }
+
+
 
 .login_form input {
   margin: 5px;
