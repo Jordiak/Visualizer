@@ -58,6 +58,8 @@ function LoginForm() {
   const [enableSubmitCode, setEnableSubmitCode] = useState(false);
   const [backUpUserList, setBackupUserList] = useState([])
 
+  const [hasAccount, setHasAccount] = useState(true)
+
   const dis = (param) => {
     setEnableSubmitCode(param);
   }
@@ -358,48 +360,6 @@ function LoginForm() {
       }
     }
 
-  // console.log(userInfo)
-  // console.log(JSON.stringify(userInfo).length == 0)
-  // if(JSON.stringify(userInfo).length != 0){
-  //   console.log(userInfo[0].code)
-  //   console.log(userInfo[0].useremail_reg)
-  //   console.log(userInfo[0].confirmed)
-  //   if((code.trim()) == userInfo[0].code){
-  //     Axios.put('http://localhost:3001/api/confirm/update',{
-  //       log_Email: log_Email,
-  //       confirm:'true',
-  //     }).then(()=>{
-  //       Swal.fire({
-  //         icon: 'success',
-  //         title: 'Confirmed Code'
-  //       })
-  //       document.getElementById('log_confirm_code').value = ''
-  //       dis(false);
-  //       setuserNameList(usernameList.map((val) => { 
-  //         return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
-  //       }))
-  //       correctPass_Confirmed(userInfo[0].username_reg, userInfo[0].useremail_reg, Reg_password)
-  //     })
-  //   }
-
-  //   else if((code.trim()) != userInfo[0].code){
-  //     document.getElementById('log_confirm_code').value = ''
-  //     Swal.fire({
-  //       icon: 'error',
-  //       title: 'Incorrect Code'
-  //     })
-  //     dis(true);
-  //   }
-  // }
-  // else{
-  //   document.getElementById('log_confirm_code').value = ''
-  //   Swal.fire({
-  //     icon: 'error',
-  //     title: 'Incorrect Email'
-  //   })
-  //   dis(true);
-  // }
-
 
   }
   const forceUpdate = useForceUpdate();
@@ -632,8 +592,9 @@ function LoginForm() {
         }
         else{
           return (
+
             <div className='box1-login'>
-            <div className='login_form'>
+                          {hasAccount ? <div className='login_form'>
             <h1 className='log_h1'>Login</h1>
             <br></br>
               
@@ -653,10 +614,10 @@ function LoginForm() {
                   }} ></input>
                 </center>
               </div>
-              <center><button onClick={login_User}>Login</button></center>
-            </div>
-   
-            <div>
+              <center><button onClick={login_User}>Login</button>
+              <br></br>
+              <button className="buttonRegLog" onClick={()=>{setHasAccount(false)}}>Don't have an account?</button></center>
+            </div> :             <div>
             <div className='login_form'>
             <h1 className='log_h1'>Register</h1>
             <br></br>
@@ -683,10 +644,14 @@ function LoginForm() {
                 </center>
               </div>
               <center><button onClick={registerUser}>Register</button></center>
+              <button className="buttonRegLog" onClick={()=>{setHasAccount(true)}}>Already have an account?</button>
             </div>
                  
                  {ReactSession.get("username")}
-          </div>
+          </div>}
+            
+   
+
           </div>
 
         )
