@@ -1,18 +1,39 @@
-import React, { Children } from 'react';
-
+import React, { Children,useState } from 'react';
+import "../functions/modal.css";
 import Visualizer from './sortingVisualizer.jsx';
 import './sorting.css';
 import Collapsible from '../functions/Collapsible.js';
 import SideCollapsible from '../functions/SideCollapsible.js';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import noSort from '../images/noSort.PNG';
+import sortSpeed from '../images/sortSpeed.PNG';
+import sortBtn from '../images/sortBtn.PNG';
 
 
 export default function Sorting(){
+    const [modal, setModal] = useState(false);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  if(modal) {
+    document.body.classList.add('active-modal')
+  } else {
+    document.body.classList.remove('active-modal')
+  }
+
     return (
         <div className='Sorting'>
+              
             <div className='left-panel'>
+            
+            <button onClick={toggleModal} className="btn-modal">ⓘ
+            INSTRUCIONS
+      </button>
+
             <SideCollapsible label = "Complexity ➤">
             <h1 style={{textAlign:"center"}}>Sorting Algorithms</h1><br/>
             <h3 style={{textAlign:"center"}}>Big O Time Complexity</h3><br/>
@@ -265,6 +286,13 @@ function heapify(arr, n, i)
                 <div className='left'>
                     <Visualizer />
                 </div>
+
+
+               
+    
+                    
+
+
                 <div className='right'>
                     <Collapsible label="Bubble Sort Information">
                         <h1>Bubble Sort</h1>
@@ -301,6 +329,33 @@ Therefore, it is called a bubble sort.
                         </p>
                     </Collapsible>
                 </div>
+               
+                 
+ 
+      {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Sorting Instructions</h2><br/>
+            <img src={noSort}></img>
+            <p>
+              To select the number of items to sort click on the dropdown menu as shown in the image.
+            </p><br/>
+            <img src={sortSpeed}></img>
+            <p>Select the sorting speed by clicking the dropdown menu.</p><br/>
+            <img src={sortBtn}></img>
+            <p>The Generate items button allows you to generate set of item bars.<br/>
+                The Start button will begin the sorting process.
+            </p><br/>
+            <button className="close-modal" onClick={toggleModal}>
+              x
+            </button>
+          </div>
+        </div>
+      )}
+                
+                 
+  
         </div>
       );
 } 

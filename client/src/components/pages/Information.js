@@ -15,7 +15,8 @@ export default function Information(){
         
         <div className='Information'>
 
-
+    
+    
             <div className='InformationBox1'>
                 <div className='leftInfo'>
                     <div className='rounded-container'>
