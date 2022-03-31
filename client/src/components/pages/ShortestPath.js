@@ -1,16 +1,35 @@
-import React from 'react';
+import React,{useState} from 'react';
 import PathfindingVisualizer from '../pathFindingVisualizer/PathfindingVisualizer'
 import Collapsible from '../functions/Collapsible.js';
 import SideCollapsible from '../functions/SideCollapsible';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import arrow from '../images/arrow.png';
+import "../functions/modal.css";
+import shortPath from '../images/shortPath.PNG';
+import clearWall from '../images/clearWall.PNG';
+import start from '../images/start.PNG';
+import wall from '../images/wall.PNG';
 
 export default function ShortestPath(){
+    const [modal, setModal] = useState(false);
+
+    const toggleModal = () => {
+      setModal(!modal);
+    };
+  
+    if(modal) {
+      document.body.classList.add('active-modal')
+    } else {
+      document.body.classList.remove('active-modal')
+    }
     return(
         <div className='ShortestPath'>
             <div className='left-panel'>
-            
+            <button onClick={toggleModal} className="btn-modal">ⓘ
+            INSTRUCIONS
+      </button>
+
             <SideCollapsible label = "Complexity ➤"  >
             <h1 style={{textAlign:"center"}}>Shortest Path Algorithms</h1><br/>
             <h3 style={{textAlign:"center"}}>Complexity</h3><br/>
@@ -211,7 +230,42 @@ As the name BFS suggests, you are required to <font className="ideatext">travers
                       
             </Collapsible>
             
+
+            
             </div>
+
+            {modal && (
+        <div className="modal">
+          <div onClick={toggleModal} className="overlay"></div>
+          <div className="modal-content">
+            <h2>Path Finding Instructions</h2><br/>
+           
+            <img src={start} style={{width:150}}></img>
+            <p>Drag the starting point (blue) and the ending point (red) to change their positions.</p><br/>
+
+            <img src={wall} style={{width:150}}></img>
+            <p>
+              Click an empty cell to create a wall.
+            </p><br/>
+
+            <img src={clearWall} style={{width:300}}></img>
+            <p>The clear grid button will remove the previous path<br/>
+                Clear wall button will remove walls.
+            </p><br/>
+
+            <img src={shortPath} style={{width:500}}></img>
+            <p>
+              Choose from the available algorithm to start the path finding process.
+            </p><br/>
+
+            <button className="close-modal" onClick={toggleModal}>
+              x
+            </button>
+          </div>
+        </div>
+      )}
+             
+            
         </div>
     );
 }
