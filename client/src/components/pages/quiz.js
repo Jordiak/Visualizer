@@ -26,7 +26,7 @@ export default function Quiz(){
     }
 
     return(
-        <div>
+        <div className='quiz'>
             <QuizQuestion/>
             <button>Next Question</button>
         </div>
