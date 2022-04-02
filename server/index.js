@@ -324,6 +324,28 @@ app.get('/api/admin/get', (req, res) =>{
     })
 })
 
+app.get('/api/admin/get_questions', (req, res) =>{
+    const sqlSelect = "SELECT * FROM quiz_questions";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result)
+    })
+})
+
+app.post('/api/admin/insert_questions', (req, res) =>{
+     
+    const question_type = req.body.question_type
+    const question_content = req.body.question_content
+    const question_choices = req.body.question_choices
+    const correct_answer = req.body.correct_answer
+
+    const sqlInsert= "INSERT INTO quiz_questions (question_type, question_content, question_choices, correct_answer) VALUES (?,?,?,?)"
+    db.query(sqlInsert,[question_type, question_content, question_choices, correct_answer], (err,result)=>{
+        console.log(req.body.question_content);
+        res.send(result);
+        console.log(err);
+    })
+});
+
 //Delete Users
 app.delete('/api/username/delete/:useremail',(req,res) => {
     const userindex= req.params.useremail

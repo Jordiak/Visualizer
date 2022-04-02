@@ -25,6 +25,12 @@ function Navbar() {
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
+          
+          <li className='nav-item'>
+            <Link to='/manage-quiz' className='navb-links' onClick={closeMobileMenu}>
+              Manage Quiz
+            </Link>
+          </li>
           <li className='nav-item'>
             <Link to='/manage-users' className='navb-links' onClick={() => { closeMobileMenu();}}>
               Manage Users

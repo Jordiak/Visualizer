@@ -17,6 +17,7 @@ import Admin from './components/pages/Admin';
 import ManageUsers from './components/pages/ManageUsers';
 import ManageDiscussion from './components/pages/ManageDiscussion';
 import Quiz from './components/pages/quiz';
+import ManageQuiz from './components/pages/ManageQuiz';
 
 function App() {
   const [value, setValue] = useState('Login/Register')
@@ -38,6 +39,7 @@ function App() {
       <UserContext.Provider value={{value,setValue}}>
         <NavbarBackend />
         <Switch>
+        <Route path="/manage-quiz" exact component={ManageQuiz}/>
         <Route path="/manage-users" exact component={ManageUsers} />
         <Route path="/manage-discussion" exact component={ManageDiscussion} />
         </Switch>

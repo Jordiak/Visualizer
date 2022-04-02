@@ -1,34 +1,32 @@
 import React, {useEffect, useState} from 'react';
+import { elements, choices, answers_sets } from './QuizData';
+import Swal from 'sweetalert2';
 
 export default function Quiz(){
 
     const [questionNo, setQuestionNo] = useState(0);
-    const elements = ['question 1', 'question 2', 'question 3'];
-    const choices = ["A. Python\nB. Java\nC. C#\nD. C++", "A. Python\nB. Java\nC. C#\nD. C++",
-    "A. Python\nB. Java\nC. C#\nD. C++"]
-    const answers_sets = ["A", "B", "B"]
-
-    const items = []
   
-    // for (const [index, value] of elements.entries()) {
-    //   items.push(<div>
-    //       <p>{index+1}.{value}</p>
-    //       <strong>{choices[index]}</strong>
-    //   </div>)
-    // }
+    function NextQuestion(){
+        let number = questionNo+1
+        setQuestionNo(number)
+        alert(String(choices[0]))
+        var e = document.getElementById(choices[0].id);
+        var strUser = e.value; // 2
+        var strUser = e.options[e.selectedIndex].text; //test2
+    }
 
     function QuizQuestion(props){
         return(
         <div>
-            {questionNo}.{elements[questionNo]}
+            {choices[questionNo]}{questionNo+1}.{elements[questionNo]}
         </div>
         )
     }
 
     return(
-        <div className='quiz'>
+        <div>
             <QuizQuestion/>
-            <button>Next Question</button>
+            <button onClick={NextQuestion}>Next Question</button>
         </div>
         
     )
