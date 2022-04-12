@@ -75,7 +75,7 @@ data.Priority_Queue.map(d => pq.push(d));
   render() {
     return (
       <div className='samplecode'>
-        <button className='samplecodebutton' onClick={this.closeButton}>Select Data Structure</button>
+        <button className='samplecodebutton' onClick={this.closeButton}>Select</button>
         {(this.state.open)?
           <div className='coverDom2'>
             <div className='changecodecontent'>

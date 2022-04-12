@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 section.show-section {
   width: 65%;
   height: 90%;
@@ -29,8 +30,9 @@ div.text-show1 {
   position: relative;
   text-align: middle;
   border: none;
+  background-color: rgb(103,152,149);
   color: white;
-  padding: 4px;
-  font-size: 14px;
-  font-family: monospace;
+  padding: 7px;
+  font-size: 17px;
+  font-family: "Montserrat", sans-serif;
 }

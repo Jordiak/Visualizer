@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 .samplecode {
   width: 19%;
   height: 4.2%;
@@ -10,17 +11,17 @@
 .samplecodebutton {
   width: auto;
   height: auto;
-  margin-top:55px;
-  margin-left:0;
-  float:right;
-  margin-right:70%;
-  text-align: middle;
+  margin-top:116%;
+  margin-left:-75%;
+  float:left;
+  text-align: left;
   border: none;
   color: white;
+  background-color: rgb(103,152,149);
   font-size: 17px;
+  font-family: "Montserrat", sans-serif;
   cursor: pointer;
-  padding: 5px;
-  font-family: monospace;
+  padding: 7px;
 }
 
 .changecodecontent {
@@ -36,11 +37,12 @@
   position: fixed;
   border-color: black;
   border-width: 5px;
-  border-style: double;
-  background-color: rgba(0, 0, 0, 0.815);
+  border-style: solid;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.815);
   z-index: 1001;
   color: aliceblue;
-  padding:5px;
+  padding:7px;
 }
 
 
