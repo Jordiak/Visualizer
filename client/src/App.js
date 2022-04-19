@@ -18,6 +18,7 @@ import ManageUsers from './components/pages/ManageUsers';
 import ManageDiscussion from './components/pages/ManageDiscussion';
 import Quiz from './components/pages/quiz';
 import ManageQuiz from './components/pages/ManageQuiz';
+import AVL from './components/AVL_Tree/AVL';
 
 function App() {
   const [value, setValue] = useState('Login/Register')
@@ -63,6 +64,7 @@ function App() {
         <Route path="/login-form/:id" exact component={LoginForm} />
         <Route path="/quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
+        <Route path='/AVL' exact component={AVL} />
       </Switch>
     
       <Footer />

@@ -2,10 +2,18 @@ import React from 'react';
 import Collapsible from '../functions/Collapsible.js';
 import Dsa from './Dsa.js';
 import SideCollapsible from '../functions/SideCollapsible.js';
+import { useHistory } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import AVL from '../AVL_Tree/AVL.js';
 
 export default function DataStructures(){
+    let history = useHistory();
+
+    function enterAVL(){
+        history.push("/AVL");
+    }
+
     return(
         <div className='DataStructures'>
             <div className='left-panel'>
@@ -629,6 +637,7 @@ class RBT {
 
             </div>
           </SideCollapsible>
+          <button onClick={enterAVL}>Enter AVL</button>
             </div>
             <div className='DSleft'>
                 <Dsa />

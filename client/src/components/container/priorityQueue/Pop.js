@@ -4,12 +4,7 @@ import PropTypes from 'prop-types'
 import '../../../stylesheet/container/priorityQueue/Pop.css'
 import {PriorityQueue} from 'js_dsal'
 
-/*
-애니메이션 과정
-1. index 0과 index size-1 을 바꿈
-2. index i에 대해 i*2+1, i*2+2를 순차대로비교하여 작은것과 바꿈
-3. 2를 바꿀게없을때 혹은 size보다 큰값이 나올때까지반복
-*/
+
 
 class Pop extends Component {
   // constructor
