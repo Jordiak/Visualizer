@@ -43,9 +43,9 @@ export default function ManageQuiz(){
 
     return(
     <div>
-            <h1>Today's Quiz</h1>
 
-        <div>
+        <div class="quiz-maker-container">
+            <h1>Today's Quiz</h1>
             <h2>Question Number</h2>
             <br></br>
             <label>Type:</label>
@@ -73,32 +73,16 @@ export default function ManageQuiz(){
             
         </div>
         {questionSets.map((val, index)=> 
-        <div>
-            <table>
-                <tr colspan="2" rowspan="2">
-                    <td>
-                    Question {index+1}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                    {val.question_type}
-                    </td>
-                    <td>
-                    {val.question_content} 
-                    </td>
-                </tr>
-                <tr>
-                    <td>{val.question_choices}</td>
-                </tr>
-            </table>
-            {/* Question {index+1}
-            {val.question_type}
-            {val.question_content}
-            {val.question_choices}
-            {val.correct_answer} */}
+        <div class="grid-container">
+            <div id="quiz-content0">Question {index+1}</div>
+            <div id="quiz-content1">{val.question_type}</div>
+            <div id="quiz-content2">{val.question_content}</div>
+            <div id="quiz-content3">{val.question_choices}</div>
+            <div id="quiz-content4">{val.correct_answer}</div>
 
-        </div>)}
+        </div>
+        )
+        }
     </div>
     )
     

@@ -796,3 +796,19 @@ h2 {
     margin: 20px 0;
     line-height: 25px;
 }
+
+.quiz-maker-container{
+  text-align: center;
+}
+
+
+.grid-container{
+  background-color: blue;
+  text-align: center;
+}
+
+#quiz-content0{
+  background-color: skyblue;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 32px;
+}
