@@ -346,6 +346,17 @@ app.post('/api/admin/insert_questions', (req, res) =>{
     })
 });
 
+app.delete('/api/admin/delete_question/:question_id', (req, res) =>{
+    console.log(req.params.question_id)
+    const question_id = req.params.question_id
+    const sqlDelete = "DELETE FROM quiz_questions WHERE question_id =?"
+
+    db.query(sqlDelete, question_id, (err, result)=>{
+        res.send(result);
+        if(err)console.log(err);
+    })
+})
+
 //Delete Users
 app.delete('/api/username/delete/:useremail',(req,res) => {
     const userindex= req.params.useremail
