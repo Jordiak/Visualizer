@@ -204,11 +204,11 @@ DFS(node) {
         </SideCollapsible>
 
             </div>
-            <div className='left'>
+            <div className='left-side'>
                 <PathfindingVisualizer />
                
             </div>
-            <div className='right'>
+            <div className='right-side'>
             <Collapsible label="Dijkstra's Algorithm Information">
                         <h1>Dijkstra's Algorithm</h1>
                         <p>Dijkstra's algorithm allows us to find the <font className="ideatext">shortest path</font> between any two vertices of a graph.It differs from the minimum spanning tree because the shortest distance between two vertices <font className="ideatext">might not include all the vertices</font> of the graph.

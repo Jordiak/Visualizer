@@ -1,12 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 div.code-write {
   width: 70%;
-  height: 50%;
+  height: 25%;
   margin: 0;
+  padding: 5px;
   position: relative;
   float: left;
-  border-color:rgb(38,89,166);
+  border-color:rgb(103,152,149);
   border-width: 2px;
   border-style: solid;
+  border-radius: 15px;
+  font-family: "Montserrat", sans-serif;
 }
 
 div.fixedCode {
@@ -14,6 +18,7 @@ div.fixedCode {
   height: 3%;
   margin: 5px;
   font-size: 13px;
+  font-family: "Montserrat", sans-serif;
 }
 
 textarea.code-write {
@@ -21,11 +26,12 @@ textarea.code-write {
   height: 88%;
   margin: 2px;
   margin-top: 0px;
-  resize: none;
+  resize:horizontal;
   overflow-wrap: off;
   background-color: white;
   border-color: white;
-  font-size: 13px;
+  font-size: 12px;
   font-family: initial;
   outline:0px !important;
+  font-family: "Montserrat", sans-serif;
 }

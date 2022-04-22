@@ -283,7 +283,7 @@ function heapify(arr, n, i)
             </div>
         </SideCollapsible>
             </div>
-                <div className='left'>
+                <div className='left-side'>
                     <Visualizer />
                 </div>
 
@@ -293,7 +293,7 @@ function heapify(arr, n, i)
                     
 
 
-                <div className='right'>
+                <div className='right-side'>
                     <Collapsible label="Bubble Sort Information">
                         <h1>Bubble Sort</h1>
                         <p>Bubble sort is a sorting algorithm that <font className="ideatext">compares two adjacent elements</font> and swaps them until they are not in the intended order.

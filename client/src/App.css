@@ -213,12 +213,12 @@ h2 {
   width: 20%;
   float: right;
 }
-.left {
+.left-side {
   width: 60%;
   float: left;
 }
 
-.right {
+.right-side {
   color: white;
   width: 20%;
   float: right;

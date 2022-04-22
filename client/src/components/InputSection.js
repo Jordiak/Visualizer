@@ -49,7 +49,7 @@ class InputSection extends Component {
       <section className='input-section'>
         <div className='text-input1'>Write Code</div>
         {/* <button className='precaution' onClick={this.changeShow}><img className='cautionImg' src={require('../public/caution.png')} alt='caution'/></button> */}
-        <button className='input-button' onClick={input => this.setState({submit: true})}>INITIALIZE</button>
+        <button className='input-button' onClick={input => this.setState({submit: true})}>Initialize</button>
         <SampleCode changeSample = {(code, data) => this.setState({sampleCode: code, sampleData: data})}/>
         <InputCode submit={this.state.submit} getCode={this.props.getCode} sampleCode = {this.state.sampleCode}/>
         <div className='text-input2'>INPUT DATA</div>
