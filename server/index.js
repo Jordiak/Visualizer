@@ -357,6 +357,28 @@ app.delete('/api/admin/delete_question/:question_id', (req, res) =>{
     })
 })
 
+
+app.get('/api/admin/quiz_id/get', (req,res) =>{
+    const sqlSelect = "SELECT question_id FROM quiz_questions ORDER BY question_id DESC LIMIT 1";
+    db.query(sqlSelect, (err,result) => {
+        res.send(result);
+        // if (err) console.log(err)
+    })
+})
+
+
+app.delete('/api/admin/truncate_question', (req, res) =>{
+
+    const sqlDelete = "TRUNCATE quiz_questions;"
+
+    db.query(sqlDelete, (err, result)=>{
+        res.send(result);
+        console.log("TRUNCATED")
+        if(err)console.log(err);
+    })
+})
+
+
 //Delete Users
 app.delete('/api/username/delete/:useremail',(req,res) => {
     const userindex= req.params.useremail
