@@ -74,11 +74,29 @@ export default function ManageQuiz(){
         </div>
         {questionSets.map((val, index)=> 
         <div>
-            Question {index+1}
+            <table>
+                <tr colspan="2" rowspan="2">
+                    <td>
+                    Question {index+1}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    {val.question_type}
+                    </td>
+                    <td>
+                    {val.question_content} 
+                    </td>
+                </tr>
+                <tr>
+                    <td>{val.question_choices}</td>
+                </tr>
+            </table>
+            {/* Question {index+1}
             {val.question_type}
             {val.question_content}
             {val.question_choices}
-            {val.correct_answer}
+            {val.correct_answer} */}
 
         </div>)}
     </div>
