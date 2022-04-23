@@ -19,13 +19,17 @@ function Navbar() {
   return (
     <>
       <nav className='navbarb'>
-      <img draggable="false" src={logoImage} alt='DSA' width={168} height={82} />
+      <img draggable="false" src={logoImage} alt='DSA' width={168} height={45} />
         
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-          
+        <li className='nav-item'>
+            <Link to='/dashboard' className='navb-links' onClick={closeMobileMenu}>
+              Dashboard
+            </Link>
+          </li>
           <li className='nav-item'>
             <Link to='/manage-quiz' className='navb-links' onClick={closeMobileMenu}>
               Manage Quiz
