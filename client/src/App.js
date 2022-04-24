@@ -62,7 +62,7 @@ function App() {
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
         <Route path="/login-form/:id" exact component={LoginForm} />
-        <Route path="/quiz" exact component={Quiz}/>
+        <Route path="/Quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
         <Route path='/AVL' exact component={AVL} />
       </Switch>

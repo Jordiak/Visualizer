@@ -13,7 +13,7 @@ export default function ManageQuiz(){
     const [choiceD, setChoiceD] = useState("");
     const [correctAnswer, setCorrectAnswer] = useState("");
 
-    //Gather UserData
+
     useEffect(() =>{
         Axios.get('http://localhost:3001/api/admin/get_questions').then((response)=>{
           setQuestionSets(response.data);
@@ -42,7 +42,7 @@ export default function ManageQuiz(){
         Axios.post('http://localhost:3001/api/admin/insert_questions', {
             question_type: questionType,
             question_content: questionContent, 
-            question_choices: choiceA+choiceB+choiceC+choiceD,
+            question_choices: "A. "+choiceA+" B. "+choiceB+" C. "+choiceC+" D. "+choiceD,
             correct_answer: correctAnswer
         });
         setQuestionSets([
@@ -50,7 +50,7 @@ export default function ManageQuiz(){
           { question_id: highestID+1,
             question_type: questionType,
             question_content: questionContent, 
-            question_choices: choiceA+choiceB+choiceC+choiceD,
+            question_choices:  "A. "+choiceA+" B. "+choiceB+" C. "+choiceC+" D. "+choiceD,
             correct_answer: correctAnswer
             },
         ])
@@ -139,10 +139,5 @@ export default function ManageQuiz(){
     </div>
     )
 
-    
-//     let choices = "A. BIll russel B. BIll Gates C. Steve Jobs D. Guido VAn Rossum";
-
-// console.log(choices.split(". "))
-// console.log(choices.split(". ")[3].substring(0,choices.split(". ")[1].length-2));
     
 }
