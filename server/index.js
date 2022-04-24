@@ -378,6 +378,30 @@ app.delete('/api/admin/truncate_question', (req, res) =>{
     })
 })
 
+//Gather Data for Dashboard
+//User
+app.get('/api/admin/user_stats', (req, res) =>{
+    const sqlSelect = "SELECT(SELECT COUNT(*) FROM user_infos) AS 'Total_Users', (SELECT COUNT(*) FROM user_infos WHERE confirmed='true') AS 'Verified_Users';";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
+//Comments & Replies
+app.get('/api/admin/comments_replies_stats', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT COUNT(*) FROM comments_table) AS 'Comments',(SELECT COUNT(*) FROM replies_table) AS 'Replies';";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
+//Quiz
+app.get('/api/admin/quiz_questions_stats', (req, res) =>{
+    const sqlSelect = "SELECT COUNT(*) AS 'Questions' FROM quiz_questions;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 
 //Delete Users
 app.delete('/api/username/delete/:useremail',(req,res) => {

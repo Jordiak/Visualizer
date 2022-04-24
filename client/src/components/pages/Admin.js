@@ -58,7 +58,7 @@ function Admin() {
           setlog_AdminPassword("")
           setlog_AdminUsername("")
 
-          window.location.href = "/manage-users";
+          window.location.href = "/dashboard";
         }
         else if ((log_AdminPassword != userNamesPasswordConfirmed[i][1]) || (log_AdminUsername != userNamesPasswordConfirmed[i][0]))
         {
@@ -71,7 +71,7 @@ function Admin() {
         }
     }
   }
-  if(localStorage.getItem("adminusername")) window.location.href = "/manage-users";
+  if(localStorage.getItem("adminusername")) window.location.href = "/dashboard";
   else{
     return (
       <div className="AdminPage">
