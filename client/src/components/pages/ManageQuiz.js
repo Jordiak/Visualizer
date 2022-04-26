@@ -12,6 +12,7 @@ export default function ManageQuiz(){
     const [choiceC, setChoiceC] = useState("");
     const [choiceD, setChoiceD] = useState("");
     const [correctAnswer, setCorrectAnswer] = useState("");
+    const separator = "`$`";
 
 
     useEffect(() =>{
@@ -42,7 +43,7 @@ export default function ManageQuiz(){
         Axios.post('http://localhost:3001/api/admin/insert_questions', {
             question_type: questionType,
             question_content: questionContent, 
-            question_choices: "A. "+choiceA+" B. "+choiceB+" C. "+choiceC+" D. "+choiceD,
+            question_choices: separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
             correct_answer: correctAnswer
         });
         setQuestionSets([
@@ -50,7 +51,7 @@ export default function ManageQuiz(){
           { question_id: highestID+1,
             question_type: questionType,
             question_content: questionContent, 
-            question_choices:  "A. "+choiceA+" B. "+choiceB+" C. "+choiceC+" D. "+choiceD,
+            question_choices:  separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
             correct_answer: correctAnswer
             },
         ])
@@ -124,7 +125,7 @@ export default function ManageQuiz(){
         </div>
         {questionSets.map((val, index)=> 
         <div class="grid-questions">
-            <div id="quiz-content0">Question {index+1}</div>
+            <div id="quiz-content0"><h1>Question {index+1}</h1></div>
             <div id="quiz-content1">Question Type:{val.question_type}</div>
             <div id="quiz-content2">Question Content:{val.question_content}</div>
             <div id="quiz-content3">Question Choices:{val.question_choices}</div>
