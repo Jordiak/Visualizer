@@ -103,7 +103,8 @@ export default function Quiz(){
             <h1>{prnDt}</h1>
             <QuizQuestion/>
             
-            {questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
+            {questionNo+1 == 1 && questionNo+1 == questionSets.length ? <div class="button-next">
+                <button onClick={NextQuestion}>Finish</button></div>:questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
                 <button onClick={PrevQuestion}>Previous Question</button>
                 <button onClick={NextQuestion}>Next Question</button>
             </div>: questionNo+1 == questionSets.length ?<div class="buttons-positioned">
@@ -112,6 +113,7 @@ export default function Quiz(){
             </div>:<div class="button-next">
                 <button onClick={NextQuestion}>Next Question</button></div>}
             {questionNo+1 + " of " + questionSets.length}
+            
         </div>
         
     )
