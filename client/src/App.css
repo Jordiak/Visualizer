@@ -618,6 +618,8 @@ h2 {
 .userinfo{
   color: black;
 }
+
+
 #listtable {
   background-color: white;
   border-collapse: collapse;
@@ -692,7 +694,21 @@ h2 {
   background: rgba(255, 255, 255);
   margin-bottom: 10px;
 }
-
+.dashboardtable td{
+  vertical-align: top;
+  padding-right: 20px;
+}
+.dashboardcard {
+  width: 100%;
+  padding: 30px;
+  border-color: solid, 5px;
+  margin: 10px;
+  color: black;
+  text-align: left;
+  font-size: large;
+  border-radius: 19px;
+  background: rgba(255, 255, 255);
+}
 .backenduser {
   font-size: 24px;
   font-weight: bolder;

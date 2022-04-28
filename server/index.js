@@ -386,7 +386,20 @@ app.get('/api/admin/user_stats', (req, res) =>{
         res.send(result);
     })
 })
-
+//Get Users Comment Amt (Highest to Lowest)
+app.get('/api/admin/user_stats_comments', (req, res) =>{
+    const sqlSelect = "SELECT useremail_reg as 'Username', COUNT(comment_id) AS 'Comments' FROM comments_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Get Users Reply Amt (Highest to Lowest)
+app.get('/api/admin/user_stats_replies', (req, res) =>{
+    const sqlSelect = "SELECT useremail_reg as 'Username', COUNT(comment_id) AS 'Replies' FROM replies_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 //Comments & Replies
 app.get('/api/admin/comments_replies_stats', (req, res) =>{
     const sqlSelect = "SELECT (SELECT COUNT(*) FROM comments_table) AS 'Comments',(SELECT COUNT(*) FROM replies_table) AS 'Replies';";
