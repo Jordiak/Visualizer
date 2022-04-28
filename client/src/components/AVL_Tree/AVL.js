@@ -11,12 +11,14 @@ class AVL extends Component {
       deleteValue: "",
       searchValue: "",
       previewContent: "",
+      instruction:"",
       tree: new BinarySearchTree()
     };
     this.insert = this.insert.bind(this);
     this.delete = this.delete.bind(this);
     this.resetActiveStatusOfNodes = this.resetActiveStatusOfNodes.bind(this);
     this.resetPreviewContent = this.resetPreviewContent.bind(this);
+    this.resetInstruction=this.resetInstruction.bind(this);
 
     this.traversePreOrder = this.traversePreOrder.bind(this);
     this.traverseInOrder = this.traverseInOrder.bind(this);
@@ -42,6 +44,11 @@ class AVL extends Component {
         previewContent: ""
     })
   }
+  resetInstruction(){
+    this.setState({
+      instruction:""
+    })
+  }
 
   resetActiveStatusOfNodes(){
     this.state.tree.traverseInOrder(this.state.tree.root, function(node) {
@@ -52,6 +59,7 @@ class AVL extends Component {
   onChangeInsertValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       insertValue: parseInt(event.target.value)
     });
@@ -60,6 +68,7 @@ class AVL extends Component {
   onChangeDeleteValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       deleteValue: parseInt(event.target.value)
     });
@@ -68,6 +77,7 @@ class AVL extends Component {
   onChangeSearchValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       searchValue: parseInt(event.target.value)
     });
@@ -76,7 +86,11 @@ class AVL extends Component {
   insert() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.state.tree.insertNewNode(this.state.insertValue);
+    this.setState({
+      instruction:"Inserted node "+this.state.insertValue
+    })
     this.setState({
       insertValue: ""
     });
@@ -85,7 +99,11 @@ class AVL extends Component {
   delete() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.state.tree.delete(this.state.deleteValue);
+    this.setState({
+      instruction:"Deleted node "+this.state.deleteValue
+    })
     this.setState({
       deleteValue: ""
     });
@@ -94,6 +112,7 @@ class AVL extends Component {
   search() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     let searchResult = this.state.tree.find(
       this.state.tree.root,
       this.state.searchValue
@@ -121,6 +140,7 @@ class AVL extends Component {
     this.setState({
       previewContent: values.join(" --> ")
     });
+    
   }
 
   traversePostOrder() {
@@ -174,7 +194,7 @@ class AVL extends Component {
             )}
           </div>
           <div id='description'>
-            Something Something
+            {this.state.instruction}
           </div>
           <div id="basic-actions">
             <div className="action">
