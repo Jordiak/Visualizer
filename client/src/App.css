@@ -849,7 +849,6 @@ h2 {
 #quiz-content0{
   background-color: skyblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-<<<<<<< HEAD
   font-size: 32px;
 }
 
@@ -861,7 +860,6 @@ h2 {
   background-size: cover;
   height: 115vh;
   background-attachment: fixed;
-=======
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -870,5 +868,4 @@ h2 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 24px;
   margin-bottom: 10px;
->>>>>>> 951a2b4106c171738130be749f1ec617d9606925
 }
