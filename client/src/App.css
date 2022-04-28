@@ -798,7 +798,11 @@ h2 {
 }
 
 .user-quiz{
-  background-color: rgb(216, 243, 255);
+  background-image: url("../src/components/images/newwallpaper2.png");
+  background-position: center;
+  background-size: cover;
+  height: 115vh;
+  background-attachment: fixed;
 }
 
 .buttons-positioned{
@@ -814,7 +818,6 @@ h2 {
   font-weight: bold;
   font-size: 52px;
   text-align: center;
-  background-color: rgb(216, 243, 255);
   color: #000000;
   margin-bottom: 2rem;
 }
