@@ -233,7 +233,7 @@ class AVL extends Component {
                 />
               </ul>
             ) : (
-              <h5> Tree is currently empty. Try adding new nodes. </h5>
+              <h5 className="txt"> Tree is currently empty. Add new node</h5>
             )}
           </div>
           
