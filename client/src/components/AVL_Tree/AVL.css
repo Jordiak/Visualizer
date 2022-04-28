@@ -17,6 +17,7 @@
 	width:auto;
 	margin-left:20%;
 	margin-right:20%;
+	padding-top:50px;
   }
   
   #treeAVL {
@@ -36,22 +37,26 @@
   }
 
   #description {
-	display:inline-flex;
-	width: 350px;
-	margin: 30px;
-	margin-left:70px;
-	padding: 10px;
+	display:absolute;
+	width: 500px;
+	margin: 10px;
+	margin-left:24%;
+	margin-top:0px;
+	margin-bottom: 0px;
 	background-color:none;
-	height:auto;
-	border-radius: 20px;
+	height:30px;
+	border-radius: 10px;
 	text-align: center;
+	
   }
   
   #basic-actions {
 	display: inline-flex;
-	padding: 80px 10px;
+	padding: 30px 10px;
 	text-align: justify;
-	width: 450px;
+	width: 100%;
+	margin-left:29%;
+	margin-top:-100px;
   }
   
   #basic-actions .action {

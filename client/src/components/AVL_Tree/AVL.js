@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { isThisTypeNode } from "typescript";
+import Tree from "../pages/Tree";
 import "./AVL.css";
 import BinarySearchTree from "./classes/BinarySearchTree.js";
 import BinarySearchTreeNode from "./components/BinarySearchTreeNode.js";
@@ -12,10 +14,12 @@ class AVL extends Component {
       searchValue: "",
       previewContent: "",
       instruction:"",
-      tree: new BinarySearchTree()
+      tree: new BinarySearchTree(),
+      
     };
     this.insert = this.insert.bind(this);
     this.delete = this.delete.bind(this);
+   
     this.resetActiveStatusOfNodes = this.resetActiveStatusOfNodes.bind(this);
     this.resetPreviewContent = this.resetPreviewContent.bind(this);
     this.resetInstruction=this.resetInstruction.bind(this);
@@ -90,7 +94,7 @@ class AVL extends Component {
     this.state.tree.insertNewNode(this.state.insertValue);
     this.setState({
       instruction:"Inserted node "+this.state.insertValue
-    })
+    });
     this.setState({
       insertValue: ""
     });
@@ -102,7 +106,7 @@ class AVL extends Component {
     this.resetInstruction();
     this.state.tree.delete(this.state.deleteValue);
     this.setState({
-      instruction:"Deleted node "+this.state.deleteValue
+      instruction:"Deleted node "+this.state.deleteValue + this.state.tree.state.rotateDescrip
     })
     this.setState({
       deleteValue: ""
@@ -181,21 +185,7 @@ class AVL extends Component {
     return (
       <div className="AVLdiv">
         <div id="AVL">
-          <div id="treeAVL" className="treeAVL">
-            {hasRootNode ? (
-              <ul>
-                <BinarySearchTreeNode
-                  node={this.state.tree.root}
-                  nodeType="root"
-                />
-              </ul>
-            ) : (
-              <h5> Tree is currently empty. Try adding new nodes. </h5>
-            )}
-          </div>
-          <div id='description'>
-            {this.state.instruction}
-          </div>
+          
           <div id="basic-actions">
             <div className="action">
               <input className='inputTxt'
@@ -225,11 +215,34 @@ class AVL extends Component {
               </button>
             </div>
           </div>
+          <div id='description'>
+            {this.state.instruction}
+
+          </div>
+          <div id='description'>
+         {this.state.tree.rotateDescript}
+          
+          
+          </div>
+          <div id="treeAVL" className="treeAVL">
+            {hasRootNode ? (
+              <ul>
+                <BinarySearchTreeNode
+                  node={this.state.tree.root}
+                  nodeType="root"
+                />
+              </ul>
+            ) : (
+              <h5> Tree is currently empty. Try adding new nodes. </h5>
+            )}
+          </div>
+          
+         
         </div>
         <div id="traversal-preview">
           { this.state.previewContent }
         </div>
-
+            
         <div id="traversal-actions">
           <div className="action">
             <input className='inputTxt'
