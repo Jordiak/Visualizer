@@ -18,6 +18,7 @@ import ManageUsers from './components/pages/ManageUsers';
 import ManageDiscussion from './components/pages/ManageDiscussion';
 import Quiz from './components/pages/quiz';
 import ManageQuiz from './components/pages/ManageQuiz';
+import Dashboard from './components/pages/Dashboard';
 import AVL from './components/AVL_Tree/AVL';
 
 function App() {
@@ -34,12 +35,14 @@ function App() {
       </Router>  
     );
   }
-  else if(window.location.pathname=="/manage-users" || window.location.pathname=="/manage-discussion"){
+  else if(window.location.pathname=="/manage-users" || window.location.pathname=="/manage-discussion"
+  || window.location.pathname=="/dashboard" || window.location.pathname=="/manage-quiz"){
     return (
       <Router>
       <UserContext.Provider value={{value,setValue}}>
         <NavbarBackend />
         <Switch>
+        <Route path="/dashboard" exact component={Dashboard}/>
         <Route path="/manage-quiz" exact component={ManageQuiz}/>
         <Route path="/manage-users" exact component={ManageUsers} />
         <Route path="/manage-discussion" exact component={ManageDiscussion} />
@@ -62,7 +65,7 @@ function App() {
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
         <Route path="/login-form/:id" exact component={LoginForm} />
-        <Route path="/quiz" exact component={Quiz}/>
+        <Route path="/Quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
         <Route path='/AVL' exact component={AVL} />
       </Switch>

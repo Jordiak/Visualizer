@@ -797,19 +797,59 @@ h2 {
     line-height: 25px;
 }
 
+.user-quiz{
+  background-color: rgb(216, 243, 255);
+}
+
+.buttons-positioned{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-next{
+  margin-left: 87%;
+}
+.user-quiz > h1{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 52px;
+  text-align: center;
+  background-color: rgb(216, 243, 255);
+  color: #000000;
+  margin-bottom: 2rem;
+}
+
+.quiz_deleteButton{
+  background-color: rgba(240, 40, 40, 0.777);
+  color:black;
+}
+
+.quiz_editButton{
+  background-color: rgba(202, 230, 26, 0.777);
+  color:black;
+}
 .quiz-maker-container{
   text-align: center;
+  font-size: 24px;
+  background-color: rgb(216, 243, 255);
 }
 
+.quiz-maker-container > h1{
+  font-size: 64px;
+  background-color: skyblue;
+  margin: auto;
+}
 
-.grid-container{
-  background-color: blue;
+.grid-questions{
+  background-color: rgb(216, 243, 255);
   text-align: center;
 }
+
 
 #quiz-content0{
   background-color: skyblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+<<<<<<< HEAD
   font-size: 32px;
 }
 
@@ -821,4 +861,14 @@ h2 {
   background-size: cover;
   height: 115vh;
   background-attachment: fixed;
+=======
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#quiz-content2{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 24px;
+  margin-bottom: 10px;
+>>>>>>> 951a2b4106c171738130be749f1ec617d9606925
 }
