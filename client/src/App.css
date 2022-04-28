@@ -812,3 +812,13 @@ h2 {
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 32px;
 }
+
+.AVLdiv{
+  width: 100%;
+  overflow: hidden;
+  background-image: url("../src/components/images/newwallpaper2.png");
+  background-position: center;
+  background-size: cover;
+  height: 115vh;
+  background-attachment: fixed;
+}

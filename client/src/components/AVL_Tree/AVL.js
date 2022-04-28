@@ -173,10 +173,12 @@ class AVL extends Component {
               <h5> Tree is currently empty. Try adding new nodes. </h5>
             )}
           </div>
-
+          <div id='description'>
+            Something Something
+          </div>
           <div id="basic-actions">
             <div className="action">
-              <input
+              <input className='inputTxt'
                 value={this.state.insertValue}
                 onChange={this.onChangeInsertValue}
                 type="number"
@@ -190,7 +192,7 @@ class AVL extends Component {
             </div>
 
             <div className="action">
-              <input
+              <input className='inputTxt'
                 value={this.state.deleteValue}
                 onChange={this.onChangeDeleteValue}
                 type="number"
@@ -204,7 +206,26 @@ class AVL extends Component {
             </div>
           </div>
         </div>
+        <div id="traversal-preview">
+          { this.state.previewContent }
+        </div>
+
+        <div id="traversal-actions">
+          <div className="action">
+            <input className='inputTxt'
+              value={this.state.searchValue}
+              onChange={this.onChangeSearchValue}
+              type="number"
+            />
+            <button
+              onClick={this.search}
+              className="btn btn-secondary btn-sm"
+            >
+              FIND
+            </button>
+          </div>
       </div>
+    </div>
     );
   }
 }

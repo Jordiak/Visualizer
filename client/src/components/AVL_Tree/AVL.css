@@ -11,7 +11,7 @@
 	border: hidden;
 	border-radius:20px;
 	margin: 40px 60px 0 60px;
-	height: 550px;
+	height: auto;
 	background-color: rgb(139,207,249);
 	text-align: center;
 	width:auto;
@@ -20,7 +20,7 @@
   }
   
   #treeAVL {
-	display: inline-block;
+	display: inline-flex;
 	padding-left: 30px;
 	width: 600px;
 	margin: 20px;
@@ -30,11 +30,23 @@
 	border-radius: 20px;
 	text-align: center;
   }
+
+  #description {
+	display:inline-flex;
+	width: 300px;
+	margin: 20px;
+	padding: 10px;
+	background-color: rgb(207,237,253);
+	height:auto;
+	border-radius: 20px;
+	text-align: center;
+  }
   
   #basic-actions {
+	display: inline-flex;
 	padding: 80px 10px;
-	display: inline-block;
-	width: 300px;
+	text-align: justify;
+	width: 250px;
   }
   
   #basic-actions .action {
@@ -62,6 +74,7 @@
 	width:auto;
 	margin-left:20%;
 	margin-right:20%;
+	text-align: justify;
   }
   
   #traversal-preview {
@@ -75,8 +88,8 @@
   }
   
   #traversal-actions .action {
-	display: inline-block;
-	margin: 0 50px;
+	display: inline-flex;
+	margin-right: 20px;
   }
   
   #traversal-actions .action input{
@@ -169,3 +182,12 @@
 	  -webkit-transition: all 0.5s;
 	  -moz-transition: all 0.5s;
   }
+.inputTxt{
+	margin: 5px;
+	border:turquoise solid 1px;
+	width: 100%;
+	height: 2rem;
+	border-radius: 100px;
+	padding:5px;
+	font-family: "Montserrat", sans-serif;
+}
