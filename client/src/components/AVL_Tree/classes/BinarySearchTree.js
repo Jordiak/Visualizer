@@ -1,15 +1,19 @@
 import React, { Component } from "react";
 import BinarySearchTreeNode from "./BinarySearchTreeNode";
+import AVL from "../AVL";
 class BinarySearchTree extends Component {
   constructor(props)
    {
     super(props);
     this.root = null;
     this.rotateDescript="";
+    this.newlyLeft="";
+    
+   
     
   }
   
-
+  
   insertNewNode(value) {
     const newNode = new BinarySearchTreeNode(value);
     if (this.root === null){
@@ -101,25 +105,30 @@ class BinarySearchTree extends Component {
   
 
   balanceTree(node) {
+    
+  
     if (node.balanceFactor() > 1) {
       if (node.left.balanceFactor() > 0) {
         this.rotateLeftLeft(node);
-        this.rotateDescript= "Performed single right rotation";
+       
+        this.rotateDescript= "Performed single right rotation on the unbalanced node "+node.value  ;
+
+        
       
       
       } else if (node.left.balanceFactor < 0) {
         this.rotateLeftRight(node);
-        this.rotateDescript= "Performed left then right rotation";
+        this.rotateDescript= "Performed left then right rotation on the unbalanced node "+node.value ;
       
       }
     } else if (node.balanceFactor() < -1) {
       if (node.right.balanceFactor() < 0) {
         this.rotateRightRight(node);
-        this.rotateDescript= "Performed single left rotation";
+        this.rotateDescript= "Performed single left rotation on the unbalanced node "+node.value;
    
       } else if (node.right.balanceFactor() > 0) {
         this.rotateRightLeft(node);
-        this.rotateDescript= "Performed right then left rotation";
+        this.rotateDescript= "Performed right then left rotation on the unbalanced node "+node.value;
         
       }
     }
@@ -127,7 +136,9 @@ class BinarySearchTree extends Component {
   }
 
   rotateLeftLeft(rootNode) {
+    
     const leftNode = rootNode.left;
+    
     rootNode.setLeft(null);
     if (rootNode.parent) {
       rootNode.parent.setLeft(leftNode);

@@ -19,7 +19,7 @@ class AVL extends Component {
     };
     this.insert = this.insert.bind(this);
     this.delete = this.delete.bind(this);
-   
+    this.newlyInserted="";
     this.resetActiveStatusOfNodes = this.resetActiveStatusOfNodes.bind(this);
     this.resetPreviewContent = this.resetPreviewContent.bind(this);
     this.resetInstruction=this.resetInstruction.bind(this);
@@ -34,6 +34,7 @@ class AVL extends Component {
     this.onChangeInsertValue = this.onChangeInsertValue.bind(this);
     this.onChangeSearchValue = this.onChangeSearchValue.bind(this);
     this.onChangeDeleteValue = this.onChangeDeleteValue.bind(this);
+  
   }
 
   pause(milliseconds) {
@@ -52,6 +53,7 @@ class AVL extends Component {
     this.setState({
       instruction:""
     })
+    this.state.tree.rotateDescript="";
   }
 
   resetActiveStatusOfNodes(){
@@ -92,12 +94,17 @@ class AVL extends Component {
     this.resetPreviewContent();
     this.resetInstruction();
     this.state.tree.insertNewNode(this.state.insertValue);
+    this.newlyInserted=this.state.insertValue;
     this.setState({
-      instruction:"Inserted node "+this.state.insertValue
+      instruction:"Inserted node "+this.state.insertValue,
+      
+      
     });
     this.setState({
       insertValue: ""
     });
+    
+
   }
 
   delete() {
@@ -106,7 +113,7 @@ class AVL extends Component {
     this.resetInstruction();
     this.state.tree.delete(this.state.deleteValue);
     this.setState({
-      instruction:"Deleted node "+this.state.deleteValue + this.state.tree.state.rotateDescrip
+      instruction:"Deleted node "+this.state.deleteValue
     })
     this.setState({
       deleteValue: ""
@@ -126,7 +133,7 @@ class AVL extends Component {
       searchResult.active = true;
     } else {
       this.setState({
-        previewContent: "Not Found!"
+        previewContent: this.state.searchValue + " is not found in the tree."
       });
     }
 
@@ -220,7 +227,7 @@ class AVL extends Component {
 
           </div>
           <div id='description'>
-         {this.state.tree.rotateDescript}
+         {this.state.tree.rotateDescript} 
           
           
           </div>

@@ -23,12 +23,14 @@
   
   #treeAVL {
 	display: inline-flex;
-	padding-left: 10px;
-	width: 800px;
-	margin: 20px;
+	padding:inherit;
+	margin-top:15px;
+	min-width: 700px;
+	width: auto;
+	padding-left:10%;
+	padding-right:10%;
 	margin-bottom: -50px;
-	padding: 10px;
-	background-color: rgb(207,237,253);
+	background-color:rgb(207,237,253);
 	height:400px;
 	border-radius: 20px;
 	text-align: center;
@@ -37,14 +39,31 @@
 	overflow-x: auto;
 	font-family: "Montserrat", sans-serif;
   }
-
+.treeAVL ::-webkit-scrollbar {
+	width: 10px;
+  }
+  
+  /* Track */
+  .treeAVL ::-webkit-scrollbar-track {
+	background: #c7f7f4d2;
+  }
+  
+  /* Handle */
+  .treeAVL ::-webkit-scrollbar-thumb {
+	background: rgb(116, 25, 25);
+	border-radius: 4px;
+  }
+  
+  /* Handle on hover */
+  .treeAVL ::-webkit-scrollbar-thumb:hover {
+	background: #555;
+  }
   #description {
 	display:absolute;
 	width: 500px;
-	margin: 10px;
+	margin-top:-15px;
 	margin-left:24%;
-	margin-top:0px;
-	margin-bottom: 0px;
+	margin-bottom: 15px;
 	background-color:none;
 	height:30px;
 	border-radius: 10px;
@@ -60,7 +79,7 @@
   }
   #basic-actions {
 	display: inline-flex;
-	padding: 30px 10px;
+	padding: 20px 10px;
 	text-align: justify;
 	width: 100%;
 	margin-left:29%;
@@ -162,7 +181,7 @@
   }
   
   .treeAVL li:last-child::before{
-	  border-right: 3px solid yellow;
+	  border-right: 3px solid violet;
 	  border-radius: 0 5px 0 0;
 	  -webkit-border-radius: 0 5px 0 0;
 	  -moz-border-radius: 0 5px 0 0;

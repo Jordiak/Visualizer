@@ -483,12 +483,13 @@ h2 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #36c4c9;
+  border-radius: 4px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(79, 151, 192);
   border-radius: 4px;
 }
 
