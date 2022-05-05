@@ -31,14 +31,35 @@ export default function Quiz(){
         return(
         <div class="grid-questions">
             <div id="quiz-content0"><h1>Question {questionNo+1}</h1></div>
-            <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
-            <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
-            <div id="quiz-content3"><button>A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
-            <div id="quiz-content3"><button>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
-            <div id="quiz-content3"><button>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
-            <div id="quiz-content3"><button>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
-            <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
-            <br></br>
+            {questionSets[questionNo]?.question_type == "Multiple Choice" ?
+            <div>
+                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
+                <div id="quiz-content3"><button>A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
+                <div id="quiz-content3"><button>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
+                <div id="quiz-content3"><button>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
+                <div id="quiz-content3"><button>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
+                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+                <br></br>
+            </div> : questionSets[questionNo]?.question_type == "True or False" ? 
+            <div>
+                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
+                <div id="quiz-content3"><button id="true_button">True</button></div>
+                <div id="quiz-content3"><button id="false_button">False</button></div>
+                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+            </div> 
+
+            : questionSets[questionNo]?.question_type == "Fill in the Blank" ? 
+            <div> 
+                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
+                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+            </div>
+
+
+           : ""}
+
         
         </div>
         )

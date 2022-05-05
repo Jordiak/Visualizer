@@ -39,22 +39,64 @@ export default function ManageQuiz(){
     },[])
 
 
-    function AddQuestion(){
-        Axios.post('http://localhost:3001/api/admin/insert_questions', {
-            question_type: questionType,
-            question_content: questionContent, 
-            question_choices: separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
-            correct_answer: correctAnswer
-        });
-        setQuestionSets([
-          ...questionSets,
-          { question_id: highestID+1,
-            question_type: questionType,
-            question_content: questionContent, 
-            question_choices:  separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
-            correct_answer: correctAnswer
-            },
-        ])
+    function AddQuestion(q_type){
+
+        switch(q_type){
+            case "Multiple Choice":
+                Axios.post('http://localhost:3001/api/admin/insert_questions', {
+                question_type: questionType,
+                question_content: questionContent, 
+                question_choices: separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
+                correct_answer: correctAnswer
+                });
+                setQuestionSets([
+                ...questionSets,
+                { question_id: highestID+1,
+                    question_type: questionType,
+                    question_content: questionContent, 
+                    question_choices:  separator+choiceA+separator+choiceB+separator+choiceC+separator+choiceD,
+                    correct_answer: correctAnswer
+                    },
+                ])
+                break;
+            case "Fill in the Blank":
+                Axios.post('http://localhost:3001/api/admin/insert_questions', {
+                question_type: questionType,
+                question_content: questionContent, 
+                question_choices: "none",
+                correct_answer: correctAnswer
+                });
+                setQuestionSets([
+                ...questionSets,
+                { question_id: highestID+1,
+                    question_type: questionType,
+                    question_content: questionContent, 
+                    question_choices:  "none",
+                    correct_answer: correctAnswer
+                    },
+                ])
+                break;
+            case "True or False":
+                Axios.post('http://localhost:3001/api/admin/insert_questions', {
+                question_type: questionType,
+                question_content: questionContent, 
+                question_choices: "true"+separator+"false",
+                correct_answer: correctAnswer
+                });
+                setQuestionSets([
+                ...questionSets,
+                { question_id: highestID+1,
+                    question_type: questionType,
+                    question_content: questionContent, 
+                    question_choices:  "true"+separator+"false",
+                    correct_answer: correctAnswer
+                    },
+                ])
+                break;
+            default:
+                break;
+        }
+        
         setHighestID(highestID+1)
         // alert(highestID)
         console.log(questionSets)
@@ -73,8 +115,26 @@ export default function ManageQuiz(){
             Axios.delete(`http://localhost:3001/api/admin/truncate_question`);
     }
 
-    function ChangeChoices(event){
+    function ChangeQuestionType(event){
         setQuestionType(event.target.value)
+        switch(event.target.value)
+        {
+            case "Fill in the Blank":
+                setCorrectAnswer("");
+                break;
+            case "Multiple Choice":
+                setCorrectAnswer("");
+                break;
+            case "True or False":
+                setCorrectAnswer("True");
+                break;
+            default:
+                break;
+        }
+    }
+
+    function ChangeCorrectAnswer(event){
+        setCorrectAnswer(event.target.value)
     }
 
 
@@ -86,7 +146,7 @@ export default function ManageQuiz(){
             <h2>Question Number</h2>
             <br></br>
             <label>Type:</label>
-            <select onChange={(event)=>ChangeChoices(event)} name="type" id="type">
+            <select onChange={(event)=>ChangeQuestionType(event)} name="type" id="type">
             <option value="Multiple Choice">Multiple Choice</option>
             <option value="Fill in the Blank">Fill in the Blank</option>
             <option value="True or False">True or False</option>
@@ -109,17 +169,18 @@ export default function ManageQuiz(){
                 <br></br>
             <label>Correct Answer:</label><input value={correctAnswer} type="text" onChange={(e) => {setCorrectAnswer(e.target.value)}}></input>
             </div>
-            : questionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label><input type="text"></input></div> : questionType == "True or False" ? 
+            : questionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label>
+            <input type="text"  onChange={(e) => {setCorrectAnswer(e.target.value)}}></input></div> : questionType == "True or False" ? 
             <div>
                 <label>Correct Answer:</label>
-                <select onChange={(event)=>ChangeChoices(event)} name="type" id="type">
+                <select onChange={(event)=>ChangeCorrectAnswer(event)} name="type" id="type">
                 <option value="True">True</option>
                 <option value="False">False</option>
                 </select>
             </div> :""}
 
             <br></br>
-            <button onClick={AddQuestion}>Add Question</button>
+            <button onClick={()=>{(AddQuestion(questionType))}}>Add Question</button>
 
             
         </div>

@@ -845,7 +845,17 @@ h2 {
   text-align: center;
 }
 
+#true_button{
+  color: #0f0f0f; 
+  background-color: rgb(50, 255, 47);
+  width: 10%;
+}
 
+#false_button{
+  color: #0f0f0f; 
+  background-color: red;
+  width: 10%;
+}
 #quiz-content0{
   background-color: skyblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
