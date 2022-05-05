@@ -483,12 +483,13 @@ h2 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #36c4c9;
+  border-radius: 4px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: rgb(79, 151, 192);
   border-radius: 4px;
 }
 
@@ -618,6 +619,8 @@ h2 {
 .userinfo{
   color: black;
 }
+
+
 #listtable {
   background-color: white;
   border-collapse: collapse;
@@ -692,7 +695,21 @@ h2 {
   background: rgba(255, 255, 255);
   margin-bottom: 10px;
 }
-
+.dashboardtable td{
+  vertical-align: top;
+  padding-right: 20px;
+}
+.dashboardcard {
+  width: 100%;
+  padding: 30px;
+  border-color: solid, 5px;
+  margin: 10px;
+  color: black;
+  text-align: left;
+  font-size: large;
+  border-radius: 19px;
+  background: rgba(255, 255, 255);
+}
 .backenduser {
   font-size: 24px;
   font-weight: bolder;
@@ -798,7 +815,11 @@ h2 {
 }
 
 .user-quiz{
-  background-color: rgb(216, 243, 255);
+  background-image: url("../src/components/images/newwallpaper2.png");
+  background-position: center;
+  background-size: cover;
+  height: 115vh;
+  background-attachment: fixed;
 }
 
 .buttons-positioned{
@@ -814,7 +835,6 @@ h2 {
   font-weight: bold;
   font-size: 52px;
   text-align: center;
-  background-color: rgb(216, 243, 255);
   color: #000000;
   margin-bottom: 2rem;
 }
@@ -859,6 +879,17 @@ h2 {
 #quiz-content0{
   background-color: skyblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 32px;
+}
+
+.AVLdiv{
+  width: 100%;
+  overflow: hidden;
+  background-image: url("../src/components/images/newwallpaper2.png");
+  background-position: center;
+  background-size: cover;
+  height: 140vh;
+  background-attachment: fixed;
   font-size: 24px;
   margin-bottom: 10px;
 }

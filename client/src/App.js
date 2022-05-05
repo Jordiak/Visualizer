@@ -21,6 +21,7 @@ import ManageQuiz from './components/pages/ManageQuiz';
 import Dashboard from './components/pages/Dashboard';
 import AVL from './components/AVL_Tree/AVL';
 
+
 function App() {
   const [value, setValue] = useState('Login/Register')
   
@@ -54,6 +55,7 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{value,setValue}}>
+      
       <Navbar />
       
       <Switch>
@@ -72,6 +74,7 @@ function App() {
     
       <Footer />
       </UserContext.Provider>
+  
     </Router> 
   );
 }

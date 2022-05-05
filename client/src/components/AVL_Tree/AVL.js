@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { isThisTypeNode } from "typescript";
+import Tree from "../pages/Tree";
 import "./AVL.css";
 import BinarySearchTree from "./classes/BinarySearchTree.js";
 import BinarySearchTreeNode from "./components/BinarySearchTreeNode.js";
@@ -11,12 +13,16 @@ class AVL extends Component {
       deleteValue: "",
       searchValue: "",
       previewContent: "",
-      tree: new BinarySearchTree()
+      instruction:"",
+      tree: new BinarySearchTree(),
+      
     };
     this.insert = this.insert.bind(this);
     this.delete = this.delete.bind(this);
+    this.newlyInserted="";
     this.resetActiveStatusOfNodes = this.resetActiveStatusOfNodes.bind(this);
     this.resetPreviewContent = this.resetPreviewContent.bind(this);
+    this.resetInstruction=this.resetInstruction.bind(this);
 
     this.traversePreOrder = this.traversePreOrder.bind(this);
     this.traverseInOrder = this.traverseInOrder.bind(this);
@@ -28,6 +34,7 @@ class AVL extends Component {
     this.onChangeInsertValue = this.onChangeInsertValue.bind(this);
     this.onChangeSearchValue = this.onChangeSearchValue.bind(this);
     this.onChangeDeleteValue = this.onChangeDeleteValue.bind(this);
+  
   }
 
   pause(milliseconds) {
@@ -42,6 +49,12 @@ class AVL extends Component {
         previewContent: ""
     })
   }
+  resetInstruction(){
+    this.setState({
+      instruction:""
+    })
+    this.state.tree.rotateDescript="";
+  }
 
   resetActiveStatusOfNodes(){
     this.state.tree.traverseInOrder(this.state.tree.root, function(node) {
@@ -52,6 +65,7 @@ class AVL extends Component {
   onChangeInsertValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       insertValue: parseInt(event.target.value)
     });
@@ -60,6 +74,7 @@ class AVL extends Component {
   onChangeDeleteValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       deleteValue: parseInt(event.target.value)
     });
@@ -68,6 +83,7 @@ class AVL extends Component {
   onChangeSearchValue(event) {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.setState({
       searchValue: parseInt(event.target.value)
     });
@@ -76,16 +92,29 @@ class AVL extends Component {
   insert() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.state.tree.insertNewNode(this.state.insertValue);
+    this.newlyInserted=this.state.insertValue;
+    this.setState({
+      instruction:"Inserted node "+this.state.insertValue,
+      
+      
+    });
     this.setState({
       insertValue: ""
     });
+    
+
   }
 
   delete() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     this.state.tree.delete(this.state.deleteValue);
+    this.setState({
+      instruction:"Deleted node "+this.state.deleteValue
+    })
     this.setState({
       deleteValue: ""
     });
@@ -94,6 +123,7 @@ class AVL extends Component {
   search() {
     this.resetActiveStatusOfNodes();
     this.resetPreviewContent();
+    this.resetInstruction();
     let searchResult = this.state.tree.find(
       this.state.tree.root,
       this.state.searchValue
@@ -103,7 +133,7 @@ class AVL extends Component {
       searchResult.active = true;
     } else {
       this.setState({
-        previewContent: "Not Found!"
+        previewContent: this.state.searchValue + " is not found in the tree."
       });
     }
 
@@ -121,6 +151,7 @@ class AVL extends Component {
     this.setState({
       previewContent: values.join(" --> ")
     });
+    
   }
 
   traversePostOrder() {
@@ -161,22 +192,10 @@ class AVL extends Component {
     return (
       <div className="AVLdiv">
         <div id="AVL">
-          <div id="treeAVL" className="treeAVL">
-            {hasRootNode ? (
-              <ul>
-                <BinarySearchTreeNode
-                  node={this.state.tree.root}
-                  nodeType="root"
-                />
-              </ul>
-            ) : (
-              <h5> Tree is currently empty. Try adding new nodes. </h5>
-            )}
-          </div>
-
+          
           <div id="basic-actions">
             <div className="action">
-              <input
+              <input className='inputTxt'
                 value={this.state.insertValue}
                 onChange={this.onChangeInsertValue}
                 type="number"
@@ -190,7 +209,7 @@ class AVL extends Component {
             </div>
 
             <div className="action">
-              <input
+              <input className='inputTxt'
                 value={this.state.deleteValue}
                 onChange={this.onChangeDeleteValue}
                 type="number"
@@ -203,8 +222,50 @@ class AVL extends Component {
               </button>
             </div>
           </div>
+          <div id='description'>
+            {this.state.instruction}
+
+          </div>
+          <div id='description'>
+         {this.state.tree.rotateDescript} 
+          
+          
+          </div>
+          <div id="treeAVL" className="treeAVL">
+            {hasRootNode ? (
+              <ul>
+                <BinarySearchTreeNode
+                  node={this.state.tree.root}
+                  nodeType="root"
+                />
+              </ul>
+            ) : (
+              <h5 className="txt"> Tree is currently empty. Add new node</h5>
+            )}
+          </div>
+          
+         
         </div>
+        <div id="traversal-preview">
+          { this.state.previewContent }
+        </div>
+            
+        <div id="traversal-actions">
+          <div className="action">
+            <input className='inputTxt'
+              value={this.state.searchValue}
+              onChange={this.onChangeSearchValue}
+              type="number"
+            />
+            <button
+              onClick={this.search}
+              className="btn btn-secondary btn-sm"
+            >
+              FIND
+            </button>
+          </div>
       </div>
+    </div>
     );
   }
 }
