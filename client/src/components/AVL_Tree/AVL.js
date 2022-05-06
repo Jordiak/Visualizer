@@ -149,7 +149,7 @@ class AVL extends Component {
       values.push(node.value);
     });
     this.setState({
-      previewContent: values.join(" --> ")
+      previewContent: values.join(" → ")
     });
     
   }
@@ -161,7 +161,7 @@ class AVL extends Component {
       values.push(node.value);
     });
     this.setState({
-      previewContent: values.join(" --> ")
+      previewContent: values.join(" → ")
     });
   }
 
@@ -172,7 +172,7 @@ class AVL extends Component {
       values.push(node.value);
     });
     this.setState({
-      previewContent: values.join(" --> ")
+      previewContent: values.join(" → ")
     });
   }
 
@@ -262,6 +262,33 @@ class AVL extends Component {
               className="btn btn-secondary btn-sm"
             >
               FIND
+            </button>
+          </div>
+
+          <div className="action">
+            <button
+              onClick={this.traversePreOrder}
+              className="btn btn-secondary btn-sm"
+            >
+              PRE ORDER
+            </button>
+          </div>
+
+          <div className="action">
+            <button
+              onClick={this.traverseInOrder}
+              className="btn btn-secondary btn-sm"
+            >
+              IN ORDER
+            </button>
+          </div>
+
+          <div className="action">
+            <button
+              onClick={this.traversePostOrder}
+              className="btn btn-secondary btn-sm"
+            >
+              POST ORDER
             </button>
           </div>
       </div>
