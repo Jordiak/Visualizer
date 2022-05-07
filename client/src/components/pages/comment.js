@@ -506,10 +506,12 @@ const forceUpdate = useForceUpdate();
 
 
 {/* Replies */}
+
 <div className="replyholder">
         {replies.map((item) => (
           <>
-            {item.comment_id == val.comment_id ? <div>{convertDate(item.reply_written) == "Invalid Date" ? "" :    
+
+            {item.comment_id == val.comment_id ? <div className="replyholder2">{convertDate(item.reply_written) == "Invalid Date" ? "" :    
             <div>
              <img src={item.useravatar_url} width="20px" height="20px"></img><label className="replyuser">{item.username_reg}</label><span> • {convertDate(new Date(item.reply_written))}</span>
             <br></br>
