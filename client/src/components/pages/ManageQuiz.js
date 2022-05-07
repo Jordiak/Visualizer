@@ -96,10 +96,18 @@ export default function ManageQuiz(){
             default:
                 break;
         }
-        
+        setQuestionContent("")
+        setCorrectAnswer("")
+        setChoiceA("")
+        setChoiceB("")
+        setChoiceC("")
+        setChoiceD("")
         setHighestID(highestID+1)
         // alert(highestID)
         console.log(questionSets)
+
+        let quest_content = document.getElementById("question_content");
+        quest_content.value = "";
 
     }
 
@@ -152,18 +160,20 @@ export default function ManageQuiz(){
             <option value="True or False">True or False</option>
             </select>
             <br></br>
-            <label>Content:</label><input type="text" onChange={(e) => {setQuestionContent(e.target.value)}}></input>
+            <label>Content:</label>
+            <br></br>
+            <textarea rows="4" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
                 <br></br>
             {questionType == "Multiple Choice" ? <div>
             <label>Choices:</label>
                 <br></br>
-                <label>A.</label><input name="A" type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
+                <label>A.</label><input name="A" placeholder="Choice A" type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
                 <br></br>
-                <label>B.</label><input name="B" type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
+                <label>B.</label><input name="B" placeholder="Choice B" type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
                 <br></br>
-                <label>C.</label><input name="C" type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
+                <label>C.</label><input name="C" placeholder="Choice C" type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
                 <br></br>
-                <label>D.</label>                        <input type="text" placeholder="Choice D" value={choiceD} name="email" id="log_email" onChange={(e) => {
+                <label>D.</label><input type="text" placeholder="Choice D" value={choiceD} name="email" id="log_email" onChange={(e) => {
                           setChoiceD(e.target.value)
                         }} ></input>
                 <br></br>
@@ -191,7 +201,7 @@ export default function ManageQuiz(){
             <div id="quiz-content2">Question Content:{val.question_content}</div>
             <div id="quiz-content3">Question Choices:{val.question_choices}</div>
             <div id="quiz-content4">Correct Answer:{val.correct_answer}</div>
-            <button class="quiz_editButton">Edit Question</button>
+            {/* <button class="quiz_editButton">Edit Question</button> */}
             <br></br>
             <button class="quiz_deleteButton" onClick={()=>{DeleteQuestion(val.question_id)}}>Delete Question</button>
         </div>

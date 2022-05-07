@@ -1,14 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef, useReducer} from 'react';
 import { elements, choices, answers_sets } from './QuizData';
 import Swal from 'sweetalert2';
 import Axios from 'axios';
 
 export default function Quiz(){
 
-    const [questionSets, setQuestionSets] = useState([]);
-    const [questionType, setQuestionType] = useState("Multiple Choice");
+    const [, forceUpdate] = useReducer(x => x + 1, 0);
 
-    const [answersList, setAnswersList] = useState([]);
+    const [questionSets, setQuestionSets] = useState([]);
+    const answers = useRef({});
+    const [currentBlankAnswer, setCurrentBlankAnswer] = useState("");
     const separator = "`$`";
     
     var prnDt = "Today's " + new Date().toLocaleDateString('en-us', { weekday: 'long' }) + " Quiz";
@@ -18,13 +19,72 @@ export default function Quiz(){
     function NextQuestion(){
         let number = questionNo+1
         setQuestionNo(number)
-        var e = document.getElementById(choices[0].id);
-
+        setCurrentBlankAnswer(answers.current[parseInt(questionNo+1)]);
     }
 
     function PrevQuestion(){
         let number = questionNo-1
         setQuestionNo(number)
+        setCurrentBlankAnswer(answers.current[parseInt(questionNo-1)]);
+    }
+
+    function FillAnswer(answer){
+        answers.current[parseInt(questionNo)] = answer
+    }
+
+    function SelectAnswer(answer){
+        answers.current[parseInt(questionNo)] = answer
+        forceUpdate()
+        console.log(answers.current)
+    }
+
+    function FinishQuiz(){
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Logged out'
+        })
+
+        Swal.fire({
+            title: 'Submit Answers?',
+            text: "Your scores will be updated upon submission.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'No',
+            cancelButtonText:'Yes'
+        }).then((result) => {
+            if (!result.isConfirmed) {
+                let score = 0;
+
+                for(let i=0;i<questionSets.length;i++){
+                    if(questionSets[i].correct_answer == answers.current[i])
+                        score++;
+                }
+                var today = new Date();
+                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+                var time = (today.getHours()) + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var timeSQL = (today.getHours()-8) + ":" + today.getMinutes() + ":" + today.getSeconds();
+                var dateTime = date+' '+time;
+                var dateTimeSQL = date+' '+timeSQL;
+        
+                Axios.post('http://localhost:3001/api/quiz_finish', {
+                    Reg_email: "usernamex",
+                    User_score: score, 
+                    Q_total: questionSets.length,
+                    Q_taken: dateTimeSQL
+                });
+
+                Swal.fire(
+                    'Success!',
+                    'Quiz score recorded!  ' +"Result:"+score +"/" +questionSets.length,
+                    'success')
+            }
+        })
+        // alert(score)
+
+    
     }
 
     function QuizQuestion(props){
@@ -35,18 +95,18 @@ export default function Quiz(){
             <div>
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
-                <div id="quiz-content3"><button>A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
-                <div id="quiz-content3"><button>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
-                <div id="quiz-content3"><button>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
-                <div id="quiz-content3"><button>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : ""} onClick={()=>{SelectAnswer("A")}} >A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : ""} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : ""} onClick={()=>{SelectAnswer("C")}}>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : ""} onClick={()=>{SelectAnswer("D")}}>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
                 <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
                 <br></br>
             </div> : questionSets[questionNo]?.question_type == "True or False" ? 
             <div>
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
-                <div id="quiz-content3"><button id="true_button">True</button></div>
-                <div id="quiz-content3"><button id="false_button">False</button></div>
+                <div id="quiz-content3"><button onClick={()=>{SelectAnswer("True")}} id={answers.current[questionNo] == "True" ? "selected_button_tf" : "true_button"}>True</button></div>
+                <div id="quiz-content3"><button onClick={()=>{SelectAnswer("False")}} id={answers.current[questionNo] == "False" ? "selected_button_tf" : "false_button"}>False</button></div>
                 <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
             </div> 
 
@@ -54,6 +114,7 @@ export default function Quiz(){
             <div> 
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
+                <div>Answer:<input type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
                 <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
             </div>
 
@@ -65,30 +126,23 @@ export default function Quiz(){
         )
     }
 
-    //Gather UserData
+    //Gather quiz questions
     useEffect(() =>{
         Axios.get('http://localhost:3001/api/admin/get_questions').then((response)=>{
           setQuestionSets(response.data);
-          console.log(questionSets[0].question_choices)
+        //   console.log(questionSets[0].question_choices)
         //   console.log(response.data)
+        console.log(response.data)
+
+        for (let i=0;i<response.data.length;i++){//Creation of answer holder
+            answers.current[i] = null
+        }
+
+        // alert(response.data.length)
+        // console.log(answers.current)
         })
       },[])
     
-    useEffect(()=>{
-        Axios.get('http://localhost:3001/api/admin/quiz_id/get').then((response)=>{
-            // alert(response.data[0].question_id)
-            // alert(response.data && response.data.length == 0)   
-            // try {
-            //     console.log(response[0].question_id)
-            // } catch (error) {
-            //     // alert(response.data[0].question_id)   
-            //     alert("Empty")
-            // }
-            // alert(response.data[0].question_id)
-            // setHighestID(response.data[0].question_id);
-        })
-
-    },[])
 
     function SplitChoices(choices, letter){
         //1 = A   2 = B  3 = C  4 = D
@@ -130,7 +184,7 @@ export default function Quiz(){
                 <button onClick={NextQuestion}>Next Question</button>
             </div>: questionNo+1 == questionSets.length ?<div class="buttons-positioned">
                 <button onClick={PrevQuestion}>Previous Question</button>
-                <button onClick={NextQuestion}>Finish</button>
+                <button onClick={FinishQuiz}>Finish</button>
             </div>:<div class="button-next">
                 <button onClick={NextQuestion}>Next Question</button></div>}
             {questionNo+1 + " of " + questionSets.length}

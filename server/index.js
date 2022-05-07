@@ -238,7 +238,7 @@ app.post('/api/reply_insert', (req, res)=>{
     })
 });
 
-//Create
+//Create Account
 app.post('/api/insert', (req, res)=>{
 
     const Reg_email = req.body.Reg_email
@@ -409,6 +409,21 @@ app.get('/api/admin/comments_replies_stats', (req, res) =>{
 })
 
 //Quiz
+
+app.post('/api/quiz_finish', (req, res) =>{
+
+    const Reg_email = req.body.Reg_email
+    const User_score = req.body.User_score
+    const Q_total = req.body.Q_total
+    const Q_taken = req.body.Q_taken
+
+    const sqlSelect = "INSERT INTO quiz_statistics (useremail_reg, user_score, questions_total, quiz_taken) VALUES (?,?,?,?)";
+    db.query(sqlSelect,[Reg_email, User_score, Q_total, Q_taken], (err, result) =>{
+        res.send(result);
+        console.log(err);
+    })
+})
+
 app.get('/api/admin/quiz_questions_stats', (req, res) =>{
     const sqlSelect = "SELECT COUNT(*) AS 'Questions' FROM quiz_questions;";
     db.query(sqlSelect, (err, result) =>{

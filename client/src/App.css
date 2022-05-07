@@ -865,6 +865,23 @@ h2 {
   text-align: center;
 }
 
+#selected_button{
+  opacity: 0.7;
+  box-shadow: -6px -6px 10px rgba(193, 243, 239, 0.959),
+    6px 6px 10px rgba(0, 0, 0, 0.2);
+  color:darkturquoise;
+  background-color: rgb(116, 243, 255);
+}
+
+#selected_button_tf{
+  opacity: 0.7;
+  box-shadow: -6px -6px 10px rgba(193, 243, 239, 0.959),
+    6px 6px 10px rgba(0, 0, 0, 0.2);
+  color:darkturquoise;
+  background-color: rgb(116, 243, 255);
+  width: 10%;
+}
+
 #true_button{
   color: #0f0f0f; 
   background-color: rgb(50, 255, 47);
@@ -876,6 +893,16 @@ h2 {
   background-color: red;
   width: 10%;
 }
+
+#true_button:hover{
+  background-color: #4ce2e8;
+}
+
+#false_button:hover{
+  background-color: #4ce2e8;
+}
+
+
 #quiz-content0{
   background-color: skyblue;
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
