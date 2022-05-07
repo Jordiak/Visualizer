@@ -595,8 +595,8 @@ function LoginForm() {
 
             <div className='box1-login'>
                           {hasAccount ? <div className='login_form'>
-            <h1 className='log_h1'>Login</h1>
-            <br></br>
+            <h1 className='log_h1'>Login to Your Account</h1><br/><br/><br/>
+            
               
               <div className='logbox'>
                 <center>
@@ -614,7 +614,7 @@ function LoginForm() {
                   }} ></input>
                 </center>
               </div>
-              <center><button onClick={login_User}>Login</button>
+              <center><button className="loginPageButton" onClick={login_User}>Login</button>
               <br></br>
               <button className="buttonRegLog" onClick={()=>{setHasAccount(false)}}>Don't have an account?</button></center>
             </div> :             <div>

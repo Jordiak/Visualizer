@@ -40,7 +40,7 @@ export default function Information(){
                     Non-linear data structures are further divided into graph and tree based data structures.
 
                     </ul>
-                    <br/><h1>Why Use Data Structure?</h1>
+                    <br/><h1>Why Use Data Structure?</h1><br/>
                     Knowledge about data structures help you understand the working of each data structure. And, based on that you can select the right data structures for your project.
 
                     This helps you <span className='htext'>write memory and time efficient code</span>.
@@ -68,14 +68,14 @@ export default function Information(){
                     <li>Display the result</li>
 
                     </ul><br/>
-                    <h1>Qualities of Good Algorithms</h1>
+                    <h1>Qualities of Good Algorithms</h1><br/>
                     <ul style={{marginLeft:'30px'}}>
                         <li>Input and output should be defined precisely.</li>
                         <li>Each step in the algorithm should be clear and unambiguous.</li>
                         <li>Algorithms should be most effective among many different ways to solve a problem.</li>
                         <li>An algorithm shouldn't include computer code. Instead, the algorithm should be written in such a way that it can be used in different programming languages.</li>
                     </ul><br/>
-                    <h1>Importance of Algorithms</h1>
+                    <h1>Importance of Algorithms</h1><br/>
                     Algorithmic thinking, or the ability to define clear steps to solve a problem, is crucial in many different fields. Even if we’re not conscious of it, we use algorithms and algorithmic thinking all the time. Algorithmic thinking <span className='htext'>allows students to break down problems and conceptualize solutions</span> in terms of discrete steps. Being able to understand and implement an algorithm requires students to practice structured thinking and reasoning abilities.
                 <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'black'}} target={"_blank"}>Additional Information</a>
                 </div>
