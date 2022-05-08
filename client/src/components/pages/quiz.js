@@ -111,10 +111,10 @@ export default function Quiz(){
             </div> 
 
             : questionSets[questionNo]?.question_type == "Fill in the Blank" ? 
-            <div> 
+            <div > 
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
-                <div>Answer:<input type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
+                <div id="fillDiv">Answer:  <input id="fillInput" type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
                 <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
             </div>
 

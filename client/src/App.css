@@ -894,6 +894,12 @@ h2 {
   overflow:hidden;
   background-attachment: fixed;
 }
+#fillDiv{
+  margin-top:20px;
+  margin-bottom: 20px;
+  font-weight: semibold;
+  font-size: 1.2rem;
+}
 .quizInnerDiv{
   font-weight: semibold;
   font-family: "Montserrat", sans-serif;
@@ -912,6 +918,8 @@ h2 {
 .buttons-positioned{
   display: flex;
   justify-content: space-between;
+  margin-top:20px;
+  margin-bottom:10px;
 }
 
 .button-next{
@@ -929,6 +937,7 @@ h2 {
   font-weight:bolder;
   font-family: "Montserrat", sans-serif;
   color:#2b388a;
+  font-size: 1.05rem;
   background-color: white;
 }
 #buttonQuizz:hover{
@@ -972,8 +981,8 @@ h2 {
 
 #selected_button{
   width:95%;
-  background-color:#cfedfd;
-  color:teal;
+  background-color:#6b74ad;
+  color:white;
   border-color: rgba(117, 126, 126, 0.418);
   border-style: solid;
   border-width: medium;
@@ -986,31 +995,37 @@ h2 {
 
 #selected_button_tf{
   opacity: 0.7;
-  box-shadow: -6px -6px 10px rgba(193, 243, 239, 0.959),
-    6px 6px 10px rgba(0, 0, 0, 0.2);
-  color:darkturquoise;
-  background-color: rgb(116, 243, 255);
-  width: 10%;
+  font-weight:semibold;
+  font-family: "Montserrat", sans-serif;
+  color:white;
+  background-color:#2b388a;
+  width: 90%;
 }
 
 #true_button{
-  color: #0f0f0f; 
-  background-color: rgb(50, 255, 47);
-  width: 10%;
+  color:  #787878;; 
+  background-color: white;
+  width: 90%;
+  font-weight:semibold;
+  font-family: "Montserrat", sans-serif;
+  border-width:thin;
 }
 
 #false_button{
-  color: #0f0f0f; 
-  background-color: red;
-  width: 10%;
+  color: #787878;; 
+  background-color:white;
+  width: 90%;
+  font-weight:semibold;
+  font-family: "Montserrat", sans-serif;
+  border-width:thin;
 }
 
 #true_button:hover{
-  background-color: #4ce2e8;
+  background-color: #cfedfd;
 }
 
 #false_button:hover{
-  background-color: #4ce2e8;
+  background-color: #cfedfd;
 }
 
 
@@ -1041,7 +1056,17 @@ h2 {
   text-align: left;
   border-radius: unset;
 }
-
+#fillInput{
+  border-color: rgba(117, 126, 126, 0.418);;
+  border-style: solid;
+  border-width: thin;
+  width:90%;
+  height:auto;
+  font-size: 1.1rem;
+  font-weight:lighter;
+  font-family: "Montserrat", sans-serif;
+  padding:10px;
+}
 #quiz-contentx:hover{
   background-color: #c9e8f8;
 }
@@ -1062,5 +1087,15 @@ h2 {
   font-weight: semibold;
   font-family: "Montserrat", sans-serif;
   font-size: x-large;
+  margin-bottom: 10px;
+  margin-top:10px;
+}
+
+#quiz-content3{
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+  align-content: center;
+  margin-top:20px;
   margin-bottom: 10px;
 }
