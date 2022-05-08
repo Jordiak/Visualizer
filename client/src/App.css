@@ -191,7 +191,9 @@
   font-size: 2rem;
   color: white;
 }
-
+.left-panel .collapsible{
+  text-align: left;
+}
 
 h1 {
   color:rgb(27,20,100);
@@ -243,21 +245,31 @@ h2 {
   float: left;
   margin-left: 2%;
   margin-right: unset;
+  padding-right:10px;
 }
 .DSright {
   color: white;
   width: 20%;
   float: right;
+  border-color:#8bcff9;
+  border-width: thin;
+  border-style: solid;
+  margin-right:10px;
 }
 .left-side {
-  width: 60%;
+  width: 55%;
   float: left;
 }
 
 .right-side {
   color: white;
-  width: 20%;
+  width: 23%;
   float: right;
+  padding:unset;
+  border-color:  #8bcff9;
+  border-style: solid;
+  border-width: thin;
+  margin-right:10px;
 }
 .leftInfo {
   width: 60%;

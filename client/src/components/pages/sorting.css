@@ -75,6 +75,7 @@ button:hover {background-color:rgb(113, 220, 228)}
 }
 .navbar-sorting {
   position:absolute;
+  width:25%;
   overflow: hidden;
   font-size: 18px;
   color: rgba(255, 255, 255, 0.9);
@@ -82,8 +83,8 @@ button:hover {background-color:rgb(113, 220, 228)}
   text-align: center;
   font-family: monospace;
   font-weight: bolder;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 15%;
+  margin-right: 25%;
   
 }
 .navbar-table {
