@@ -11,51 +11,56 @@
 .samplecodebutton {
   width: auto;
   height: auto;
-  margin-top:116%;
-  margin-left:-75%;
-  float:left;
+  margin-right:90%;
   text-align: left;
+  margin-top:-100%;
   border: none;
   color: white;
   background-color: rgb(103,152,149);
-  font-size: 17px;
+  font-size: 1.1rem;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
   padding: 7px;
 }
 
 .changecodecontent {
+ 
   width: 190px;
   height: 200px;
-  top: 25%;
-  left: 25%;
+  top: 29%;
+  left: 63%;
   right: 25%;
   bottom: 25%;
   overflow:auto;
   align-content: center;
   text-align: center;
   position: fixed;
-  border-color: black;
-  border-width: 5px;
+  border-color:teal;
+  border-width: 3px;
   border-style: solid;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.815);
   z-index: 1001;
   color: aliceblue;
-  padding:7px;
+  
 }
 
 
 .gosample {
-  width: auto;
+  width: 100%;
   height: auto;
-  margin: 4px;
+  margin:0px;
   position: relative;
-  overflow: hidden;
+  border-style: solid;
+  border-color:teal;
+  border-left:hidden;
+  border-right:hidden;
+  border-top:hidden;
   text-align: center;
   align-content: center;
+  background-color:white;
+  border-radius: 0px;
   cursor: pointer;
-  color: aliceblue;
-  padding: 4px;
+  color: teal;
   font-family: monospace;
 }
