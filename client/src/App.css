@@ -34,17 +34,20 @@
   border-radius: 5px;
   margin-top: 20px;
   border: 2px solid turquoise;
-  background-color: rgba(97, 43, 122, 0.836);
+  background-color: white;
   padding: 20px;
-  color: aliceblue;
-  font-family: "Courier New", Courier, monospace;
+  color: black;
+  font-weight:normal;
+  font-family: "Montserrat", sans-serif;
   font-size: large;
 }
 
 .reply_shown{
   display: block;
   margin-top: -20px;
-  background-color: white;
+  background-color:unset;
+  font-family: "Montserrat", sans-serif;
+  font-size: large;
 }
 .replyuser {
   font-weight: bolder;
@@ -52,13 +55,17 @@
   padding-left: 7px;
 }
 .reply_shown input{
-  width: 40%;
+  width: 100%;
   height: 30px;
   margin-left: 0%;
   border-radius: 5px;
   margin-top: 20px;
   padding: 20px;
+  border-color: unset;
   color: black;
+  background-color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: large;
 }
 
 
@@ -138,6 +145,12 @@
   font-family: "Montserrat", sans-serif;
   color:rgb(73,72,201);
 }
+.InformationBox1 h1{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  color:rgb(73,72,201);
+}
+
 .InformationBox2 {
   height: 100vh;
   width: 100%;
@@ -550,18 +563,20 @@ h2 {
   align-content: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 .commentform input {
-  width: 50%;
+  width: 60%;
   height: 50px;
-  margin-left: 25%;
-  margin-right: 25%;
+  margin-left: 20%;
+  margin-right: 20%;
   border-radius: 5px;
   border: 2px solid turquoise;
-  background-color: rgba(97, 43, 122, 0.836);
+  background-color: white;
   padding: 15px;
-  color: aliceblue;
-  font-family: "Courier New", Courier, monospace;
+  color: black;
+  font-weight:normal;
+  font-family: "Montserrat", sans-serif;
   font-size: large;
 }
 .commentform label {
@@ -570,10 +585,10 @@ h2 {
   font-size: large;
 }
 .commentform button {
-  width: fit-content;
+  width: 10%;
   text-align: center;
-  margin-left: 48%;
-  margin-right: 48%;
+  margin-left:45%;
+  margin-right:45%;
 }
 .cardholder {
   margin-left: 5%;
@@ -592,7 +607,7 @@ h2 {
 .replyholder2{
   margin-top: 15px;
   padding: 10px;
-  padding-bottom: 0px;
+  padding-bottom: 10px;
   padding-left: 30px;
   border-radius: 19px ;
   background-color: white;
@@ -628,28 +643,34 @@ h2 {
   display: inline-block;
   padding-left: 7px;
 }
-.usericon {
-  vertical-align: middle;
-}
+
 .commentbtn {
   border: none;
   background: none;
   font-size: large;
+  color:#2659a6;
   font-family: monospace;
 }
 .replybtn {
   border: none;
   background: none;
   font-size: large;
+  color:#2659a6;
   font-family: monospace;
 }
 
 .updateinput {
-  background:turquoise;
+  background:white;
   border-style: hidden;
   color:black;
-  font-family: monospace;
-  width: 30%;
+  font-weight:lighter;
+  font-family: "Montserrat", sans-serif;
+  width: 100%;
+  height:30px;
+  margin-top: 10px;
+  border-radius: 10px;
+  padding:10px;
+  font-size: larger;
 }
 
 .ideatext{

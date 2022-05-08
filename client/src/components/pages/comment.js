@@ -383,7 +383,7 @@ const forceUpdate = useForceUpdate();
                 
             {/* <label>COMMENT: </label> */}
             <input type="text" name="comment" value={comment} placeholder="Type a response" onChange={(e)=>{setcomment(e.target.value)}}/>
-            <button onClick={submit}  >Submit</button>
+           <button onClick={submit}  >Submit</button>
             </div>
           )
         } else {
