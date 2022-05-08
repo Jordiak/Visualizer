@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Montserrat", sans-serif;
 }
 
 .log_h1 {
@@ -148,7 +149,7 @@
 .InformationBox1 h1{
   font-weight: semibold;
   font-family: "Montserrat", sans-serif;
-  color:rgb(73,72,201);
+  color:black;
 }
 
 .InformationBox2 {
@@ -194,12 +195,13 @@
 
 h1 {
   color:rgb(27,20,100);
-  font-family: monospace;
-  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  font-weight:bolder;
+  text-align: center;
 }
 h2 {
-  color: rgb(69,55,142);
-  font-family: monospace;
+  color:  #208ceb;
+  font-family: "Montserrat", sans-serif;
   font-weight: bold;
 }
 
@@ -261,7 +263,7 @@ h2 {
   width: 60%;
   float: left;
   color:rgb(73,72,201);
-  padding: 5rem;
+  padding: 2rem;
   font-size: 1.15rem;
   /* background-image: url("../src/components/images/bluebox.png"); */
   text-align: justify;

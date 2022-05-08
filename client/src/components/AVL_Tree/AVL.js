@@ -191,6 +191,7 @@ class AVL extends Component {
     const hasRootNode = this.state.tree.root;
     return (
       <div className="AVLdiv">
+        <h1>AVL TREE</h1>
         <div id="AVL">
           
           <div id="basic-actions">
