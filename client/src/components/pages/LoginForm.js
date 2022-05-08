@@ -566,7 +566,7 @@ function LoginForm() {
               <div className='box1-login'>
                 
                 <div className='login_form'>
-                  <h1 className='log_h1' style={{color:'yellow'}}>Confirm Code</h1>
+                  <h1 className='log_h1' style={{color:'teal'}}>Confirm Code</h1>
                   <br></br>
                   <div className='logbox'>
                       <center>

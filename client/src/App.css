@@ -870,7 +870,22 @@ h2 {
   background-position: center;
   background-size: cover;
   height: 115vh;
+  overflow:hidden;
   background-attachment: fixed;
+}
+.quizInnerDiv{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  padding:1%;
+  margin:10%;
+  margin-top:2%;
+  background-color: white;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0),
+      6px 6px 10px rgba(0, 0, 0, 0.2);
+}#quizSign{
+  font-weight:bolder;
+  font-family: "Montserrat", sans-serif;
+  color:#2b388a;
 }
 
 .buttons-positioned{
@@ -879,7 +894,25 @@ h2 {
 }
 
 .button-next{
+  margin:0%;
+  padding:0%;
   margin-left: 87%;
+  
+
+}
+#buttonQuizz{
+  margin:0%;
+  border-color: teal;
+  border-style: solid;
+  border-width: medium;
+  font-weight:bolder;
+  font-family: "Montserrat", sans-serif;
+  color:#2b388a;
+  background-color: white;
+}
+#buttonQuizz:hover{
+  background-color:#a9dbfb;
+
 }
 .user-quiz > h1{
   font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -912,16 +945,22 @@ h2 {
 }
 
 .grid-questions{
-  background-color: rgb(216, 243, 255);
-  text-align: center;
+  
+  text-align: left;
 }
 
 #selected_button{
-  opacity: 0.7;
-  box-shadow: -6px -6px 10px rgba(193, 243, 239, 0.959),
-    6px 6px 10px rgba(0, 0, 0, 0.2);
-  color:darkturquoise;
-  background-color: rgb(116, 243, 255);
+  width:95%;
+  background-color:#cfedfd;
+  color:teal;
+  border-color: rgba(117, 126, 126, 0.418);
+  border-style: solid;
+  border-width: medium;
+  font-weight:bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.7rem;
+  text-align: left;
+  border-radius: unset;
 }
 
 #selected_button_tf{
@@ -955,9 +994,35 @@ h2 {
 
 
 #quiz-content0{
-  background-color: skyblue;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 32px;
+  background-color: none;
+  font-weight:bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+}
+
+#quiz-content4{
+  font-weight:bolder;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color:tomato;
+}
+
+#quiz-contentx{
+  width:95%;
+  background-color: white;
+  color:#787878;
+  border-color: rgba(117, 126, 126, 0.418);;
+  border-style: solid;
+  border-width: thin;
+  font-weight:lighter;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.7rem;
+  text-align: left;
+  border-radius: unset;
+}
+
+#quiz-contentx:hover{
+  background-color: #c9e8f8;
 }
 
 .AVLdiv{
@@ -973,7 +1038,8 @@ h2 {
 }
 
 #quiz-content2{
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 24px;
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  font-size: x-large;
   margin-bottom: 10px;
 }

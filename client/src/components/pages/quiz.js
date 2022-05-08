@@ -90,15 +90,15 @@ export default function Quiz(){
     function QuizQuestion(props){
         return(
         <div class="grid-questions">
-            <div id="quiz-content0"><h1>Question {questionNo+1}</h1></div>
+            <div id="quiz-content0">Question {questionNo+1}</div>
             {questionSets[questionNo]?.question_type == "Multiple Choice" ?
             <div>
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : ""} onClick={()=>{SelectAnswer("A")}} >A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : ""} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : ""} onClick={()=>{SelectAnswer("C")}}>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : ""} onClick={()=>{SelectAnswer("D")}}>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("A")}} >A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("C")}}>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("D")}}>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
                 <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
                 <br></br>
             </div> : questionSets[questionNo]?.question_type == "True or False" ? 
@@ -173,22 +173,23 @@ export default function Quiz(){
     }
 
     return(
-        <div class="user-quiz">
-
-            <h1>{prnDt}</h1>
+        <div className="user-quiz">
+            <h1 id="quizSign">{prnDt}</h1>
+          <div className="quizInnerDiv">
+            
             <QuizQuestion/>
             
             {questionNo+1 == 1 && questionNo+1 == questionSets.length ? <div class="button-next">
-                <button onClick={NextQuestion}>Finish</button></div>:questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
-                <button onClick={PrevQuestion}>Previous Question</button>
-                <button onClick={NextQuestion}>Next Question</button>
+                <button id="buttonQuizz" onClick={NextQuestion}>Finish</button></div>:questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
+                <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
+                <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button>
             </div>: questionNo+1 == questionSets.length ?<div class="buttons-positioned">
-                <button onClick={PrevQuestion}>Previous Question</button>
-                <button onClick={FinishQuiz}>Finish</button>
+                <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
+                <button id="buttonQuizz" onClick={FinishQuiz}>Finish</button>
             </div>:<div class="button-next">
-                <button onClick={NextQuestion}>Next Question</button></div>}
+                <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button></div>}
             {questionNo+1 + " of " + questionSets.length}
-            
+            </div>
         </div>
         
     )
