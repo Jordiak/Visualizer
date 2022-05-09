@@ -643,7 +643,24 @@ h2 {
   border-radius: 19px;
   background: #cfedfd;
   margin-bottom: 10px;
- 
+}
+
+.score-card{
+  align-self: center;
+  text-align: center;
+  width: 40%;
+  height: auto;
+  padding: 20px;
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  border-color: none;
+  margin: 10px;
+  color: black;
+  text-align: justify;
+  font-size: large;
+  border-radius: 19px;
+  background: #cfedfd;
+  margin-bottom: 10px;
 }
 .commentmsg{
   padding-left: 50px;
@@ -1114,4 +1131,25 @@ h2 {
   align-content: center;
   margin-top:10px;
   margin-bottom: 10px;
+}
+
+.progress-circle-container{
+  background-color: white;
+  padding: 10px;
+  margin-right: 3%;
+  border-radius: 100%;
+  float: right;
+  width: 25%;
+  height: 25%;
+}
+
+.score-information-holder{
+  background-color: white;
+  padding: 10px;
+  margin-left: 3%;
+  border-radius: 15px;
+  float: left;
+  color: rgb(22, 86, 126);
+  width:50%;
+  height:200%;
 }
