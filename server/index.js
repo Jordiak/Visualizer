@@ -108,10 +108,9 @@ app.put('/api/username/update', (req,res) => {
 })
 
 app.get('/api/scoreList/get', (req, res) =>{
-    const sqlSelect = "select useremail_reg, userscore, questions_total, quiz_taken from quiz_statistics";
+    const sqlSelect = "select * from quiz_statistics";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
-        // if (err) console.log(err) 
     })
 })
 
