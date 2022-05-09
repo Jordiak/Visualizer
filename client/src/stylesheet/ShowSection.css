@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 section.show-section {
-  width: 65%;
-  height: 90%;
+  width: 80%;
+  height: 50%;
   margin: 0;
   float: left;
-  margin-left:1%;
+
 }
 
 div.text-show1 {

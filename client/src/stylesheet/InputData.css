@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 textarea.input-data {
-  margin-top: 25px;
+  margin-top: 5%;
+  margin-left:1%;
   padding: 5px;
-  width: 70%;
+  width: 72%;
   height: 15%;
   resize: none;
   background-color: rgba(31, 104, 99, 0.678);

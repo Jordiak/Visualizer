@@ -210,19 +210,19 @@ DFS(node) {
             </div>
             <div className='right-side'>
             <Collapsible label="Dijkstra's Algorithm Information">
-                        <h1>Dijkstra's Algorithm</h1>
+                        <h1>Dijkstra's Algorithm</h1><br/>
                         <p>Dijkstra's algorithm allows us to find the <font className="ideatext">shortest path</font> between any two vertices of a graph.It differs from the minimum spanning tree because the shortest distance between two vertices <font className="ideatext">might not include all the vertices</font> of the graph.
                         </p>
             </Collapsible>
             <Collapsible label="Breadth First Search Algorithm Information">
-                        <h1>Breadth First Search</h1>
+                        <h1>Breadth First Search</h1><br/>
                         <p> BFS is a <font className="ideatext">traversing algorithm</font> where you should start traversing from a selected node (source or starting node) and traverse the graph layerwise thus exploring the neighbour nodes (nodes which are directly connected to source node). You must then move towards the next-level neighbour nodes.
 As the name BFS suggests, you are required to <font className="ideatext">traverse the graph breadthwise</font> as follows:
 1.First move horizontally and visit all the nodes of the current layer2.Move to the next layer
                         </p>
             </Collapsible>
             <Collapsible label="Depth First Search Algorithm Information">
-                        <h1>Depth First Search</h1>
+                        <h1>Depth First Search</h1><br/>
                         <p>The DFS algorithm is a <font className="ideatext">recursive algorithm</font> that uses the idea of backtracking. It involves exhaustive searches of all the nodes by going ahead, if possible, else by backtracking.
                         Here, the word backtrack means that when you are moving forward and there are no more nodes along the current path, you move backwards on the same path to find nodes to traverse. <font className="ideatext">All the nodes will be visited on the current path</font> till all the unvisited nodes have been traversed after which the next path will be selected. 
 

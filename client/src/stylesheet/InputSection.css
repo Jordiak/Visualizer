@@ -1,10 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 section.input-section {
-  width: 34%;
+  width: 110%;
   height: 60%;
-  margin-top: 1.2%;
-  float: right;
-  margin-right: unset;
+  margin-top: 10px;
+
   color:aliceblue;
   font-family: "Montserrat", sans-serif;
 }
@@ -76,16 +75,14 @@ div.text-input1 {
 
 .input-button {
   width: auto;
+  margin-right:10%;  
   height: auto;
   text-align: middle;
-  margin-top: 100px;
   border: none;
-  margin-left:-4%;
   background-color: rgb(103,152,149);
   color: white;
-  font-size: 17px;
+  font-size: 1.1rem;
   cursor: pointer;
-  padding: 7px;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -107,11 +104,10 @@ p.linestyle {
 }
 
 div.text-input2 {
+  position:absolute;
+  padding-top: 31%;
   width: 40%;
-  height: 4.2%;
   font-weight: bold;
-  margin-top: 25%;
-  position: relative;
   text-align: middle;
   color: rgb(6, 40, 70);
   font-family: "Montserrat", sans-serif;

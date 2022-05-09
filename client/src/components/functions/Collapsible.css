@@ -1,15 +1,24 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+.collapsible{
+  text-align: center;
+}
 .collapsible .toggle {
   cursor: pointer;
-  font: unset;
-  padding: 0.5rem;
-  margin-bottom: unset;
+  
+  margin-top:1px;
   width: 90%;
-  font-family: monospace;
-  font-size: larger;
+  font-family: "Montserrat", sans-serif;
+  border-bottom: #8bcff9;
+  border-top: white;
+  border-left: white;
+  border-right: white;
+  border-style: solid;
+  border-width:thin;
+  font-size: 1rem;
   font-weight: bold;
-  background-color:rgb(38,89,166);
-  border:transparent;
-  color:white;
+  background-color:white;
+  color:black;
+  border-radius: unset;
 }
 
 .collapsible .side-toggle {
@@ -40,6 +49,7 @@
 }
 
 .collapsible .side-content {
+  margin-top: 10px;
   padding: 0.5rem;
   overflow-y: auto;
   height: 50vh;
@@ -55,7 +65,13 @@
   overflow: hidden;
   transition: height ease 0.3s;
   padding-bottom: 0px;
+  line-height:25px;
+  padding:5px;
 
+}
+.collapsible .content-parent h1{
+  line-height: normal;
+  font-size: 1.5rem;
 }
 
 .left-table tr:nth-child(even) {
