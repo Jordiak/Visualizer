@@ -626,7 +626,7 @@ function LoginForm() {
               <button className="buttonRegLog" onClick={()=>{setHasAccount(false)}}>Don't have an account?</button></center>
             </div> :             <div>
             <div className='login_form'>
-            <h1 className='log_h1'>Register</h1>
+            <h1 className='log_h1'>Create an Account</h1>
             <br></br>
               <div>
                 <center>
@@ -650,7 +650,7 @@ function LoginForm() {
                   }} ></input>
                 </center>
               </div>
-              <center><button onClick={registerUser}>Register</button></center>
+              <center><button className="loginPageButton" onClick={registerUser}>Register</button></center>
               <button className="buttonRegLog" onClick={()=>{setHasAccount(true)}}>Already have an account?</button>
             </div>
                  

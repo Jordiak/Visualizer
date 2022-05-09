@@ -430,6 +430,21 @@ app.post('/api/quiz_finish', (req, res) =>{
     })
 })
 
+app.put('/api/quiz_admin/update', (req,res) => { //Quiz question update
+    const question_id=req.body.question_id
+    const question_type=req.body.question_type
+    const question_content=req.body.question_content
+    const question_choices=req.body.question_choices
+    const correct_answer=req.body.correct_answer
+
+    const sqlUpdate ='update quiz_questions set question_type = ?, question_content = ?, question_choices = ?, correct_answer = ? where question_id = ?';
+
+    db.query(sqlUpdate,[question_type,question_content,question_choices,correct_answer,question_id], (err,result) =>{
+        res.send(result);
+        if (err) console.log(err)
+    })
+})
+
 app.get('/api/admin/quiz_questions_stats', (req, res) =>{
     const sqlSelect = "SELECT COUNT(*) AS 'Questions' FROM quiz_questions;";
     db.query(sqlSelect, (err, result) =>{

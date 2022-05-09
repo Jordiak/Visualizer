@@ -947,6 +947,11 @@ h2 {
   color:#2b388a;
 }
 
+.choices_admin_quiz>label{
+  margin: 1%;
+  
+}
+
 .buttons-positioned{
   display: flex;
   justify-content: space-between;

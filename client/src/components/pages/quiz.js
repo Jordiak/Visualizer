@@ -2,6 +2,7 @@ import React, {useEffect, useState, useRef, useReducer} from 'react';
 import { elements, choices, answers_sets } from './QuizData';
 import Swal from 'sweetalert2';
 import Axios from 'axios';
+import ReactSession from 'react-client-session/dist/ReactSession';
 
 export default function Quiz(){
 
@@ -175,6 +176,11 @@ export default function Quiz(){
     return(
         <div className="user-quiz">
             <h1 id="quizSign">{prnDt}</h1>
+
+        <div>
+
+{ReactSession.get("email") != undefined ? 
+            //Logged in
           <div className="quizInnerDiv">
             
             <QuizQuestion/>
@@ -190,6 +196,16 @@ export default function Quiz(){
                 <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button></div>}
             {questionNo+1 + " of " + questionSets.length}
             </div>
+            
+                    :// :Not logged in
+
+            <div>
+                <button>Login</button>
+            </div>}
+
+            
+        </div>
+
         </div>
         
     )
