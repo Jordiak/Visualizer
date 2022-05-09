@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import {UserContext} from '../UserContext';
 import {AvatarGenerator} from './generator_avatar.ts';
 import { useLocation, useParams, searchParams } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 const generator = new AvatarGenerator();
 
 //create your forceUpdate hook
@@ -21,6 +22,7 @@ function useQuery() {
 
 function LoginForm() {
   let query = useQuery();
+  let history = useHistory();
   
   const {value,setValue} = useContext(UserContext);
   //Getting the user infos from the DB
@@ -481,6 +483,10 @@ function LoginForm() {
 
   }
 
+  function enterScoreList(){
+    history.push("/score-page");
+  }
+
 
   function deleteAccount(){
     
@@ -551,6 +557,7 @@ function LoginForm() {
                      <button onClick={changeName}>Change Username</button>
                      <button onClick={changePassword}>Change Password</button>
                      <button onClick={changeAvatar}>Change Avatar</button>
+                     <button onClick={enterScoreList}>Score List</button>
                      <br></br>
                      <button onClick={logOut}>Logout</button>
                      <br></br>

@@ -107,6 +107,13 @@ app.put('/api/username/update', (req,res) => {
     })
 })
 
+app.get('/api/scoreList/get', (req, res) =>{
+    const sqlSelect = "select useremail_reg, userscore, questions_total, quiz_taken from quiz_statistics";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+        // if (err) console.log(err) 
+    })
+})
 
 app.get('/api/comment/get', (req, res) =>{
     const sqlSelect = "select user_infos.username_reg,user_infos.useremail_reg,comments_table.comment_id,comments_table.comment_text, comments_table.date_written,useravatar_url from user_infos inner join comments_table on user_infos.useremail_reg = comments_table.useremail_reg";

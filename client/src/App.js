@@ -20,6 +20,7 @@ import Quiz from './components/pages/quiz';
 import ManageQuiz from './components/pages/ManageQuiz';
 import Dashboard from './components/pages/Dashboard';
 import AVL from './components/AVL_Tree/AVL';
+import ScorePage from './components/pages/ScorePage';
 
 
 function App() {
@@ -70,6 +71,7 @@ function App() {
         <Route path="/Quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
         <Route path='/AVL' exact component={AVL} />
+        <Route path='/score-page' exact component={ScorePage} />
       </Switch>
     
       <Footer />
