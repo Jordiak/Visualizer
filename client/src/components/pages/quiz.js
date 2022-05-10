@@ -11,6 +11,9 @@ export default function Quiz(){
     function enterLogin(){
         history.push("/login-form");
     }
+    function enterScorePage(){
+        history.push("/score-page");
+    }
 
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -86,8 +89,11 @@ export default function Quiz(){
                 Swal.fire(
                     'Success!',
                     'Quiz score recorded!  ' +"Result:"+score +"/" +questionSets.length,
-                    'success')
+                    'success');
+                enterScorePage();
+
             }
+
         })
         // alert(score)
 
