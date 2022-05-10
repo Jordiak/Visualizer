@@ -4,11 +4,13 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import FormatMonth from '../functions/formatMonth';
 import FormatTime from '../functions/formatTime';
+import {AvatarGenerator} from './generator_avatar.ts';
 
 export default function ScorePage(){
 
     const [scoreList, setScoreList] = useState([]);
     const [topScore,setTopScore] = useState([]);
+    const generator = new AvatarGenerator();
 
      //get scorelist
      useEffect(() => {
@@ -17,7 +19,7 @@ export default function ScorePage(){
 
   
       });
-        Axios.get('http://localhost:3001/api/topScore/get').then((response)=>{
+        Axios.get('http://localhost:3001/api/profileScore/get').then((response)=>{
             setTopScore(response.data);
       });
     } , []) 
@@ -63,7 +65,7 @@ export default function ScorePage(){
                     return (
                      <div className="score-card">
                         <div className = "score-information-holder">
-                            <h1 >{item.useremail_reg}</h1>
+                            <h1 >{item.username_reg}</h1>
                             Score for daily quiz:
                             <br/>
                             {item.user_score} / {item.questions_total}
@@ -110,7 +112,9 @@ export default function ScorePage(){
                 {topScore.map((item)=>{
                     return(
                         <div>
-                            <div className="scorePic">Hello</div>
+                            <div className="scorePic">
+                            <img width={'90px'} height={'90px'} src={item.useravatar_url}></img>
+                            </div>
                             <div className="scoreRow">
 
                                 <h3>{item.useremail_reg}</h3>{formatDateTime(item.quiz_taken)} <h1>{item.user_score} / {item.questions_total}</h1>

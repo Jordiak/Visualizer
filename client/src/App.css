@@ -698,10 +698,12 @@ h2 {
 }
 .scorePic{
   background-color: white;
+  margin-left:-8%;
   float:left;
   color:white;
-  width:50px;
-  border-radius: 20px;
+  width:auto;
+  padding:1.15%;
+  border-radius: 100px;
 }
 .commentmsg{
   padding-left: 50px;
