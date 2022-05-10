@@ -6,6 +6,8 @@ import FormatMonth from '../functions/formatMonth';
 import FormatTime from '../functions/formatTime';
 import {AvatarGenerator} from './generator_avatar.ts';
 import crown from '../images/crown.png';
+import ReactSession from 'react-client-session/dist/ReactSession';
+import man from '../images/man.png';
 
 export default function ScorePage(){
 
@@ -15,7 +17,7 @@ export default function ScorePage(){
 
      //get scorelist
      useEffect(() => {
-        Axios.get('http://localhost:3001/api/scoreList/get').then((response)=>{
+        Axios.post('http://localhost:3001/api/scoreList/post',{useremail_reg:ReactSession.get('email')}).then((response)=>{
           setScoreList(response.data);
 
   
@@ -59,7 +61,12 @@ export default function ScorePage(){
     
     return(
         <div className="InformationBox1">
+             
+             <div className="outerleft">
+             <h1 className="labelScore">Your Scores: </h1>
+                <img className="man" src={man}></img>
             <div className="scoreLeft">
+               
             <div className="cardholder">
             {
                 scoreList.map((item)=>{
@@ -105,6 +112,7 @@ export default function ScorePage(){
                      </div>
                 )})
             }
+            </div>
             </div>
             </div>
             <div className="scoreRight">

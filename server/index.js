@@ -107,10 +107,12 @@ app.put('/api/username/update', (req,res) => {
     })
 })
 
-app.get('/api/scoreList/get', (req, res) =>{
-    const sqlSelect = "select quiz_statistics.useremail_reg,quiz_statistics.user_score,quiz_statistics.questions_total,quiz_statistics.quiz_taken,user_infos.useravatar_url,user_infos.username_reg from quiz_statistics inner join user_infos on quiz_statistics.useremail_reg = user_infos.useremail_reg order by user_score desc, quiz_taken desc;";
-    db.query(sqlSelect, (err, result) =>{
+app.post('/api/scoreList/post', (req, res) =>{
+    const useremail_reg = req.body.useremail_reg;
+    const sqlSelect = "select quiz_statistics.useremail_reg,quiz_statistics.user_score,quiz_statistics.questions_total,quiz_statistics.quiz_taken,user_infos.useravatar_url,user_infos.username_reg from quiz_statistics inner join user_infos on quiz_statistics.useremail_reg = user_infos.useremail_reg where quiz_statistics.useremail_reg=? order by quiz_taken asc;";
+    db.query(sqlSelect, [useremail_reg], (err, result) =>{
         res.send(result);
+
     })
 })
 

@@ -662,11 +662,23 @@ h2 {
   background: #cfedfd;
   margin-bottom: 10px;
 }
+
 .scoreLeft{
+  margin-top:15%;
+  float:right;
+  width:70%;
+  height:70vh;
+  overflow-y: auto;
+}
+.man{
+ width:23%;
+ position: absolute;
+
+}
+.outerleft{
+  width:60%;
   float:left;
-  width:50%;
-  
- 
+
 }
 .scoreRight{
   float:right;
@@ -706,6 +718,9 @@ h2 {
   width:auto;
   padding:1.15%;
   border-radius: 100px;
+}
+.labelScore{
+  margin-top:0px;
 }
 .crown{
   margin-bottom: -1%;
