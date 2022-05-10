@@ -671,7 +671,9 @@ h2 {
 .scoreRight{
   float:right;
   text-align: center;
-  width:50%;
+  width:40%;
+  font-weight:lighter;
+  color:darkblue;
 }
 .scoreTable{
   border-color:unset;
@@ -698,12 +700,22 @@ h2 {
 }
 .scorePic{
   background-color: white;
-  margin-left:-8%;
+  margin-left:-9%;
   float:left;
   color:white;
   width:auto;
   padding:1.15%;
   border-radius: 100px;
+}
+.crown{
+  margin-bottom: -1%;
+  margin-top:-1%;
+  margin-left:48%;
+  width: 8vw;
+  height:10vh;
+}
+.scoreRight h1{
+  font-weight: bolder;
 }
 .commentmsg{
   padding-left: 50px;

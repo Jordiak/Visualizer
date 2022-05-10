@@ -5,6 +5,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import FormatMonth from '../functions/formatMonth';
 import FormatTime from '../functions/formatTime';
 import {AvatarGenerator} from './generator_avatar.ts';
+import crown from '../images/crown.png';
 
 export default function ScorePage(){
 
@@ -107,6 +108,7 @@ export default function ScorePage(){
             </div>
             </div>
             <div className="scoreRight">
+                <img className = "crown" src={crown}></img>
                 <h1>Top 7 Recent Quiz Scores </h1>
                 <div className="scoreTable">
                 {topScore.map((item)=>{
@@ -117,7 +119,7 @@ export default function ScorePage(){
                             </div>
                             <div className="scoreRow">
 
-                                <h3>{item.useremail_reg}</h3>{formatDateTime(item.quiz_taken)} <h1>{item.user_score} / {item.questions_total}</h1>
+                                <h3>{item.username_reg}</h3>{formatDateTime(item.quiz_taken)} <h1>{item.user_score} / {item.questions_total}</h1>
                             </div>
                         </div>
                     )
