@@ -1,12 +1,14 @@
-import React, {useEffect, useState, useRef, useReducer} from 'react';
+import React, {useEffect, useState, useRef, useReducer, useContext} from 'react';
 import { elements, choices, answers_sets } from './QuizData';
 import Swal from 'sweetalert2';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import ReactSession from 'react-client-session/dist/ReactSession';
+import { UserContext } from '../UserContext';
 
 export default function Quiz(){
     let history = useHistory();
+    const {value,setValue} = useContext(UserContext);
 
     function enterLogin(){
         history.push("/login-form");
@@ -78,9 +80,10 @@ export default function Quiz(){
                 var timeSQL = (today.getHours()-8) + ":" + today.getMinutes() + ":" + today.getSeconds();
                 var dateTime = date+' '+time;
                 var dateTimeSQL = date+' '+timeSQL;
+
         
                 Axios.post('http://localhost:3001/api/quiz_finish', {
-                    Reg_email: "usernamex",
+                    Reg_email: value,
                     User_score: score, 
                     Q_total: questionSets.length,
                     Q_taken: dateTimeSQL

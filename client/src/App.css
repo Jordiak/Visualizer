@@ -648,7 +648,7 @@ h2 {
 .score-card{
   align-self: center;
   text-align: center;
-  width: 40%;
+  width: 100%;
   height: auto;
   padding: 20px;
   font-weight: semibold;
@@ -661,6 +661,47 @@ h2 {
   border-radius: 19px;
   background: #cfedfd;
   margin-bottom: 10px;
+}
+.scoreLeft{
+  float:left;
+  width:50%;
+  
+ 
+}
+.scoreRight{
+  float:right;
+  text-align: center;
+  width:50%;
+}
+.scoreTable{
+  border-color:unset;
+  border-width: thin;
+  border-radius:10px;
+  margin:3%;
+  background-color:#255494;
+  padding:3%;
+  padding-left:10%;
+}
+.scoreRow{
+  margin:1%;
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  background: linear-gradient( 90deg,white, #a0c8df ,transparent);
+  text-align: justify;
+  padding-left: 10%;
+  padding-top: 3%;
+}
+.scoreRow h1{
+  text-align: right;
+  color:lemonchiffon;
+}
+.scorePic{
+  background-color: white;
+  float:left;
+  color:white;
+  width:50px;
+  border-radius: 20px;
 }
 .commentmsg{
   padding-left: 50px;

@@ -8,14 +8,20 @@ import FormatTime from '../functions/formatTime';
 export default function ScorePage(){
 
     const [scoreList, setScoreList] = useState([]);
+    const [topScore,setTopScore] = useState([]);
 
      //get scorelist
      useEffect(() => {
         Axios.get('http://localhost:3001/api/scoreList/get').then((response)=>{
           setScoreList(response.data);
+
   
       });
-    } , [])
+        Axios.get('http://localhost:3001/api/topScore/get').then((response)=>{
+            setTopScore(response.data);
+      });
+    } , []) 
+    
 
     //function for calculating percentages of the scores
     function calculatePercent (score, total){
@@ -50,6 +56,7 @@ export default function ScorePage(){
     
     return(
         <div className="InformationBox1">
+            <div className="scoreLeft">
             <div className="cardholder">
             {
                 scoreList.map((item)=>{
@@ -95,6 +102,25 @@ export default function ScorePage(){
                      </div>
                 )})
             }
+            </div>
+            </div>
+            <div className="scoreRight">
+                <h1>Top 7 Recent Quiz Scores </h1>
+                <div className="scoreTable">
+                {topScore.map((item)=>{
+                    return(
+                        <div>
+                            <div className="scorePic">Hello</div>
+                            <div className="scoreRow">
+
+                                <h3>{item.useremail_reg}</h3>{formatDateTime(item.quiz_taken)} <h1>{item.user_score} / {item.questions_total}</h1>
+                            </div>
+                        </div>
+                    )
+                })
+                }
+            </div>
+
             </div>
         </div>
     )

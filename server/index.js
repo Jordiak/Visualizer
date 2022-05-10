@@ -114,6 +114,19 @@ app.get('/api/scoreList/get', (req, res) =>{
     })
 })
 
+app.get('/api/topScore/get', (req, res) =>{
+    const sqlSelect = "select * from quiz_statistics order by user_score desc, quiz_taken desc limit 7;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+app.get('/api/profileScore/get', (req, res) =>{
+    const sqlSelect = "select quiz_statistics.useremail_reg,quiz_statistics.user_score,quiz_statistics.questions_total,quiz_statistics.quiz_taken,user_infos.useravatar_url from quiz_statistics inner join user_infos on quiz_statistics.useremail_reg = user_infos.useremail_reg order by user_score desc, quiz_taken desc limit 7;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
 app.get('/api/comment/get', (req, res) =>{
     const sqlSelect = "select user_infos.username_reg,user_infos.useremail_reg,comments_table.comment_id,comments_table.comment_text, comments_table.date_written,useravatar_url from user_infos inner join comments_table on user_infos.useremail_reg = comments_table.useremail_reg";
     db.query(sqlSelect, (err, result) =>{
