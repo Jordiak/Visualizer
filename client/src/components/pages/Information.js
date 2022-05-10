@@ -21,7 +21,7 @@ export default function Information(){
                 <div className='leftInfo'>
                     <div className='rounded-container'>
                 <h1>What are Data Structures?</h1><br/>
-                Data structure is a storage that is used to <span className='htext'>store and organize data</span>. It is a way of arranging data on a computer so that it can be accessed and updated <span className='htext'>efficiently</span>.
+                Data structure is a storage that is used to store and organize data. It is a way of arranging data on a computer so that it can be accessed and updated efficiently.
 
                 Depending on your requirement and project, it is important to choose the right data structure for your project.
                 <br/><br/>
@@ -31,19 +31,19 @@ export default function Information(){
 
                 <ul style={{marginLeft:'30px'}}>
                     <li><h2>Linear data structure</h2></li>
-                    In linear data structures, the elements are arranged in sequence one after the other. Since elements are <span className='htext'>arranged</span> in particular order, they are easy to implement.
+                    In linear data structures, the elements are arranged in sequence one after the other. Since elements are arranged in particular order, they are easy to implement.
                     However, when the complexity of the program increases, the linear data structures might not be the best choice because of operational complexities.
                     Some popular linear data structures are array, stack, queue and linked list.
                     <br/>
                     <li><h2> Non-linear data structure</h2></li>
-                    Unlike linear data structures, elements in non-linear data structures are not in any sequence. Instead they are arranged in a <span className='htext'>hierarchical manner</span> where one element will be connected to one or more elements.
+                    Unlike linear data structures, elements in non-linear data structures are not in any sequence. Instead they are arranged in a hierarchical manner where one element will be connected to one or more elements.
                     Non-linear data structures are further divided into graph and tree based data structures.
 
                     </ul>
                     <br/><h1>Why Use Data Structure?</h1><br/>
                     Knowledge about data structures help you understand the working of each data structure. And, based on that you can select the right data structures for your project.
 
-                    This helps you <span className='htext'>write memory and time efficient code</span>.
+                    This helps you write memory and time efficient code.
                     </div>
                 </div>
                 <div className='rightInfo' >
@@ -59,7 +59,7 @@ export default function Information(){
                     <div className="rounded-container">
                 <h1>What is an Algorithm?</h1><br/>
 
-                    In computer programming terms, an algorithm is a set of <span className='htext'>well-defined instructions</span> to solve a particular problem. It takes a set of input and produces a desired output. For example,
+                    In computer programming terms, an algorithm is a set of well-defined instructionsto solve a particular problem. It takes a set of input and produces a desired output. For example,
 
                     An algorithm to add two numbers:
                     <ul style={{marginLeft:'30px'}}>
@@ -76,7 +76,7 @@ export default function Information(){
                         <li>An algorithm shouldn't include computer code. Instead, the algorithm should be written in such a way that it can be used in different programming languages.</li>
                     </ul><br/>
                     <h1>Importance of Algorithms</h1><br/>
-                    Algorithmic thinking, or the ability to define clear steps to solve a problem, is crucial in many different fields. Even if we’re not conscious of it, we use algorithms and algorithmic thinking all the time. Algorithmic thinking <span className='htext'>allows students to break down problems and conceptualize solutions</span> in terms of discrete steps. Being able to understand and implement an algorithm requires students to practice structured thinking and reasoning abilities.
+                    Algorithmic thinking, or the ability to define clear steps to solve a problem, is crucial in many different fields. Even if we’re not conscious of it, we use algorithms and algorithmic thinking all the time. Algorithmic thinking allows students to break down problems and conceptualize solutions in terms of discrete steps. Being able to understand and implement an algorithm requires students to practice structured thinking and reasoning abilities.
                 <br/><br/><a href='https://www.programiz.com/dsa/algorithm' style={{color:'black'}} target={"_blank"}>Additional Information</a>
                 </div>
                 
