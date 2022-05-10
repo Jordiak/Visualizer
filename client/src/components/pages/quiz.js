@@ -2,9 +2,15 @@ import React, {useEffect, useState, useRef, useReducer} from 'react';
 import { elements, choices, answers_sets } from './QuizData';
 import Swal from 'sweetalert2';
 import Axios from 'axios';
+import { useHistory } from 'react-router-dom';
 import ReactSession from 'react-client-session/dist/ReactSession';
 
 export default function Quiz(){
+    let history = useHistory();
+
+    function enterLogin(){
+        history.push("/login-form");
+    }
 
     const [, forceUpdate] = useReducer(x => x + 1, 0);
 
@@ -200,7 +206,8 @@ export default function Quiz(){
                     :// :Not logged in
 
             <div>
-                <button>Login</button>
+                <h1>Please register or sign in to continue.</h1>
+                <center><button onClick={enterLogin}>Login</button></center>
             </div>}
 
             
