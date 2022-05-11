@@ -1,21 +1,74 @@
 import React, { useState, useEffect} from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import { BiUser, BiCommentDetail, BiEdit  } from "react-icons/bi";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export default function Dashboard(){
+  //get stats
     const [userStats,setuserStats]=useState([]);
     const [commentStats,setcommentStats]=useState([]);
+    const [commentLineStats,setcommentLineStats]=useState([]);
     const [questionStats,setquestionStats]=useState([]);
     const [userCommentStats,setuserCommentStats]=useState([]);
     const [userReplyStats,setuserReplyStats]=useState([]);
-    //get stats
     useEffect(() => {
       Axios.get('http://localhost:3001/api/admin/user_stats').then((response)=>{setuserStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/comments_replies_stats').then((response)=>{setcommentStats(response.data)});
+      Axios.get('http://localhost:3001/api/admin/comments_line_stats').then((response)=>{setcommentLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/quiz_questions_stats').then((response)=>{setquestionStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_comments').then((response)=>{setuserCommentStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_replies').then((response)=>{setuserReplyStats(response.data)});
     } , [])
+    const data = {
+      labels: commentLineStats.map(val => val.date_writtens),
+      datasets: [
+        {
+          label: 'Comments',
+          data: commentLineStats.map(val => val.Comments),
+          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        },
+        {
+          label: 'Replies',
+          data: commentLineStats.map(val => val.Replies),
+          borderColor: 'rgb(53, 162, 235)',
+          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+        }
+      ],
+    };
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        maintainAspectRatio: false,
+        title: {
+          display: false,
+          text: 'Comments Made',
+        },
+      },
+    };
     if(localStorage.getItem("adminusername")){
      return(
        <>
@@ -27,9 +80,19 @@ export default function Dashboard(){
                   <div className="dashboardcard">
                   {userStats.map((val)=>{return (
                   <div>
-                    <h1>Users</h1>
-                    <h2>{val.Verified_Users} Verified Users</h2>
-                    <h2>{val.Total_Users} Total Users</h2>
+                    <span class="dashboardtitle">Users</span>
+                    <table className="seperation">
+                      <tr>
+                        <td>
+                        <span class="dashboardicon"><BiUser /></span>
+                        </td>
+                        <td>
+                        <h2 class="dashboardstats">{val.Verified_Users} Verified Users</h2>
+                        <h2 class="dashboardstats">{val.Total_Users} Total Users</h2>
+                        </td>
+                      </tr>
+                    </table>
+                    
                     <Link to='/manage-users'>
                     <button className="backendbtn">Manage Users</button>
                     </Link>
@@ -41,9 +104,16 @@ export default function Dashboard(){
                   <div className="dashboardcard">
                   {commentStats.map((val)=>{return (
                   <div>
-                    <h1>Discussion</h1>
-                    <h2>{val.Comments} Comments</h2>
-                    <h2>{val.Replies} Replies</h2>
+                    <span class="dashboardtitle">Discussion</span>
+                    <table className="seperation">
+                      <tr>
+                        <td><span class="dashboardicon"><BiCommentDetail/></span></td>
+                        <td>
+                        <h2 class="dashboardstats">{val.Comments} Comments</h2>
+                        <h2 class="dashboardstats">{val.Replies} Replies</h2>
+                        </td>
+                      </tr>
+                      </table>
                     <Link to='/manage-discussion'>
                     <button className="backendbtn">Manage Discussion</button>
                     </Link>
@@ -55,68 +125,57 @@ export default function Dashboard(){
                   <div className="dashboardcard">
                   {questionStats.map((val)=>{return (
                   <div>
-                    <h1>Quiz</h1>
-                    <h2>{val.Questions} Questions</h2>
+                    <span class="dashboardtitle">Quiz</span>
+                    <table className="seperation">
+                      <tr>
+                        <td><span class="dashboardicon"><BiEdit/></span></td>
+                        <td>
+                        <h2 class="dashboardstats">{val.Questions} Questions</h2>
+                        <h2 class="dashboardstats">{val.Questions} Questions</h2>
+                        </td>
+                      </tr>
+                    </table>
                     <Link to='/manage-quiz'>
-                    <button className="backendbtn">Manage Quiz Questions</button>
+                    <button className="backendbtn">Manage Quiz</button>
                     </Link>
                   </div>
                     )})}
                   </div>
                 </td>
               </tr>
+            </table>
+            <span class="dashboardtitle">Performance</span>
+            <table>
               <tr>
                 <td>
-                  <div className="dashboardcard">
-                  <h1>Most User Comments</h1>
-                  <table id="listtable">
-                    <tr>
-                      <th>
-                        Username
-                      </th>
-                      <th>
-                        Comments
-                      </th>
-                    </tr>
-                    {userCommentStats.map((val)=>{return (
-                    <tr>
-                      <td>
-                        {val.Username}
-                      </td>
-                      <td>
-                        {val.Comments}
-                      </td>
-                    </tr>
+                <div className="dashboardcard">
+            <span class="dashboardtitle">Most User Replies</span>
+            <table class="seperation">
+              {userReplyStats.map((val)=>{return (
+                      <tr>
+                        <td><b>{val.Username}</b></td>
+                        <td>{val.Replies} Replies</td>
+                      </tr>
                     )})}
-                  </table>
+            </table>
+            </div>      
+            <div className="dashboardcard">
+            <span class="dashboardtitle">Most User Comments</span>
+            <table class="seperation">
+              {userCommentStats.map((val)=>{return (
+                      <tr>
+                        <td><b>{val.Username}</b></td>
+                        <td>{val.Comments} Comments</td>
+                      </tr>
+                    )})}
+            </table>
                   </div>
                 </td>
-              </tr>
-              <tr>
                 <td>
-                  <div className="dashboardcard">
-                  <h1>Most User Replies</h1>
-                  <table id="listtable">
-                    <tr>
-                      <th>
-                        Username
-                      </th>
-                      <th>
-                        Replies
-                      </th>
-                    </tr>
-                    {userReplyStats.map((val)=>{return (
-                    <tr>
-                      <td>
-                        {val.Username}
-                      </td>
-                      <td>
-                        {val.Replies}
-                      </td>
-                    </tr>
-                    )})}
-                  </table>
-                  </div>
+                <div className="dashboardcard">
+              <span class="dashboardtitle">User Activity</span>
+                <Line options={options} data={data}/>
+                </div>
                 </td>
               </tr>
             </table>
