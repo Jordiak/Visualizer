@@ -251,8 +251,6 @@ export default function Quiz(){
 
         <div>
 
-{ReactSession.get("email") != undefined ? 
-            //Logged in
           <div>
                 {started ? <div className="quizInnerDiv">            
                 <QuizQuestion/>
@@ -286,7 +284,21 @@ export default function Quiz(){
                         </p>
                     </div>
 
-                    <center><button onClick={()=>{BeginQuiz()}}>BEGIN QUIZ</button></center>
+                    {ReactSession.get("email") != undefined ?
+                    <div>
+                        <div className="commentform">
+                            <button className="disc-button" onClick={()=>{BeginQuiz()}}>BEGIN QUIZ</button>
+                        </div>
+                    </div>
+                    :
+                    <div>
+                        <h1>Please register or sign in to continue.</h1>
+                        <div className="commentform">
+                            <button className="disc-button" onClick={enterLogin}>Login</button>
+                        </div>
+                    </div>
+                    }
+
 
 <div id="quiz_demo_note"><h2>Quiz Demonstration</h2></div>
                     <div className="quiz_demo">
@@ -314,12 +326,7 @@ export default function Quiz(){
             
 
 
-                    :// :Not logged in
 
-            <div>
-                <h1>Please register or sign in to continue.</h1>
-                <center><button onClick={enterLogin}>Login</button></center>
-            </div>}
 
             
         </div>
