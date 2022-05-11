@@ -122,7 +122,7 @@ export default function ScorePage(){
             </div>
             <div className="scoreRight">
                 <img className = "crown" src={crown}></img>
-                <h1>Top 7 Recent Quiz Scores </h1>
+                <h1>Top 7 Recent Quiz Scorers </h1>
                 <div className="scoreTable">
                 {topScore.map((item)=>{
                     return(

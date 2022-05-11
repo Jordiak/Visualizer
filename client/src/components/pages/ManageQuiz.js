@@ -218,8 +218,7 @@ export default function ManageQuiz(){
     <div>
 
         <div class="quiz-maker-container">
-            <h1>Today's Quiz</h1>
-            <h2>Question Number</h2>
+            <h1>Create Question</h1>
             <br></br>
             <label>Type:</label>
             <select onChange={(event)=>ChangeQuestionType(event)} name="type" id="type">
@@ -270,7 +269,7 @@ export default function ManageQuiz(){
             
         </div>
         {questionSets.map((val, index)=> 
-        <div class="grid-questions">
+        <div id="admin_questions">
             <div id="quiz-content0"><h1>Question {index+1}</h1></div>
             <div id="quiz-content1">Question Type:{val.question_type}</div>
             <div id="quiz-content2">Question Content:{val.question_content}</div>
@@ -281,10 +280,7 @@ export default function ManageQuiz(){
             <button class="quiz_editButton" onClick={()=>{EditQuestion(val.question_id, val.question_content, val.question_choices, val.correct_answer, val.question_type)}}>Edit Question</button>
             {editMode && questionEditId == val.question_id ? 
             <div>
-                <div class="quiz-maker-container">
-                    <h1>Today's Quiz</h1>
-                    <h2>Question Number</h2>
-                    <br></br>
+                <div id="quiz-maker-edit">
                     <label>Type:</label>
                     <select onChange={(event)=>setTempQuestionType(event.target.value)} name="type" id="type">
                     <option selected={val.question_type == "Multiple Choice"} value="Multiple Choice">Multiple Choice</option>
@@ -334,7 +330,7 @@ export default function ManageQuiz(){
             </div>
             </div> 
             : 
-            <div>not-edit mode</div>}
+            <div></div>}
 
             <button class="quiz_deleteButton" onClick={()=>{DeleteQuestion(val.question_id)}}>Delete Question</button>
         </div>

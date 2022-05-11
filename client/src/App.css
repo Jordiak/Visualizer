@@ -1018,6 +1018,7 @@ h2 {
   height: 115vh;
   overflow:hidden;
   background-attachment: fixed;
+  
 }
 #fillDiv{
   margin-top:20px;
@@ -1034,10 +1035,67 @@ h2 {
   background-color: white;
     box-shadow: -6px -6px 10px rgba(255, 255, 255, 0),
       6px 6px 10px rgba(0, 0, 0, 0.2);
-}#quizSign{
+}
+
+#quizSign{
   font-weight:bold;
   font-family: "Montserrat";
   color:#2b388a;
+}
+
+.quiz_demo{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  padding:1%;
+  margin:auto;
+  margin-top:1%;
+  background-color: rgb(254, 254, 254);
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0),
+      6px 6px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  overflow-y:scroll;
+  height: 40rem;
+  width: 60rem;
+  margin-bottom: 20%;
+  border: rgb(93, 213, 243) solid 3px;
+}
+
+#quiz_demo_note{
+  margin-top: 5rem;
+  text-align: center;
+}
+#quiz_demo_note>h2{
+  color: black;
+  font-size: 32px;
+}
+
+.quiz_user_page_front{
+  height: auto;
+}
+
+.quiz_instruction{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  padding:1%;
+  margin-top:10%;
+  margin-left:10%;
+  margin-right:10%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top:2%;
+  background-color: rgb(255, 255, 255);
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0),
+      6px 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#quiz_instruction_note{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  padding:1%;
+  margin:10% 10% 5% 10%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top:2%;
 }
 
 .choices_admin_quiz>label{
@@ -1099,10 +1157,22 @@ h2 {
   background-color: rgb(216, 243, 255);
 }
 
+#quiz-maker-edit{
+  text-align: center;
+  font-size: 24px;
+  width: 50%;
+  margin: auto;
+}
+
 .quiz-maker-container > h1{
   font-size: 64px;
   background-color: skyblue;
   margin: auto;
+}
+
+#admin_questions{
+  margin-top: 3%;
+  text-align:center;
 }
 
 .grid-questions{

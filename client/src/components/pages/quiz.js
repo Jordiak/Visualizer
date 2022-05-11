@@ -4,7 +4,9 @@ import Swal from 'sweetalert2';
 import Axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import ReactSession from 'react-client-session/dist/ReactSession';
-
+import fill_blank from '../images/fill_in_the_blank.jpg'
+import fil_blank2 from '../images/fill_blank.jpg'
+import t_or_f from '../images/t_or_f.jpg'
 
 export default function Quiz(){
     let history = useHistory();
@@ -23,6 +25,8 @@ export default function Quiz(){
     const answers = useRef({});
     const [currentBlankAnswer, setCurrentBlankAnswer] = useState("");
     const separator = "`$`";
+    const [started, setStarted] = useState(false);
+    const [hasTakenQuizToday, setHasTakenQuizToday] = useState(false);
     
     var prnDt = "Today's " + new Date().toLocaleDateString('en-us', { weekday: 'long' }) + " Quiz";
 
@@ -52,6 +56,16 @@ export default function Quiz(){
 
     function FinishQuiz(){
 
+        let scoremsg = ""
+        let msg = ""
+        if(hasTakenQuizToday){
+            scoremsg = "Score not recorded."
+            msg = "You have already taken a quiz for today. This will not update your previous score."
+        }
+        else{
+            scoremsg = "Quiz score recorded! "
+            msg = "This is your first attempt today. The result will be your permanent score for this day"
+        }
         Swal.fire({
             icon: 'error',
             title: 'Logged out'
@@ -59,7 +73,7 @@ export default function Quiz(){
 
         Swal.fire({
             title: 'Submit Answers?',
-            text: "Your scores will be updated upon submission.",
+            text: msg,
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -81,17 +95,18 @@ export default function Quiz(){
                 var dateTime = date+' '+time;
                 var dateTimeSQL = date+' '+timeSQL;
 
-        
-                Axios.post('http://localhost:3001/api/quiz_finish', {
-                    Reg_email: ReactSession.get('email'),
-                    User_score: score, 
-                    Q_total: questionSets.length,
-                    Q_taken: dateTimeSQL
-                });
+                if(!hasTakenQuizToday){
+                    Axios.post('http://localhost:3001/api/quiz_finish', {
+                        Reg_email: ReactSession.get('email'),
+                        User_score: score, 
+                        Q_total: questionSets.length,
+                        Q_taken: dateTimeSQL
+                    });
+                }
 
                 Swal.fire(
                     'Success!',
-                    'Quiz score recorded!  ' +"Result:"+score +"/" +questionSets.length,
+                    scoremsg +"Result:"+score +"/" +questionSets.length,
                     'success');
                 enterScorePage();
 
@@ -115,7 +130,7 @@ export default function Quiz(){
                 <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
                 <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("C")}}>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
                 <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("D")}}>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
-                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+                {/* <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div> */}
                 <br></br>
             </div> : questionSets[questionNo]?.question_type == "True or False" ? 
             <div>
@@ -123,15 +138,17 @@ export default function Quiz(){
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
                 <div id="quiz-content3"><button onClick={()=>{SelectAnswer("True")}} id={answers.current[questionNo] == "True" ? "selected_button_tf" : "true_button"}>True</button></div>
                 <div id="quiz-content3"><button onClick={()=>{SelectAnswer("False")}} id={answers.current[questionNo] == "False" ? "selected_button_tf" : "false_button"}>False</button></div>
-                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+                {/* <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div> */}
             </div> 
 
             : questionSets[questionNo]?.question_type == "Fill in the Blank" ? 
             <div > 
                 <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
+                <br></br>
                 <div id="fillDiv">Answer:  <input id="fillInput" type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
-                <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div>
+                <br></br>
+                {/* <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div> */}
             </div>
 
 
@@ -158,7 +175,47 @@ export default function Quiz(){
         // console.log(answers.current)
         })
       },[])
-    
+
+    //Check if user has taken a quiz already today
+    useEffect(()=>{
+        Axios.post('http://localhost:3001/api/user/get_user_quiz_taken', {
+            Reg_email: ReactSession.get("email"),
+        }).then((response)=>{
+            if(response.data[0] != undefined)
+                setHasTakenQuizToday(true)
+        });
+    },[])
+
+    function BeginQuiz(){
+
+        let msg = ""
+        if(hasTakenQuizToday)
+        msg = "You have already taken an attempt today(1/1). Submitting new answers will not update the previous score."        
+        
+        else
+            msg = "This is your first attempt today(0/1). Taking a quiz for the first time today will be the ones recorded throughout the day."
+
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Logged out'
+        })
+
+        Swal.fire({
+            title: 'Begin Quiz?',
+            text: msg,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'No',
+            cancelButtonText:'Yes'
+        }).then((result) => {
+            if(!result.isConfirmed)
+                setStarted(true)
+        })
+        
+    }
 
     function SplitChoices(choices, letter){
         //1 = A   2 = B  3 = C  4 = D
@@ -189,29 +246,74 @@ export default function Quiz(){
     }
 
     return(
-        <div className="user-quiz">
+        <div className="user-quiz" style={ started ? {} : {height:"165vh"} }>
             <h1 id="quizSign">{prnDt}</h1>
 
         <div>
 
 {ReactSession.get("email") != undefined ? 
             //Logged in
-          <div className="quizInnerDiv">
-            
-            <QuizQuestion/>
-            
-            {questionNo+1 == 1 && questionNo+1 == questionSets.length ? <div class="button-next">
-                <button id="buttonQuizz" onClick={NextQuestion}>Finish</button></div>:questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
-                <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
-                <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button>
-            </div>: questionNo+1 == questionSets.length ?<div class="buttons-positioned">
-                <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
-                <button id="buttonQuizz" onClick={FinishQuiz}>Finish</button>
-            </div>:<div class="button-next">
-                <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button></div>}
-            {questionNo+1 + " of " + questionSets.length}
+          <div>
+                {started ? <div className="quizInnerDiv">            
+                <QuizQuestion/>
+                
+                {questionNo+1 == 1 && questionNo+1 == questionSets.length ? <div class="button-next">
+                    <button id="buttonQuizz" onClick={NextQuestion}>Finish</button></div>:questionNo >0 && questionNo+1!=questionSets.length?<div class="buttons-positioned">
+                    <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
+                    <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button>
+                </div>: questionNo+1 == questionSets.length ?<div class="buttons-positioned">
+                    <button id="buttonQuizz" onClick={PrevQuestion}>Previous Question</button>
+                    <button id="buttonQuizz" onClick={FinishQuiz}>Finish</button>
+                </div>:<div class="button-next">
+                    <button id="buttonQuizz" onClick={NextQuestion}>Next Question</button></div>}
+                {questionNo+1 + " of " + questionSets.length}
+                </div>
+                
+                : //Not started 
+
+                <div className="quiz_user_page_front">
+                    <div className="quiz_instruction">
+                       <p>Instructions: Today's quiz has <span style={{color:"blue"}}>{questionSets?.length}</span> item questions of different types
+                         such as multiple choice, fill in the blank, and true or false. The questions contained
+                       within changes everyday. 
+                       </p>
+                    </div>
+                    
+                    <div id="quiz_instruction_note">
+                        <p>
+                            **NOTE: Only the first attempt of the quiz is recorded. 
+                            Another attempt does not update the first recorded score until the following day.
+                        </p>
+                    </div>
+
+                    <center><button onClick={()=>{BeginQuiz()}}>BEGIN QUIZ</button></center>
+
+<div id="quiz_demo_note"><h2>Quiz Demonstration</h2></div>
+                    <div className="quiz_demo">
+
+                        <h2>Multiple Choice</h2>
+                        <strong><p>Select the corresponding choice based off your desired answer.</p></strong>
+                        <img width={'85%'} height={'60%'} src={fill_blank}></img>
+                        <br></br>
+                        <h2>Fill in the Blank</h2>
+                        <strong><p>Input your desired answer in the textbox input by selecting and typing your answer.</p></strong>
+                        <img width={'85%'} height={'60%'} src={fil_blank2}></img>
+                        <br></br>
+                        <h2>True or False</h2>
+                        <strong><p>Click the true or false button whether the statement from the question is true or false.</p></strong>
+                        <img width={'85%'} height={'60%'} src={t_or_f}></img>
+                        <br></br>
+                        <br></br>
+                        <strong><p></p>**The whole quiz can be backtracked by clicking the previous button, making it easier to make changes from your answers.</strong>
+
+                    </div>
+                </div>
+                
+                }
             </div>
             
+
+
                     :// :Not logged in
 
             <div>
