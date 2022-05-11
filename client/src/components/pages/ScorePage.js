@@ -8,7 +8,7 @@ import {AvatarGenerator} from './generator_avatar.ts';
 import crown from '../images/crown.png';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import man from '../images/sit.png';
-import checklist from '../images/checklist.png';
+import checklist from '../images/pencil.png';
 
 export default function ScorePage(){
 
