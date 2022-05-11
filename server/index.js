@@ -428,7 +428,12 @@ app.get('/api/admin/comments_replies_stats', (req, res) =>{
         res.send(result);
     })
 })
-
+app.get('/api/admin/comments_line_stats', (req, res) =>{
+    const sqlSelect = "SELECT date_writtens, sum(comments_count) AS 'Comments', sum(replies_count) AS 'Replies' FROM ((select DATE_FORMAT(comments_table.date_written,'%M %d') AS date_writtens, count(comments_table.comment_id) as comments_count, 0 as replies_count FROM comments_table GROUP BY DATE_FORMAT(comments_table.date_written,'%M %d')) UNION ALL (SELECT DATE_FORMAT(reply_written,'%M %d') AS date_writtens, 0 AS 'Comments', count(reply_id) AS replies_count FROM replies_table GROUP BY DATE_FORMAT(reply_written,'%M %d'))) x GROUP BY date_writtens ORDER BY date_writtens ASC;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 //Quiz
 
 app.post('/api/quiz_finish', (req, res) =>{
