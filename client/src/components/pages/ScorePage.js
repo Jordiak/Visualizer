@@ -7,7 +7,8 @@ import FormatTime from '../functions/formatTime';
 import {AvatarGenerator} from './generator_avatar.ts';
 import crown from '../images/crown.png';
 import ReactSession from 'react-client-session/dist/ReactSession';
-import man from '../images/man.png';
+import man from '../images/sit.png';
+import checklist from '../images/checklist.png';
 
 export default function ScorePage(){
 
@@ -42,7 +43,7 @@ export default function ScorePage(){
         else if (percent >= 51 && percent <= 75)
             return "#F1C40F"
         else if (percent >= 76 && percent <= 100)
-            return "##2ECC71"
+            return "#5cb85c"
     }
 
     //function for formating datetime string
@@ -63,11 +64,12 @@ export default function ScorePage(){
         <div className="InformationBox1">
              
              <div className="outerleft">
+            <img className="checklist" src={checklist}></img>
              <h1 className="labelScore">Your Scores: </h1>
                 <img className="man" src={man}></img>
             <div className="scoreLeft">
                
-            <div className="cardholder">
+            <div className="cardholderScore">
             {
                 scoreList.map((item)=>{
                     return (
@@ -102,8 +104,11 @@ export default function ScorePage(){
                                         stroke: calculateColor(calculatePercent(item.user_score,item.questions_total)), 
                                     },
                                     text:{
-                                        fill: calculateColor(calculatePercent(item.user_score,item.questions_total))
-                                    }
+                                        fill: calculateColor(calculatePercent(item.user_score,item.questions_total)),
+                                        fontSize:"1rem",
+                                        
+                                    },
+                                    
                                 }}
                                 strokeWidth = {10}
                             >

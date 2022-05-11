@@ -645,6 +645,12 @@ h2 {
   margin-bottom: 10px;
 }
 
+.cardholderScore {
+  margin-left: 5%;
+  padding-right:0%;
+  display: flex;
+  flex-direction: column-reverse;
+}
 .score-card{
   align-self: center;
   text-align: center;
@@ -664,16 +670,26 @@ h2 {
 }
 
 .scoreLeft{
-  margin-top:15%;
-  float:right;
-  width:70%;
-  height:70vh;
+  margin-top:18%;
+  padding-left: 7%;
+  float:left;
+  width:90%;
+  height:60vh;
   overflow-y: auto;
 }
 .man{
- width:23%;
+ width:45%;
+ left:11.3%;
+ top:6% ;
  position: absolute;
+ padding-left:25%;
 
+}
+.checklist{
+  position: absolute;
+  left:3.5%;
+  top:24%;
+  width:4%;
 }
 .outerleft{
   width:60%;
@@ -688,6 +704,8 @@ h2 {
   color:darkblue;
 }
 .scoreTable{
+  height:65vh;
+  overflow-y: auto;
   border-color:unset;
   border-width: thin;
   border-radius:10px;
@@ -695,6 +713,7 @@ h2 {
   background-color:#255494;
   padding:3%;
   padding-left:10%;
+  
 }
 .scoreRow{
   margin:1%;
@@ -720,7 +739,11 @@ h2 {
   border-radius: 100px;
 }
 .labelScore{
-  margin-top:0px;
+  top:27%;
+  position: absolute;
+  left:8%;
+  text-align: left;
+  font-weight:400;
 }
 .crown{
   margin-bottom: -1%;
