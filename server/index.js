@@ -410,7 +410,7 @@ app.delete('/api/admin/truncate_question', (req, res) =>{
 })
 
 //Gather Data for Dashboard
-//User
+//Get Total, Verified, Unverified User count
 app.get('/api/admin/user_stats', (req, res) =>{
     const sqlSelect = "SELECT(SELECT COUNT(*) FROM user_infos) AS 'Total_Users', (SELECT COUNT(*) FROM user_infos WHERE confirmed='true') AS 'Verified_Users';";
     db.query(sqlSelect, (err, result) =>{
@@ -419,33 +419,47 @@ app.get('/api/admin/user_stats', (req, res) =>{
 })
 //Get Users Comment Amt (Highest to Lowest)
 app.get('/api/admin/user_stats_comments', (req, res) =>{
-    const sqlSelect = "SELECT useremail_reg as 'Username', COUNT(comment_id) AS 'Comments' FROM comments_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg) AS 'Avatar', Count(comments_table.comment_id) AS 'Comments', (SELECT user_infos.username_reg FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg ) AS 'Username' FROM comments_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
 })
 //Get Users Reply Amt (Highest to Lowest)
 app.get('/api/admin/user_stats_replies', (req, res) =>{
-    const sqlSelect = "SELECT useremail_reg as 'Username', COUNT(comment_id) AS 'Replies' FROM replies_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg) AS 'Avatar', Count(replies_table.reply_id) AS 'Replies', (SELECT user_infos.username_reg FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg ) AS 'Username' FROM replies_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
 })
-//Comments & Replies
+//Comments and Replies Count
 app.get('/api/admin/comments_replies_stats', (req, res) =>{
     const sqlSelect = "SELECT (SELECT COUNT(*) FROM comments_table) AS 'Comments',(SELECT COUNT(*) FROM replies_table) AS 'Replies';";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
 })
+//Comments and Replies by Month and Day (for Line Graph)
 app.get('/api/admin/comments_line_stats', (req, res) =>{
     const sqlSelect = "SELECT date_writtens, sum(comments_count) AS 'Comments', sum(replies_count) AS 'Replies' FROM ((select DATE_FORMAT(comments_table.date_written,'%M %d') AS date_writtens, count(comments_table.comment_id) as comments_count, 0 as replies_count FROM comments_table GROUP BY DATE_FORMAT(comments_table.date_written,'%M %d')) UNION ALL (SELECT DATE_FORMAT(reply_written,'%M %d') AS date_writtens, 0 AS 'Comments', count(reply_id) AS replies_count FROM replies_table GROUP BY DATE_FORMAT(reply_written,'%M %d'))) x GROUP BY date_writtens ORDER BY date_writtens ASC;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
 })
-//Quiz
-
+//Quiz Questions and Quiz Takers Count
+app.get('/api/admin/quiz_questions_stats', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT COUNT(*) FROM quiz_questions) AS 'Questions', (SELECT COUNT(*) FROM quiz_statistics) AS 'QuizTakers';";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Quizzes Taken by Month and Day (for Line Graph)
+app.get('/api/admin/quiz_taker_stats', (req, res) =>{
+    const sqlSelect = "SELECT DATE_FORMAT(quiz_taken,'%M %d') AS 'DateMade', Count(*) AS 'QuizTakers' FROM quiz_statistics GROUP BY DATE_FORMAT(quiz_taken,'%M %d');";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//User Quiz
 app.post('/api/quiz_finish', (req, res) =>{
 
     const Reg_email = req.body.Reg_email
@@ -475,12 +489,7 @@ app.put('/api/quiz_admin/update', (req,res) => { //Quiz question update
     })
 })
 
-app.get('/api/admin/quiz_questions_stats', (req, res) =>{
-    const sqlSelect = "SELECT COUNT(*) AS 'Questions' FROM quiz_questions;";
-    db.query(sqlSelect, (err, result) =>{
-        res.send(result);
-    })
-})
+
 
 //Delete Users
 app.delete('/api/username/delete/:useremail',(req,res) => {

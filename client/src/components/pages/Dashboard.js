@@ -2,26 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BiUser, BiCommentDetail, BiEdit  } from "react-icons/bi";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+import { LineGraph } from "./DashboardGraphs"
 
 export default function Dashboard(){
   //get stats
@@ -31,6 +12,17 @@ export default function Dashboard(){
     const [questionStats,setquestionStats]=useState([]);
     const [userCommentStats,setuserCommentStats]=useState([]);
     const [userReplyStats,setuserReplyStats]=useState([]);
+    const [quizLineStats,setquizLineStats]=useState([]);
+    const [commentActive, setcommentActive] = useState(true);
+    const [quizActive, setquizActive] = useState(false);
+    function toggleCommentGraph(){
+      setcommentActive(true);
+      setquizActive(false);
+    }
+    function toggleQuizGraph(){
+      setquizActive(true);
+      setcommentActive(false);
+    }
     useEffect(() => {
       Axios.get('http://localhost:3001/api/admin/user_stats').then((response)=>{setuserStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/comments_replies_stats').then((response)=>{setcommentStats(response.data)});
@@ -38,37 +30,8 @@ export default function Dashboard(){
       Axios.get('http://localhost:3001/api/admin/quiz_questions_stats').then((response)=>{setquestionStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_comments').then((response)=>{setuserCommentStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_replies').then((response)=>{setuserReplyStats(response.data)});
+      Axios.get('http://localhost:3001/api/admin/quiz_taker_stats').then((response)=>{setquizLineStats(response.data)});
     } , [])
-    const data = {
-      labels: commentLineStats.map(val => val.date_writtens),
-      datasets: [
-        {
-          label: 'Comments',
-          data: commentLineStats.map(val => val.Comments),
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
-        },
-        {
-          label: 'Replies',
-          data: commentLineStats.map(val => val.Replies),
-          borderColor: 'rgb(53, 162, 235)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        }
-      ],
-    };
-    const options = {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'top',
-        },
-        maintainAspectRatio: false,
-        title: {
-          display: false,
-          text: 'Comments Made',
-        },
-      },
-    };
     if(localStorage.getItem("adminusername")){
      return(
        <>
@@ -84,11 +47,11 @@ export default function Dashboard(){
                     <table className="seperation">
                       <tr>
                         <td>
-                        <span class="dashboardicon"><BiUser /></span>
-                        </td>
-                        <td>
                         <h2 class="dashboardstats">{val.Verified_Users} Verified Users</h2>
                         <h2 class="dashboardstats">{val.Total_Users} Total Users</h2>
+                        </td>
+                        <td>
+                        <h2 class="dashboardicon"><BiUser /></h2>
                         </td>
                       </tr>
                     </table>
@@ -107,10 +70,10 @@ export default function Dashboard(){
                     <span class="dashboardtitle">Discussion</span>
                     <table className="seperation">
                       <tr>
-                        <td><span class="dashboardicon"><BiCommentDetail/></span></td>
+                        <td><h2 class="dashboardstats">{val.Comments} Comments</h2>
+                        <h2 class="dashboardstats">{val.Replies} Replies</h2></td>
                         <td>
-                        <h2 class="dashboardstats">{val.Comments} Comments</h2>
-                        <h2 class="dashboardstats">{val.Replies} Replies</h2>
+                        <h2 class="dashboardicon"><BiCommentDetail/></h2>  
                         </td>
                       </tr>
                       </table>
@@ -128,10 +91,11 @@ export default function Dashboard(){
                     <span class="dashboardtitle">Quiz</span>
                     <table className="seperation">
                       <tr>
-                        <td><span class="dashboardicon"><BiEdit/></span></td>
                         <td>
-                        <h2 class="dashboardstats">{val.Questions} Questions</h2>
-                        <h2 class="dashboardstats">{val.Questions} Questions</h2>
+                          <h2 class="dashboardstats">{val.Questions} Questions</h2>
+                        <h2 class="dashboardstats">{val.QuizTakers} Quizzes Taken</h2>
+                        </td>
+                        <td><h2 class="dashboardicon"><BiEdit/></h2>
                         </td>
                       </tr>
                     </table>
@@ -144,8 +108,8 @@ export default function Dashboard(){
                 </td>
               </tr>
             </table>
+            <table className="dashboardtable">
             <span class="dashboardtitle">Performance</span>
-            <table>
               <tr>
                 <td>
                 <div className="dashboardcard">
@@ -153,8 +117,9 @@ export default function Dashboard(){
             <table class="seperation">
               {userReplyStats.map((val)=>{return (
                       <tr>
-                        <td><b>{val.Username}</b></td>
-                        <td>{val.Replies} Replies</td>
+                        <td><img src={val.Avatar} width={20}/></td>
+                        <td><h2 class="dashboardstats">{val.Username}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.Replies}</p></b></td>
                       </tr>
                     )})}
             </table>
@@ -164,8 +129,9 @@ export default function Dashboard(){
             <table class="seperation">
               {userCommentStats.map((val)=>{return (
                       <tr>
-                        <td><b>{val.Username}</b></td>
-                        <td>{val.Comments} Comments</td>
+                        <td><img src={val.Avatar} width={20}/></td>
+                        <td><h2 class="dashboardstats">{val.Username}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.Comments}</p></b></td>
                       </tr>
                     )})}
             </table>
@@ -174,13 +140,29 @@ export default function Dashboard(){
                 <td>
                 <div className="dashboardcard">
               <span class="dashboardtitle">User Activity</span>
-                <Line options={options} data={data}/>
+              <button className="backendbtn" onClick={toggleCommentGraph}>Comments & Replies</button>
+              <button className="backendbtn" onClick={toggleQuizGraph}>Quizzes Taken</button>
+              {commentActive?
+              <>
+                <h2>Comments & Replies</h2>
+                <LineGraph labels={commentLineStats.map(val => val.date_writtens)} data1={commentLineStats.map(val => val.Comments)} label1={'Comments'} 
+                data2={commentLineStats.map(val => val.Replies)} label2={'Replies'} color1={'rgb(3, 94, 252, 0.60)'} color2={'rgb(252, 3, 94, 0.60)'}/>
+                </>
+                :null}
+              {quizActive?
+              <>
+                <h2>Quizzes Taken</h2>
+                <LineGraph labels={quizLineStats.map(val => val.DateMade)} data1={quizLineStats.map(val => val.QuizTakers)} label1={'Quizzes Taken'}
+                label2={''} color1={'rgb(38, 230, 0, 0.6)'} color2={'rgb(0,0,0,0)'}/>
+                </>
+                :null}
                 </div>
                 </td>
               </tr>
             </table>
         </div>  
-        </>)
+        </>
+        )
     }
-    else window.location.href = "/admin"; 
+    else window.location.href = "/admin";
 }

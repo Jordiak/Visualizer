@@ -1,11 +1,11 @@
 .navbarb {
-  background:rgb(255, 255, 255);
+  background:rgb(216,243,255);
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.05rem;
-  outline: black solid 3px;
+ 
 }
 .navbarb-logo {
   color: #fff;
@@ -33,22 +33,20 @@
 }
 
 .nav-item {
+  height: 100%;
+  border-radius: 19px;
   display: flex;
   align-items: center;
-  height: 80px;
 }
-
+.nav-item:hover {
+  background-color: rgba(83, 201, 255, 0.808);
+  transition: all 0.2s ease-out;
+}
 .navb-links {
+  font-weight: bold;
   color: black;
   text-decoration: none;
-  padding: 0.5rem 1rem;
-  font-family:monospace;
-}
-
-.navb-links:hover {
-  background-color: rgba(86, 139, 139, 0.808);
-  border-radius: 4px;
-  transition: all 0.2s ease-out;
+  padding: 2.5rem 1rem;
 }
 
 .fa-bars {

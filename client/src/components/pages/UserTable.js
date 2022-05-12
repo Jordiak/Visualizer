@@ -134,7 +134,7 @@ export default function UserTable({ columns, data }) {
   */
   return (
     <>
-    <button className='deletebtn' onClick={()=>{deleteUsers(selectedFlatRows.map(d => d.original))}}>Delete</button>
+    <span className="indentButton"><button className='deletebtn' onClick={()=>{deleteUsers(selectedFlatRows.map(d => d.original))}}>Delete</button></span>
     <div className="pagination">
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {'<<'}

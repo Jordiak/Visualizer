@@ -804,10 +804,11 @@ h2 {
 }
 /* Backend */
 .BackendPage {
-  background: rgb(211, 228, 228);
-  font-family: monospace;
+  min-height: 85vh;
+  background: rgb(216,243,255);
 }
 .backend_title{
+  padding-top: 20px;
   color: black;
   font-size: 48px;
   text-align: center;
@@ -817,38 +818,57 @@ h2 {
   color: black;
 }
 
-
+.indentButton{
+  padding-left: 5%;
+  margin-right: -5%;
+}
 #listtable {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 19px;
   background-color: white;
-  border-collapse: collapse;
+  width: 90%;
   margin-left: auto;
   margin-right: auto;
   font-size: large;
+  padding-bottom: 0px;
 }
-#listtable td, #listtable th {
-  border-bottom: 1px solid rgb(107, 107, 107); 
+#listtable  tr th,
+#listtable  tr td {
   padding: 5px;
-  color: black;
-  
+  padding-left: 15px;
 }
-
-#listtable tr:nth-child(even){background-color: #f5f5f5;}
-
-#listtable tr:hover {background-color: #ddd;}
-
-#listtable th {
-  padding-top: 12px;
-  padding-bottom: 12px;
+#listtable  tr th {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: rgba(0, 174, 255, 0.808);
   text-align: left;
-  background-color: rgba(86, 139, 139, 0.808);
-  color: rgb(0, 0, 0);
+}
+#listtable tr:nth-child(even){background-color: #f5f5f5;}
+/* top-left border-radius */
+#listtable  tr:first-child th:first-child {
+  border-top-left-radius: 19px;
+}
+/* top-right border-radius */
+#listtable  tr:first-child th:last-child {
+  border-top-right-radius: 19px;
+}
+/* bottom-left border-radius */
+#listtable  tr:last-child td:first-child {
+  border-bottom-left-radius: 19px;
+}
+/* bottom-right border-radius */
+#listtable  tr:last-child td:last-child {
+  border-bottom-right-radius: 19px;
 }
 .deletebtn{
+  height: 50px;
   font-size: 15px;
   background-color: rgba(177, 36, 36, 0.808);
   border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
+  font-family: "Montserrat", sans-serif;
 }
 .deletebtn:hover{
   background-color: rgba(199, 73, 73, 0.808);
@@ -863,14 +883,16 @@ h2 {
   height: 30px;
 }
 .pagination button, .backendbtn{
-  background-color: rgba(86, 139, 139, 0.808);
+  height: 50px;
+  background-color: rgba(0, 174, 255, 0.808);
   font-size: 15px;
   border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
+  font-family: "Montserrat", sans-serif;
 }
 .pagination button:hover, .backendbtn:hover{
-  background-color: rgba(67, 110, 110, 0.808);
+  background-color: rgba(83, 201, 255, 0.808);
   border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
@@ -892,23 +914,27 @@ h2 {
   background: rgba(255, 255, 255);
   margin-bottom: 10px;
 }
-.dashboardtitle {
-  font-size: 36px;
+.dashboardtitle{
+  font-size: 32px;
   font-weight: bolder;
   color: rgb(0, 0, 0);
 }
 .dashboardicon {
-  font-size: 48px;
-  font-weight: bolder;
-  color: rgb(0, 0, 0);
-}
-.dashboardstats {
-  font-size: 24px;
+  font-size: 64px;
   font-weight: bolder;
   color: rgb(0, 0, 0);
   text-align: right;
 }
+.dashboardstats {
+  font-size: 24px;
+  font-weight: bolder;
+  color: #208ceb;
+  text-align: left;
+}
 .dashboardtable{
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
   padding-bottom: 10px;
 }
 .seperation{
@@ -920,7 +946,7 @@ h2 {
   padding-bottom: 10px;
 }
 .dashboardtable td{
-  width: 33%;
+  width: 25%;
   vertical-align: top;
 }
 .dashboardcard {
@@ -951,15 +977,13 @@ h2 {
   height: 30px;
   border-style: hidden;
   color:black;
-  font-family: monospace;
   width: 100%;
   border-color: rgba(233, 233, 233);
   border-style: solid;
   border-radius: 5px;
 }
 .AdminPage {
-  background-color: rgb(211, 228, 228);
-  font-family: monospace;
+  background-color: rgb(216,243,255);
   position: absolute;
   top:0;
   bottom: 0;
@@ -981,7 +1005,6 @@ h2 {
   border-radius: 19px;
 }
 .passwordfield{
-  font-family: monospace;
   font-size: 15px;
   color: black;
   background-color: #00000000;
