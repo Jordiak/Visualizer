@@ -161,7 +161,7 @@ export default function Quiz(){
 
     //Gather quiz questions
     useEffect(() =>{
-        Axios.get('http://localhost:3001/api/admin/get_questions').then((response)=>{
+        Axios.get('http://localhost:3001/api/user/get_questions').then((response)=>{
           setQuestionSets(response.data);
         //   console.log(questionSets[0].question_choices)
         //   console.log(response.data)

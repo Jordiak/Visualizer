@@ -354,6 +354,13 @@ app.get('/api/admin/get_questions', (req, res) =>{
     })
 })
 
+app.get('/api/user/get_questions', (req, res) =>{
+    const sqlSelect = "SELECT * FROM quiz_questions ORDER BY RAND()";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result)
+    })
+})
+
 app.post('/api/user/get_user_quiz_taken', (req, res) =>{
     const Reg_email = req.body.Reg_email 
     const sqlSelect = "SELECT * from quiz_statistics WHERE DATE(quiz_taken) = DATE(NOW()) and useremail_reg = ?;";

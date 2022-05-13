@@ -21,7 +21,7 @@ export default function ManageQuiz(){
           setQuestionSets(response.data);
         //   console.log(response.data)
         })
-      },[])
+      },[questionSets])
     
     useEffect(()=>{
         Axios.get('http://localhost:3001/api/admin/quiz_id/get').then((response)=>{
@@ -67,6 +67,7 @@ export default function ManageQuiz(){
                     correct_answer: correctAnswer
                     },
                 ])
+                setCorrectAnswer("")
                 break;
             case "True or False":
                 Axios.post('http://localhost:3001/api/admin/insert_questions', {
@@ -84,12 +85,12 @@ export default function ManageQuiz(){
                     correct_answer: correctAnswer
                     },
                 ])
+                setCorrectAnswer("True");
                 break;
             default:
                 break;
         }
         setQuestionContent("")
-        setCorrectAnswer("")
         setChoiceA("")
         setChoiceB("")
         setChoiceC("")
@@ -142,14 +143,14 @@ export default function ManageQuiz(){
     function UpdateQuestion(q_id){
         if(tempQuestionType == "Multiple Choice"){
             console.log("Question ID:"+q_id+" Type:"+tempQuestionType+
-            " content:" +tempQuestionContent + " choices: " 
-            + tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+separator+tempChoiceD+separator
+            " content:" +tempQuestionContent + " choices: " +
+           separator + tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+separator+tempChoiceD+separator
              + " answer:"+tempCorrectAnswer)
 
              setQuestionSets(questionSets.map((val) => {   //maps comment for updating
                 return val.question_id == q_id?{question_id:q_id,
                     question_type:tempQuestionType,question_content:tempQuestionContent,
-                    question_choices:tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+
+                    question_choices:separator+tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+
                     separator+tempChoiceD+separator,correct_answer:tempCorrectAnswer}:val
               }))
 
@@ -157,7 +158,7 @@ export default function ManageQuiz(){
                 question_id: q_id,
                 question_type: tempQuestionType,
                 question_content: tempQuestionContent,
-                question_choices: tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+
+                question_choices: separator+tempChoiceA+separator+tempChoiceB+separator+tempChoiceC+
                 separator+tempChoiceD+separator,
                 correct_answer:tempCorrectAnswer
               } )
@@ -178,6 +179,7 @@ export default function ManageQuiz(){
                 correct_answer:tempCorrectAnswer
               } )
         }
+        setEditMode(false)
     }
 
     function DeleteQuestion(q_id){
@@ -213,9 +215,14 @@ export default function ManageQuiz(){
         setCorrectAnswer(event.target.value)
     }
 
+    function ChangeBGColor(q_type){
+        let colors = {"Fill in the Blank":"yellow", "Multiple Choice":"orange", "True or False":"pink"};
+        return colors[q_type]
+    }
+
 
     return(
-    <div>
+    <div style={{backgroundColor:"skyblue"}}>
 
         <div class="quiz-maker-container">
             <h1>Create Question</h1>
@@ -246,10 +253,10 @@ export default function ManageQuiz(){
                 <br></br>
             <label>Correct Answer:</label>
 <div class="choices_admin_quiz">
-        <input type="radio" value="A" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> <label>A</label>
-        <input type="radio" value="B" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> <label>B</label>
-        <input type="radio" value="C" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> <label>C</label>
-        <input type="radio" value="D" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> <label>D</label>
+    <label>A</label><input type="radio" value="A" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
+    <label>B</label><input type="radio" value="B" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
+    <label>C</label><input type="radio" value="C" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
+    <label>D</label><input type="radio" value="D" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
 
 </div>
             </div>
@@ -268,74 +275,76 @@ export default function ManageQuiz(){
 
             
         </div>
-        {questionSets.map((val, index)=> 
-        <div id="admin_questions">
-            <div id="quiz-content0"><h1>Question {index+1}</h1></div>
-            <div id="quiz-content1">Question Type:{val.question_type}</div>
-            <div id="quiz-content2">Question Content:{val.question_content}</div>
-            <div id="quiz-content3">Question Choices:{val.question_choices}</div>
-            <div id="quiz-content4">Correct Answer:{val.correct_answer}</div>
-
-
-            <button class="quiz_editButton" onClick={()=>{EditQuestion(val.question_id, val.question_content, val.question_choices, val.correct_answer, val.question_type)}}>Edit Question</button>
-            {editMode && questionEditId == val.question_id ? 
-            <div>
-                <div id="quiz-maker-edit">
-                    <label>Type:</label>
-                    <select onChange={(event)=>setTempQuestionType(event.target.value)} name="type" id="type">
-                    <option selected={val.question_type == "Multiple Choice"} value="Multiple Choice">Multiple Choice</option>
-                    <option selected={val.question_type == "Fill in the Blank"} value="Fill in the Blank">Fill in the Blank</option>
-                    <option selected={val.question_type == "True or False"} value="True or False">True or False</option>
-                    </select>
-                    <br></br>
-                    <label>Content:</label>
-                    <br></br>
-                    <textarea rows="4" id="question_content" value={tempQuestionContent} cols="50" onChange={(e) => {setTempQuestionContent(e.target.value)}} name="comment"/>
-                        <br></br>
-                    {tempQuestionType == "Multiple Choice" ? <div>
-                    <label>Choices:</label>
-                        <br></br>
-                        <label>A.</label><input name="A" placeholder="Choice A" type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
-                        <br></br>
-                        <label>B.</label><input name="B" placeholder="Choice B" type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
-                        <br></br>
-                        <label>C.</label><input name="C" placeholder="Choice C" type="text" value={tempChoiceC} onChange={(e) => {setTempChoiceC(e.target.value)}}></input>
-                        <br></br>
-                        <label>D.</label><input type="text" placeholder="Choice D" value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
-                                setTempChoiceD(e.target.value)
-                                }} ></input>
-                        <br></br>
-
-                    <label>Correct Answer:</label>
-                        <div class="choices_admin_quiz">
-                        {/* checked={val.correct_answer == "A"} */}
-                            <input type="radio" value="A" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> <label>A</label>
-                            <input type="radio" value="B" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> <label>B</label>
-                            <input type="radio" value="C" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> <label>C</label>
-                            <input type="radio" value="D" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> <label>D</label>
-                        </div>
-                    </div>
-
-                    : tempQuestionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label>
-                    <input type="text" value={tempCorrectAnswer} onChange={(e) => {setTempCorrectAnswer(e.target.value)}}></input></div> 
-                    : tempQuestionType == "True or False" ? 
-                    <div>
-                        <label>Correct Answer:</label>
-                        <select onChange={(event)=>setTempCorrectAnswer(event.target.value)} name="type" id="type">
-                        <option selected={val.correct_answer == "True"} value="True">True</option>
-                        <option selected={val.correct_answer == "False"} value="False">False</option>
+        <div className="quiz_admin_container">
+            {questionSets.map((val, index)=> 
+            <div className="questions">
+                <div id="admin-quiz-content"><h1>Question {index+1}</h1></div>
+                <div id="quiz-content1" style={{backgroundColor:ChangeBGColor(val.question_type)}}>{val.question_type}</div>
+                <div id="quiz-content2">{val.question_content}</div>
+                <div id="quiz-content3">Choices:{val.question_choices}</div>
+                <div id="quiz-content4">Correct Answer:{val.correct_answer}</div>
+    
+    
+                <button class="quiz_editButton" onClick={()=>{EditQuestion(val.question_id, val.question_content, val.question_choices, val.correct_answer, val.question_type)}}>Edit Question</button>
+                {editMode && questionEditId == val.question_id ? 
+                <div>
+                    <div className="questions">
+                        <label>Type:</label>
+                        <select onChange={(event)=>setTempQuestionType(event.target.value)} name="type" id="type">
+                        <option selected={val.question_type == "Multiple Choice"} value="Multiple Choice">Multiple Choice</option>
+                        <option selected={val.question_type == "Fill in the Blank"} value="Fill in the Blank">Fill in the Blank</option>
+                        <option selected={val.question_type == "True or False"} value="True or False">True or False</option>
                         </select>
-                    </div> :""}
-                    <button onClick={()=>{UpdateQuestion(val.question_id)}}>Done</button>
+                        <br></br>
+                        <label>Content:</label>
+                        <br></br>
+                        <textarea rows="4" id="question_content" value={tempQuestionContent} cols="50" onChange={(e) => {setTempQuestionContent(e.target.value)}} name="comment"/>
+                            <br></br>
+                        {tempQuestionType == "Multiple Choice" ? <div>
+                        <label>Choices:</label>
+                            <br></br>
+                            <label>A.</label><input name="A" placeholder="Choice A" type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
+                            <br></br>
+                            <label>B.</label><input name="B" placeholder="Choice B" type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
+                            <br></br>
+                            <label>C.</label><input name="C" placeholder="Choice C" type="text" value={tempChoiceC} onChange={(e) => {setTempChoiceC(e.target.value)}}></input>
+                            <br></br>
+                            <label>D.</label><input type="text" placeholder="Choice D" value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
+                                    setTempChoiceD(e.target.value)
+                                    }} ></input>
+                            <br></br>
+    
+                        <label>Correct Answer:</label>
+                            <div class="choices_admin_quiz">
+                            {/* checked={val.correct_answer == "A"} */}
+                               <label>A</label> <input type="radio" value="A" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
+                               <label>B</label> <input type="radio" value="B" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
+                               <label>C</label> <input type="radio" value="C" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
+                               <label>D</label> <input type="radio" value="D" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
+                            </div>
+                        </div>
+    
+                        : tempQuestionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label>
+                        <input type="text" value={tempCorrectAnswer} onChange={(e) => {setTempCorrectAnswer(e.target.value)}}></input></div> 
+                        : tempQuestionType == "True or False" ? 
+                        <div>
+                            <label>Correct Answer:</label>
+                            <select onChange={(event)=>setTempCorrectAnswer(event.target.value)} name="type" id="type">
+                            <option selected={val.correct_answer == "True"} value="True">True</option>
+                            <option selected={val.correct_answer == "False"} value="False">False</option>
+                            </select>
+                        </div> :""}
+                        <button onClick={()=>{UpdateQuestion(val.question_id)}}>Done</button>
+                </div>
+                </div> 
+                : 
+                <div></div>}
+    
+                <button class="quiz_deleteButton" onClick={()=>{DeleteQuestion(val.question_id)}}>Delete Question</button>
             </div>
-            </div> 
-            : 
-            <div></div>}
-
-            <button class="quiz_deleteButton" onClick={()=>{DeleteQuestion(val.question_id)}}>Delete Question</button>
+            )
+            }
         </div>
-        )
-        }
         <br></br>
     </div>
     )

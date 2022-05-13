@@ -1148,7 +1148,7 @@ h2 {
 }
 
 .choices_admin_quiz>label{
-  margin: 1%;
+  margin: 4%;
   
 }
 
@@ -1204,6 +1204,7 @@ h2 {
   text-align: center;
   font-size: 24px;
   background-color: rgb(216, 243, 255);
+  padding-bottom: 3%;
 }
 
 #quiz-maker-edit{
@@ -1217,6 +1218,34 @@ h2 {
   font-size: 64px;
   background-color: skyblue;
   margin: auto;
+}
+
+.quiz_admin_container{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  background-color: skyblue;
+}
+
+.quiz_admin_container .questions{
+  flex: 0 0 calc(33.3333% - 1em);
+  min-height: 120px;
+  margin: 0.25em 0.5em;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+#admin-quiz-content>h1{
+  background-color: none;
+  font-weight:bold;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  text-align: left;
+  font-size: 52px;
+  text-align: center;
+  background-color: #208ceb;
+  color: rgb(3, 0, 30);
 }
 
 #admin_questions{
