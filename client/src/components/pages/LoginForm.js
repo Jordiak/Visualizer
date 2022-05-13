@@ -129,6 +129,12 @@ function LoginForm() {
     //Generate Random Code for E-Mail Confirmation
     let new_avatar = generator.generateRandomAvatar()
     // set_avatar(new_avatar)
+
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var timeSQL = (today.getHours()-8) + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTimeSQL = date+' '+timeSQL;
+
     ReactSession.set("avatar_url", new_avatar)
     const min = 100000;
     const max = 1000000;
@@ -140,6 +146,7 @@ function LoginForm() {
       Reg_avatar_url: new_avatar,
       confirmed: confirmed,
       code: rand,
+      user_created: dateTimeSQL
   });
   setuserNameList([
     ...usernameList,

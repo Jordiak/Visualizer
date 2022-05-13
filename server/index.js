@@ -268,11 +268,14 @@ app.post('/api/insert', (req, res)=>{
     const Reg_avatar_url = req.body.Reg_avatar_url
     const confirmed = req.body.confirmed
     const code = req.body.code
-    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code) VALUES (?,?,?,?,?,?)"
+    const user_created = req.body.user_created
+
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code, user_created) VALUES (?,?,?,?,?,?,?)"
 
     bcrypt.hash(Reg_password, 10, function(err, hash) {
-        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code], (err, result)=>{
+        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code, user_created], (err, result)=>{
             res.send(result);
+            console.log(err)
         })
     });
 });
