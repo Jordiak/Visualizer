@@ -279,7 +279,7 @@ export default function ManageQuiz(){
             {questionSets.map((val, index)=> 
             <div className="questions">
                 <div id="admin-quiz-content"><h1>Question {index+1}</h1></div>
-                <div id="quiz-content1" style={{backgroundColor:ChangeBGColor(val.question_type)}}>{val.question_type}</div>
+                <div id="quiz-content1" style={{backgroundColor:ChangeBGColor(val.question_type)}}><strong>{val.question_type}</strong></div>
                 <div id="quiz-content2">{val.question_content}</div>
                 <div id="quiz-content3">Choices:{val.question_choices}</div>
                 <div id="quiz-content4">Correct Answer:{val.correct_answer}</div>
