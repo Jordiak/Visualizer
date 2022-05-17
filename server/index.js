@@ -427,6 +427,13 @@ app.get('/api/admin/user_stats', (req, res) =>{
         res.send(result);
     })
 })
+//New User by Month and Day (for Line Graph)
+app.get('/api/admin/new_user_stats', (req, res) =>{
+    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d'); ";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 //Get Users Comment Amt (Highest to Lowest)
 app.get('/api/admin/user_stats_comments', (req, res) =>{
     const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg) AS 'Avatar', Count(comments_table.comment_id) AS 'Comments', (SELECT user_infos.username_reg FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg ) AS 'Username' FROM comments_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
@@ -441,6 +448,14 @@ app.get('/api/admin/user_stats_replies', (req, res) =>{
         res.send(result);
     })
 })
+//Get Users Quiz Scores (Highest to Lowest)
+app.get('/api/admin/user_stats_quizzes', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg) AS 'Avatar', (SELECT user_infos.username_reg FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg ) AS 'Username', user_score AS 'Score', questions_total AS 'Total'  FROM quiz_statistics group by Username order by user_score desc, quiz_taken desc limit 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+
 //Comments and Replies Count
 app.get('/api/admin/comments_replies_stats', (req, res) =>{
     const sqlSelect = "SELECT (SELECT COUNT(*) FROM comments_table) AS 'Comments',(SELECT COUNT(*) FROM replies_table) AS 'Replies';";

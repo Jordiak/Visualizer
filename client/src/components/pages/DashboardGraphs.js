@@ -31,16 +31,16 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
                 data: data1,
                 borderColor: color1,
                 backgroundColor: color1,
-                tension: 0.4,
-                fill: true
+                fill: true,
+                tension: 0.4
               },
               {
                 label: label2,
                 data: data2,
                 borderColor: color2,
                 backgroundColor: color2,
-                tension: 0.4,
-                fill: true
+                fill: true,
+                tension: 0.4
               }
             ],
           };

@@ -32,13 +32,13 @@
   margin-right: 2rem;
 }
 
-.nav-item {
+.navb-item {
   height: 100%;
   border-radius: 19px;
   display: flex;
   align-items: center;
 }
-.nav-item:hover {
+.navb-item:hover {
   background-color: rgba(83, 201, 255, 0.808);
   transition: all 0.2s ease-out;
 }

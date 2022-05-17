@@ -19,33 +19,34 @@ function Navbar() {
   return (
     <>
       <nav className='navbarb'>
+      <Link to='/dashboard' className='navbar-logo' onClick={closeMobileMenu}>
       <img draggable="false" src={logoImage} alt='DSA' width={168} height={45} />
-        
+      </Link>
         <div className='menu-icon' onClick={handleClick}>
           <i className={click ? 'fas fa-times' : 'fas fa-bars'} />
         </div>
         <ul className={click ? 'nav-menu active' : 'nav-menu'}>
-        <li className='nav-item'>
+        <li className='navb-item'>
             <Link to='/dashboard' className='navb-links' onClick={closeMobileMenu}>
               Dashboard
             </Link>
           </li>
-          <li className='nav-item'>
-            <Link to='/manage-quiz' className='navb-links' onClick={closeMobileMenu}>
-              Manage Quiz
-            </Link>
-          </li>
-          <li className='nav-item'>
+          <li className='navb-item'>
             <Link to='/manage-users' className='navb-links' onClick={() => { closeMobileMenu();}}>
               Manage Users
             </Link>
           </li>
-          <li className='nav-item'>
+          <li className='navb-item'>
             <Link to='/manage-discussion' className='navb-links' onClick={closeMobileMenu}>
               Manage Discussion
             </Link>
           </li>
-          <li className='nav-item'>
+          <li className='navb-item'>
+            <Link to='/manage-quiz' className='navb-links' onClick={closeMobileMenu}>
+              Manage Quiz
+            </Link>
+          </li>
+          <li className='navb-item'>
           <a href="/admin" className="navb-links" onClick={adminLogout}>
               Log-out
             </a>

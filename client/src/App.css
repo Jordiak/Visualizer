@@ -822,6 +822,66 @@ h2 {
   padding-left: 5%;
   margin-right: -5%;
 }
+.backendtabs {
+  -webkit-tap-highlight-color: black;
+}
+
+.backendtablist {
+  padding-left: 5%;
+  margin: 0 0 10px;
+}
+.graphtablist {
+  margin: 0 0 10px;
+}
+.backendtab {
+  background: rgb(170, 230, 255);
+  display: inline-block;
+  position: relative;
+  list-style: none;
+  margin-right: 10px;
+  padding: 12px 24px;
+  border-radius: 8px 8px 8px 8px;
+  cursor: pointer;
+}
+.graphtab {
+  background: rgb(197, 197, 197);
+  display: inline-block;
+  position: relative;
+  border: 8px solid transparent;
+  border-radius: 8px 8px 8px 8px;
+  list-style: none;
+  padding: 2px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.backendtab--selected {
+  background: rgba(255, 255, 255, 0);
+  color: black;
+}
+.graphtab--selected {
+  background: rgb(49, 190, 255);
+  color: black;
+  border-radius: 8px 8px 8px 8px;
+}
+
+.backendtab--disabled {
+  color: GrayText;
+  cursor: default;
+}
+
+.backendtab:focus {
+  outline: none;
+}
+
+.backendtab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+}
 #listtable {
   border-collapse: separate;
   border-spacing: 0;
@@ -905,6 +965,7 @@ h2 {
   width: 97%;
   height: auto;
   padding: 20px;
+  padding-bottom: 0px;
   border-color: solid, 5px;
   margin: 10px;
   color: black;
@@ -912,7 +973,14 @@ h2 {
   font-size: large;
   border-radius: 19px;
   background: rgba(255, 255, 255);
-  margin-bottom: 10px;
+}
+.comment{
+  text-align: justify;
+  padding-bottom: 0px;
+}
+.comment td:first-child {
+  width: 1%;
+  white-space: nowrap;
 }
 .dashboardtitle{
   font-size: 32px;
