@@ -134,8 +134,7 @@ export default function ManageDiscussion(){
             <button id='deleteBtn' className='deletebtn' onClick={()=>{deleteComment(val.comment_id)}}>Delete</button>
             </>
           )
-        }
-      )()}
+        })()}
 
 {/* Replies */}
 <div className="replyholder">

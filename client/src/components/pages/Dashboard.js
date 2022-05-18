@@ -160,7 +160,7 @@ export default function Dashboard(){
                 <td>
                 <div className="dashboardcard">
               <span class="dashboardtitle">User Activity</span>
-              <Tabs className="backendtabs" selectedTabClassName="graphtab--selected">
+              <Tabs className="graphtabs" selectedTabClassName="graphtab--selected">
                 <TabList className="graphtablist">
                   <Tab className="graphtab"><strong>New Users</strong></Tab>
                   <Tab className="graphtab"><strong>Comments & Replies</strong></Tab>

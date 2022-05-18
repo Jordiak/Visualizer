@@ -53,7 +53,7 @@ app.post('/api/userpass/check', (req, res) =>{
 
     const Reg_email = req.body.Reg_email
     const Reg_password = req.body.Reg_password
-    const sqlSelect = "SELECT userpassword_reg,username_reg,confirmed FROM user_infos where useremail_reg = ?;";
+    const sqlSelect = "SELECT userpassword_reg,username_reg,useravatar_url,confirmed FROM user_infos where useremail_reg = ?;";
     db.query(sqlSelect,[Reg_email], (err, result) =>{
         try{
         const is_confirmed = JSON.parse(JSON.stringify(result))[0].confirmed
@@ -64,6 +64,7 @@ app.post('/api/userpass/check', (req, res) =>{
         // console.log(pass_confirm_obj)
         bcrypt.compare(Reg_password, pass_result, function(err, result_hashed) {
             const correctPass_confirmed_obj = {"username_reg":JSON.parse(JSON.stringify(result))[0].username_reg,
+            "useravatar_url":JSON.parse(JSON.stringify(result))[0].useravatar_url,
             "confirmed":JSON.parse(JSON.stringify(result))[0].confirmed,
             "correct_pass":result_hashed}
 

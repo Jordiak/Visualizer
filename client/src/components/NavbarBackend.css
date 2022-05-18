@@ -16,20 +16,23 @@
  
 }
 
-.fa-firstdraft {
+.fab-firstdraft {
   margin-left: 0.5rem;
   font-size: 1.6rem;
 }
-
-.nav-menu {
+.navbicon{
+  font-size: 20px;
+  vertical-align: middle;
+}
+.navb-menu {
   display: grid;
-  grid-template-columns: repeat(6, auto);
+  grid-template-columns: repeat(5, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
   width: 75vw;
   justify-content: end;
-  margin-right: 2rem;
+  margin-right: 0rem;
 }
 
 .navb-item {
@@ -49,8 +52,8 @@
   padding: 2.5rem 1rem;
 }
 
-.fa-bars {
-  color: #fff;
+.fab-bars {
+  color: black;
 }
 
 .nav-links-mobile {
@@ -115,8 +118,8 @@
     cursor: pointer;
   }
 
-  .fa-times {
-    color: #fff;
+  .fab-times {
+    color: black;
     font-size: 2rem;
   }
 

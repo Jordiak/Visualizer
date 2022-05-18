@@ -5,8 +5,8 @@
   background-attachment: fixed;
   height: 100px;
   display: flex;
-  justify-content:space-evenly;
-  font-size: 1.01rem;
+  justify-content: center;
+  font-size: 1.05rem;
   
 }
 .footer {
@@ -20,7 +20,45 @@
   color: rgb(255,255,255);
   font-family: monospace;
 }
+.footer img{
+  vertical-align: middle;
+  filter: invert(100%);
+}
+/*hide the inputs/checkmarks and submenu*/
+.dropdowninput, ul.submenu {
+  display: none;
+}
+
+/*position the label*/
+label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+/*show the submenu when input is checked*/
+.dropdowninput:checked~ul.submenu {
+  list-style-type: none;
+  background-color: white;
+  align-items: center;
+  text-align: center;
+  border: 1px solid white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  top: 10vh;
+  right: 0vw;
+  width: 300px;
+  display: block;
+}
+.dropdowninput:checked~label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
 .navbar-logo {
+  image-rendering: -webkit-optimize-contrast;
   color: #fff;
   justify-self: start;
   cursor: pointer;
@@ -28,8 +66,6 @@
   font-size: 2rem;
   padding-top: 1%;
   margin-left: 1%;
-
- 
 }
 
 .fa-firstdraft {
@@ -39,13 +75,13 @@
 
 .nav-menu {
   display: grid;
-  grid-template-columns: repeat(8);
-  grid-gap: 5px;
-  list-style:none;
+  grid-template-columns: repeat(7, auto);
+  grid-gap: 10px;
+  list-style: none;
   text-align: center;
-  width:100%;
+  width: 85vw;
   justify-content: end;
- 
+  margin-right: -2rem;
 }
 
 .nav-item {
@@ -59,18 +95,14 @@
   border-radius: 10px;
   border: 3px outset;
   border-color: turquoise;
-  height: 37px;
-  margin-top:1.2%;
-  margin-right:1%;
-  margin-left:-1%;
-  
-  
+  height: 35px;
+  margin-top: 22px;
 }
 .nav-links {
   color:rgb(73,72,201);
   text-decoration: none;
+  font-weight: bold;
   padding: 0.5rem 0.7rem;
-  font-family:monospace;
 }
 
 .nav-links:hover {
@@ -80,7 +112,7 @@
 }
 
 .fa-bars {
-  color: #fff;
+  color: rgb(73,72,201);
 }
 
 .nav-links-mobile {
@@ -146,7 +178,7 @@
   }
 
   .fa-times {
-    color: #fff;
+    color: rgb(73,72,201);
     font-size: 2rem;
   }
 

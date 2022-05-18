@@ -21,10 +21,33 @@ import ManageQuiz from './components/pages/ManageQuiz';
 import Dashboard from './components/pages/Dashboard';
 import AVL from './components/AVL_Tree/AVL';
 import ScorePage from './components/pages/ScorePage';
-
+import Profile from './components/pages/Profile';
+import RegisterForm from './components/pages/RegisterForm';
+import { BiUser } from "react-icons/bi";
+import { Link } from 'react-router-dom';
 
 function App() {
-  const [value, setValue] = useState('Login/Register')
+  //Login/Register with Dropdown
+  const [value, setValue] = useState(<>
+            <li className='nav-item'>
+          <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
+          <label for="check01"><span className="nav-links">
+            <span className="navbicon"><BiUser/> </span>
+          Login</span></label>
+          <ul class="submenu">
+          <li>Log in or Register to join our discussion board and to take the daily quiz!</li>
+          <br/>
+            <li><Link to='/login-form' className='nav-links'>
+            Login
+            </Link></li>
+            <br/>
+            <li><Link to='/register-form' className='nav-links'>
+            
+            Register
+            </Link></li>
+          </ul>
+          </li>
+  </>)
   
   if(window.location.pathname=="/admin"){
     return (
@@ -56,7 +79,6 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{value,setValue}}>
-      
       <Navbar />
       
       <Switch>
@@ -68,6 +90,8 @@ function App() {
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
         <Route path="/login-form/:id" exact component={LoginForm} />
+        <Route path="/register-form" exact component={RegisterForm} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="/Quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
         <Route path='/AVL' exact component={AVL} />
