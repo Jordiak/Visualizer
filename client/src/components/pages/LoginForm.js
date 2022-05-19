@@ -3,18 +3,16 @@ import Axios from 'axios';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import Swal from 'sweetalert2';
 import {UserContext} from '../UserContext';
-import {AvatarGenerator} from './generator_avatar.ts';
 import { useLocation, useParams, searchParams } from "react-router-dom";
 import { useHistory } from 'react-router-dom';
-import { BiUser } from "react-icons/bi";
 import { Link } from 'react-router-dom';
+import { LoginDropdown } from '../UserDropDown';
 
-const generator = new AvatarGenerator();
 
 //create your forceUpdate hook
 function useForceUpdate(){
-  const [value, setValue] = useState(0); // integer state
-  return () => setValue(value => value + 1); // update the state to force render
+  const [valueUpdate, setValueUpdate] = useState(0); // integer state
+  return () => setValueUpdate(valueUpdate => valueUpdate + 1); // update the state to force render
 }
 function useQuery() {
   const { search } = useLocation();
@@ -70,26 +68,8 @@ function LoginForm() {
     ReactSession.set("password", password);
     document.getElementById('log_email').value = ''
     document.getElementById('log_password').value = ''
-    {setValue(<>
-            <li className='nav-item'>
-          <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-          <label for="check01"><span className="nav-links">
-          <img src={avatar} className="navavatar"/> {username}</span></label>
-          <ul class="submenu">
-          <li><img src={avatar} width={80}/></li>
-          <br/>
-          <li><h2>{username}</h2></li>
-          <br/>
-            <li><Link to='/profile' className='nav-links'>
-            Profile
-            </Link></li>
-            <br/>
-            <li><Link onClick={logOut} className='nav-links'>
-            Logout
-            </Link></li>
-          </ul>
-          </li>
-  </>)}
+    setValue(<LoginDropdown avatar={avatar} username={username}/>)
+    forceUpdate();
     setLog_Password("")
     setLog_Email("")
     Axios.post('http://localhost:3001/api/avatar_get',{
@@ -223,51 +203,6 @@ function LoginForm() {
     }
   }
   const forceUpdate = useForceUpdate();
-
-   function logOut(){
-    Swal.fire({
-      title: 'Are you sure you?',
-      text: "Logout?",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes',
-      cancelButtonText:'No'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        ReactSession.remove("username");
-        ReactSession.remove("email");
-        ReactSession.remove("password");
-        ReactSession.remove("avatar_url");
-        ReactSession.remove("avatar_display");
-        {setValue(<>
-          <li className='nav-item'>
-        <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-        <label for="check01"><span className="nav-links">
-          <span className="navbicon"><BiUser/> </span>
-        Login</span></label>
-        <ul class="submenu">
-        <li>Log in or Register to join our discussion board and to take the daily quiz!</li>
-        <br/>
-          <li><Link to='/login-form' className='nav-links'>
-          Login
-          </Link></li>
-          <br/>
-          <li><Link to='/register-form' className='nav-links'>
-          Register
-          </Link></li>
-        </ul>
-        </li>
-</>
-        )}
-        dis(false);
-        forceUpdate();
-        history.push("/login-form");
-      }
-    })
-  }
-
 return (
 <div className='Home'>
          {(() => {

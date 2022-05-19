@@ -7,6 +7,7 @@ import {AvatarGenerator} from './generator_avatar.ts';
 import { useHistory } from 'react-router-dom';
 import { BiUser } from "react-icons/bi";
 import { Link } from 'react-router-dom';
+import { LoginDropdown } from '../UserDropDown';
 
 const generator = new AvatarGenerator();
 
@@ -55,26 +56,7 @@ function Profile() {
         ReactSession.remove("password");
         ReactSession.remove("avatar_url");
         ReactSession.remove("avatar_display");
-        {setValue(<>
-          <li className='nav-item'>
-        <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-        <label for="check01"><span className="nav-links">
-          <span className="navbicon"><BiUser/> </span>
-        Login</span></label>
-        <ul class="submenu">
-        <li>Log in or Register to join our discussion board and to take the daily quiz!</li>
-        <br/>
-          <li><Link to='/login-form' className='nav-links'>
-          Login
-          </Link></li>
-          <br/>
-          <li><Link to='/register-form' className='nav-links'>
-          Register
-          </Link></li>
-        </ul>
-        </li>
-        </>
-        )}
+        {setValue(<LoginDropdown/>)}
         dis(false);
         forceUpdate();
         history.push("/login-form");
@@ -154,26 +136,7 @@ function Profile() {
               Reg_username: userName,
               Reg_email: ReactSession.get("email")
              } )
-             {setValue(<>
-                <li className='nav-item'>
-              <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-              <label for="check01"><span className="nav-links">
-              <img src={ReactSession.get('avatar_display')} className="navavatar"/> {userName}</span></label>
-              <ul class="submenu">
-              <li><img src={ReactSession.get('avatar_display')} width={80}/></li>
-              <br/>
-              <li><h2>{userName}</h2></li>
-              <br/>
-                <li><Link to='/profile' className='nav-links'>
-                Profile
-                </Link></li>
-                <br/>
-                <li><Link onClick={logOut} className='nav-links'>
-                Logout
-                </Link></li>
-              </ul>
-              </li>
-      </>)}
+             {setValue(<LoginDropdown avatar={ReactSession.get('avatar_display')} username={userName}/>)}
              ReactSession.set("username", userName)
         forceUpdate();
       }
@@ -221,25 +184,7 @@ function Profile() {
        ReactSession.remove("password");
        ReactSession.remove("avatar_url");
        ReactSession.remove("avatar_display");
-       {setValue(<>
-        <li className='nav-item'>
-      <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-      <label for="check01"><span className="nav-links">
-        <span className="navbicon"><BiUser/> </span>
-      Login</span></label>
-      <ul class="submenu">
-      <li>Log in or Register to join our discussion board and to take the daily quiz!</li>
-      <br/>
-        <li><Link to='/login-form' className='nav-links'>
-        Login
-        </Link></li>
-        <br/>
-        <li><Link to='/register-form' className='nav-links'>
-        Register
-        </Link></li>
-      </ul>
-      </li>
-      </>)}
+       {setValue(<LoginDropdown/>)}
        dis(false);
        forceUpdate();
             Swal.fire(

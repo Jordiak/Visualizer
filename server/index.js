@@ -270,11 +270,14 @@ app.post('/api/insert', (req, res)=>{
     const confirmed = req.body.confirmed
     const code = req.body.code
     const user_created = req.body.user_created
+    const usergender_reg = req.body.usergender_reg
+    const userprogram_reg = req.body.userprogram_reg
+    const useryear_reg = req.body.useryear_reg
 
-    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code, user_created) VALUES (?,?,?,?,?,?,?)"
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code, user_created, usergender_reg, userprogram_reg, useryear_reg) VALUES (?,?,?,?,?,?,?,?,?,?)"
 
     bcrypt.hash(Reg_password, 10, function(err, hash) {
-        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code, user_created], (err, result)=>{
+        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code, user_created, usergender_reg, userprogram_reg, useryear_reg], (err, result)=>{
             res.send(result);
             console.log(err)
         })
@@ -430,7 +433,7 @@ app.get('/api/admin/user_stats', (req, res) =>{
 })
 //New User by Month and Day (for Line Graph)
 app.get('/api/admin/new_user_stats', (req, res) =>{
-    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d'); ";
+    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d') ORDER BY DATE_FORMAT(user_created,'%M %d'); ";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })

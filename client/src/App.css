@@ -45,7 +45,6 @@
   font-family: "Montserrat", sans-serif;
   font-size: large;
 }
-
 .reply_shown{
   display: block;
   margin-top: -20px;
@@ -115,7 +114,18 @@
   font-weight: lighter;
   font-family: "Montserrat", sans-serif;
 }
-
+.login_form select {
+  margin: 5px;
+  border:turquoise solid 1px;
+  width: 90%;
+  height: 3rem;
+  border-radius: 100px;
+  padding:5px;
+  text-align: center;
+  font-size: large;
+  font-weight: lighter;
+  font-family: "Montserrat", sans-serif;
+}
 .login_form label {
   color:black;
   font-weight: bold;

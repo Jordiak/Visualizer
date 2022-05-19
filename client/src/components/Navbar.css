@@ -46,38 +46,41 @@
   object-fit: cover;
   object-position: 1% 0;
 }
-/*hide the inputs/checkmarks and submenu*/
-.dropdowninput, ul.submenu {
-  display: none;
-}
-
-/*position the label*/
-label {
-  position: relative;
-  display: block;
-  cursor: pointer;
-}
-
-/*show the submenu when input is checked*/
-.dropdowninput:checked~ul.submenu {
-  list-style-type: none;
-  background-color: white;
-  align-items: center;
+.dropdown {
   text-align: center;
-  border: 1px solid white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  width: 15vw;
   position: absolute;
   top: 10vh;
   right: 0vw;
-  width: 300px;
-  display: block;
+  z-index: 2;
+  border: 0px solid;
+  border-radius: 12px;
+  box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14);
+  padding: 10px;
 }
-.dropdowninput:checked~label {
-  position: relative;
-  display: block;
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
+.dropdown li {
+  padding: 8px 12px;
+}
+.dropdown li:hover {
+  background-color: rgba(0, 0, 0, 0.14);
   cursor: pointer;
+}
+.dropdownlinks{
+  font-size: 18px;
+  color:rgb(73,72,201);
+  text-decoration: none;
+  font-weight: bold;
+}
+.dropdownlogout{
+  color:rgb(185, 37, 37);
+  text-decoration: none;
+  font-weight: bold;
 }
 .navbar-logo {
   image-rendering: -webkit-optimize-contrast;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import ReactSession from 'react-client-session/dist/ReactSession';
 import Swal from 'sweetalert2';
@@ -26,10 +26,17 @@ function RegisterForm() {
   const [Reg_password, setReg_password] = useState('')
   const [Confirm_password, setConf_password] = useState('')
   const [Reg_email, setReg_email] = useState('')
+  const [Reg_gender, setReg_gender] = useState('')
+  const [Reg_program, setReg_program] = useState('')
+  const [Reg_yearlevel, setReg_yearlevel] = useState('')
   const [usernameList, setuserNameList] = useState([])
   const [confirmed, setConfirmed] = useState("false");
   const [enableSubmitCode, setEnableSubmitCode] = useState(false);
-
+  useEffect(() =>{
+    Axios.get('http://localhost:3001/api/get').then((response)=>{
+      setuserNameList(response.data)
+    })
+  },[])
   const dis = (param) => {
     setEnableSubmitCode(param);
   }
@@ -40,17 +47,35 @@ function RegisterForm() {
       title: 'Blank Input',
       text: 'Enter a username.',
     })
-    else if (document.getElementById('reg_user_pass').value == '')
-    Swal.fire({
-      icon: 'info',
-      title: 'Blank Input',
-      text: 'Enter a password.',
-    })
     else if (document.getElementById('reg_email').value == '')
     Swal.fire({
       icon: 'info',
       title: 'Blank Input',
       text: 'Enter an email.',
+    })
+    else if (document.getElementById('reg_gender').value == 'selectgender')
+    Swal.fire({
+      icon: 'info',
+      title: 'No Selection',
+      text: 'Select a Gender.',
+    })
+    else if (document.getElementById('reg_program').value == 'selectprogram')
+    Swal.fire({
+      icon: 'info',
+      title: 'No Selection',
+      text: 'Select a Program.',
+    })
+    else if (document.getElementById('reg_yearlevel').value == 'selectyear')
+    Swal.fire({
+      icon: 'info',
+      title: 'No Selection',
+      text: 'Select a Year Level.',
+    })
+    else if (document.getElementById('reg_user_pass').value == '')
+    Swal.fire({
+      icon: 'info',
+      title: 'Blank Input',
+      text: 'Enter a password.',
     })
     else{
     let emails = usernameList.map((val)=> val.useremail_reg)
@@ -114,7 +139,10 @@ function RegisterForm() {
       Reg_avatar_url: new_avatar,
       confirmed: confirmed,
       code: rand,
-      user_created: dateTimeSQL
+      user_created: dateTimeSQL,
+      usergender_reg: Reg_gender,
+      userprogram_reg: Reg_program,
+      useryear_reg: Reg_yearlevel
   });
   setuserNameList([
     ...usernameList,
@@ -189,6 +217,34 @@ function RegisterForm() {
                   <input type="email" name="Reg_email" placeholder="Enter Email" id="reg_email" onChange={(e) => {
                      setReg_email(e.target.value)
                   }} ></input>
+                <br/>
+                <select id="reg_gender" name="Reg_gender" onChange={(e) => {
+                     setReg_gender(e.target.value)
+                  }} >
+                <option value="selectgender">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option></select>
+                <br/>
+                <select id="reg_program" name="Reg_program" onChange={(e) => {
+                     setReg_program(e.target.value)
+                  }} >
+                <option value="selectprogram">Select CCIS Program</option>
+                <option value="BSCS">B.S. Computer Science</option>
+                <option value="BSIS">B.S. Information Systems</option>
+                <option value="BSIT">B.S. Information Technology</option>
+                <option value="Others">I am not a CCIS Student</option></select>
+                <br/>
+                <select id="reg_yearlevel" name="Reg_yearlevel" onChange={(e) => {
+                     setReg_yearlevel(e.target.value)
+                  }} >
+                <option value="selectyear">Select Year Level</option>
+                <option value="1st Year">1st Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="4th Year">4th Year</option>
+                <option value="5th Year">5th Year</option>
+                <option value="Others">I am not a student</option></select>
                 <br/>
                   <input type="password" placeholder="Enter Password" name="Reg_password" id="reg_user_pass" onChange={(e) => {
                      setReg_password(e.target.value)

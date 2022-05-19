@@ -22,31 +22,12 @@ import AVL from './components/AVL_Tree/AVL';
 import ScorePage from './components/pages/ScorePage';
 import Profile from './components/pages/Profile';
 import RegisterForm from './components/pages/RegisterForm';
-import { BiUser } from "react-icons/bi";
-import { Link } from 'react-router-dom';
+
+import {LoginDropdown} from './components/UserDropDown';
 
 function App() {
   //Login/Register with Dropdown
-  const [value, setValue] = useState(<>
-            <li className='nav-item'>
-          <input id="check01" type="checkbox" name="menu" className="dropdowninput"/>
-          <label for="check01"><span className="nav-links">
-            <span className="navbicon"><BiUser/> </span>
-          Login</span></label>
-          <ul class="submenu">
-          <li>Log in or Register to join our discussion board and to take the daily quiz!</li>
-          <br/>
-            <li><Link to='/login-form' className='nav-links'>
-            Login
-            </Link></li>
-            <br/>
-            <li><Link to='/register-form' className='nav-links'>
-            
-            Register
-            </Link></li>
-          </ul>
-          </li>
-  </>)
+  const [value, setValue] = useState(<LoginDropdown/>)
   
   if(window.location.pathname=="/admin"){
     return (
