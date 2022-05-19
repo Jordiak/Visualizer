@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import NavbarBackend from './components/NavbarBackend';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Navbar, NavbarBackend } from './components/Navbar';
+import { Footer, FooterBackend } from './components/Footer';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShortestPath from './components/pages/ShortestPath';
 import Sorting from './components/pages/Sorting';
@@ -72,6 +71,7 @@ function App() {
         <Route path="/manage-users" exact component={ManageUsers} />
         <Route path="/manage-discussion" exact component={ManageDiscussion} />
         </Switch>
+        <FooterBackend />
         </UserContext.Provider>
       </Router>  
     );
@@ -80,7 +80,6 @@ function App() {
     <Router>
       <UserContext.Provider value={{value,setValue}}>
       <Navbar />
-      
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
@@ -97,10 +96,8 @@ function App() {
         <Route path='/AVL' exact component={AVL} />
         <Route path='/score-page' exact component={ScorePage} />
       </Switch>
-    
       <Footer />
       </UserContext.Provider>
-  
     </Router> 
   );
 }

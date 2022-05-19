@@ -23,6 +23,28 @@
 .footer img{
   vertical-align: middle;
   filter: invert(100%);
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: 1% 0;
+}
+.footerb {
+  background:rgb(216,243,255);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  font-family: monospace;
+}
+.footerb img{
+  vertical-align: middle;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: 1% 0;
 }
 /*hide the inputs/checkmarks and submenu*/
 .dropdowninput, ul.submenu {
@@ -181,7 +203,11 @@ label {
     color: rgb(73,72,201);
     font-size: 2rem;
   }
-
+  
+  .fab-times {
+    color: black;
+    font-size: 2rem;
+  }
   .nav-links-mobile {
     display: block;
     text-align: center;
@@ -204,4 +230,61 @@ label {
   button {
     display: none;
   }
+}
+.navbarb {
+  background:rgb(216,243,255);
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.05rem;
+ 
+}
+.navbarb-logo {
+  color: #fff;
+  justify-self: start;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+ 
+}
+
+.fab-firstdraft {
+  margin-left: 0.5rem;
+  font-size: 1.6rem;
+}
+.navbicon{
+  font-size: 20px;
+  vertical-align: middle;
+}
+.navb-menu {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-gap: 10px;
+  list-style: none;
+  text-align: center;
+  width: 75vw;
+  justify-content: end;
+  margin-right: 0rem;
+}
+
+.navb-item {
+  height: 100%;
+  border-radius: 19px;
+  display: flex;
+  align-items: center;
+}
+.navb-item:hover {
+  background-color: rgba(83, 201, 255, 0.808);
+  transition: all 0.2s ease-out;
+}
+.navb-links {
+  font-weight: bold;
+  color: black;
+  text-decoration: none;
+  padding: 2.5rem 1rem;
+}
+
+.fab-bars {
+  color: black;
 }
