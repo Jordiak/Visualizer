@@ -902,6 +902,9 @@ h2 {
   right: -4px;
   bottom: -5px;
 }
+.piegraph{
+  height: 200px
+}
 #listtable {
   border-collapse: separate;
   border-spacing: 0;
@@ -1032,6 +1035,18 @@ h2 {
   padding-right: 20px;
   vertical-align: middle;
   padding-bottom: 10px;
+}
+.seperationusers{
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+.seperationusers td:first-child {
+  width: 1%;
+  white-space: nowrap;
 }
 .dashboardtable td{
   width: 25%;

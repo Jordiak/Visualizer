@@ -433,7 +433,7 @@ app.get('/api/admin/user_stats', (req, res) =>{
 })
 //New User by Month and Day (for Line Graph)
 app.get('/api/admin/new_user_stats', (req, res) =>{
-    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d') ORDER BY DATE_FORMAT(user_created,'%M %d'); ";
+    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d') ORDER BY DATE_FORMAT(user_created,'%M %d') ; ";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
@@ -459,7 +459,27 @@ app.get('/api/admin/user_stats_quizzes', (req, res) =>{
         res.send(result);
     })
 })
-
+//Demographic (Gender)
+app.get('/api/admin/user_demographic_gender', (req, res) =>{
+    const sqlSelect = "SELECT usergender_reg AS 'Gender', Count(*) AS 'Amount' FROM user_infos group by usergender_reg order by usergender_reg asc;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Demographic (Year Level)
+app.get('/api/admin/user_demographic_yearlevel', (req, res) =>{
+    const sqlSelect = "SELECT useryear_reg AS 'YearLevel', Count(*) AS 'Amount' FROM user_infos group by useryear_reg order by useryear_reg asc;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Demographic (Academic Program)
+app.get('/api/admin/user_demographic_program', (req, res) =>{
+    const sqlSelect = "SELECT userprogram_reg AS 'Program', Count(*) AS 'Amount' FROM user_infos group by userprogram_reg order by userprogram_reg asc;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 //Comments and Replies Count
 app.get('/api/admin/comments_replies_stats', (req, res) =>{
     const sqlSelect = "SELECT (SELECT COUNT(*) FROM comments_table) AS 'Comments',(SELECT COUNT(*) FROM replies_table) AS 'Replies';";

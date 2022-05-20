@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BiUser, BiCommentDetail, BiEdit  } from "react-icons/bi";
-import { LineGraph } from "./DashboardGraphs";
+import { LineGraph, PieGraph } from "./DashboardGraphs";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 export default function Dashboard(){
@@ -14,6 +14,11 @@ export default function Dashboard(){
     const [userReplyStats,setuserReplyStats]=useState([]);
     const [userQuizStats,setuserQuizStats]=useState([]);
 
+    //get pie graph stats
+    const [genderPieStats,setgenderPieStats]=useState([]);
+    const [yearlevelPieStats,setyearlevelPieStats]=useState([]);
+    const [programPieStats,setprogramPieStats]=useState([]);
+
     //get line graph stats
     const [commentLineStats,setcommentLineStats]=useState([]);
     const [quizLineStats,setquizLineStats]=useState([]);
@@ -21,12 +26,18 @@ export default function Dashboard(){
 
     //get data from api
     useEffect(() => {
+      //regular stats
       Axios.get('http://localhost:3001/api/admin/user_stats').then((response)=>{setuserStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/comments_replies_stats').then((response)=>{setcommentStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/comments_line_stats').then((response)=>{setcommentLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/quiz_questions_stats').then((response)=>{setquestionStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_comments').then((response)=>{setuserCommentStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_replies').then((response)=>{setuserReplyStats(response.data)});
+      //pie graph stats
+      Axios.get('http://localhost:3001/api/admin/user_demographic_gender').then((response)=>{setgenderPieStats(response.data)});
+      Axios.get('http://localhost:3001/api/admin/user_demographic_yearlevel').then((response)=>{setyearlevelPieStats(response.data)});
+      Axios.get('http://localhost:3001/api/admin/user_demographic_program').then((response)=>{setprogramPieStats(response.data)});
+      //line graph stats
       Axios.get('http://localhost:3001/api/admin/quiz_taker_stats').then((response)=>{setquizLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/new_user_stats').then((response)=>{setusercreateLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_quizzes').then((response)=>{setuserQuizStats(response.data)});
@@ -113,7 +124,70 @@ export default function Dashboard(){
                 <Tab className="backendtab"><span class="dashboardtitle">Analytics</span></Tab>
               </TabList>
             <TabPanel>
-              
+            <table className="dashboardtable">
+           
+              <tr>
+                <td>       
+            <div className="dashboardcard">
+            <span class="dashboardtitle">Users by Gender</span>
+            <table class="seperation">
+              {genderPieStats.map((val)=>{return (
+                      <tr>
+                        <td><h2 class="dashboardstats">{val.Gender}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.Amount}</p></b></td>
+                      </tr>
+                    )})}
+            </table>
+                  </div>
+                  <div className="dashboardcard">
+            <span class="dashboardtitle">Users by Year Level</span>
+            <table class="seperation">
+              {yearlevelPieStats.map((val)=>{return (
+                      <tr>
+                        <td><h2 class="dashboardstats">{val.YearLevel}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.Amount}</p></b></td>
+                      </tr>
+                    )})}
+            </table>
+            </div>   
+            <div className="dashboardcard">
+            <span class="dashboardtitle">Users by CCIS Program</span>
+            <table class="seperation">
+              {programPieStats.map((val)=>{return (
+                      <tr>
+                        <td><h2 class="dashboardstats">{val.Program}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.Amount}</p></b></td>
+                      </tr>
+                    )})}
+            </table>
+            </div>  
+                </td>
+                <td>
+                <div className="dashboardcard">
+              <span class="dashboardtitle">User Demographic</span>
+              <Tabs className="graphtabs" selectedTabClassName="graphtab--selected">
+                <TabList className="graphtablist">
+                  <Tab className="graphtab"><strong>Gender</strong></Tab>
+                  <Tab className="graphtab"><strong>Year Level</strong></Tab>
+                  <Tab className="graphtab"><strong>Academic Program (CCIS)</strong></Tab>
+              </TabList>
+              <TabPanel>
+                <PieGraph labels={genderPieStats.map(val => val.Gender)} datas={genderPieStats.map(val => val.Amount)} label={'Gender'} 
+                color={['#ff4573','#457dff','#aeff45']} />
+              </TabPanel>     
+              <TabPanel>
+              <PieGraph labels={yearlevelPieStats.map(val => val.YearLevel)} datas={yearlevelPieStats.map(val => val.Amount)} label={'Gender'} 
+                color={['#ff9645','#fff645','#96ff45','#45ffa5','#45b8ff']} />
+              </TabPanel>
+              <TabPanel>
+              <PieGraph labels={programPieStats.map(val => val.Program)} datas={programPieStats.map(val => val.Amount)} label={'Gender'} 
+                color={['#5845ff','#ca45ff','#ff45ae','#ff4545']} />
+              </TabPanel>
+              </Tabs>      
+                </div>
+                </td>
+              </tr>
+            </table>  
             </TabPanel>
             <TabPanel>
             <table className="dashboardtable">
@@ -122,7 +196,7 @@ export default function Dashboard(){
                 <td>       
             <div className="dashboardcard">
             <span class="dashboardtitle">Most User Comments</span>
-            <table class="seperation">
+            <table class="seperationusers">
               {userCommentStats.map((val)=>{return (
                       <tr>
                         <td><img src={val.Avatar} width={20}/></td>
@@ -134,7 +208,7 @@ export default function Dashboard(){
                   </div>
                   <div className="dashboardcard">
             <span class="dashboardtitle">Most User Replies</span>
-            <table class="seperation">
+            <table class="seperationusers">
               {userReplyStats.map((val)=>{return (
                       <tr>
                         <td><img src={val.Avatar} width={20}/></td>
@@ -146,7 +220,7 @@ export default function Dashboard(){
             </div>   
             <div className="dashboardcard">
             <span class="dashboardtitle">Top Scorers on Quizzes</span>
-            <table class="seperation">
+            <table class="seperationusers">
               {userQuizStats.map((val)=>{return (
                       <tr>
                         <td><img src={val.Avatar} width={20}/></td>

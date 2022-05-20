@@ -96,7 +96,7 @@ function LoginDropdown(data){
         return(
             <li className='nav-item'>
             <div className="container" ref={container}>
-            <Link className="nav-links" onClick={handleButtonClick}><span className="nav-links">
+            <Link className="nav-links" onClick={handleButtonClick}><span>
             <img src={data.avatar} className="navavatar"/> {data.username}</span></Link>
             {state ?
             <div class="dropdown">
@@ -104,6 +104,7 @@ function LoginDropdown(data){
                 <Link to='/profile' className="dropdownlinks"><li><img src={data.avatar} width={80}/>
                 <h2>{data.username}</h2></li></Link>
                 <Link to='/profile' className="dropdownlinks"><li>Profile</li></Link>
+                <Link to='/score-page' className="dropdownlinks"><li>Scores</li></Link>
                 <Link onClick={logOut} className="dropdownlogout"><li>Logout</li></Link>
             </ul>
             </div>
