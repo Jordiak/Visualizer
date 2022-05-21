@@ -305,15 +305,15 @@ export default function Quiz(){
 
                         <h2>Multiple Choice</h2>
                         <strong><p>Select the corresponding choice based off your desired answer.</p></strong>
-                        <img width={'85%'} height={'60%'} src={fill_blank}></img>
+                        <img width={'85%'} height={'60%'} src={fill_blank} style={{border:"black solid 4px"}}></img>
                         <br></br>
                         <h2>Fill in the Blank</h2>
                         <strong><p>Input your desired answer in the textbox input by selecting and typing your answer.</p></strong>
-                        <img width={'85%'} height={'60%'} src={fil_blank2}></img>
+                        <img width={'85%'} height={'60%'} src={fil_blank2} style={{border:"black solid 4px"}}></img>
                         <br></br>
                         <h2>True or False</h2>
                         <strong><p>Click the true or false button whether the statement from the question is true or false.</p></strong>
-                        <img width={'85%'} height={'60%'} src={t_or_f}></img>
+                        <img width={'85%'} height={'60%'} src={t_or_f} style={{border:"black solid 4px"}}></img>
                         <br></br>
                         <br></br>
                         <strong><p></p>**The whole quiz can be backtracked by clicking the previous button, making it easier to make changes from your answers.</strong>

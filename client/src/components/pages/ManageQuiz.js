@@ -222,10 +222,10 @@ export default function ManageQuiz(){
 
 
     return(
-    <div style={{backgroundColor:"skyblue"}}>
+    <div>
 
         <div class="quiz-maker-container">
-            <h1>Create Question</h1>
+            <h1>Quiz Management</h1>
             <br></br>
             <label className="quiz-maker-label">Question Type</label>
             <br></br>
@@ -281,10 +281,10 @@ export default function ManageQuiz(){
             {questionSets.map((val, index)=> 
             <div className="questions">
                 <div id="admin-quiz-content"><h1>Question {index+1}</h1></div>
-                <div id="quiz-content1" style={{backgroundColor:ChangeBGColor(val.question_type)}}><strong>{val.question_type}</strong></div>
+                <div id="quiz-content1"><strong>{val.question_type}</strong></div>
                 <div id="quiz-content2">{val.question_content}</div>
                 <div id="quiz-content3">Choices:{val.question_choices}</div>
-                <div id="quiz-content4">Correct Answer:{val.correct_answer}</div>
+                <div id="quiz-content4">Correct Answer: {val.correct_answer}</div>
     
     
                 <button class="quiz_editButton" onClick={()=>{EditQuestion(val.question_id, val.question_content, val.question_choices, val.correct_answer, val.question_type)}}>Edit Question</button>
