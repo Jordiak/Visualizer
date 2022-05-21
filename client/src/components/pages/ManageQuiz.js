@@ -50,6 +50,7 @@ export default function ManageQuiz(){
                     correct_answer: correctAnswer
                     },
                 ])
+                                setCorrectAnswer("")
                 break;
             case "Fill in the Blank":
                 Axios.post('http://localhost:3001/api/admin/insert_questions', {
@@ -73,7 +74,7 @@ export default function ManageQuiz(){
                 Axios.post('http://localhost:3001/api/admin/insert_questions', {
                 question_type: questionType,
                 question_content: questionContent, 
-                question_choices: "true"+separator+"false",
+                question_choices: "none",
                 correct_answer: correctAnswer
                 });
                 setQuestionSets([
@@ -240,17 +241,20 @@ export default function ManageQuiz(){
             <textarea rows="3" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
                 <br></br>
             {questionType == "Multiple Choice" ? <div>
-            <label className="quiz-maker-label">Choices:</label>
-                <br></br>
-                <input className="quiz-maker-choices-input" name="A" placeholder="Choice A..." type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
-                <br></br>
-                <input className="quiz-maker-choices-input" name="B" placeholder="Choice B..." type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
-                <br></br>
-                <input className="quiz-maker-choices-input" name="C" placeholder="Choice C..." type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
-                <br></br>
-                <input className="quiz-maker-choices-input" type="text" placeholder="Choice D..." value={choiceD} name="email" id="log_email" onChange={(e) => {
-                          setChoiceD(e.target.value)
-                        }} ></input>
+            <label className="quiz-maker-label" style={{"font-size":"26px"}}>Choices:</label>
+            
+                    <div className='question-admin-choices-container'>
+                        <label>A.</label><input className="quiz-maker-choices-input" name="A" placeholder="Choice A..." type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
+                        <label>C.</label><input className="quiz-maker-choices-input" name="C" placeholder="Choice C..." type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
+                        
+                    </div>
+                    <div className="question-admin-choices-container">
+                    <label>B.</label><input className="quiz-maker-choices-input" name="B" placeholder="Choice B..." type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
+                    <label>D.</label><input className="quiz-maker-choices-input" type="text" placeholder="Choice D..." value={choiceD} name="email" id="log_email" onChange={(e) => {
+                                    setChoiceD(e.target.value)
+                                    }} ></input>
+                    </div>
+                    
                 <br></br>
             <label className="quiz-maker-label" style={{"font-size":"26px"}}>Correct Answer:</label>
 <div class="choices_admin_quiz">
@@ -264,7 +268,7 @@ export default function ManageQuiz(){
             : questionType == "Fill in the Blank" ?  <div>
             <input type="text" className="quiz-maker-choices-input" placeholder="Correct Answer..." onChange={(e) => {setCorrectAnswer(e.target.value)}}></input></div> : questionType == "True or False" ? 
             <div>
-                <label className="quiz-maker-label" style={{"font-size":"26px"}}>Correct Answer</label>
+                <label className="quiz-maker-label" style={{"font-size":"26px"}}>Correct Answer:</label>
                 <br></br>
                 <select className="quiz-maker-select" onChange={(event)=>ChangeCorrectAnswer(event)} name="type" id="type">
                 <option value="True">True</option>
@@ -291,20 +295,20 @@ export default function ManageQuiz(){
                 {editMode && questionEditId == val.question_id ? 
                 <div>
                     <div className="questions">
-                        <label>Type:</label>
+                        <strong><label>Type:</label></strong>
                         <select onChange={(event)=>setTempQuestionType(event.target.value)} name="type" id="type">
                         <option selected={val.question_type == "Multiple Choice"} value="Multiple Choice">Multiple Choice</option>
                         <option selected={val.question_type == "Fill in the Blank"} value="Fill in the Blank">Fill in the Blank</option>
                         <option selected={val.question_type == "True or False"} value="True or False">True or False</option>
                         </select>
                         <br></br>
-                        <label>Content:</label>
+                        <strong><label>Content:</label></strong>
                         <br></br>
                         <textarea rows="5" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" value={tempQuestionContent} cols="45" onChange={(e) => {setTempQuestionContent(e.target.value)}} name="comment"/>
                             <br></br>
                         {tempQuestionType == "Multiple Choice" ? <div>
-                        <label>Choices:</label>
-                            <br></br>
+                        <strong><label>Choices:</label></strong>
+                            {/* <br></br>
                             <label>A.</label><input name="A" className="quiz-maker-choices-input" placeholder="Choice A" type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
                             <br></br>
                             <label>B.</label><input name="B" className="quiz-maker-choices-input" placeholder="Choice B" type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
@@ -314,9 +318,27 @@ export default function ManageQuiz(){
                             <label>D.</label><input type="text" className="quiz-maker-choices-input" placeholder="Choice D" value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
                                     setTempChoiceD(e.target.value)
                                     }} ></input>
-                            <br></br>
+                            <br></br> */}
+        
+                            <div className="question-admin-choices-container" style={{margin:""}}>
+                                <div>
+                                    <label>A.</label><input name="A" className="quiz-maker-choices-edit-input" placeholder="Choice A..." type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
+                                    
+                                    <label>B.</label><input name="B" className="quiz-maker-choices-edit-input" placeholder="Choice B..." type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
+                                    
+                                </div>
+
+                                <div>
+                                    <label>C.</label><input name="C" className="quiz-maker-choices-edit-input" placeholder="Choice C..." type="text" value={tempChoiceC} onChange={(e) => {setTempChoiceC(e.target.value)}}></input>
+                                   
+                                    <label>D.</label><input type="text" className="quiz-maker-choices-edit-input" placeholder="Choice D..." value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
+                                            setTempChoiceD(e.target.value)
+                                            }} ></input>
+                                </div>
+                            </div>
+                            
     
-                        <label>Correct Answer:</label>
+                        <strong><label>Correct Answer:</label></strong>
                             <div class="choices_admin_quiz" style={{paddingTop:"0px"}}>
                             {/* checked={val.correct_answer == "A"} */}
                                <label>A</label> <input type="radio" value="A" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
@@ -326,11 +348,11 @@ export default function ManageQuiz(){
                             </div>
                         </div>
     
-                        : tempQuestionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label>
-                        <input type="text" value={tempCorrectAnswer} onChange={(e) => {setTempCorrectAnswer(e.target.value)}}></input></div> 
+                        : tempQuestionType == "Fill in the Blank" ?  <div><strong><label>Correct Answer:</label></strong>
+                        <input className="quiz-maker-choices-edit-input" type="text" value={tempCorrectAnswer} onChange={(e) => {setTempCorrectAnswer(e.target.value)}}></input></div> 
                         : tempQuestionType == "True or False" ? 
                         <div>
-                            <label>Correct Answer:</label>
+                            <strong><label>Correct Answer:</label></strong>
                             <select onChange={(event)=>setTempCorrectAnswer(event.target.value)} name="type" id="type">
                             <option selected={val.correct_answer == "True"} value="True">True</option>
                             <option selected={val.correct_answer == "False"} value="False">False</option>

@@ -1317,7 +1317,7 @@ h2 {
   border:rgb(0, 0, 0);
   color: black;
   font-family: "Montserrat", sans-serif;
-  width: 30%;
+  width: 33%;
   border:rgb(0, 0, 0) solid 3px;
 }
 
@@ -1335,7 +1335,7 @@ h2 {
   border-radius: 8px;
   border:rgb(0, 0, 0);
   color: black;
-  width: 30%;
+  width: 33%;
   border:rgb(0, 0, 0) solid 3px;
   font-family: "Montserrat", sans-serif;
 }
@@ -1370,10 +1370,22 @@ h2 {
   font-family:inherit;
   font-size: 16px;
   padding: 10px;
+  margin: 10px 30px;
+  border:2px;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border-radius:10px;
+  
+}
+
+.quiz-maker-choices-edit-input{
+  font-family:inherit;
+  font-size: 16px;
+  padding: 10px;
   margin: 10px 0px;
   border:2px;
   box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
   border-radius:10px;
+  
 }
 
 .quiz_admin_container{
@@ -1394,6 +1406,18 @@ h2 {
   width:0; 
   height:0;
 }
+
+.question-admin-choices-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.question-admin-choices-container>label{
+  padding-top: 15px;
+  font-weight: bolder;
+}
+
 
 .quiz-maker-select{
   padding:10px;
