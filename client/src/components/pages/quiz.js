@@ -124,7 +124,7 @@ export default function Quiz(){
             <div id="quiz-content0">Question {questionNo+1}</div>
             {questionSets[questionNo]?.question_type == "Multiple Choice" ?
             <div>
-                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div>Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
                 <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("A")}} >A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
                 <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
@@ -134,7 +134,7 @@ export default function Quiz(){
                 <br></br>
             </div> : questionSets[questionNo]?.question_type == "True or False" ? 
             <div>
-                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div>Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
                 <div id="quiz-content3"><button onClick={()=>{SelectAnswer("True")}} id={answers.current[questionNo] == "True" ? "selected_button_tf" : "true_button"}>True</button></div>
                 <div id="quiz-content3"><button onClick={()=>{SelectAnswer("False")}} id={answers.current[questionNo] == "False" ? "selected_button_tf" : "false_button"}>False</button></div>
@@ -143,7 +143,7 @@ export default function Quiz(){
 
             : questionSets[questionNo]?.question_type == "Fill in the Blank" ? 
             <div > 
-                <div id="quiz-content1">Question Type:{questionSets[questionNo]?.question_type}</div>
+                <div>Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
                 <br></br>
                 <div id="fillDiv">Answer:  <input id="fillInput" type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
