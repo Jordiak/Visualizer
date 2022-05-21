@@ -273,7 +273,7 @@ export default function ManageQuiz(){
             </div> :""}
 
             <br></br>
-            <button onClick={()=>{(AddQuestion(questionType))}}>Add Question</button>
+            <button class="quiz-maker-add_button" onClick={()=>{(AddQuestion(questionType))}}>Add Question</button>
 
             
         </div>

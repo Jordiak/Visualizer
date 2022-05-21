@@ -1297,18 +1297,50 @@ h2 {
   margin-bottom: 2rem;
 }
 
+.quiz-maker-add_button{
+  height: 50px;
+  font-size: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  border:rgb(0, 0, 0) solid 3px;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  width: 15%;
+}
+
 .quiz_deleteButton{
-  background-color: rgba(255, 93, 93, 0.777);
-  color:black;
-  border-color: red;
-  border:1px;
+  /* background-color: rgba(255, 93, 93, 0.777); */
+  height: 50px;
+  font-size: 15px;
+  background-color: rgba(177, 36, 36, 0.808);
+  border-radius: 8px;
+  border:rgb(0, 0, 0);
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  width: 30%;
+  border:rgb(0, 0, 0) solid 3px;
+}
+
+.quiz_deleteButton:hover, .quiz_editButton:hover, .quiz-maker-add_button:hover{
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  box-shadow: #36c4c9 5px 10px;
 }
 
 .quiz_editButton{
-  background-color: rgba(194, 255, 101, 0.777);
-  color:black;
-  border:1px;
+  /* background-color: rgba(194, 255, 101, 0.777); */
+  height: 50px;
+  font-size: 15px;
+  background-color:  rgb(124, 195, 66);
+  border-radius: 8px;
+  border:rgb(0, 0, 0);
+  color: black;
+  width: 30%;
+  border:rgb(0, 0, 0) solid 3px;
+  font-family: "Montserrat", sans-serif;
 }
+
+
 .quiz-maker-container{
   text-align: center;
   font-size: 24px;
