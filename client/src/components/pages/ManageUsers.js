@@ -39,13 +39,10 @@ export default function ManageUsers(){
   }, []);
   if(localStorage.getItem("adminusername")){
     return (
-      <>
       <div className="BackendPage">
       <h2 className="backend_title">User Management</h2>
       <UserTable columns={columns} data={data}/>
       </div>)
-    </>
-    )
   }
   else window.location.href = "/admin";
 }

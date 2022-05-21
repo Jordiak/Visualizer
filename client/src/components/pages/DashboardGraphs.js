@@ -1,6 +1,6 @@
-import { faL } from '@fortawesome/free-solid-svg-icons';
 import {
     Chart as ChartJS,
+    ArcElement,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -10,8 +10,9 @@ import {
     Legend, 
     Filler
   } from 'chart.js';
-  import { Line } from 'react-chartjs-2';
+  import { Line, Pie } from 'react-chartjs-2';
   ChartJS.register(
+    ArcElement,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -31,16 +32,16 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
                 data: data1,
                 borderColor: color1,
                 backgroundColor: color1,
-                tension: 0.4,
-                fill: true
+                fill: true,
+                tension: 0.4
               },
               {
                 label: label2,
                 data: data2,
                 borderColor: color2,
                 backgroundColor: color2,
-                tension: 0.4,
-                fill: true
+                fill: true,
+                tension: 0.4
               }
             ],
           };
@@ -64,4 +65,25 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
       return(
         <Line options={options} data={data}/>
       )
+}
+export function PieGraph({ labels, datas, label, color}) {
+  const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: label,
+          data: datas,
+          borderColor: color,
+          backgroundColor: color,
+          borderWidth: 1
+        }
+      ],
+    };
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
+return(
+  <Pie options={options} data={data} width={600} height={600}/>
+)
 }

@@ -53,7 +53,7 @@ app.post('/api/userpass/check', (req, res) =>{
 
     const Reg_email = req.body.Reg_email
     const Reg_password = req.body.Reg_password
-    const sqlSelect = "SELECT userpassword_reg,username_reg,confirmed FROM user_infos where useremail_reg = ?;";
+    const sqlSelect = "SELECT userpassword_reg,username_reg,useravatar_url,confirmed FROM user_infos where useremail_reg = ?;";
     db.query(sqlSelect,[Reg_email], (err, result) =>{
         try{
         const is_confirmed = JSON.parse(JSON.stringify(result))[0].confirmed
@@ -64,6 +64,7 @@ app.post('/api/userpass/check', (req, res) =>{
         // console.log(pass_confirm_obj)
         bcrypt.compare(Reg_password, pass_result, function(err, result_hashed) {
             const correctPass_confirmed_obj = {"username_reg":JSON.parse(JSON.stringify(result))[0].username_reg,
+            "useravatar_url":JSON.parse(JSON.stringify(result))[0].useravatar_url,
             "confirmed":JSON.parse(JSON.stringify(result))[0].confirmed,
             "correct_pass":result_hashed}
 
@@ -269,11 +270,14 @@ app.post('/api/insert', (req, res)=>{
     const confirmed = req.body.confirmed
     const code = req.body.code
     const user_created = req.body.user_created
+    const usergender_reg = req.body.usergender_reg
+    const userprogram_reg = req.body.userprogram_reg
+    const useryear_reg = req.body.useryear_reg
 
-    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code, user_created) VALUES (?,?,?,?,?,?,?)"
+    const sqlInsert = "INSERT INTO user_infos (useremail_reg, username_reg, userpassword_reg, useravatar_url, confirmed, code, user_created, usergender_reg, userprogram_reg, useryear_reg) VALUES (?,?,?,?,?,?,?,?,?,?)"
 
     bcrypt.hash(Reg_password, 10, function(err, hash) {
-        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code, user_created], (err, result)=>{
+        db.query(sqlInsert, [Reg_email, Reg_username, hash, Reg_avatar_url, confirmed, code, user_created, usergender_reg, userprogram_reg, useryear_reg], (err, result)=>{
             res.send(result);
             console.log(err)
         })
@@ -427,6 +431,13 @@ app.get('/api/admin/user_stats', (req, res) =>{
         res.send(result);
     })
 })
+//New User by Month and Day (for Line Graph)
+app.get('/api/admin/new_user_stats', (req, res) =>{
+    const sqlSelect = "SELECT DATE_FORMAT(user_created,'%M %d') AS 'DateMade', Count(*) AS 'NewUsers' FROM user_infos GROUP BY DATE_FORMAT(user_created,'%M %d') ORDER BY DATE_FORMAT(user_created,'%M %d') ; ";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
 //Get Users Comment Amt (Highest to Lowest)
 app.get('/api/admin/user_stats_comments', (req, res) =>{
     const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg) AS 'Avatar', Count(comments_table.comment_id) AS 'Comments', (SELECT user_infos.username_reg FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg ) AS 'Username' FROM comments_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
@@ -437,6 +448,34 @@ app.get('/api/admin/user_stats_comments', (req, res) =>{
 //Get Users Reply Amt (Highest to Lowest)
 app.get('/api/admin/user_stats_replies', (req, res) =>{
     const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg) AS 'Avatar', Count(replies_table.reply_id) AS 'Replies', (SELECT user_infos.username_reg FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg ) AS 'Username' FROM replies_table GROUP BY useremail_reg ORDER BY COUNT(useremail_reg) DESC LIMIT 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Get Users Quiz Scores (Highest to Lowest)
+app.get('/api/admin/user_stats_quizzes', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg) AS 'Avatar', (SELECT user_infos.username_reg FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg ) AS 'Username', user_score AS 'Score', questions_total AS 'Total'  FROM quiz_statistics group by Username order by user_score desc, quiz_taken desc limit 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Demographic (Gender)
+app.get('/api/admin/user_demographic_gender', (req, res) =>{
+    const sqlSelect = "SELECT usergender_reg AS 'Gender', Count(*) AS 'Amount' FROM user_infos group by usergender_reg order by usergender_reg asc;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Demographic (Year Level)
+app.get('/api/admin/user_demographic_yearlevel', (req, res) =>{
+    const sqlSelect = "SELECT useryear_reg AS 'YearLevel', Count(*) AS 'Amount' FROM user_infos group by useryear_reg order by useryear_reg asc;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Demographic (Academic Program)
+app.get('/api/admin/user_demographic_program', (req, res) =>{
+    const sqlSelect = "SELECT userprogram_reg AS 'Program', Count(*) AS 'Amount' FROM user_infos group by userprogram_reg order by userprogram_reg asc;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })

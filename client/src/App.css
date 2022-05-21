@@ -27,7 +27,10 @@
   margin-left: 75vh;
   margin-bottom: 30px;
 }
-
+.navavatar{
+  width: 20px;
+  vertical-align: middle;
+}
 .box1 input{
   width: 60%;
   height: 30px;
@@ -42,7 +45,6 @@
   font-family: "Montserrat", sans-serif;
   font-size: large;
 }
-
 .reply_shown{
   display: block;
   margin-top: -20px;
@@ -112,7 +114,18 @@
   font-weight: lighter;
   font-family: "Montserrat", sans-serif;
 }
-
+.login_form select {
+  margin: 5px;
+  border:turquoise solid 1px;
+  width: 90%;
+  height: 3rem;
+  border-radius: 100px;
+  padding:5px;
+  text-align: center;
+  font-size: large;
+  font-weight: lighter;
+  font-family: "Montserrat", sans-serif;
+}
 .login_form label {
   color:black;
   font-weight: bold;
@@ -804,7 +817,7 @@ h2 {
 }
 /* Backend */
 .BackendPage {
-  min-height: 85vh;
+  min-height: 100vh;
   background: rgb(216,243,255);
 }
 .backend_title{
@@ -821,6 +834,76 @@ h2 {
 .indentButton{
   padding-left: 5%;
   margin-right: -5%;
+}
+.backendtabs {
+  background-color: rgb(216,243,255);
+  -webkit-tap-highlight-color: black;
+}
+
+.backendtablist {
+  line-height: 75px;
+  background: rgb(170, 230, 255);
+  margin: 0 0 10px;
+  height: 100px;
+  padding-left: 5%;
+}
+.graphtablist {
+  margin: 0 0 10px;
+}
+.backendtab {
+  background: rgba(255, 255, 255, 0);
+  display: inline-block;
+  position: relative;
+  list-style: none;
+  height: 100px;
+  margin-right: 10px;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+.graphtabs {
+  background-color: rgb(255, 255, 255);
+  -webkit-tap-highlight-color: black;
+}
+.graphtab {
+  background: rgb(197, 197, 197);
+  display: inline-block;
+  position: relative;
+  border: 8px solid transparent;
+  border-radius: 8px 8px 8px 8px;
+  list-style: none;
+  padding: 2px 12px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.backendtab--selected {
+  background: rgb(216,243,255);
+  color: black;
+}
+.graphtab--selected {
+  background: rgb(49, 190, 255);
+  color: black;
+}
+
+.backendtab--disabled {
+  color: GrayText;
+  cursor: default;
+}
+
+.backendtab:focus {
+  outline: none;
+}
+
+.backendtab:focus:after {
+  content: "";
+  position: absolute;
+  height: 5px;
+  left: -4px;
+  right: -4px;
+  bottom: -5px;
+}
+.piegraph{
+  height: 200px
 }
 #listtable {
   border-collapse: separate;
@@ -905,6 +988,7 @@ h2 {
   width: 97%;
   height: auto;
   padding: 20px;
+  padding-bottom: 0px;
   border-color: solid, 5px;
   margin: 10px;
   color: black;
@@ -912,7 +996,14 @@ h2 {
   font-size: large;
   border-radius: 19px;
   background: rgba(255, 255, 255);
-  margin-bottom: 10px;
+}
+.comment{
+  text-align: justify;
+  padding-bottom: 0px;
+}
+.comment td:first-child {
+  width: 1%;
+  white-space: nowrap;
 }
 .dashboardtitle{
   font-size: 32px;
@@ -944,6 +1035,18 @@ h2 {
   padding-right: 20px;
   vertical-align: middle;
   padding-bottom: 10px;
+}
+.seperationusers{
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  vertical-align: middle;
+  padding-bottom: 10px;
+}
+.seperationusers td:first-child {
+  width: 1%;
+  white-space: nowrap;
 }
 .dashboardtable td{
   width: 25%;

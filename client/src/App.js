@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './App.css';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import NavbarBackend from './components/NavbarBackend';
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import { Navbar, NavbarBackend } from './components/Navbar';
+import { Footer, FooterBackend } from './components/Footer';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './components/pages/Home';
 import ShortestPath from './components/pages/ShortestPath';
 import Sorting from './components/pages/Sorting';
@@ -21,10 +20,14 @@ import ManageQuiz from './components/pages/ManageQuiz';
 import Dashboard from './components/pages/Dashboard';
 import AVL from './components/AVL_Tree/AVL';
 import ScorePage from './components/pages/ScorePage';
+import Profile from './components/pages/Profile';
+import RegisterForm from './components/pages/RegisterForm';
 
+import {LoginDropdown} from './components/UserDropDown';
 
 function App() {
-  const [value, setValue] = useState('Login/Register')
+  //Login/Register with Dropdown
+  const [value, setValue] = useState(<LoginDropdown/>)
   
   if(window.location.pathname=="/admin"){
     return (
@@ -49,6 +52,7 @@ function App() {
         <Route path="/manage-users" exact component={ManageUsers} />
         <Route path="/manage-discussion" exact component={ManageDiscussion} />
         </Switch>
+        <FooterBackend />
         </UserContext.Provider>
       </Router>  
     );
@@ -56,9 +60,7 @@ function App() {
   return (
     <Router>
       <UserContext.Provider value={{value,setValue}}>
-      
       <Navbar />
-      
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/home" exact component={Home} />
@@ -68,15 +70,15 @@ function App() {
         <Route path="/data-structures" exact component={DataStructures} />
         <Route path="/login-form" exact component={LoginForm} />
         <Route path="/login-form/:id" exact component={LoginForm} />
+        <Route path="/register-form" exact component={RegisterForm} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="/Quiz" exact component={Quiz}/>
         <Route path="/comments" exact component={Comment} />
         <Route path='/AVL' exact component={AVL} />
         <Route path='/score-page' exact component={ScorePage} />
       </Switch>
-    
       <Footer />
       </UserContext.Provider>
-  
     </Router> 
   );
 }

@@ -367,9 +367,8 @@ const forceUpdate = useForceUpdate();
         if (ReactSession.get("username") && commentCount == 2){
           return (
             <div className="commentform">
-                <label >Name:{ReactSession.get("username")}</label>
-                
-            <label>Adding comments is restricted to 2 at a time</label>
+                <h2>{ReactSession.get("username")}</h2>
+                <h2>Adding comments is restricted to 2 at a time</h2>
             </div>
           )
         }
@@ -413,21 +412,27 @@ const forceUpdate = useForceUpdate();
                   {(() => {
         if (String(val.username_reg)=="undefined") {
           return (
-            <div>
-              <img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img>
-              <h2 className='user' value={userid}>{ReactSession.get('username')}</h2><span> • {convertDate(new Date(val.date_written))}</span>
-              </div>
+            <>
+            <table className="comment">
+              <tr>
+                <td><img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img></td>
+                <td><h2 className='user' value={userid}>{ReactSession.get('username')}</h2><span> • {convertDate(new Date(val.date_written))}</span></td>
+              </tr>
+            </table>  
+              </>
           )
         } 
         
         else {
           return (
-            <div>
-              
-              <img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img>
-              <h2 className='user' value={userid}>{val.username_reg}</h2><span> • {convertDate(new Date(val.date_written))}</span>
-
-            </div>
+            <>
+            <table className="comment">
+              <tr>
+                <td><img className='usericon' width={'45px'} height={'50px'}src={val.useravatar_url}></img></td>
+                <td><h2 className='user' value={userid}>{val.username_reg}</h2><span> • {convertDate(new Date(val.date_written))}</span></td>
+              </tr>
+            </table>  
+            </>
           )
         }
       })()}
@@ -512,12 +517,15 @@ const forceUpdate = useForceUpdate();
           <>
 
             {item.comment_id == val.comment_id ? <div className="replyholder2">{convertDate(item.reply_written) == "Invalid Date" ? "" :    
-            <div>
-             <img src={item.useravatar_url} width="20px" height="20px"></img><label className="replyuser">{item.username_reg}</label><span> • {convertDate(new Date(item.reply_written))}</span>
-            <br></br>
-            
+            <>
+            <table className="comment">
+              <tr>
+            <td><img src={item.useravatar_url} width="20px" height="20px"></img></td>
+            <td><label className="replyuser">{item.username_reg}</label><span> • {convertDate(new Date(item.reply_written))}</span></td>
+            </tr>
+            </table>
             <span className="replymsg">{item.reply_content}</span>
-            </div>}
+            </>}
 
             {item.useremail_reg == ReactSession.get("email") ?
              <div>
