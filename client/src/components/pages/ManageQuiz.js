@@ -227,31 +227,32 @@ export default function ManageQuiz(){
         <div class="quiz-maker-container">
             <h1>Create Question</h1>
             <br></br>
-            <label>Type:</label>
-            <select onChange={(event)=>ChangeQuestionType(event)} name="type" id="type">
+            <label className="quiz-maker-label">Question Type</label>
+            <br></br>
+            <select className="quiz-maker-select" onChange={(event)=>ChangeQuestionType(event)} name="type" id="type">
             <option value="Multiple Choice">Multiple Choice</option>
             <option value="Fill in the Blank">Fill in the Blank</option>
             <option value="True or False">True or False</option>
             </select>
             <br></br>
-            <label>Content:</label>
+            <label className="quiz-maker-label" style={{"font-size":"26px"}}>Content:</label>
             <br></br>
-            <textarea rows="4" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
+            <textarea rows="5" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
                 <br></br>
             {questionType == "Multiple Choice" ? <div>
-            <label>Choices:</label>
+            <label className="quiz-maker-label">Choices:</label>
                 <br></br>
-                <label>A.</label><input name="A" placeholder="Choice A" type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
+                <input className="quiz-maker-choices-input" name="A" placeholder="Choice A..." type="text" value={choiceA} onChange={(e) => {setChoiceA(e.target.value)}}></input>
                 <br></br>
-                <label>B.</label><input name="B" placeholder="Choice B" type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
+                <input className="quiz-maker-choices-input" name="B" placeholder="Choice B..." type="text" value={choiceB} onChange={(e) => {setChoiceB(e.target.value)}}></input>
                 <br></br>
-                <label>C.</label><input name="C" placeholder="Choice C" type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
+                <input className="quiz-maker-choices-input" name="C" placeholder="Choice C..." type="text" value={choiceC} onChange={(e) => {setChoiceC(e.target.value)}}></input>
                 <br></br>
-                <label>D.</label><input type="text" placeholder="Choice D" value={choiceD} name="email" id="log_email" onChange={(e) => {
+                <input className="quiz-maker-choices-input" type="text" placeholder="Choice D..." value={choiceD} name="email" id="log_email" onChange={(e) => {
                           setChoiceD(e.target.value)
                         }} ></input>
                 <br></br>
-            <label>Correct Answer:</label>
+            <label className="quiz-maker-label" style={{"font-size":"26px"}}>Correct Answer:</label>
 <div class="choices_admin_quiz">
     <label>A</label><input type="radio" value="A" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
     <label>B</label><input type="radio" value="B" name="choices_radio" onChange={(e)=>{setCorrectAnswer(e.target.value)}} /> 
@@ -260,11 +261,12 @@ export default function ManageQuiz(){
 
 </div>
             </div>
-            : questionType == "Fill in the Blank" ?  <div><label>Correct Answer:</label>
-            <input type="text"  onChange={(e) => {setCorrectAnswer(e.target.value)}}></input></div> : questionType == "True or False" ? 
+            : questionType == "Fill in the Blank" ?  <div>
+            <input type="text" className="quiz-maker-choices-input" placeholder="Correct Answer..." onChange={(e) => {setCorrectAnswer(e.target.value)}}></input></div> : questionType == "True or False" ? 
             <div>
-                <label>Correct Answer:</label>
-                <select onChange={(event)=>ChangeCorrectAnswer(event)} name="type" id="type">
+                <label className="quiz-maker-label" style={{"font-size":"26px"}}>Correct Answer</label>
+                <br></br>
+                <select className="quiz-maker-select" onChange={(event)=>ChangeCorrectAnswer(event)} name="type" id="type">
                 <option value="True">True</option>
                 <option value="False">False</option>
                 </select>
@@ -298,24 +300,24 @@ export default function ManageQuiz(){
                         <br></br>
                         <label>Content:</label>
                         <br></br>
-                        <textarea rows="4" id="question_content" value={tempQuestionContent} cols="50" onChange={(e) => {setTempQuestionContent(e.target.value)}} name="comment"/>
+                        <textarea rows="5" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" value={tempQuestionContent} cols="45" onChange={(e) => {setTempQuestionContent(e.target.value)}} name="comment"/>
                             <br></br>
                         {tempQuestionType == "Multiple Choice" ? <div>
                         <label>Choices:</label>
                             <br></br>
-                            <label>A.</label><input name="A" placeholder="Choice A" type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
+                            <label>A.</label><input name="A" className="quiz-maker-choices-input" placeholder="Choice A" type="text" value={tempChoiceA} onChange={(e) => {setTempChoiceA(e.target.value)}}></input>
                             <br></br>
-                            <label>B.</label><input name="B" placeholder="Choice B" type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
+                            <label>B.</label><input name="B" className="quiz-maker-choices-input" placeholder="Choice B" type="text" value={tempChoiceB} onChange={(e) => {setTempChoiceB(e.target.value)}}></input>
                             <br></br>
-                            <label>C.</label><input name="C" placeholder="Choice C" type="text" value={tempChoiceC} onChange={(e) => {setTempChoiceC(e.target.value)}}></input>
+                            <label>C.</label><input name="C" className="quiz-maker-choices-input" placeholder="Choice C" type="text" value={tempChoiceC} onChange={(e) => {setTempChoiceC(e.target.value)}}></input>
                             <br></br>
-                            <label>D.</label><input type="text" placeholder="Choice D" value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
+                            <label>D.</label><input type="text" className="quiz-maker-choices-input" placeholder="Choice D" value={tempChoiceD} name="email" id="log_email" onChange={(e) => {
                                     setTempChoiceD(e.target.value)
                                     }} ></input>
                             <br></br>
     
                         <label>Correct Answer:</label>
-                            <div class="choices_admin_quiz">
+                            <div class="choices_admin_quiz" style={{paddingTop:"0px"}}>
                             {/* checked={val.correct_answer == "A"} */}
                                <label>A</label> <input type="radio" value="A" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
                                <label>B</label> <input type="radio" value="B" name="choices_radio" onChange={(e)=>{setTempCorrectAnswer(e.target.value)}} /> 
