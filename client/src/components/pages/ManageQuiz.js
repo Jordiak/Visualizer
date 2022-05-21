@@ -237,7 +237,7 @@ export default function ManageQuiz(){
             <br></br>
             <label className="quiz-maker-label" style={{"font-size":"26px"}}>Content:</label>
             <br></br>
-            <textarea rows="5" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
+            <textarea rows="3" placeholder="Enter Question Content..." className="quiz-maker-choices-input" id="question_content" cols="50" onChange={(e) => {setQuestionContent(e.target.value)}} name="comment"/>
                 <br></br>
             {questionType == "Multiple Choice" ? <div>
             <label className="quiz-maker-label">Choices:</label>
