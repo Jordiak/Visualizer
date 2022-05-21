@@ -1251,7 +1251,7 @@ h2 {
 }
 
 .choices_admin_quiz>label{
-  margin: 4%;
+  margin: 2%;
   font-weight: bolder;
 }
 .choices_admin_quiz{
@@ -1305,7 +1305,7 @@ h2 {
   border:rgb(0, 0, 0) solid 3px;
   color: black;
   font-family: "Montserrat", sans-serif;
-  width: 15%;
+  width: 25%;
 }
 
 .quiz_deleteButton{
@@ -1344,8 +1344,10 @@ h2 {
 .quiz-maker-container{
   text-align: center;
   font-size: 24px;
-  background-color: rgb(216, 243, 255);
+  background-color: rgb(255, 255, 255);
   padding-bottom: 3%;
+  width: 60%;
+  margin: auto;
 }
 
 #quiz-maker-edit{
@@ -1357,17 +1359,16 @@ h2 {
 
 .quiz-maker-container > h1{
   font-size: 64px;
-  background-color: rgb(255, 255, 255);
   color: #292828;
   margin: auto;
   padding:3px;
-  width: 45%;
-  border-radius: 5px;
+  background-color: rgb(216, 243, 255);
+  box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
 }
 
 .quiz-maker-choices-input{
   font-family:inherit;
-  font-size: inherit;
+  font-size: 16px;
   padding: 10px;
   margin: 10px 0px;
   border:2px;

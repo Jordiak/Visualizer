@@ -222,7 +222,7 @@ export default function ManageQuiz(){
 
 
     return(
-    <div>
+    <div style={{backgroundColor:"rgb(216, 243, 255)"}}>
 
         <div class="quiz-maker-container">
             <h1>Quiz Management</h1>
