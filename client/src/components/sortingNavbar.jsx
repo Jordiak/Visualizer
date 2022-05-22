@@ -18,19 +18,17 @@ class Navbar extends React.Component {
 
     render() {
         return (
-            <div className="navbar-sorting"  id="navbar">
+            <div className="navbar-sorting">
                 
-                <table style={{paddingBottom:'0px'}} className="navbar-table" >
+                <table className="tablesort" >
                     <tr>
-                        <td>Number of Items to Sort</td>
+                        <td >Number of Items to Sort</td>
                         <td><Size 
                         onChange = {this.props.onChange}
                         lengths = {this.state.lengths}
                         />
                        </td>
-                    </tr>
-                    <tr>
-                        <td>Sorting Speed</td>
+                       <td >Sorting Speed</td>
                         <td>
                         <Speed 
                         onChange = {this.props.onChange}
@@ -38,9 +36,10 @@ class Navbar extends React.Component {
                         />
                         </td>
                     </tr>
+                   
                 </table>
                 <button id="random" onClick = {() => this.props.newList(1)}>Generate Items</button>
-                <br/>
+                
                 <button id="start" onClick = {() => this.props.start()}>Start Sort</button>
                 <a 
                     className="icon" q
