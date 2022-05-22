@@ -452,9 +452,9 @@ app.get('/api/admin/user_stats_replies', (req, res) =>{
         res.send(result);
     })
 })
-//Get Users Quiz Scores (Highest to Lowest)
-app.get('/api/admin/user_stats_quizzes', (req, res) =>{
-    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg) AS 'Avatar', (SELECT user_infos.username_reg FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg ) AS 'Username', user_score AS 'Score', questions_total AS 'Total'  FROM quiz_statistics group by Username order by user_score desc, quiz_taken desc limit 5;";
+//Get Users Total Activity(Comments+Replies) (Highest to Lowest)
+app.get('/api/admin/user_stats_activity', (req, res) =>{
+    const sqlSelect = "SELECT useravatar AS 'Avatar', tempuser AS 'Username', useremail_reg, sum(comments_count)+sum(replies_count) AS 'TotalActivity' FROM ((select (SELECT user_infos.useravatar_url FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg) AS useravatar, (SELECT user_infos.username_reg FROM user_infos WHERE comments_table.useremail_reg = user_infos.useremail_reg ) AS tempuser, useremail_reg AS useremail_reg, count(comments_table.comment_id) as comments_count, 0 as replies_count FROM comments_table GROUP BY useremail_reg) UNION ALL (SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg) AS useravatar, (SELECT user_infos.username_reg FROM user_infos WHERE replies_table.useremail_reg = user_infos.useremail_reg ) AS tempuser, useremail_reg, 0 AS 'Comments', count(reply_id) AS replies_count FROM replies_table GROUP BY useremail_reg)) x GROUP BY useremail_reg ORDER BY sum(comments_count)+sum(replies_count) desc limit 5;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
@@ -490,6 +490,27 @@ app.get('/api/admin/comments_replies_stats', (req, res) =>{
 //Comments and Replies by Month and Day (for Line Graph)
 app.get('/api/admin/comments_line_stats', (req, res) =>{
     const sqlSelect = "SELECT date_writtens, sum(comments_count) AS 'Comments', sum(replies_count) AS 'Replies' FROM ((select DATE_FORMAT(comments_table.date_written,'%M %d') AS date_writtens, count(comments_table.comment_id) as comments_count, 0 as replies_count FROM comments_table GROUP BY DATE_FORMAT(comments_table.date_written,'%M %d')) UNION ALL (SELECT DATE_FORMAT(reply_written,'%M %d') AS date_writtens, 0 AS 'Comments', count(reply_id) AS replies_count FROM replies_table GROUP BY DATE_FORMAT(reply_written,'%M %d'))) x GROUP BY date_writtens ORDER BY date_writtens ASC;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Get Users Quiz Taken (Highest to Lowest)
+app.get('/api/admin/user_stats_quiztaken', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg) AS 'Avatar', (SELECT user_infos.username_reg FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg ) AS 'Username' , Count(*) AS 'QuizTaken' FROM quiz_statistics group by useremail_reg order by Count(*) desc limit 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Get Users Quiz Scores (Highest to Lowest)
+app.get('/api/admin/user_stats_quizzes', (req, res) =>{
+    const sqlSelect = "SELECT (SELECT user_infos.useravatar_url FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg) AS 'Avatar', (SELECT user_infos.username_reg FROM user_infos WHERE quiz_statistics.useremail_reg = user_infos.useremail_reg ) AS 'Username', user_score AS 'Score', questions_total AS 'Total'  FROM quiz_statistics group by Username order by user_score desc, quiz_taken desc limit 5;";
+    db.query(sqlSelect, (err, result) =>{
+        res.send(result);
+    })
+})
+//Get Users Lowest, Average, Highest Percentage Score (for Bar Graph)
+app.get('/api/admin/quiz_bar_stats', (req, res) =>{
+    const sqlSelect = "SELECT DATE_FORMAT(quiz_taken,'%M %d') AS 'DateMade', ROUND(MIN((user_score/questions_total)*100), 2) AS 'LowPercentage', ROUND(MAX((user_score/questions_total)*100), 2) AS 'HighPercentage', ROUND(AVG((user_score/questions_total)*100), 2) AS 'AVGPercentage' FROM cruddatabase.quiz_statistics group by  DATE_FORMAT(quiz_taken,'%M %d') order by quiz_taken asc;";
     db.query(sqlSelect, (err, result) =>{
         res.send(result);
     })
