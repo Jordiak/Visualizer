@@ -50,12 +50,9 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
       const options = {
         responsive: true,
         scales: {
-            y: [{
-                ticks: {
-                    beginAtZero: true,
-                    callback: function(value) {if (value % 1 === 0) {return value;}}
-                }
-            }]
+          y: {
+            min: 0
+          }
         },
         plugins: {
           legend: {
