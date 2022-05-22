@@ -1,26 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 .samplecode {
-  width: 19%;
+  width: 90%;
   height: 4.2%;
-  margin-top: 0.8%;
+  
   float: left;
-  position: relative;
   margin-left: 10px;
 }
 
 .samplecodebutton {
   width: auto;
   height: auto;
-  margin-right:90%;
+  margin-top: -19.3%;
+  float:right;
   text-align: left;
-  margin-top:-100%;
+  margin-right:30%;
   border: none;
-  color: white;
-  background-color: rgb(103,152,149);
-  font-size: 1.1rem;
+  color: steelblue;
+  background-color: transparent;
+  font-size: 1rem;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
-  padding: 7px;
+  padding: 13px;
 }
 
 .changecodecontent {

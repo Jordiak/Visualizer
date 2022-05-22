@@ -224,7 +224,7 @@ class ShowContainer extends Component{
       <div className='show-container'>
         <div className='text-show2'>Data Structure</div>
         <div className='slidercontainer'> 
-          <div className='slidername'>SPEED BAR</div>
+          <div className='slidername'>Fast----SPEED BAR----Slow</div>
           <input type='range' min={20} max={250} value={this.props.duration} onChange={e => this.props.changeDuration(e.target.value)} className='slider' />
         </div>
         <div className='text-show3'>Executing: </div>

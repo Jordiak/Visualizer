@@ -47,10 +47,11 @@ div.text-show2 {
 }
 
 .slidername {
-  width: 100%;
+  width: 110%;
+  text-align: center;
   height: 8px;
   margin: 2px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: bold;
   color: black;
   font-family: monospace;

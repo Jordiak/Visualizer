@@ -1,23 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 .showmethod {
-  width: auto;
-  height: auto;
+  width: 52%;
+  height: 7%;
   float: left;
-  position: relative;
+  position: absolute;
   margin:0;
-  margin-top: 0.8%;
+  margin-top: 1%;
+  border: solid rgb(45, 139, 201);
+  border-width:2px;
+  border-radius: 5px;
+ 
 }
 
 .showmethodbutton {
+  position: absolute;
+  top:-15%;
+  left:0%;
   width: auto;
   height: auto;
   text-align: middle;
   border: none;
-  background-color: rgb(103,152,149);
-  color: white;
-  font-size: 17px;
+  background-color: transparent;
+  color:steelblue;
+  font-size: 1rem;
   cursor: pointer;
-  padding: 7px;
+  padding: 13px;
  font-family: "Montserrat", sans-serif;
 }
 

@@ -25,14 +25,14 @@ div.text-show1 {
   width: auto;
   height: auto;
   margin-top: 2.5%;
-  margin-right: 5px;
+  margin-right: 1%;
   float: right;
   position: relative;
   text-align: middle;
   border: none;
-  background-color: rgb(103,152,149);
-  color: white;
-  padding: 7px;
-  font-size: 17px;
+  background-color: transparent;
+  color: rgb(136, 31, 4);
+  padding: 11px;
+  font-size: 1.1rem;
   font-family: "Montserrat", sans-serif;
 }

@@ -77,8 +77,8 @@ data.Priority_Queue.map(d => pq.push(d));
     const { history } = this.props;
     return (
       <div className='samplecode'>
-        (history)
-        <button className='samplecodebutton' onClick={this.closeButton}>Select</button>
+        
+        <button className='samplecodebutton' onClick={this.closeButton}>Select Data Structure</button>
         {(this.state.open)?
           <div className='coverDom2'>
             <div className='changecodecontent'>
