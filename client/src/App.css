@@ -505,6 +505,28 @@ h2 {
       6px 6px 10px rgba(0, 0, 0, 0.2);
    
 }
+
+.registerPageButton{
+  width: 30%;
+  height: auto;
+  background: rgb(18, 92, 110);
+  border-color:rgb(93,203,231);
+  position: relative;
+  margin-bottom: 25px;
+  border-radius: 10px;
+  text-align: center;
+  color:white;
+  font-size: large;
+  font-weight: normal;
+  line-height: 35px;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  text-decoration: none;
+  padding:1%;
+  transition: all 0.1s ease-in-out;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+      6px 6px 10px rgba(0, 0, 0, 0.2);
+}
 .newlogin:hover {
   opacity: 0.7;
   box-shadow: -6px -6px 10px rgba(193, 243, 239, 0.959),

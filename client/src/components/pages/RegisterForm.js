@@ -253,7 +253,7 @@ function RegisterForm() {
                   <input placeholder="Confirm Password" type="password" name="Confirm_password" id="confirm_user_pass" onChange={(e) => {
                      setConf_password(e.target.value)
                   }} ></input>
-              <center><button className="loginPageButton" onClick={registerUser}>Register</button></center>
+              <center><button className="registerPageButton" onClick={registerUser}>Register</button></center>
               <Link to="/login-form"><button className="buttonRegLog">Already have an account?</button></Link></center>
             </div>
           </div>

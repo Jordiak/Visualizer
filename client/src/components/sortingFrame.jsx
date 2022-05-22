@@ -5,7 +5,7 @@ class Frame extends React.Component {
     render() { 
         return (
             <div className="frame"  >
-                <div className="array" style={{height:"500px"}}>
+                <div className="array" style={{height:"59vh"}}>
                    
                     {this.props.list.map((element, index) => (
                         <div
