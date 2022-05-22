@@ -177,7 +177,7 @@ function RegisterForm() {
   document.getElementById('reg_user_pass').value = ''
   document.getElementById('reg_email').value = ''
   document.getElementById('confirm_user_pass').value =''
-  history.push("/login-form");
+  window.location.href = "/login-form?confirm="+Reg_email;
   //Sending Confirmation E-mail
   try{
     Axios.post('http://localhost:3001/api/sendemail', {

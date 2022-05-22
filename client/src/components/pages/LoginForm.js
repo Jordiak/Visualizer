@@ -20,7 +20,6 @@ function useQuery() {
   return React.useMemo(() => new URLSearchParams(search), [search]);
 }
 
-
 function LoginForm() {
   let query = useQuery();
   let history = useHistory();
@@ -32,6 +31,11 @@ function LoginForm() {
       setuserNameList(response.data)
       if(query.get("code") && query.get("email")){
         confirmUserParams(response.data, query.get("code"), query.get("email"))
+      }
+      else if(query.get("confirm")){
+        setLog_Email(query.get("confirm"));
+        dis(true);
+        history.push("/login-form")
       }
     })
   },[]) //Calling it once
@@ -77,7 +81,6 @@ function LoginForm() {
         getUserAvatar(response.data[0]["useravatar_url"], username);
       }) 
   }
-
   function getUserAvatar(useravatar, uname){
     ReactSession.set('avatar_display', useravatar);
     ReactSession.set("username", uname);
@@ -161,17 +164,25 @@ function LoginForm() {
 }
   //Confirm User
   const confirm_User = () => {
+
     let i;
     let userNamesConfirmCode = usernameList.map((val) => [val.useremail_reg, val.code, val.confirmed]);
     for (i=0;i<userNamesConfirmCode.length;i++){
-      if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
+      if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'true'){
+        Swal.fire({
+          icon: 'success',
+          title: 'Account already Confirmed! You can now Log-in.'
+        })
+        dis(false)
+      }
+      else if((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
         Axios.put('http://localhost:3001/api/confirm/update',{
           log_Email: log_Email,
           confirm:'true',
         }).then(()=>{
           Swal.fire({
             icon: 'success',
-            title: 'Confirmed Code'
+            title: 'Account Confirmed! You can now Log-in.'
           })
           document.getElementById('log_confirm_code').value = ''
           dis(false);
@@ -208,35 +219,36 @@ return (
          {(() => {
         if (ReactSession.get('username')){
           history.push("/profile");
-        }  else if (enableSubmitCode == true) {
-          return (
-              <div className='box1-login'>
-                
-                <div className='login_form'>
-                  <h1 className='log_h1' style={{color:'teal'}}>Confirm Code</h1>
-                  <br></br>
-                  <div className='logbox'>
-                      <center>
-                        {/* {document.getElementById("log_email").value = log_Email} */}
-                        <input type="email" placeholder="Enter Email" value={log_Email} name="email" id="log_email" onChange={(e) => {
-                          setLog_Email(e.target.value)
-                        }} ></input>
-                        </center>
-                        <center>
-           
-                        <input type="text" placeholder="Enter Confirmation Code" name="confirm" id="log_confirm_code" onChange={(e) => {
-                           setCode(e.target.value)
-                        }} ></input>
-                      </center>
-                  
-                  </div>
-                      <center><button style={{width:'auto'}} onClick={confirm_User}>Submit Code</button></center>
-                
-               <br></br>
-               </div>
-               </div>
-          )
         }
+        else if (enableSubmitCode == true) {
+          return (
+            <div className='box1-login'>
+              
+              <div className='login_form'>
+                <h1 className='log_h1' style={{color:'teal'}}>Confirm Code</h1>
+                <br></br>
+                <div className='logbox'>
+                    <center>
+                      {/* {document.getElementById("log_email").value = log_Email} */}
+                     <input type="email" placeholder="Enter Email" value={log_Email} name="email" id="log_email" onChange={(e) => {
+                        setLog_Email(e.target.value)
+                      }} ></input>
+                      </center>
+                      <center>
+         
+                      <input type="text" placeholder="Enter Confirmation Code" name="confirm" id="log_confirm_code" onChange={(e) => {
+                         setCode(e.target.value)
+                      }} ></input>
+                    </center>
+                
+                </div>
+                    <center><button style={{width:'auto'}} onClick={confirm_User}>Submit Code</button></center>
+              
+             <br></br>
+             </div>
+             </div>
+        )
+      }
         else{
           return (
           <div className='box1-login'>
