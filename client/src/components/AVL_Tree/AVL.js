@@ -203,7 +203,7 @@ class AVL extends Component {
               />
               <button
                 onClick={this.insert}
-                className="btn btn-secondary btn-sm"
+                className="AVLButton"
               >
                 ADD
               </button>
@@ -217,7 +217,7 @@ class AVL extends Component {
               />
               <button
                 onClick={this.delete}
-                className="btn btn-secondary btn-sm"
+                className="AVLButton"
               >
                 REMOVE
               </button>
@@ -260,7 +260,7 @@ class AVL extends Component {
             />
             <button
               onClick={this.search}
-              className="btn btn-secondary btn-sm"
+              className="AVLButtonSearch"
             >
               FIND
             </button>
@@ -269,7 +269,7 @@ class AVL extends Component {
           <div className="action">
             <button
               onClick={this.traversePreOrder}
-              className="btn btn-secondary btn-sm"
+              className="AVLButton"
             >
               PRE ORDER
             </button>
@@ -278,7 +278,7 @@ class AVL extends Component {
           <div className="action">
             <button
               onClick={this.traverseInOrder}
-              className="btn btn-secondary btn-sm"
+              className="AVLButton"
             >
               IN ORDER
             </button>
@@ -287,7 +287,7 @@ class AVL extends Component {
           <div className="action">
             <button
               onClick={this.traversePostOrder}
-              className="btn btn-secondary btn-sm"
+              className="AVLButton"
             >
               POST ORDER
             </button>

@@ -116,13 +116,16 @@
   }
   
   #traversal-preview {
-	border: 1px solid black;
+	border: 3px solid rgb(139,207,249);
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
 	margin: 30px 60px 0 60px;
 	padding: 20px;
 	text-align: center;
 	width:auto;
 	margin-left:20%;
 	margin-right:20%;
+	height:7%;
   }
   
   #traversal-actions .action {
@@ -229,3 +232,36 @@
 	padding:5px;
 	font-family: "Montserrat", sans-serif;
 }
+
+.AVLButton{
+	margin:unset;
+	margin-right:10px;
+	width: auto;
+	height: auto;
+	text-align: left;
+	color: rgb(27,20,100);
+	background-color: transparent;
+	border: 3px solid rgb(27,20,100);
+	border-radius: 20px;
+	font-size: 1.1rem;
+	font-family: "Montserrat", sans-serif;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.AVLButtonSearch{
+	margin:unset;
+	margin-right:20%;
+	width: auto;
+	height: auto;
+	text-align: left;
+	color: rgb(27,20,100);
+	background-color: rgb(207,237,253);
+	border: 3px solid rgb(27,20,100);
+	border-radius: 20px;
+	font-size: 1.1rem;
+	font-family: "Montserrat", sans-serif;
+	cursor: pointer;
+	padding: 10px;
+}
+
