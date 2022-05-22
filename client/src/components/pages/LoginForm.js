@@ -175,11 +175,11 @@ function LoginForm() {
           })
           document.getElementById('log_confirm_code').value = ''
           dis(false);
-          setuserNameList(usernameList.map((val) => { 
-            return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
-          }))
+          //setuserNameList(usernameList.map((val) => { 
+          //  return  val.useremail_reg == log_Email?{useremail_reg:val.useremail_reg, username_reg:val.username_reg, userpassword_reg:val.userpassword_reg, useravatar_url:val.useravatar_url, confirmed:'true', code:val.code}:val
+          //}))
 
-          correctPass_Confirmed('NaN', Reg_username, log_Email, Reg_password)
+          //correctPass_Confirmed('NaN', Reg_username, log_Email, Reg_password)
         })
       }
       else if ((log_Email.trim()) == userNamesConfirmCode[i][0] && (code.trim()) != userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){

@@ -1614,3 +1614,19 @@ h2 {
   width:50%;
   height:200%;
 }
+
+.AVl-redirect-button{
+  position: absolute;
+  top: 30%;
+  left: 69.7%;
+  width: auto;
+  height: auto;
+  text-align: left;
+  border: none;
+  color: white;
+  background-color: rgb(103,152,149);
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
+  padding: 7px;
+}

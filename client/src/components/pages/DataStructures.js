@@ -5,7 +5,6 @@ import SideCollapsible from '../functions/SideCollapsible.js';
 import { useHistory } from 'react-router-dom';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import AVL from '../AVL_Tree/AVL.js';
 
 export default function DataStructures(){
     let history = useHistory();
@@ -637,10 +636,11 @@ class RBT {
 
             </div>
           </SideCollapsible>
-          <button onClick={enterAVL}>Enter AVL</button>
+          
             </div>
             <div className='DSleft'>
                 <Dsa />
+                <button className='AVl-redirect-button' onClick={enterAVL}>AVL</button>
             </div>
             <div className='DSright'>
             <Collapsible label="Linked List">

@@ -4,6 +4,7 @@ import '../stylesheet/SampleCode.css'
 
 // component that allows for sample code to be performed within the data structure visualizer
 class SampleCode extends Component {
+
   arr = null;
 
   generateArray = (size) => {
@@ -73,14 +74,16 @@ data.Priority_Queue.map(d => pq.push(d));
   }
 
   render() {
+    const { history } = this.props;
     return (
       <div className='samplecode'>
+        (history)
         <button className='samplecodebutton' onClick={this.closeButton}>Select</button>
         {(this.state.open)?
           <div className='coverDom2'>
             <div className='changecodecontent'>
-              <button className='gosample' onClick={() => this.clickButton(this.settreecode, this.settreedata)}>SetTree</button>
-              <button className='gosample' onClick={() => this.clickButton(this.maptreecode, this.maptreedata)}>MapTree</button>
+              <button className='gosample' onClick={() => this.clickButton(this.settreecode, this.settreedata)}>Set Tree</button>
+              <button className='gosample' onClick={() => this.clickButton(this.maptreecode, this.maptreedata)}>Map Tree</button>
               <button className='gosample' onClick={() => this.clickButton(this.listcode, this.listdata)}>List</button>
               <button className='gosample' onClick={() => this.clickButton(this.queuecode, this.queuedata)}>Queue</button>
               <button className='gosample' onClick={() => this.clickButton(this.pqcode, this.pqdata)}>Priority Queue</button>
