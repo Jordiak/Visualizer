@@ -23,32 +23,39 @@ export default function Avl(){
     
     return(
         <div className='AVL-page'>
-            <button onClick={toggleModal} className="btn-modal">ⓘ
-            INSTRUCIONS
-            </button>
-            <AVL/>
+            <div className='left-avl-panel'>
+                <button onClick={toggleModal} className="btn-modal">ⓘ
+                INSTRUCIONS
+                </button>
+            </div>
+            <div className='avl-right'>
+                <AVL/>
+            </div>
             {modal && (
         <div className="modal">
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
-            <h2>Path Finding Instructions</h2><br/>
+            <h2>AVL Instructions</h2><br/>
            
             
-            <p>Drag the starting point (blue) and the ending point (red) to change their positions.</p><br/>
+            <p>To add a new node to the AVL tree, input an integer in the add field then press the add button.</p><br/>
 
             
             <p>
-              Click an empty cell to create a wall.
+              To remove a node, input that node's number into the remove field and press the remove button.
             </p><br/>
 
             
-            <p>The clear grid button will remove the previous path<br/>
-                Clear wall button will remove walls.
+            <p>To search for a particular node in the AVL tree, input that node's number into the find field then press the find button.
             </p><br/>
 
             
             <p>
-              Choose from the available algorithm to start the path finding process.
+              To traverse the AVL tree, chose one of the following traversal methods presented here.
+            </p><br/>
+
+            <p>
+              The traversal path will then be displayed in this area.
             </p><br/>
 
             <button className="close-modal" onClick={toggleModal}>
