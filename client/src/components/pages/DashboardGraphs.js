@@ -4,15 +4,17 @@ import {
     CategoryScale,
     LinearScale,
     PointElement,
+    BarElement,
     LineElement,
     Title,
     Tooltip,
     Legend, 
     Filler
   } from 'chart.js';
-  import { Line, Pie } from 'react-chartjs-2';
+  import { Line, Pie, Bar } from 'react-chartjs-2';
   ChartJS.register(
     ArcElement,
+    BarElement,
     CategoryScale,
     LinearScale,
     PointElement,
@@ -48,12 +50,9 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
       const options = {
         responsive: true,
         scales: {
-            y: [{
-                ticks: {
-                    beginAtZero: true,
-                    callback: function(value) {if (value % 1 === 0) {return value;}}
-                }
-            }]
+          y: {
+            min: 0
+          }
         },
         plugins: {
           legend: {
@@ -62,9 +61,7 @@ export function LineGraph({ labels, data1, data2, label1, label2, color1, color2
           maintainAspectRatio: false
         },
       };
-      return(
-        <Line options={options} data={data}/>
-      )
+      return <Line options={options} data={data}/>;
 }
 export function PieGraph({ labels, datas, label, color}) {
   const data = {
@@ -83,7 +80,32 @@ export function PieGraph({ labels, datas, label, color}) {
       responsive: true,
       maintainAspectRatio: false
     };
-return(
-  <Pie options={options} data={data} width={600} height={600}/>
-)
+return <Pie options={options} data={data} width={600} height={600}/>;
+}
+export function BarGraph({ labels, data1, data2, data3, label1, label2, label3, color1, color2, color3}) {
+  const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: label1,
+          data: data1,
+          backgroundColor: color1,
+        },
+        {
+          label: label2,
+          data: data2,
+          backgroundColor: color2,
+        },
+        {
+          label: label3,
+          data: data3,
+          backgroundColor: color3,
+        }
+      ],
+    };
+    const options = {
+      responsive: true,
+      maintainAspectRatio: false
+    };
+return <Bar options={options} data={data} height={600}/>;
 }

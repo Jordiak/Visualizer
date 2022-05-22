@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 import { BiUser, BiCommentDetail, BiEdit  } from "react-icons/bi";
-import { LineGraph, PieGraph } from "./DashboardGraphs";
+import { LineGraph, PieGraph, BarGraph } from "./DashboardGraphs";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 
 export default function Dashboard(){
@@ -12,6 +12,8 @@ export default function Dashboard(){
     const [questionStats,setquestionStats]=useState([]);
     const [userCommentStats,setuserCommentStats]=useState([]);
     const [userReplyStats,setuserReplyStats]=useState([]);
+    const [userTotalActivity,setuserTotalActivity]=useState([]);
+    const [userQuizTakenStats,setuserQuizTakenStats]=useState([]);
     const [userQuizStats,setuserQuizStats]=useState([]);
 
     //get pie graph stats
@@ -24,6 +26,9 @@ export default function Dashboard(){
     const [quizLineStats,setquizLineStats]=useState([]);
     const [usercreateLineStats,setusercreateLineStats]=useState([]);
 
+    //get bar graph stats
+    const [quizBarStats,setquizBarStats]=useState([]);
+
     //get data from api
     useEffect(() => {
       //regular stats
@@ -33,6 +38,8 @@ export default function Dashboard(){
       Axios.get('http://localhost:3001/api/admin/quiz_questions_stats').then((response)=>{setquestionStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_comments').then((response)=>{setuserCommentStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_replies').then((response)=>{setuserReplyStats(response.data)});
+      Axios.get('http://localhost:3001/api/admin/user_stats_activity').then((response)=>{setuserTotalActivity(response.data)});
+      Axios.get('http://localhost:3001/api/admin/user_stats_quiztaken').then((response)=>{setuserQuizTakenStats(response.data)});
       //pie graph stats
       Axios.get('http://localhost:3001/api/admin/user_demographic_gender').then((response)=>{setgenderPieStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_demographic_yearlevel').then((response)=>{setyearlevelPieStats(response.data)});
@@ -41,6 +48,8 @@ export default function Dashboard(){
       Axios.get('http://localhost:3001/api/admin/quiz_taker_stats').then((response)=>{setquizLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/new_user_stats').then((response)=>{setusercreateLineStats(response.data)});
       Axios.get('http://localhost:3001/api/admin/user_stats_quizzes').then((response)=>{setuserQuizStats(response.data)});
+      //bar graph stats
+      Axios.get('http://localhost:3001/api/admin/quiz_bar_stats').then((response)=>{setquizBarStats(response.data)});
     } , [])
     if(localStorage.getItem("adminusername")){
      return(
@@ -121,7 +130,8 @@ export default function Dashboard(){
             <Tabs className="backendtabs" selectedTabClassName="backendtab--selected">
               <TabList className="backendtablist">
                 <Tab className="backendtab"><span class="dashboardtitle">Demographic</span></Tab>
-                <Tab className="backendtab"><span class="dashboardtitle">Analytics</span></Tab>
+                <Tab className="backendtab"><span class="dashboardtitle">Activity Analytics</span></Tab>
+                <Tab className="backendtab"><span class="dashboardtitle">Quiz Analytics</span></Tab>
               </TabList>
             <TabPanel>
             <table className="dashboardtable">
@@ -219,6 +229,57 @@ export default function Dashboard(){
             </table>
             </div>   
             <div className="dashboardcard">
+            <span class="dashboardtitle">Most User Activity</span>
+            <table class="seperationusers">
+              {userTotalActivity.map((val)=>{return (
+                      <tr>
+                        <td><img src={val.Avatar} width={20}/></td>
+                        <td><h2 class="dashboardstats">{val.Username}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.TotalActivity}</p></b></td>
+                      </tr>
+                    )})}
+            </table>
+            </div>
+                </td>
+                <td>
+                <div className="dashboardcard">
+              <span class="dashboardtitle">User Activity</span>
+              <Tabs className="graphtabs" selectedTabClassName="graphtab--selected">
+                <TabList className="graphtablist">
+                  <Tab className="graphtab"><strong>New Users</strong></Tab>
+                  <Tab className="graphtab"><strong>Comments & Replies</strong></Tab>
+              </TabList>
+              <TabPanel>
+                <LineGraph labels={usercreateLineStats.map(val => val.DateMade)} data1={usercreateLineStats.map(val => val.NewUsers)} label1={'New Users'} 
+                label2={''} color1={'rgb(209, 23, 230, 0.60)'} color2={'rgb(0,0,0,0)'}/>
+              </TabPanel>     
+              <TabPanel>
+                <LineGraph labels={commentLineStats.map(val => val.date_writtens)} data1={commentLineStats.map(val => val.Comments)} label1={'Comments'} 
+                data2={commentLineStats.map(val => val.Replies)} label2={'Replies'} color1={'rgb(3, 94, 252, 0.60)'} color2={'rgb(252, 3, 94, 0.60)'}/>
+              </TabPanel>
+              </Tabs>      
+                </div>
+                </td>
+              </tr>
+            </table>
+            </TabPanel>
+            <TabPanel>
+            <table className="dashboardtable">
+              <tr>
+                <td>
+            <div className="dashboardcard">
+            <span class="dashboardtitle">Most User Quiz Taken</span>
+            <table class="seperationusers">
+              {userQuizTakenStats.map((val)=>{return (
+                      <tr>
+                        <td><img src={val.Avatar} width={20}/></td>
+                        <td><h2 class="dashboardstats">{val.Username}</h2></td>
+                        <td><b><p style={{textAlign: "right"}}>{val.QuizTaken}</p></b></td>
+                      </tr>
+                    )})}
+            </table>
+            </div> 
+            <div className="dashboardcard">
             <span class="dashboardtitle">Top Scorers on Quizzes</span>
             <table class="seperationusers">
               {userQuizStats.map((val)=>{return (
@@ -229,28 +290,23 @@ export default function Dashboard(){
                       </tr>
                     )})}
             </table>
-            </div>  
+            </div> 
                 </td>
                 <td>
                 <div className="dashboardcard">
               <span class="dashboardtitle">User Activity</span>
               <Tabs className="graphtabs" selectedTabClassName="graphtab--selected">
                 <TabList className="graphtablist">
-                  <Tab className="graphtab"><strong>New Users</strong></Tab>
-                  <Tab className="graphtab"><strong>Comments & Replies</strong></Tab>
                   <Tab className="graphtab"><strong>Quizzes Taken</strong></Tab>
+                  <Tab className="graphtab"><strong>Quiz Statistics</strong></Tab>
               </TabList>
-              <TabPanel>
-                <LineGraph labels={usercreateLineStats.map(val => val.DateMade)} data1={usercreateLineStats.map(val => val.NewUsers)} label1={'New Users'} 
-                label2={''} color1={'rgb(209, 23, 230, 0.60)'} color2={'rgb(0,0,0,0)'}/>
-              </TabPanel>     
-              <TabPanel>
-                <LineGraph labels={commentLineStats.map(val => val.date_writtens)} data1={commentLineStats.map(val => val.Comments)} label1={'Comments'} 
-                data2={commentLineStats.map(val => val.Replies)} label2={'Replies'} color1={'rgb(3, 94, 252, 0.60)'} color2={'rgb(252, 3, 94, 0.60)'}/>
-              </TabPanel>
               <TabPanel>
               <LineGraph labels={quizLineStats.map(val => val.DateMade)} data1={quizLineStats.map(val => val.QuizTakers)} label1={'Quizzes Taken'}
                 label2={''} color1={'rgb(38, 230, 0, 0.6)'} color2={'rgb(0,0,0,0)'}/>
+              </TabPanel>
+              <TabPanel>
+              <BarGraph labels={quizBarStats.map(val => val.DateMade)} data1={quizBarStats.map(val => val.LowPercentage)} label1={'Lowest Percentage Score'}
+                data2={quizBarStats.map(val => val.AVGPercentage)} label2={'Average Percentage Score'} data3={quizBarStats.map(val => val.HighPercentage)} label3={'Highest Percentage Score'} color1={'rgb(235, 100, 52)'} color2={'rgb(235, 235, 52)'} color3={'rgb(113, 235, 52)'}/>
               </TabPanel>
               </Tabs>      
                 </div>
