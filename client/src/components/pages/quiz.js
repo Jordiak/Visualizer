@@ -126,10 +126,10 @@ export default function Quiz(){
             <div>
                 <div>Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("A")}} >A. {SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("B")}}>B. {SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("C")}}>C. {SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
-                <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("D")}}>D. {SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "A" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("A")}}>{SplitChoices(questionSets[questionNo]?.question_choices, 1)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "B" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("B")}}>{SplitChoices(questionSets[questionNo]?.question_choices, 2)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "C" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("C")}}>{SplitChoices(questionSets[questionNo]?.question_choices, 3)}</button></div>
+                <div id="quiz-content3"><button id={answers.current[questionNo] == "D" ? "selected_button" : "quiz-contentx"} onClick={()=>{SelectAnswer("D")}}>{SplitChoices(questionSets[questionNo]?.question_choices, 4)}</button></div>
                 {/* <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div> */}
                 <br></br>
             </div> : questionSets[questionNo]?.question_type == "True or False" ? 
@@ -146,7 +146,7 @@ export default function Quiz(){
                 <div>Question Type:{questionSets[questionNo]?.question_type}</div>
                 <div id="quiz-content2">{questionSets[questionNo]?.question_content}</div> 
                 <br></br>
-                <div id="fillDiv">Answer:  <input id="fillInput" type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
+                <div id="fillDiv">Answer:  <input id="fillInput" autocomplete="off" type="text" placeholder={currentBlankAnswer} onChange={(e) => {FillAnswer(e.target.value)}}></input></div>
                 <br></br>
                 {/* <div id="quiz-content4">Correct Answer:{questionSets[questionNo]?.correct_answer}</div> */}
             </div>

@@ -137,7 +137,7 @@ function LoginForm() {
             icon: 'success',
             title: 'Account already Confirmed! You can now Log-in.'
           })
-          break
+          break;
       }
       else if(email == userNamesConfirmCode[i][0] && confirmcode == userNamesConfirmCode[i][1] && userNamesConfirmCode[i][2] == 'false'){
         Axios.put('http://localhost:3001/api/confirm/update',{

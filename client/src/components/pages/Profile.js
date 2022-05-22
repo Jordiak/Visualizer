@@ -210,7 +210,7 @@ function Profile() {
                 <img className='usericon' width={'120px'} height={'120px'} src={ReactSession.get('avatar_display')}></img>
                   <h1>Username: {ReactSession.get('username')}</h1>
                      <h1>Email: {ReactSession.get('email')}</h1>
-                     <h1>Password: {ReactSession.get('password')}</h1>
+                     {/* <h1>Password: {ReactSession.get('password')}</h1> */}
 
                      <button onClick={changeName}>Change Username</button>
                      <button onClick={changePassword}>Change Password</button>
