@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import UserTable from "./UserTable";
-import axios from 'axios'
+import axios from 'axios';
+import Moment from 'moment';
 
 export default function ManageUsers(){
   const [data, setData] = useState([]);
@@ -22,14 +23,31 @@ export default function ManageUsers(){
    accessor: 'userpassword_reg',
    Cell: ({ cell: { value } }) => <><input id={value} type="password" value={value} disabled className="passwordfield"></input></>
    }
-   ,{  
+   ,{
+    Header: 'Gender',  
+    accessor: 'usergender_reg'
+   },
+   {
+    Header: 'Year Level',  
+    accessor: 'useryear_reg'
+   },
+   {
+    Header: 'CCIS Program',  
+    accessor: 'userprogram_reg'
+   },
+   {  
     Header: 'Confirm Status',  
     accessor: 'confirmed'
     }
     ,{  
       Header: 'Code',  
       accessor: 'code'
-  }]
+  },
+  {
+    Header: 'Created on',  
+    accessor: 'user_created',
+    Cell: ({ cell: { value } }) => Moment(value).format('MM-DD-YY')
+   }]
   //Gather UserData
   useEffect(() => {
     (async () => {
