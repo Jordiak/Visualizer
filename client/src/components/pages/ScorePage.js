@@ -51,13 +51,13 @@ export default function ScorePage(){
         let year = dateTimeString.slice(0,4);
         let month = dateTimeString.slice(5,7)
         let day = dateTimeString.slice(8,10)
-        let hour = dateTimeString.slice(11,13)
+        let hour = (parseInt(dateTimeString.slice(11,13)) - 8)
         let minute = dateTimeString.slice(14,16)
 
         let formatedMonth = FormatMonth(month)
         let formatedTime = FormatTime(hour,minute)
         
-        return formatedMonth + " " + day + ", " + year + " - " + formatedTime
+        return formatedMonth + " " + (parseInt(day)+1) + ", " + year + " - " + formatedTime
     }
     
     return(
