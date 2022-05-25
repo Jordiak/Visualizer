@@ -124,6 +124,36 @@ export default function DataStructures(){
                               <td>Θ(log(n))</td>
                           </tr>
                           
+                      </table>
+                      <br/>
+                      <h4 style={{textAlign:"center"}}>AVL Tree</h4><br/>
+                      <table className='left-table' >
+                          <tr>
+                              <th>OPERATIONS</th>
+                              <th>BEST</th>
+                              <th>WORST</th>
+                          </tr>
+                          <tr>
+                              <td>Traversal</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Search</td>
+                              <td>Θ(1)</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Insertion</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          <tr>
+                              <td>Deletion</td>
+                              <td>Θ(log(n))</td>
+                              <td>Θ(log(n))</td>
+                          </tr>
+                          
                           
                       </table>
             
@@ -679,14 +709,13 @@ class RBT {
                         <h1>Tree</h1>
                         <p>A tree is a <font className="ideatext">nonlinear</font> hierarchical data structure that consists of nodes <font className="ideatext">connected by edges</font>. Different tree data structures allow quicker and easier access to the data as it is a non-linear data structure.
                         </p>
-                        <h1>Applications</h1>
+                        <center><h3>Red and Black Tree</h3></center>
                         <p>
-<ol style={{marginLeft:"10px"}}><li> Binary Search Trees(BSTs) are used to quickly check whether an element is present in a set or not.</li>
-<li> Heap is a kind of tree that is used for heap sort.</li>
-<li> A modified version of a tree called Tries is used in modern routers to store routing information.</li>
-<li> Most popular databases use B-Trees and T-Trees, which are variants of the tree structure we learned above to store their data</li>
-<li> Compilers use a syntax tree to validate the syntax of every program you write.</li>
-</ol>
+                        A red–black tree is a kind of self-balancing binary search tree. Each node stores an extra bit representing "color", used to ensure that the tree remains balanced during insertions and deletions.
+                        </p>
+                        <center><h3>AVL tree</h3></center>
+                        <p>
+                        An AVL tree (named after inventors Adelson-Velsky and Landis) is a self-balancing binary search tree (BST). In an AVL tree, the heights of the two child subtrees of any node differ by at most one; if at any time they differ by more than one, rebalancing is done to restore this property.
                         </p>
                        
             </Collapsible>

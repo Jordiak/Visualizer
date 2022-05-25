@@ -286,7 +286,7 @@ h2 {
   margin-right:10px;
 }
 .leftInfo {
-  width: 60%;
+  width: 70%;
   float: left;
   color:rgb(73,72,201);
   padding: 2rem;
@@ -305,17 +305,16 @@ h2 {
   padding:7%;
 }
 .boximg {
-  position: relative;
-  right: 20%;
+  position: absolute;
+  right: 1%;
   top: 180px;
-  width: 95%;
+  width: 37%;
 }
 .boximg2{
-  position: relative;
-  padding-right: 2%;
-  float:right;
-  width: 40%;
-  top: 180px;
+  position: absolute;
+  right: 0%;
+  width: 32%;
+  bottom: -100%;
 
 }
 .speechbubble1 {
@@ -352,7 +351,7 @@ h2 {
   transform: scaleX(-1);
 }
 .rightInfo {
-  width: 40%;
+  width: 30%;
   float: right;
   color:rgb(73,72,201);
   font-size: 1.1rem;
@@ -363,6 +362,10 @@ h2 {
 .left-panel {
   width: 20%;
   float: left;
+}
+.left-panel .side-content{
+  width:100%;
+  margin:0%;
 }
 .ShortestPath .left-panel {
   width: 20%;
@@ -1256,7 +1259,7 @@ h2 {
 }
 
 #quiz_demo_note{
-  margin-top: 5rem;
+  margin-top: 2rem;
   text-align: center;
 }
 #quiz_demo_note>h2{
@@ -1270,11 +1273,13 @@ h2 {
 
 .quiz_instruction{
   font-weight: semibold;
+  text-align: center;
   font-family: "Montserrat", sans-serif;
   padding:1%;
   margin-top:10%;
   margin-left:10%;
   margin-right:10%;
+  margin-bottom:3%;
   font-size: 16px;
   font-weight: bold;
   margin-top:2%;

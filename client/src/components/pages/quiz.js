@@ -273,16 +273,11 @@ export default function Quiz(){
                     <div className="quiz_instruction">
                        <p>Instructions: Today's quiz has <span style={{color:"blue"}}>{questionSets?.length}</span> item questions of different types
                          such as multiple choice, fill in the blank, and true or false. The questions contained
-                       within changes everyday. 
+                       within changes everyday. <br/><br/> **NOTE: Only the first attempt of the quiz is recorded. 
+                            Another attempt does not update the first recorded score until the following day.
                        </p>
                     </div>
                     
-                    <div id="quiz_instruction_note">
-                        <p>
-                            **NOTE: Only the first attempt of the quiz is recorded. 
-                            Another attempt does not update the first recorded score until the following day.
-                        </p>
-                    </div>
 
                     {ReactSession.get("email") != undefined ?
                     <div>
