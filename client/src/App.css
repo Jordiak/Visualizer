@@ -681,36 +681,56 @@ h2 {
 }
 
 .cardholderScore {
-  margin-left: 5%;
   padding-right:0%;
   display: flex;
   flex-direction: column-reverse;
+  
 }
 .score-card{
+  font-weight: semibold;
+  font-family: "Montserrat", sans-serif;
+  padding:1%;
+  margin:10%;
+  margin-top:2%;
+  background-color: white;
+    box-shadow: -6px -6px 10px rgba(255, 255, 255, 0),
+      6px 6px 10px rgba(0, 0, 0, 0.2);
   align-self: center;
   text-align: center;
   width: 100%;
   height: auto;
   padding: 20px;
-  font-weight: semibold;
-  font-family: "Montserrat", sans-serif;
-  border-color: none;
-  margin: 10px;
+  
   color: black;
   text-align: justify;
   font-size: large;
-  border-radius: 19px;
-  background: #cfedfd;
+ 
   margin-bottom: 10px;
+ 
 }
 
 .scoreLeft{
   margin-top:18%;
-  padding-left: 7%;
+  margin-left: 9%;
   float:left;
   width:90%;
   height:60vh;
   overflow-y: auto;
+  
+}
+.scoreLeft::-webkit-scrollbar-track{
+  background-color: gainsboro;
+
+}
+.scoreLeft::-webkit-scrollbar-thumb{
+  background-color: rgb(226, 226, 236);
+}
+.scoreTable::-webkit-scrollbar-track{
+  background-color: gainsboro;
+
+}
+.scoreTable::-webkit-scrollbar-thumb{
+  background-color: rgb(226, 226, 236);
 }
 .man{
  width:45%;
@@ -744,25 +764,26 @@ h2 {
   border-color:unset;
   border-width: thin;
   border-radius:10px;
-  margin:3%;
-  background-color:#255494;
-  padding:3%;
+  background-color:white;
   padding-left:10%;
+  padding-top:5%;
+  
   
 }
 .scoreRow{
-  margin:1%;
+  padding-top:2%;
+  padding-right: 5%;
   font-weight: semibold;
   font-family: "Montserrat", sans-serif;
   font-size: 1.1rem;
-  background: linear-gradient( 90deg,white, #a0c8df ,transparent);
+  background: rgb(209,239,253);
   text-align: justify;
   padding-left: 10%;
-  padding-top: 3%;
+  margin-top: 3%;
 }
 .scoreRow h1{
   text-align: right;
-  color:lemonchiffon;
+  color:forestgreen;
 }
 .scorePic{
   background-color: white;
@@ -1639,7 +1660,7 @@ h2 {
 
 .AVl-redirect-button{
   position: absolute;
-  top: 13.9%;
+  margin-top: -64.2%;
   left: 55%;
   width: auto;
   height: auto;
